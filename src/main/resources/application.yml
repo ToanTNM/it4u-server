@@ -1,0 +1,21 @@
+# app config
+app:
+  api:
+    version: /api/v1
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 604800000
+
+spring:
+  profiles:
+    active: prod
+  # Jackson Properties
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+  # Database config  
+  jpa:
+    # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate.ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
