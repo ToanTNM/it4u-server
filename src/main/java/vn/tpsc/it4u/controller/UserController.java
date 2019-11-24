@@ -1,12 +1,9 @@
 package vn.tpsc.it4u.controller;
 
-import vn.tpsc.it4u.exception.ResourceNotFoundException;
-import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.*;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.security.CurrentUser;
-import vn.tpsc.it4u.util.AppConstants;
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

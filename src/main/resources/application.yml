@@ -7,15 +7,22 @@ app:
 
 spring:
   profiles:
-    active: prod
+    active: dev
+
   # Jackson Properties
   jackson:
+    default-property-inclusion: NON_NULL
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: UTC
+
   # Database config  
   jpa:
     # Hibernate ddl auto (create, create-drop, validate, update)
     hibernate.ddl-auto: update
     properties:
       hibernate.dialect: org.hibernate.dialect.H2Dialect
+  
+  #locale
+  messages:
+    basename: i18n/errors,i18n/messages

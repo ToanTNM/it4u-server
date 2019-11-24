@@ -1,0 +1,40 @@
+POST http://localhost:5000/api/v1/role
+Content-Type: application/json
+
+{
+    "name": "ROLE_ADMIN"
+}
+
+###
+
+GET http://localhost:5000/api/v1/role
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0NTgyMjI4LCJleHAiOjE1NzUxODcwMjh9.IVAXE9XIejYwEYq_bc_WbD22R3t-aDxNVbnZa3b3FdhZDWEOcNmxQntA4FLXupBqMnn_VXwZMP0mtxF-WJL24g
+
+###
+
+POST http://localhost:5000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "name": "Minh Toàn",
+    "username": "test",
+    "email": "email@yahoo.com",
+    "password": "123456"
+}
+###
+POST http://localhost:5000/api/v1/auth/signin
+Content-Type: application/json
+
+{
+    "usernameOrEmail": "test",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:5000/api/v1/polls
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0MzI3ODI2LCJleHAiOjE1NzQ5MzI2MjZ9.HtAKkE6Om-ZbohlMO5VzHcgJn1FRtKhh5lfCJg_8beLArL7AXn5e2NQ2sP15e_N7uCS1kAbWsww5i39jD6Oz0w
+
+###
+
+GET http://localhost:5000/api/v1/auth/test

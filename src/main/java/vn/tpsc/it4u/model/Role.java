@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
 import lombok.Data;
+import vn.tpsc.it4u.model.enums.RoleName;
 
 /**
  * Role

@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.model;
+package vn.tpsc.it4u.model.audit;
 
 import java.io.Serializable;
 import java.time.Instant;

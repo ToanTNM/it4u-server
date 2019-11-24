@@ -2,6 +2,7 @@ package vn.tpsc.it4u.controller;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +23,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
-import vn.tpsc.it4u.model.RoleName;
+import vn.tpsc.it4u.model.enums.RoleName;
 import vn.tpsc.it4u.model.User;
-import vn.tpsc.it4u.payload.ApiResponse;
 import vn.tpsc.it4u.payload.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payload.LoginRequest;
 import vn.tpsc.it4u.payload.SignUpRequest;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.JwtTokenProvider;
+import vn.tpsc.it4u.util.ApiResponseUtils;
 
 /**
  * AuthController
@@ -53,8 +55,11 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    @Autowired 
+    ApiResponseUtils apiResponse;
+
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
         final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsernameOrEmail(),
@@ -65,18 +70,18 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         final String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt), locale));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<>(new ApiResponse(false, "Username is already taken!"),
+            return new ResponseEntity<>(apiResponse.error(1021, locale),
                     HttpStatus.BAD_REQUEST);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<>(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(apiResponse.error(1002, locale), HttpStatus.BAD_REQUEST);
         }
 
         // Creating user's account
@@ -97,6 +102,11 @@ public class AuthController {
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
 
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+        return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
+    }    
+
+    @GetMapping(value = "/test")
+    public ResponseEntity<?> test(Locale locale) {
+        return new ResponseEntity<>(apiResponse.error(1021, locale), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

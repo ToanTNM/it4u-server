@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.tpsc.it4u.model.audit.UserDateAudit;
+import vn.tpsc.it4u.model.enums.Gender;
 
 /**
  * User
@@ -29,7 +31,7 @@ import lombok.Setter;
             "email"
         })
 })
-public class User extends DateAudit {
+public class User extends UserDateAudit {
 
     /**
      *
@@ -56,6 +58,14 @@ public class User extends DateAudit {
     @NotEmpty
     @Size(max = 100)
     private String password;
+
+    @Size(max = 500)
+    private String avatar;
+
+    private int status;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     //@DBRef(lazy = true)
     @ManyToMany(fetch = FetchType.LAZY)
