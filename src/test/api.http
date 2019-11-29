@@ -19,7 +19,8 @@ Content-Type: application/json
     "name": "Minh Toàn",
     "username": "test",
     "email": "email@yahoo.com",
-    "password": "123456"
+    "password": "123456",
+    "gender": "Male"
 }
 ###
 POST http://localhost:5000/api/v1/auth/signin
@@ -32,9 +33,5 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/api/v1/polls
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0MzI3ODI2LCJleHAiOjE1NzQ5MzI2MjZ9.HtAKkE6Om-ZbohlMO5VzHcgJn1FRtKhh5lfCJg_8beLArL7AXn5e2NQ2sP15e_N7uCS1kAbWsww5i39jD6Oz0w
-
-###
-
-GET http://localhost:5000/api/v1/auth/test
+GET http://localhost:5000/api/v1/user/me
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTc0OTI3MTI2LCJleHAiOjE1NzU1MzE5MjZ9.wYTt74HymWROzQqzL-ZCeeskQao1n2rVTrr0pvv3uUsGlkDqkSRtwZzpLJ_e3jIwawjdyLmHLfFBT2QRbvyepw

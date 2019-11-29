@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.tpsc.it4u.model.audit.UserDateAudit;
 import vn.tpsc.it4u.model.enums.Gender;
+import vn.tpsc.it4u.model.enums.UserStatus;
 
 /**
  * User
@@ -62,10 +63,12 @@ public class User extends UserDateAudit {
     @Size(max = 500)
     private String avatar;
 
-    private int status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private UserStatus status;
 
     //@DBRef(lazy = true)
     @ManyToMany(fetch = FetchType.LAZY)
@@ -74,10 +77,12 @@ public class User extends UserDateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String email, String password, Gender gender, UserStatus status) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.gender = gender;
+        this.status = status;
     }
 }

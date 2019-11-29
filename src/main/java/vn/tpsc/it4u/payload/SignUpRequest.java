@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
+import vn.tpsc.it4u.model.enums.Gender;
+import vn.tpsc.it4u.model.enums.UserStatus;
 
 /**
  * SignUpRequest
@@ -28,4 +30,8 @@ public class SignUpRequest {
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+
+    private Gender gender;
+
+    private UserStatus status;
 }

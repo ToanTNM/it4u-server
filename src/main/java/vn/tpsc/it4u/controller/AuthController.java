@@ -24,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.enums.RoleName;
+import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payload.LoginRequest;
@@ -86,7 +87,7 @@ public class AuthController {
 
         // Creating user's account
         final User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+                signUpRequest.getEmail(), signUpRequest.getPassword(), signUpRequest.getGender(), UserStatus.Active);
 
         final String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
