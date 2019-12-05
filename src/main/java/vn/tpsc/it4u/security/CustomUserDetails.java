@@ -17,6 +17,7 @@ import lombok.EqualsAndHashCode;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
+import vn.tpsc.it4u.model.enums.UserType;
 
 /**
  * CustomUserDetails
@@ -45,7 +46,11 @@ public class CustomUserDetails implements UserDetails {
     @JsonIgnore
     private String email;
 
+    private String avatar;
+
     private Gender gender;
+
+    private UserType type;
 
     private UserStatus status;
 
@@ -62,7 +67,9 @@ public class CustomUserDetails implements UserDetails {
                 user.getUsername(),
                 user.getPassword(),                
                 user.getEmail(),
+                user.getAvatar(),
                 user.getGender(),
+                user.getType(),
                 user.getStatus(),
                 authorities
         );

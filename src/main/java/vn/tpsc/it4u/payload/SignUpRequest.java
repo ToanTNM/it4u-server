@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
+import vn.tpsc.it4u.model.enums.UserType;
 
 /**
  * SignUpRequest
@@ -32,6 +33,8 @@ public class SignUpRequest {
     private String password;
 
     private Gender gender;
+
+    private UserType type;
 
     private UserStatus status;
 }
