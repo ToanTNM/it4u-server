@@ -1,6 +1,5 @@
 package vn.tpsc.it4u.controller;
 
-import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.*;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
@@ -17,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("${app.api.version}")
 public class UserController {
@@ -32,6 +33,7 @@ public class UserController {
     @Autowired 
     ApiResponseUtils apiResponse;
 
+    @ApiOperation(value = "Get current user")
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
@@ -46,18 +48,21 @@ public class UserController {
         return userSummary;
     }
 
+    @ApiOperation(value = "Check is username available")
     @GetMapping("/user/checkUsernameAvailability")
     public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
         Boolean isAvailable = !userRepository.existsByUsername(username);
         return new UserIdentityAvailability(isAvailable);
     }
 
+    @ApiOperation(value = "Check is email available")
     @GetMapping("/user/checkEmailAvailability")
     public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
         Boolean isAvailable = !userRepository.existsByEmail(email);
         return new UserIdentityAvailability(isAvailable);
     }
 
+    @ApiOperation(value = "Update user infomation, except: role, password, avatar")
     @PutMapping("/user/update")
     public ResponseEntity<?> updateInfo(@CurrentUser CustomUserDetails currentUser, @RequestBody UserSummary updatingUser, Locale locale) {        
         userService.updateInfo(currentUser, updatingUser);

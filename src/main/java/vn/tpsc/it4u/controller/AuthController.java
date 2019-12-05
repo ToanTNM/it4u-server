@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.enums.RoleName;
@@ -61,6 +64,10 @@ public class AuthController {
     ApiResponseUtils apiResponse;
 
     @PostMapping("/signin")
+    @ApiOperation(value = "Sign In App")
+    @ApiResponses(value = {
+        @ApiResponse(code = 1000, message = "Successfully retrieved list")
+    })
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
         final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
@@ -113,8 +120,8 @@ public class AuthController {
         return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
     }    
 
-    @GetMapping(value = "/test")
-    public ResponseEntity<?> test(Locale locale) {
-        return new ResponseEntity<>(apiResponse.error(1021, locale), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    // @GetMapping(value = "/test")
+    // public ResponseEntity<?> test(Locale locale) {
+    //     return new ResponseEntity<>(apiResponse.error(1021, locale), HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
 }
