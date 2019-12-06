@@ -9,8 +9,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

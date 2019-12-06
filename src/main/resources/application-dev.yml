@@ -10,7 +10,8 @@ spring:
         web-allow-others: true
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
+    # url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
+    url: jdbc:h2:mem:it4uDb
     username: sa
     password:    
   jpa:
