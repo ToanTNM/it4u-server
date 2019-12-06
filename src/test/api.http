@@ -13,6 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0NTgyMjI4L
 ###
 
 POST http://localhost:5000/api/v1/auth/signup
+# Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNiIsImlhdCI6MTU3NTUxMDEyMywiZXhwIjoxNTc2MTE0OTIzfQ.fuNnH_-dCsfIuiM12OT269GvoAzUpBXemS75VE8me3ojKoD59F4vwbTUpb__xNPPoisSG-fPB0M2kSVSUankXg
 Content-Type: application/json
 
 {
@@ -20,7 +21,8 @@ Content-Type: application/json
     "username": "lapdang",
     "email": "lap.dang@tpsc.vn",
     "password": "123456",
-    "gender": "Male"
+    "gender": "Male",
+    "type": "User"
 }
 ###
 GET http://localhost:5000/api/v1/auth/signup

@@ -94,7 +94,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .authorizeRequests()
                 .antMatchers("/",
+                    // h2 db
                     "/h2-console/**",
+                    //swagger
+                    "/swagger**", 
+                    "/v2/api-docs", 
+                    "/swagger-resources", 
+                    "/swagger-resources/configuration/ui", 
+                    "/swagger-resources/configuration/security",
+                    "/webjars/springfox-swagger-ui/fonts/**",
                     "/favicon.ico",
                     "/**/*.png",
                     "/**/*.gif",

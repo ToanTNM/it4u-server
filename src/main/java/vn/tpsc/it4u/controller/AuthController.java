@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.enums.RoleName;
@@ -60,6 +64,10 @@ public class AuthController {
     ApiResponseUtils apiResponse;
 
     @PostMapping("/signin")
+    @ApiOperation(value = "Sign In App")
+    @ApiResponses(value = {
+        @ApiResponse(code = 1000, message = "Successfully retrieved list")
+    })
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
         final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
@@ -75,6 +83,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(apiResponse.error(1021, locale),
@@ -86,8 +95,13 @@ public class AuthController {
         }
 
         // Creating user's account
-        final User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword(), signUpRequest.getGender(), UserStatus.Active);
+        final User user = new User(signUpRequest.getName(), 
+            signUpRequest.getUsername(),
+            signUpRequest.getEmail(), 
+            signUpRequest.getPassword(), 
+            signUpRequest.getGender(), 
+            signUpRequest.getType(), 
+            UserStatus.Active);
 
         final String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -106,8 +120,8 @@ public class AuthController {
         return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
     }    
 
-    @GetMapping(value = "/test")
-    public ResponseEntity<?> test(Locale locale) {
-        return new ResponseEntity<>(apiResponse.error(1021, locale), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    // @GetMapping(value = "/test")
+    // public ResponseEntity<?> test(Locale locale) {
+    //     return new ResponseEntity<>(apiResponse.error(1021, locale), HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
 }

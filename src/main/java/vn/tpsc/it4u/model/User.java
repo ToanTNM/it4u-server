@@ -9,12 +9,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.tpsc.it4u.model.audit.UserDateAudit;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
+import vn.tpsc.it4u.model.enums.UserType;
 
 /**
  * User
@@ -68,6 +71,11 @@ public class User extends UserDateAudit {
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("Client")
+    private UserType type;
+
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault("Active")
     private UserStatus status;
 
     //@DBRef(lazy = true)
@@ -77,12 +85,13 @@ public class User extends UserDateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserStatus status) {
+    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.type = type;
         this.status = status;
     }
 }
