@@ -71,11 +71,11 @@ public class User extends UserDateAudit {
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("Client")
+    // @ColumnDefault("Client")
     private UserType type;
 
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("Active")
+    // @ColumnDefault("Active")
     private UserStatus status;
 
     //@DBRef(lazy = true)
