@@ -82,7 +82,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    //@PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(apiResponse.error(1021, locale),

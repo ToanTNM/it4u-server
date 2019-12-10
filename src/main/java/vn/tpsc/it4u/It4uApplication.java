@@ -18,5 +18,4 @@ public class It4uApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(It4uApplication.class, args);
 	}
-
 }

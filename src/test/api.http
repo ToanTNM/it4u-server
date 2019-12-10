@@ -8,12 +8,12 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0NTgyMjI4LCJleHAiOjE1NzUxODcwMjh9.IVAXE9XIejYwEYq_bc_WbD22R3t-aDxNVbnZa3b3FdhZDWEOcNmxQntA4FLXupBqMnn_VXwZMP0mtxF-WJL24g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5LCJleHAiOjE1NzYyNDcyMDl9.mlmDFJ_OJNeJcDmHeRJGtpF6qjrqezP6sYF9juaN9agCS-DZc1LBm7YHNLtIDvCXrTtbjvJcNJHkM-EqrhXuPA
 
 ###
 
 POST http://localhost:5000/api/v1/auth/signup
-# Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzNiIsImlhdCI6MTU3NTUxMDEyMywiZXhwIjoxNTc2MTE0OTIzfQ.fuNnH_-dCsfIuiM12OT269GvoAzUpBXemS75VE8me3ojKoD59F4vwbTUpb__xNPPoisSG-fPB0M2kSVSUankXg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQ5MTQwLCJleHAiOjE1NzYyNTM5NDB9.s1WgkT5xJXPKbQNUZoi6p5SMI3bPHF0a1wMfSQMPqMXvBSLtgzODPmThB8mduYEmftHkY_CIaWk2-Jao-z9X0A
 Content-Type: application/json
 
 {
@@ -32,11 +32,37 @@ POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "usernameOrEmail": "lapdang",
+    "usernameOrEmail": "admin",
     "password": "123456"
 }
 
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjIwMTk3LCJleHAiOjE1NzYyMjQ5OTd9.dmDyxXil5wVPfd-9UPda1D9fnHzXLtj676QgpbpVk7OmIbZTDY7z6_JBqAYQvE2DHD2iEpn8wK36OXQ9wlN0Ag
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTAzOTkyLCJleHAiOjE1NzY1MDg3OTJ9.OfrYnlxiiGahqkqYhn02iV_Xa2RsA4_y75HUskqViPk0KHS3st1ZjqX7k3cVjMTCIgBl7tJ2jOABsrN99Q6pUw
+###
+
+PUT http://localhost:5000/api/v1/user/update
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1ODg2OTI0LCJleHAiOjE1NzY0OTE3MjR9.mYho0VnIzz35qhEk_NFREUB0RMqy2llTrS1gWWJkvTkpcVGj8oRAXWdSKGpIYgEe0z844CGHKxRf0QSJuL8rgg
+Content-Type: application/json
+
+{
+    "name": "Lap Dang",
+    "username": "test2",
+    "email": "email@yahoo.com",
+    "gender": "Male",
+    "type": "User"
+}
+
+###
+
+PUT http://localhost:5000/api/v1/user/changePassword
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1ODE3OTEyLCJleHAiOjE1NzY0MjI3MTJ9.mU8KinjkhTM3xdrHajj13ZIGqD3DFHn7xNxlOX1ie56yt0KZP630AgEJMyrEFspoRCLoOAgPCSFkS_MjzIsqZg
+Content-Type: application/json
+
+{
+    "newPassword": "123456",
+    "currentPassword": "123456",
+    "confirmPassword": "123456"
+}
