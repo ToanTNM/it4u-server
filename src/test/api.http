@@ -13,26 +13,26 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5L
 ###
 
 POST http://localhost:5000/api/v1/auth/signup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQ5MTQwLCJleHAiOjE1NzYyNTM5NDB9.s1WgkT5xJXPKbQNUZoi6p5SMI3bPHF0a1wMfSQMPqMXvBSLtgzODPmThB8mduYEmftHkY_CIaWk2-Jao-z9X0A
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTQwNzc5LCJleHAiOjE1NzY1NDU1Nzl9.3tf1DeuxRUfKXh7qgx-5FcPGzcFtJzXZxeemsGyPan-5Mdb0d4Lf1-iz-IqrQr-CKXB_1H2_t_UWa3V3k-aPaA
 Content-Type: application/json
 
 {
-    "name": "Lap Dang",
-    "username": "lapdang",
-    "email": "lap.dang@tpsc.vn",
+    "name": "test a",
+    "username": "testa",
+    "email": "test@tpsc.vn",
     "password": "123456",
     "gender": "Male",
     "type": "User"
 }
 ###
 GET http://localhost:5000/api/v1/auth/signup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjIwMTk3LCJleHAiOjE1NzYyMjQ5OTd9.dmDyxXil5wVPfd-9UPda1D9fnHzXLtj676QgpbpVk7OmIbZTDY7z6_JBqAYQvE2DHD2iEpn8wK36OXQ9wlN0Ag
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTQwNzc5LCJleHAiOjE1NzY1NDU1Nzl9.3tf1DeuxRUfKXh7qgx-5FcPGzcFtJzXZxeemsGyPan-5Mdb0d4Lf1-iz-IqrQr-CKXB_1H2_t_UWa3V3k-aPaA
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "usernameOrEmail": "admin",
+    "usernameOrEmail": "lapdang",
     "password": "123456"
 }
 
