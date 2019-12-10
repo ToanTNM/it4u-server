@@ -18,8 +18,8 @@ Content-Type: application/json
 
 {
     "name": "Minh Toàn",
-    "username": "test4",
-    "email": "email4@yahoo.com",
+    "username": "test",
+    "email": "toan.tran@tpsc.vn",
     "password": "123456",
     "gender": "Male",
     "type": "User"
@@ -34,20 +34,29 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/api/v1/auth/signin
+Content-Type: application/json
+
+{
+    "usernameOrEmail": "test",
+    "password": "123456"
+}
+
+###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTc0OTI3MTI2LCJleHAiOjE1NzU1MzE5MjZ9.wYTt74HymWROzQqzL-ZCeeskQao1n2rVTrr0pvv3uUsGlkDqkSRtwZzpLJ_e3jIwawjdyLmHLfFBT2QRbvyepw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTUyODY0LCJleHAiOjE1NzY1NTc2NjR9.0PTfZnATpOZSE4YDwuO55B8g0xpk5P9EDo-_PJJhisWOafZXVcQLONMwal1-m4kRhVEvPy_cJk9mblFVB-GZbA
 
 ###
 
 PUT http://localhost:5000/api/v1/user/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTc0OTI3MTI2LCJleHAiOjE1NzU1MzE5MjZ9.wYTt74HymWROzQqzL-ZCeeskQao1n2rVTrr0pvv3uUsGlkDqkSRtwZzpLJ_e3jIwawjdyLmHLfFBT2QRbvyepw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTUyODMxLCJleHAiOjE1NzY1NTc2MzF9.zc1Rru7ya9hG7w8e-3VNieUu0F8MvZ28ZuJpBItiHdYCe1bE1nulZCuSOD86HJxUHZI1azs47dZH5kp3i_Mqqg
 Content-Type: application/json
 
 {
     "name": "Minh Thắng",
-    "username": "test2",
-    "email": "email@yahoo.com",
+    "username": "test",
+    "email": "email2@yahoo.com",
     //"password": "123456",
     "gender": "Male",
     "type": "User"
@@ -56,7 +65,7 @@ Content-Type: application/json
 ###
 
 PUT http://localhost:5000/api/v1/user/changePassword
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTc0OTI3MTI2LCJleHAiOjE1NzU1MzE5MjZ9.wYTt74HymWROzQqzL-ZCeeskQao1n2rVTrr0pvv3uUsGlkDqkSRtwZzpLJ_e3jIwawjdyLmHLfFBT2QRbvyepw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTUyODY0LCJleHAiOjE1NzY1NTc2NjR9.0PTfZnATpOZSE4YDwuO55B8g0xpk5P9EDo-_PJJhisWOafZXVcQLONMwal1-m4kRhVEvPy_cJk9mblFVB-GZbA
 Content-Type: application/json
 
 {

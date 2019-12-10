@@ -35,7 +35,7 @@ public class UserController {
 
     @ApiOperation(value = "Get current user")
     @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
         UserSummary userSummary = new UserSummary(currentUser.getId(), 
         currentUser.getUsername(), 
