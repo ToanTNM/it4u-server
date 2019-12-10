@@ -8,12 +8,12 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc0NTgyMjI4LCJleHAiOjE1NzUxODcwMjh9.IVAXE9XIejYwEYq_bc_WbD22R3t-aDxNVbnZa3b3FdhZDWEOcNmxQntA4FLXupBqMnn_VXwZMP0mtxF-WJL24g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5LCJleHAiOjE1NzYyNDcyMDl9.mlmDFJ_OJNeJcDmHeRJGtpF6qjrqezP6sYF9juaN9agCS-DZc1LBm7YHNLtIDvCXrTtbjvJcNJHkM-EqrhXuPA
 
 ###
 
 POST http://localhost:5000/api/v1/auth/signup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjI5ODU0LCJleHAiOjE1NzYyMzQ2NTR9.jxvhwRPOETcfUZ2WnO_8YqNjpNQqeuXr5dkL-WpS9GH9Bb67hF6HscbJ7uouOs_B9R7tc4EAeUeBInsVC5sy6Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyMDM2LCJleHAiOjE1NzYyNDY4MzZ9.IP8EVAsyxHRJdAsX4WOcCTX5GQnnRftEpK1TAMS8AQTALiuUr2Za3L7Acn2Qgec3ISlKLY6hqrk2qg4iEv_LCA
 Content-Type: application/json
 
 {
