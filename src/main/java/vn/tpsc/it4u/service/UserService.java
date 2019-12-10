@@ -1,6 +1,10 @@
 package vn.tpsc.it4u.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -71,5 +75,15 @@ public class UserService {
         userRepository.save(user);
 
         return true;
+    }
+
+    public List<UserSummary> findAll() {
+        List<User> users = userRepository.findAll();
+        
+        List<UserSummary> listUsers = users.stream()
+            .map(user -> new UserSummary(user.getId(), user.getUsername(), user.getName(), user.getEmail(), user.getAvatar(), user.getGender(), user.getType(), user.getStatus()))
+            .collect(Collectors.toList());
+
+        return listUsers;
     }
 }

@@ -77,4 +77,11 @@ public class UserController {
 
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllUser(Locale locale) {
+        // return ResponseEntity.ok(apiResponse.success(userRepository.findAll(), locale));
+        return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
+    }
 }

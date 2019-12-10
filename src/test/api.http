@@ -25,6 +25,11 @@ Content-Type: application/json
     "type": "User"
 }
 ###
+
+GET http://localhost:5000/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyMDM2LCJleHAiOjE1NzYyNDY4MzZ9.IP8EVAsyxHRJdAsX4WOcCTX5GQnnRftEpK1TAMS8AQTALiuUr2Za3L7Acn2Qgec3ISlKLY6hqrk2qg4iEv_LCA
+
+###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
