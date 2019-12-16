@@ -1,6 +1,11 @@
 package vn.tpsc.it4u.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -67,6 +72,50 @@ public class UserService {
         }
 
         user.setPassword(encoder.encode(model.getNewPassword()));
+
+        userRepository.save(user);
+
+        return true;
+    }
+
+    public List<UserSummary> findAll() {
+        List<User> users = userRepository.findAll();
+        
+        List<UserSummary> listUsers = users.stream()
+            .map(user -> new UserSummary(user.getId(), user.getUsername(), user.getName(), user.getEmail(), user.getAvatar(), user.getGender(), user.getType(), user.getStatus()))
+            .collect(Collectors.toList());
+
+        return listUsers;
+    }
+
+    public Boolean deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+        return true;
+    }
+
+    public List<UserSummary> findUser(List<Long> userId) {
+        List<User> users = userRepository.findByIdIn(userId);
+        List<UserSummary> listUsers = users.stream()
+            .map(user -> new UserSummary(user.getId(), user.getUsername(), user.getName(), user.getEmail(), user.getAvatar(), user.getGender(), user.getType(), user.getStatus()))
+            .collect(Collectors.toList());
+        return listUsers;
+    }
+
+    public boolean updateUser(List<Long> userId, UserSummary updatingUser) {
+        // List<User> users = userRepository.findByIdIn(userId);
+        List<User> users = userRepository.findByIdIn(userId);
+        User user = mapper.map(users, User.class);
+        user.setName(updatingUser.getName().isNullorEmpty() ? user.getName() : updatingUser.getName());
+        //username
+        user.setUsername(updatingUser.getUsername().isNullorEmpty() ? user.getUsername() : updatingUser.getUsername()); 
+        //email
+        user.setEmail((updatingUser.getEmail() == null || updatingUser.getEmail().isEmpty()) ? user.getEmail() : updatingUser.getEmail()); 
+        //password
+        //user.setPassword((updatingUser.() == null || updatingUser.getEmail().isEmpty()) ? user.getEmail() : updatingUser.getEmail()); 
+        //Gender gender
+        user.setGender(updatingUser.getGender() != null ? updatingUser.getGender() : user.getGender());
+        //UserType type
+        user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
 
         userRepository.save(user);
 

@@ -1,5 +1,6 @@
 package vn.tpsc.it4u.controller;
 
+import java.util.List;
 import vn.tpsc.it4u.payload.*;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
@@ -77,4 +78,31 @@ public class UserController {
 
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllUser() {
+        // return ResponseEntity.ok(apiResponse.success(userRepository.findAll(), locale));
+        return ResponseEntity.ok(userService.findAll());
+        // return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
+    }
+    @DeleteMapping("/users/{id}")
+        public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
+        userService.deleteUser(userId);
+        return ResponseEntity.ok(apiResponse.success(200, locale));
+    }
+
+    @GetMapping("/users/{id}")
+        public ResponseEntity<?> getUser(@PathVariable(value = "id") List<Long> userId, Locale locale) {
+            return ResponseEntity.ok(apiResponse.success(userService.findUser(userId), locale));
+        }
+
+    @ApiOperation(value = "Update user infomation, except: role, password, avatar")
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId, @RequestBody UserSummary updatingUser, Locale locale) {        
+        userService.updateUser(userId, updatingUser);
+
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
 }
