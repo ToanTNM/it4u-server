@@ -1,9 +1,15 @@
 # app config
+
 app:
   api:
     version: /api/v1
   jwtSecret: JWTSuperSecretKey
   jwtExpirationInMs: 604800000
+  
+  ubnt:
+    url: https://ubnt.cloud.tpsc.vn/api
+    csrf_token: LsvN74k5ln5TT7nCM7kDSjcc1Kq2tMzB
+    unifises: fRpqa5p250a83k1bpKHhNd7XYwStGDNZ
 
 spring:
   profiles:

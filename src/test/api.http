@@ -27,11 +27,12 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4LCJleHAiOjE1NzY1NzE4ODh9.hR5gDm_vVyuPyM99WSilHBsipLrid-G9foL-ZvEh784xN-B6KbN51cQWOQ4PBwzO2BSvzdUpFmE-vjSwTgkzmA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
 
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
+
 {
     "usernameOrEmail": "admin",
     "password": "123456"
@@ -87,7 +88,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4L
 
 ###
 PUT http://localhost:5000/api/v1/users/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4LCJleHAiOjE1NzY1NzE4ODh9.hR5gDm_vVyuPyM99WSilHBsipLrid-G9foL-ZvEh784xN-B6KbN51cQWOQ4PBwzO2BSvzdUpFmE-vjSwTgkzmA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
 Content-Type: application/json
 
 {
@@ -98,4 +99,43 @@ Content-Type: application/json
     "gender": "Male",
     "type": "User"
 }
-   
+
+###
+GET http://localhost:5000/api/v1/it4u/sites
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientEssid
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientUsage
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/trafficUsage
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/radioType
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/quickLook
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/dailyClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Content-Type: application/json
+
+{
+    "start":"1576515600000",
+    "end":"1577206800000"
+}

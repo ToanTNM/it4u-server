@@ -1,11 +1,9 @@
 package vn.tpsc.it4u.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -104,7 +102,7 @@ public class UserService {
     public boolean updateUser(List<Long> userId, UserSummary updatingUser) {
         // List<User> users = userRepository.findByIdIn(userId);
         List<User> users = userRepository.findByIdIn(userId);
-        User user = mapper.map(users, User.class);
+        User user = mapper.map(users.get(0), User.class);
         user.setName(updatingUser.getName().isNullorEmpty() ? user.getName() : updatingUser.getName());
         //username
         user.setUsername(updatingUser.getUsername().isNullorEmpty() ? user.getUsername() : updatingUser.getUsername()); 
