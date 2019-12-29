@@ -13,24 +13,29 @@ public class Calculator {
     String time = df.format(new Date(secondtTime*1000L));
     return time;
     }
-    public List<String> ConvertBytes(Integer bytes) {
+    public List<String> ConvertBytes(long bytes) {
         String unit = "";
         Integer i = 0;
         Integer data = 0;
+        long kb = 1024*1024;
+        long mb = kb*1024;
+        long gb = mb*1024;
+        long tb = gb*1024;
+
         List<String> result = new ArrayList<>();
-        if (bytes < 1024*1024) {
+        if (bytes < kb) {
             data = Math.round(bytes/1024);
             i = i + 1;
         }
-        else if (bytes < 1024*1024*1024) {
+        else if (bytes < mb) {
             data = Math.round(bytes/(1024*1024));
             i = i + 2;
         }
-        else if (bytes < 1024*1024*1024*1024) {
+        else if (bytes < gb) {
             data = Math.round(bytes/(1024*1024*1024));
             i = i + 3;
         }
-        else if (bytes < 1024*1024*1024*1024*1024) {
+        else if (bytes < tb) {
             data = Math.round(bytes/(1024*1024*1024*1024));
             i = i + 1;
         }

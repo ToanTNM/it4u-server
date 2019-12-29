@@ -143,7 +143,7 @@ public class DashboardController {
         JSONArray data = jsonResult.getJSONArray("data");
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
-            int traffic = getInfo.getInt("bytes");
+            long traffic = getInfo.getLong("bytes");
             getResult.put("name",getInfo.getString("name"));
             getResult.put("y",traffic);
             result.add(getResult.toString());
@@ -196,11 +196,79 @@ public class DashboardController {
     }
 
     @ApiOperation(value = "Daily Client")
-    @PostMapping("it4u/{id}/dailyClient")
+    @PostMapping("it4u/{id}/hourlyClient")
     public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        int posMax = 0;
+        int posMin = 0;
+        int k = 0;
+        List<String> listTime = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        List<String> listMax = new ArrayList<>();
+        List<String> listMin = new ArrayList<>();
+        List<String> listClient = new ArrayList<>();
+        List<String> listTraffic = new ArrayList<>();
+        JSONObject listMaxJson = new JSONObject();
+        JSONObject listMinJson = new JSONObject();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
-        String getDailyClient = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.site/",csrfToken,unifises,postData);
-        return getDailyClient;
+        String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                JSONObject getDataMinute = new JSONObject(getMinute);
+                JSONArray dataMinute = getDataMinute.getJSONArray("data");
+                JSONObject getPos = (JSONObject) dataMinute.get(k);
+                Integer maxClient = getPos.getInt("wlan-num_sta");
+                Integer minClient = getPos.getInt("wlan-num_sta");
+                for ( int j=k+1; j<dataMinute.length(); j++) {
+                    JSONObject getPosMaxMin = (JSONObject) dataMinute.get(j);
+                    if ( getPosMaxMin.getLong("time") >= startTime) {
+                        Integer test1 = getPosMaxMin.getInt("wlan-num_sta");
+                        if (maxClient < getPosMaxMin.getInt("wlan-num_sta")) {
+                            maxClient = getPosMaxMin.getInt("wlan-num_sta");
+                            posMax = j;
+                        }
+                        if (minClient > getPosMaxMin.getInt("wlan-num_sta")) {
+                            minClient = getPosMaxMin.getInt("wlan-num_sta");
+                            posMin = j;
+                        }
+                    }
+                    if (getPosMaxMin.getLong("time") >= endTime) {
+                        k = j;
+                        break;
+                    }
+                }
+            Integer countClient = getPosStart.getInt("wlan-num_sta");
+            Long countTraffic = getPosStart.getLong("wlan_bytes");
+            Long time = getPosStart.getLong("time");
+            listTime.add(time.toString());
+            listMax.add(maxClient.toString());
+            listMin.add(minClient.toString());
+            listClient.add(countClient.toString());
+            listTraffic.add(countTraffic.toString());
+            }
+
+        }
+        listMaxJson.put("name","Client Max");
+        listMaxJson.put("data", listMax);
+        listMinJson.put("name","Client Min");
+        listMinJson.put("data", listMin);
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        result.add(listMaxJson.toString());
+        result.add(listMinJson.toString());
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
     }
 
     public String longestConn(String data) {
@@ -232,8 +300,8 @@ public class DashboardController {
         }
         JSONObject getBytes = (JSONObject) getData.get(posMax);
         Calculator getCalculator = new Calculator();
-        Integer txBytes = getBytes.getInt("tx_bytes");
-        Integer rxBytes = getBytes.getInt("rx_bytes");
+        long txBytes = getBytes.getLong("tx_bytes");
+        long rxBytes = getBytes.getLong("rx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
@@ -254,26 +322,26 @@ public class DashboardController {
         JSONObject infoData = new JSONObject(data);
         JSONArray getData = infoData.getJSONArray("data");
         JSONObject getDataMax = (JSONObject) getData.get(0);
-        Integer max = getDataMax.getInt("tx_bytes") + getDataMax.getInt("rx_bytes");
+        long max = getDataMax.getLong("tx_bytes") + getDataMax.getLong("rx_bytes");
         Integer posMax = 0;
         for (int i=1; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            Integer dataCompare = getPosCompare.getInt("tx_bytes") + getPosCompare.getInt("rx_bytes");
+            long dataCompare = getPosCompare.getLong("tx_bytes") + getPosCompare.getLong("rx_bytes");
             if (max < dataCompare) {
                 max = dataCompare;
             }
         }
         for (int i=0; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            Integer dataCompare = getPosCompare.getInt("tx_bytes") + getPosCompare.getInt("rx_bytes");
+            long dataCompare = getPosCompare.getLong("tx_bytes") + getPosCompare.getLong("rx_bytes");
             if (max <= dataCompare) {
                 posMax = i;
             }
         }
         Calculator getCalculator = new Calculator();
         JSONObject getBytes = (JSONObject) getData.get(posMax);
-        Integer txBytes = getBytes.getInt("tx_bytes");
-        Integer rxBytes = getBytes.getInt("rx_bytes");
+        long txBytes = getBytes.getLong("tx_bytes");
+        long rxBytes = getBytes.getLong("rx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
@@ -291,26 +359,26 @@ public class DashboardController {
         JSONObject infoData = new JSONObject(data);
         JSONArray getData = infoData.getJSONArray("data");
         JSONObject getDataMax = (JSONObject) getData.get(0);
-        Integer max = getDataMax.getInt("bytes");
+        long max = getDataMax.getLong("bytes");
         Integer posMax = 0;
         for (int i=0; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            Integer dataCompare = getPosCompare.getInt("bytes");
+            long dataCompare = getPosCompare.getLong("bytes");
             if (max < dataCompare) {
                 max = dataCompare;
             }
         }
         for (int i=0; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            Integer dataCompare = getPosCompare.getInt("bytes");
+            long dataCompare = getPosCompare.getLong("bytes");
             if (max <= dataCompare) {
                 posMax = i;
             }
         }
         Calculator getCalculator = new Calculator();
         JSONObject getBytes = (JSONObject) getData.get(posMax);
-        Integer txBytes = getBytes.getInt("tx_bytes");
-        Integer rxBytes = getBytes.getInt("rx_bytes");
+        long txBytes = getBytes.getLong("tx_bytes");
+        long rxBytes = getBytes.getLong("rx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
