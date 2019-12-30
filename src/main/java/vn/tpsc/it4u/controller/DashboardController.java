@@ -230,7 +230,6 @@ public class DashboardController {
                 for ( int j=k+1; j<dataMinute.length(); j++) {
                     JSONObject getPosMaxMin = (JSONObject) dataMinute.get(j);
                     if ( getPosMaxMin.getLong("time") >= startTime) {
-                        Integer test1 = getPosMaxMin.getInt("wlan-num_sta");
                         if (maxClient < getPosMaxMin.getInt("wlan-num_sta")) {
                             maxClient = getPosMaxMin.getInt("wlan-num_sta");
                             posMax = j;
