@@ -1,5 +1,7 @@
 package vn.tpsc.it4u.common;
+
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.TimeZone;
@@ -13,6 +15,14 @@ public class Calculator {
     String time = df.format(new Date(secondtTime*1000L));
     return time;
     }
+
+    public String ConvertSecondToDate(long secondTime) {
+        DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss"); 
+        Date result = new Date(secondTime); 
+        // System.out.println(simple.format(result));
+        return simple.format(result).toString();
+    }
+
     public List<String> ConvertBytes(long bytes) {
         String unit = "";
         Integer i = 0;

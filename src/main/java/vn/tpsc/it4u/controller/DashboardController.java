@@ -195,22 +195,22 @@ public class DashboardController {
         return result.toString();
     }
 
-    @ApiOperation(value = "Daily Client")
+    @ApiOperation(value = "Hourly Client")
     @PostMapping("it4u/{id}/hourlyClient")
     public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         int posMax = 0;
         int posMin = 0;
         int k = 0;
-        List<String> listTime = new ArrayList<>();
         List<String> result = new ArrayList<>();
-        List<String> listMax = new ArrayList<>();
-        List<String> listMin = new ArrayList<>();
-        List<String> listClient = new ArrayList<>();
-        List<String> listTraffic = new ArrayList<>();
+        List<Integer> listMax = new ArrayList<Integer>();
+        List<Integer> listMin = new ArrayList<Integer>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listMaxJson = new JSONObject();
         JSONObject listMinJson = new JSONObject();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
+
         ApiRequest apiRequest = new ApiRequest();
         String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
@@ -230,7 +230,6 @@ public class DashboardController {
                 for ( int j=k+1; j<dataMinute.length(); j++) {
                     JSONObject getPosMaxMin = (JSONObject) dataMinute.get(j);
                     if ( getPosMaxMin.getLong("time") >= startTime) {
-                        Integer test1 = getPosMaxMin.getInt("wlan-num_sta");
                         if (maxClient < getPosMaxMin.getInt("wlan-num_sta")) {
                             maxClient = getPosMaxMin.getInt("wlan-num_sta");
                             posMax = j;
@@ -247,28 +246,58 @@ public class DashboardController {
                 }
             Integer countClient = getPosStart.getInt("wlan-num_sta");
             Long countTraffic = getPosStart.getLong("wlan_bytes");
-            Long time = getPosStart.getLong("time");
-            listTime.add(time.toString());
-            listMax.add(maxClient.toString());
-            listMin.add(minClient.toString());
-            listClient.add(countClient.toString());
-            listTraffic.add(countTraffic.toString());
+            listMax.add(maxClient);
+            listMin.add(minClient);
+            listClient.add(countClient);
+            listTraffic.add(countTraffic);
             }
 
         }
         listMaxJson.put("name","Client Max");
         listMaxJson.put("data", listMax);
+        listMaxJson.put("yAxis",1);
         listMinJson.put("name","Client Min");
         listMinJson.put("data", listMin);
+        listMinJson.put("yAxis",1);
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("yAxis",0);
         result.add(listMaxJson.toString());
         result.add(listMinJson.toString());
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         return result.toString();
+    }
+    
+    @ApiOperation(value = "Get Time")
+    @PostMapping("it4u/{id}/getTimeChart")
+    public String getTimeChart(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> listTime = new ArrayList<>();
+        JSONObject listResult = new JSONObject();
+
+        ApiRequest apiRequest = new ApiRequest();
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long time = getPosStart.getLong("time");
+                Calculator getCalculator = new Calculator();
+                String uptime = getCalculator.ConvertSecondToDate(time);
+				listTime.add(uptime.toString());
+            }
+
+        }
+        listResult.put("time",listTime);
+        
+        return listResult.toString();
     }
 
     public String longestConn(String data) {

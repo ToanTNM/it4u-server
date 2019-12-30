@@ -76,6 +76,9 @@ public class User extends UserDateAudit {
     //@ColumnDefault("Active")
     private UserStatus status;
 
+    @Size(max = 100)
+    private String sitename;
+
     //@DBRef(lazy = true)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -83,7 +86,7 @@ public class User extends UserDateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status) {
+    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String sitename) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -91,5 +94,6 @@ public class User extends UserDateAudit {
         this.gender = gender;
         this.type = type;
         this.status = status;
+        this.sitename = sitename;
     }
 }
