@@ -198,15 +198,15 @@ public class DashboardController {
     @ApiOperation(value = "Hourly Client")
     @PostMapping("it4u/{id}/hourlyClient")
     public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
-        int posMax = 0;
-        int posMin = 0;
         int k = 0;
         List<String> result = new ArrayList<>();
         List<Integer> listMax = new ArrayList<Integer>();
+        List<Integer> listAverage = new ArrayList<Integer>();
         List<Integer> listMin = new ArrayList<Integer>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listMaxJson = new JSONObject();
+        JSONObject listAverageJson = new JSONObject();
         JSONObject listMinJson = new JSONObject();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
@@ -222,6 +222,9 @@ public class DashboardController {
             long startTime = getPosStart.getLong("time");
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
+                int x = 0;
+                int average = 0;
+                int sum = 0;
                 JSONObject getDataMinute = new JSONObject(getMinute);
                 JSONArray dataMinute = getDataMinute.getJSONArray("data");
                 JSONObject getPos = (JSONObject) dataMinute.get(k);
@@ -230,32 +233,37 @@ public class DashboardController {
                 for ( int j=k+1; j<dataMinute.length(); j++) {
                     JSONObject getPosMaxMin = (JSONObject) dataMinute.get(j);
                     if ( getPosMaxMin.getLong("time") >= startTime) {
+                        x = x + 1;
+                        sum = sum + getPosMaxMin.getInt("wlan-num_sta"); 
                         if (maxClient < getPosMaxMin.getInt("wlan-num_sta")) {
                             maxClient = getPosMaxMin.getInt("wlan-num_sta");
-                            posMax = j;
                         }
                         if (minClient > getPosMaxMin.getInt("wlan-num_sta")) {
                             minClient = getPosMaxMin.getInt("wlan-num_sta");
-                            posMin = j;
                         }
                     }
                     if (getPosMaxMin.getLong("time") >= endTime) {
+                        average = Math.round(sum/x);
                         k = j;
                         break;
                     }
                 }
-            Integer countClient = getPosStart.getInt("wlan-num_sta");
-            Long countTraffic = getPosStart.getLong("wlan_bytes");
-            listMax.add(maxClient);
-            listMin.add(minClient);
-            listClient.add(countClient);
-            listTraffic.add(countTraffic);
+                Integer countClient = getPosStart.getInt("wlan-num_sta");
+                Long countTraffic = getPosStart.getLong("wlan_bytes");
+                listAverage.add(average);
+                listMax.add(maxClient);
+                listMin.add(minClient);
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
             }
 
         }
         listMaxJson.put("name","Client Max");
         listMaxJson.put("data", listMax);
         listMaxJson.put("yAxis",1);
+        listAverageJson.put("name","Client Average");
+        listAverageJson.put("data", listAverage);
+        listAverageJson.put("yAxis",1);
         listMinJson.put("name","Client Min");
         listMinJson.put("data", listMin);
         listMinJson.put("yAxis",1);
@@ -265,6 +273,7 @@ public class DashboardController {
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("yAxis",0);
+        result.add(listAverageJson.toString());
         result.add(listMaxJson.toString());
         result.add(listMinJson.toString());
         result.add(listClientJson.toString());
