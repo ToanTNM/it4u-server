@@ -64,6 +64,7 @@ public class User extends UserDateAudit {
     @Size(max = 500)
     private String avatar;
 
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = true)
     private Gender gender;
@@ -80,7 +81,7 @@ public class User extends UserDateAudit {
     private String sitename;
 
     //@DBRef(lazy = true)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

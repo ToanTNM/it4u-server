@@ -28,7 +28,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTEyMDcyLCJleHAiOjE1Nzg3MTY4NzJ9.KEPu0ZmxeSujqR-MgHwwBPcn5TLnjog1P098LEQVBxhElI3pzFpdIGjvzytc1LSj8vzfUMZ7femzaoyUam06Zg
 
 ###
 POST http://localhost:5000/api/v1/auth/signin
@@ -55,12 +55,12 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3NjMwODQxL
 ###
 
 PUT http://localhost:5000/api/v1/user/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTU5ODU5LCJleHAiOjE1NzY1NjQ2NTl9.2duILJcz3I_4-QiCxzYXO7wZXytZnoWhMpOTCSI5IhyqZub90i8QAg7CT249Xc12NN82BH9LwA1QvkHRAoGU3g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3ODc3Mzk3LCJleHAiOjE1Nzg0ODIxOTd9.r64sw38PXdDJZadR_AqLqmGpqgcTFDVnOU8IMToM54pKc1gxDfdOJHEq3c00jbLaSxcb_4e09F3tZUP-A_z6Ng
 Content-Type: application/json
 
 {
     "name": "Lap Dang",
-    "username": "lapdang",
+    "username": "lapdang2",
     "email": "email27@yahoo.com",
     //"password": "123456",
     "gender": "Male",
@@ -70,13 +70,13 @@ Content-Type: application/json
 ###
 
 PUT http://localhost:5000/api/v1/user/changePassword
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTUyODY0LCJleHAiOjE1NzY1NTc2NjR9.0PTfZnATpOZSE4YDwuO55B8g0xpk5P9EDo-_PJJhisWOafZXVcQLONMwal1-m4kRhVEvPy_cJk9mblFVB-GZbA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3ODkwNDMyLCJleHAiOjE1Nzg0OTUyMzJ9._yWsah1VNEO1QL6vto7q1cv7x98cial-g4RQdV-4cgQyY2N5oCkKvXPjo966di8I1l5u4OzoHl94NgraZ1moAQ
 Content-Type: application/json
 
 {
-    "newPassword": "123456",
     "currentPassword": "123456",
-    "confirmPassword": "123456"
+    "newPassword": "12345678",
+    "confirmPassword": "12345678"
 }
 ###
 DELETE http://localhost:5000/api/v1/users/3
@@ -88,7 +88,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4L
 
 ###
 PUT http://localhost:5000/api/v1/users/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 {
@@ -102,37 +102,42 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/sites
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/ljzf8x9r/apCount
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/ljzf8x9r/clientEssid
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientUsage
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/trafficUsage
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/radioType
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/vr5hy29h/quickLook
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/1px5g676/hourlyClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 {
@@ -143,8 +148,8 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:5000/api/v1/it4u/1px5g676/getTimeChart
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeChart
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
 {
@@ -152,3 +157,9 @@ Content-Type: application/json
     "start":"1575219402448",
     "end":"1577811402448"
 }
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/hotspot/1575504000000/1578182400000
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
