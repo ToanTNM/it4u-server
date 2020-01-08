@@ -8,8 +8,8 @@ app:
   
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
-    csrf_token: MeRpVlBRdlIEaJ0Lp521yS7fXE3jgzFr
-    unifises: jcbdAyvV4kcrjH8NnZ7zEZiD8cESD8GP
+    csrf_token: dOF18vvMYAVy7Ck7zFqC3ZRQ22x1V5YM
+    unifises: q6o8WVSRigOPv9RsLelFxkYzpSa2J2ZS
 
 spring:
   profiles:

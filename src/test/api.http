@@ -131,7 +131,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5L
 Content-Type: application/json
 
 ###
-GET http://localhost:5000/api/v1/it4u/vr5hy29h/quickLook
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/quickLook
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
@@ -146,9 +146,88 @@ Content-Type: application/json
     "end":"1577811402448"
 }
 
+###
+POST http://localhost:5000/api/v1/it4u/1px5g676/5MinutesClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1578157200000",
+    "end":"1578416400000"
+}
 
 ###
-POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeChart
+POST http://localhost:5000/api/v1/it4u/1px5g676/dailyClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1575219402448",
+    "end":"1577811402448"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/dailyAP
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["bytes","num_sta","time"],
+    "start":"1578157200000",
+    "end":"1578416400000",
+    "mac":"18:e8:29:cc:62:67"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/hourlyAP
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["bytes","num_sta","time"],
+    "start":"1578157200000",
+    "end":"1578416400000",
+    "mac":"18:e8:29:cc:62:67"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/5MinutesAP
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["bytes","num_sta","time"],
+    "start":"1578157200000",
+    "end":"1578416400000",
+    "mac":"18:e8:29:cc:62:67"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeDaily
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1575219402448",
+    "end":"1577811402448"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeHourly
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1575219402448",
+    "end":"1577811402448"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeMinute
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
@@ -163,3 +242,46 @@ GET http://localhost:5000/api/v1/it4u/rhnl7chn/hotspot/1575504000000/15781824000
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
 Content-Type: application/json
 
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/createVoucher
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "cmd":"create-voucher",
+    "n":1,
+    "quota":1,
+    "expire":1440,
+    "expire_number":1,
+    "expire_unit":1440,
+    "down":150,
+    "up":150,
+    "bytes":2,
+    "note":"Ko Vui"
+}
+
+
+###
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/voucher
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+###
+POST  http://localhost:5000/api/v1/it4u/rhnl7chn/deleteVoucher
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+{
+    "_id":"5e11792be4b0bd372d21a000",
+    "cmd":"delete-voucher"
+}
+
+###
+GET  http://localhost:5000/api/v1/it4u/rhnl7chn/printVoucher/5e11792be4b0bd372d21a000
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json
+
+###
+GET  http://localhost:5000/api/v1/it4u/rhnl7chn/getMacAp
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3OTUzNDE5LCJleHAiOjE1Nzg1NTgyMTl9.HwRzskJbwZrqbesMUtSUcbiS9JK-1GMHX3NL-kRekEOP6973J8g1-F-B0zxnsD1wRYGd3WnNGBwTSUjuIhgzRA
+Content-Type: application/json

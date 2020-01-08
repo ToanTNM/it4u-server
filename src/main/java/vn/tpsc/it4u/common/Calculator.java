@@ -17,7 +17,7 @@ public class Calculator {
     }
 
     public String ConvertSecondToDate(long secondTime) {
-        DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss"); 
+        DateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
         Date result = new Date(secondTime); 
         // System.out.println(simple.format(result));
         return simple.format(result).toString();
