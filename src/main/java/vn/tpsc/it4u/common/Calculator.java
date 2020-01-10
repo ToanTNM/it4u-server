@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Calculator {
     public String ConvertSecondToHHMMString(Integer secondtTime) {
-    TimeZone tz = TimeZone.getTimeZone("UTC");
+    TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
     SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
     df.setTimeZone(tz);
     String time = df.format(new Date(secondtTime*1000L));
@@ -17,10 +17,15 @@ public class Calculator {
     }
 
     public String ConvertSecondToDate(long secondTime) {
-        DateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
-        Date result = new Date(secondTime); 
-        // System.out.println(simple.format(result));
-        return simple.format(result).toString();
+        TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        df.setTimeZone(tz);
+        String time = df.format(new Date(secondTime));
+        return time;
+        // DateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
+        // Date result = new Date(secondTime); 
+        // // System.out.println(simple.format(result));
+        // return simple.format(result).toString();
     }
 
     public List<String> ConvertBytes(long bytes) {

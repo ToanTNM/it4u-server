@@ -514,7 +514,6 @@ public class DashboardController {
                 if (minClient >= getPosStart.getInt("wlan-num_sta")) {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
-                    listTime.add(uptime.toString());
                 }
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
@@ -568,7 +567,6 @@ public class DashboardController {
                 if (minClient >= getPosStart.getInt("wlan-num_sta")) {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
-                    listTime.add(uptime.toString());
                 }
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
@@ -622,7 +620,6 @@ public class DashboardController {
                 if (minClient >= getPosStart.getInt("wlan-num_sta")) {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
-                    listTime.add(uptime.toString());
                 }
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
