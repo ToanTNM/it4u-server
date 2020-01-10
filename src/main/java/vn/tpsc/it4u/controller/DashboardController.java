@@ -4,14 +4,18 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.common.ApiRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
+// import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.common.Calculator;
 @RestController
@@ -499,13 +503,17 @@ public class DashboardController {
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
         Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
+        
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
             long startTime = getPosStart.getLong("time");
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
-                Long time = getPosStart.getLong("time");  
+                Long time = getPosEnd.getLong("time");  
                 String uptime = getCalculator.ConvertSecondToDate(time);
                 if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
                     maxClient = getPosStart.getInt("wlan-num_sta");
@@ -552,13 +560,16 @@ public class DashboardController {
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
         Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
             long startTime = getPosStart.getLong("time");
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
-                Long time = getPosStart.getLong("time");  
+                Long time = getPosEnd.getLong("time");  
                 String uptime = getCalculator.ConvertSecondToDate(time);
                 if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
                     maxClient = getPosStart.getInt("wlan-num_sta");
@@ -605,13 +616,16 @@ public class DashboardController {
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
         Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
             long startTime = getPosStart.getLong("time");
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
-                Long time = getPosStart.getLong("time");  
+                Long time = getPosEnd.getLong("time");  
                 String uptime = getCalculator.ConvertSecondToDate(time);
                 if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
                     maxClient = getPosStart.getInt("wlan-num_sta");
@@ -708,6 +722,12 @@ public class DashboardController {
         String wan2Status = "DOWN";
         String wan1Status = "DOWN";
         String wan3Status = "DOWN";
+        TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        dateFormat.setTimeZone(tz);
+        Calendar cal = Calendar.getInstance();
+        System.out.println(dateFormat.format(cal.getTime()));
+        // Date today = dateFormat.parse("   ");
         List<String> result = new ArrayList<>();
         JSONObject wan1 = new JSONObject();
         JSONObject wan2 = new JSONObject();
@@ -718,6 +738,7 @@ public class DashboardController {
         String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
         JSONObject data = new JSONObject(getData);
         String wan1Ip = data.getString("wan1_ip");
+        
         // String wan1Provider = data.getString("wan1_provider");
         Integer getWan1Status = data.getInt("wan1_status");
         if ( getWan1Status == 1) {
@@ -775,13 +796,11 @@ public class DashboardController {
     @GetMapping("it4u/{id}/trafficInfo")
     public String getTrafficInfo(@PathVariable(value="id") String idUser){
         List<String> result = new ArrayList<>();
-        JSONObject rate = new JSONObject();
         JSONObject uploadJson = new JSONObject();
         JSONObject downloadJson = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
         long upload = 0;
         long download = 0;
-        Calculator convert = new Calculator();
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + idUser + "/stat/sta/",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
