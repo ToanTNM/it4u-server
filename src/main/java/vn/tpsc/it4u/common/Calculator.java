@@ -59,4 +59,40 @@ public class Calculator {
         result.add(unit);
         return result;
     }
+    public List<String> ConvertBytesPerSecond(long bytes) {
+        String unit = "";
+        Integer i = 0;
+        Integer data = 0;
+        long kb = 1024*1024;
+        long mb = kb*1024;
+        long gb = mb*1024;
+        long tb = gb*1024;
+
+        List<String> result = new ArrayList<>();
+        if (bytes < kb) {
+            data = Math.round(bytes/1024);
+            i = i + 1;
+        }
+        else if (bytes < mb) {
+            data = Math.round(bytes/(1024*1024));
+            i = i + 2;
+        }
+        else if (bytes < gb) {
+            data = Math.round(bytes/(1024*1024*1024));
+            i = i + 3;
+        }
+        else if (bytes < tb) {
+            data = Math.round(bytes/(1024*1024*1024*1024));
+            i = i + 1;
+        }
+        switch(i) {
+            case 1: unit = " Kbps";break;
+            case 2: unit = " Mbps";break;
+            case 3: unit = " Gbps";break;
+            case 4: unit = " Tbps";break;
+        }
+        result.add(data.toString());
+        result.add(unit);
+        return result;
+    }
 }

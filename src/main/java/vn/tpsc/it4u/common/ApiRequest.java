@@ -10,6 +10,10 @@ import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+
 import org.springframework.stereotype.Component;
 @Component
 public class ApiRequest {
@@ -105,5 +109,35 @@ public class ApiRequest {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();
         } 
+    }
+
+    public String getRequestDev(String urlIt4u,String infoApi) {
+        try {
+            HttpsURLConnection conn = null;
+            URL url = new URL( urlIt4u + infoApi);
+            conn = (HttpsURLConnection) url.openConnection();
+            SSLContext sc = SSLContext.getInstance("SSL");  
+            sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
+            conn.setSSLSocketFactory(sc.getSocketFactory());
+            conn.connect();
+            InputStream inputStream = conn.getInputStream();
+            StringBuilder build = new StringBuilder();
+                if (inputStream != null) {
+                    InputStreamReader ISreader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+                    BufferedReader reader = new BufferedReader(ISreader);
+                    String line = reader.readLine();
+                    while (line != null) {
+                        build.append(line);
+                        line = reader.readLine();
+                    }
+                }
+            String jsonString = build.toString();
+            return jsonString;
+            
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
+            return e.getMessage();
+        } 
+        // return jo;
     }
 }

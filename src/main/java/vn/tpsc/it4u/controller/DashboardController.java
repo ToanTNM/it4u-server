@@ -10,9 +10,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.common.Calculator;
-
 @RestController
 @RequestMapping("${app.api.version}")
 public class DashboardController {
@@ -24,6 +25,12 @@ public class DashboardController {
 
     @Value("${app.ubnt.unifises}")
     private String unifises;
+
+    @Value("${app.dev.url}")
+    private String urlDev;
+
+    @Value("${app.dev.token}")
+    private String tokenDev;
     
     String sitesid="/stat/sites";
     @Autowired 
@@ -34,14 +41,23 @@ public class DashboardController {
         ApiRequest apiRequest = new  ApiRequest();
         JSONObject result = new JSONObject();
         List<String> dataList = new ArrayList<>();
-        String getSites = apiRequest.getRequestApi(urlIt4u,sitesid,csrfToken,unifises);
-        JSONObject jsonResult = new JSONObject(getSites);
-        JSONArray data = jsonResult.getJSONArray("data");
+        JSONArray data = new JSONArray();
+        try {
+            String getSites = apiRequest.getRequestApi(urlIt4u,sitesid,csrfToken,unifises);
+            JSONObject jsonResult = new JSONObject(getSites);
+            data = jsonResult.getJSONArray("data");
+        } catch (Exception e) {
+        }
+        String siteName = "";
+        String idName = "";
         for (int i=0;i<data.length();i++)
         {
             JSONObject getData = (JSONObject) data.get(i);
-            String siteName = getData.getString("desc");
-            String idName = getData.getString("name");
+            try {
+                siteName = getData.getString("desc");
+                idName = getData.getString("name");
+            } catch (Exception e) {
+            }
             result.put("id",idName);
             result.put("name",siteName);
             dataList.add(result.toString());
@@ -688,6 +704,106 @@ public class DashboardController {
         return result.toString();
     }
 
+    //Dashboard 2
+    @ApiOperation(value = "Customer info")
+    @GetMapping("it4u/{id}/customerInfo")
+    public String getCustomerInfo(@PathVariable(value="id") String siteName){
+        String wan2Status = "DOWN";
+        String wan1Status = "DOWN";
+        String wan3Status = "DOWN";
+        List<String> result = new ArrayList<>();
+        JSONObject wan1 = new JSONObject();
+        JSONObject wan2 = new JSONObject();
+        JSONObject wan3 = new JSONObject();
+        JSONObject lb = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        Calculator convert = new Calculator();
+        String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
+        JSONObject data = new JSONObject(getData);
+        String wan1Ip = data.getString("wan1_ip");
+        // String wan1Provider = data.getString("wan1_provider");
+        Integer getWan1Status = data.getInt("wan1_status");
+        if ( getWan1Status == 1) {
+            wan1Status = "UP";
+        }
+        Integer getWan1Uptime = data.getInt("wan1_uptime");
+        String wan1Uptime = convert.ConvertSecondToHHMMString(getWan1Uptime);
+        wan1.put("wanIp", wan1Ip);
+        wan1.put("wanProvider", "Kênh Truyền 1");
+        wan1.put("wanStatus", wan1Status);
+        wan1.put("wanUptime", wan1Uptime);
+        result.add(wan1.toString());
+        try {
+            String wan2Ip = data.getString("wan2_ip");
+            // String wan2Provider = data.getString("wan2_provider");
+            Integer getWan2Status = data.getInt("wan2_status");
+
+            if ( getWan2Status == 1) {
+                wan2Status = "UP";
+            }
+            Integer getWan2Uptime = data.getInt("wan2_uptime");
+            String wan2Uptime = convert.ConvertSecondToHHMMString(getWan2Uptime);
+            wan2.put("wanIp", wan2Ip);
+            wan2.put("wanProvider", "Kênh Truyền 2");
+            wan2.put("wanStatus", wan2Status);
+            wan2.put("wanUptime", wan2Uptime);
+            result.add(wan2.toString());
+            Integer getLbUptime = data.getInt("uptime_lb");
+            String lbUptime = convert.ConvertSecondToHHMMString(getLbUptime);
+            lb.put("wanProvider", "Router LoadBalanced");
+            lb.put("wanUptime", lbUptime);
+            result.add(lb.toString());
+        } catch (Exception e) {
+        }
+        try {
+            String wan3Ip = data.getString("wan3_ip");
+            // String wan3Provider = data.getString("wan3_provider");
+            Integer getWan3Status = data.getInt("wan3_status");
+            if ( getWan3Status == 1) {
+                wan3Status = "UP";
+            }
+            Integer getWan3Uptime = data.getInt("wan3_uptime");
+            String wan3Uptime = convert.ConvertSecondToHHMMString(getWan3Uptime);
+            wan3.put("wanIp", wan3Ip);
+            wan3.put("wanProvider", "Kênh Truyền 3");
+            wan3.put("wanStatus", wan3Status);
+            wan3.put("wanUptime", wan3Uptime);
+            result.add(wan3.toString());
+        } catch (Exception e) {
+        }
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Traffic AP")
+    @GetMapping("it4u/{id}/trafficInfo")
+    public String getTrafficInfo(@PathVariable(value="id") String idUser){
+        List<String> result = new ArrayList<>();
+        JSONObject rate = new JSONObject();
+        JSONObject uploadJson = new JSONObject();
+        JSONObject downloadJson = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        long upload = 0;
+        long download = 0;
+        Calculator convert = new Calculator();
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + idUser + "/stat/sta/",csrfToken,unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            upload = upload + getInfo.getInt("tx_rate");
+            download = download + getInfo.getInt("rx_rate");
+        }
+        uploadJson.put("name","Upload");
+        uploadJson.put("y",upload*8);
+        downloadJson.put("name","Download");
+        downloadJson.put("y",download*8);
+        result.add(uploadJson.toString());
+        result.add(downloadJson.toString());
+        return result.toString();
+    }
+
+
     public String longestConn(String data) {
         JSONObject result = new JSONObject();
         JSONObject jsonResult = new JSONObject(data);
@@ -724,7 +840,13 @@ public class DashboardController {
         String up = convertTx.get(0) + convertTx.get(1);
         String down = convertRx.get(0) + convertRx.get(1);
         Integer getUptime = getBytes.getInt("uptime");
-        String hostname = getBytes.getString("hostname");
+        String hostname = "None";
+        try {
+            hostname = getBytes.getString("hostname");
+        } catch (Exception e) {
+            hostname = "None";
+        }
+         
         String uptime = getCalculator.ConvertSecondToHHMMString(getUptime);
         result.put("name","Longest Connect");
         result.put("hostname",hostname);
