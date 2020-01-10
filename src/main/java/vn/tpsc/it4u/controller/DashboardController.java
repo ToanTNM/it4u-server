@@ -747,7 +747,7 @@ public class DashboardController {
             result.add(wan2.toString());
             Integer getLbUptime = data.getInt("uptime_lb");
             String lbUptime = convert.ConvertSecondToHHMMString(getLbUptime);
-            lb.put("wanProvider", "Router LoadBalanced");
+            lb.put("wanProvider", "Router LoadBalance");
             lb.put("wanUptime", lbUptime);
             result.add(lb.toString());
         } catch (Exception e) {
