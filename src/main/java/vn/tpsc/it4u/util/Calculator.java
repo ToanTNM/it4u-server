@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.common;
+package vn.tpsc.it4u.util;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

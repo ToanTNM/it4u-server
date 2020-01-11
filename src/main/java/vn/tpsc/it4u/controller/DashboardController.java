@@ -1,7 +1,7 @@
 package vn.tpsc.it4u.controller;
 
 import vn.tpsc.it4u.util.ApiResponseUtils;
-import vn.tpsc.it4u.common.ApiRequest;
+import vn.tpsc.it4u.util.ApiRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 // import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import vn.tpsc.it4u.common.Calculator;
+import vn.tpsc.it4u.util.Calculator;
 @RestController
 @RequestMapping("${app.api.version}")
 public class DashboardController {

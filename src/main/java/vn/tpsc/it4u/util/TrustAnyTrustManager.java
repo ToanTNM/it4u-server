@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.common;
+package vn.tpsc.it4u.util;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;

@@ -1,7 +1,7 @@
 package vn.tpsc.it4u.controller;
 
 import vn.tpsc.it4u.util.ApiResponseUtils;
-import vn.tpsc.it4u.common.ApiRequest;
+import vn.tpsc.it4u.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
-import vn.tpsc.it4u.common.Calculator;
 
 @RestController
 @RequestMapping("${app.api.version}")
