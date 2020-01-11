@@ -38,14 +38,17 @@ public class UserController {
     @GetMapping("/user/me")
     //@PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getId(), 
-        currentUser.getUsername(), 
-        currentUser.getName(), 
-        currentUser.getEmail(),
-        currentUser.getAvatar(),
-        currentUser.getGender(), 
-        currentUser.getType(), 
-        currentUser.getStatus());
+        UserSummary userSummary = new UserSummary(
+            currentUser.getId(), 
+            currentUser.getUsername(), 
+            currentUser.getName(), 
+            currentUser.getEmail(),
+            currentUser.getAvatar(),
+            currentUser.getGender(), 
+            currentUser.getType(), 
+            currentUser.getStatus(),
+            currentUser.getRoles());
+            
         return userSummary;
     }
 

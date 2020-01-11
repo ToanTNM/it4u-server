@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc3MzMwNzk0LCJleHAiOjE1Nzc5MzU1OTR9.4jPm9PekEjSUBbatWY8iJ8JMKCduQN1cQVc3Qrd7ytuNRcD7QUBOS8o670nLWWCXRwm68HiG1G7jZ75WF7RKhw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3LCJleHAiOjE1Nzg3NjAxMTd9.HRxHyO3-Lxz3DXytedGkTi86p0Q93F9w_W4SALNbWX1mALE6Ka9X48u-EFYSUJJ3qZ8Y_gvK272G7zM_e9aPQA
 
 ###
 POST http://localhost:5000/api/v1/auth/signin

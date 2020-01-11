@@ -80,7 +80,18 @@ public class UserService {
         List<User> users = userRepository.findAll();
         
         List<UserSummary> listUsers = users.stream()
-            .map(user -> new UserSummary(user.getId(), user.getUsername(), user.getName(), user.getEmail(), user.getAvatar(), user.getGender(), user.getType(), user.getStatus()))
+            .map(user -> 
+                new UserSummary(
+                    user.getId(), 
+                    user.getUsername(), 
+                    user.getName(), 
+                    user.getEmail(), 
+                    user.getAvatar(), 
+                    user.getGender(), 
+                    user.getType(), 
+                    user.getStatus(),
+                    user.getRoles()
+                    ))
             .collect(Collectors.toList());
 
         return listUsers;
@@ -94,7 +105,18 @@ public class UserService {
     public List<UserSummary> findUser(List<Long> userId) {
         List<User> users = userRepository.findByIdIn(userId);
         List<UserSummary> listUsers = users.stream()
-            .map(user -> new UserSummary(user.getId(), user.getUsername(), user.getName(), user.getEmail(), user.getAvatar(), user.getGender(), user.getType(), user.getStatus()))
+            .map(user -> 
+            new UserSummary(
+                    user.getId(), 
+                    user.getUsername(), 
+                    user.getName(), 
+                    user.getEmail(), 
+                    user.getAvatar(), 
+                    user.getGender(), 
+                    user.getType(), 
+                    user.getStatus(),
+                    user.getRoles()
+                    ))
             .collect(Collectors.toList());
         return listUsers;
     }
