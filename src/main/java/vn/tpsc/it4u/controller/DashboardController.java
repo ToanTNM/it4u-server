@@ -241,7 +241,10 @@ public class DashboardController {
         List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
-
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
@@ -267,8 +270,10 @@ public class DashboardController {
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
@@ -283,7 +288,10 @@ public class DashboardController {
         List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
-
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
@@ -309,8 +317,10 @@ public class DashboardController {
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
@@ -325,7 +335,10 @@ public class DashboardController {
         List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
-
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.site/",csrfToken,unifises,postData);
@@ -351,8 +364,10 @@ public class DashboardController {
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
