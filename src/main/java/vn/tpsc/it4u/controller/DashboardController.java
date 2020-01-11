@@ -1,18 +1,23 @@
 package vn.tpsc.it4u.controller;
 
 import vn.tpsc.it4u.util.ApiResponseUtils;
-import vn.tpsc.it4u.common.ApiRequest;
+import vn.tpsc.it4u.util.ApiRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.ApiOperation;
-import vn.tpsc.it4u.common.Calculator;
 
+// import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import vn.tpsc.it4u.util.Calculator;
 @RestController
 @RequestMapping("${app.api.version}")
 public class DashboardController {
@@ -24,6 +29,12 @@ public class DashboardController {
 
     @Value("${app.ubnt.unifises}")
     private String unifises;
+
+    @Value("${app.dev.url}")
+    private String urlDev;
+
+    @Value("${app.dev.token}")
+    private String tokenDev;
     
     String sitesid="/stat/sites";
     @Autowired 
@@ -34,14 +45,23 @@ public class DashboardController {
         ApiRequest apiRequest = new  ApiRequest();
         JSONObject result = new JSONObject();
         List<String> dataList = new ArrayList<>();
-        String getSites = apiRequest.getRequestApi(urlIt4u,sitesid,csrfToken,unifises);
-        JSONObject jsonResult = new JSONObject(getSites);
-        JSONArray data = jsonResult.getJSONArray("data");
+        JSONArray data = new JSONArray();
+        try {
+            String getSites = apiRequest.getRequestApi(urlIt4u,sitesid,csrfToken,unifises);
+            JSONObject jsonResult = new JSONObject(getSites);
+            data = jsonResult.getJSONArray("data");
+        } catch (Exception e) {
+        }
+        String siteName = "";
+        String idName = "";
         for (int i=0;i<data.length();i++)
         {
             JSONObject getData = (JSONObject) data.get(i);
-            String siteName = getData.getString("desc");
-            String idName = getData.getString("name");
+            try {
+                siteName = getData.getString("desc");
+                idName = getData.getString("name");
+            } catch (Exception e) {
+            }
             result.put("id",idName);
             result.put("name",siteName);
             dataList.add(result.toString());
@@ -132,6 +152,24 @@ public class DashboardController {
         return result.toString();
     }
 
+    @ApiOperation(value = "Get mac AP")
+    @GetMapping("it4u/{id}/getMacAp")
+    public String getMacAp(@PathVariable(value = "id") String userId) {
+        JSONObject getResult = new JSONObject();
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new  ApiRequest();
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            getResult.put("name",getInfo.getString("name"));
+            getResult.put("mac",getInfo.getString("mac"));
+            result.add(getResult.toString());
+        }
+        return result.toString();
+    }
+
     @ApiOperation(value = "Current traffic usage")
     @GetMapping("it4u/{id}/trafficUsage")
     public String getTrafficUsage(@PathVariable(value = "id") String userId) {
@@ -195,80 +233,607 @@ public class DashboardController {
         return result.toString();
     }
 
-    @ApiOperation(value = "Daily Client")
+    @ApiOperation(value = "Hourly Client")
     @PostMapping("it4u/{id}/hourlyClient")
-    public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
-        int posMax = 0;
-        int posMin = 0;
-        int k = 0;
-        List<String> listTime = new ArrayList<>();
+    public String getHourlyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> result = new ArrayList<>();
-        List<String> listMax = new ArrayList<>();
-        List<String> listMin = new ArrayList<>();
-        List<String> listClient = new ArrayList<>();
-        List<String> listTraffic = new ArrayList<>();
-        JSONObject listMaxJson = new JSONObject();
-        JSONObject listMinJson = new JSONObject();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
         ApiRequest apiRequest = new ApiRequest();
-        String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
         JSONObject getData = new JSONObject(getHourly);
         JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("wlan-num_sta");
+        Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
             long startTime = getPosStart.getLong("time");
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
-                JSONObject getDataMinute = new JSONObject(getMinute);
-                JSONArray dataMinute = getDataMinute.getJSONArray("data");
-                JSONObject getPos = (JSONObject) dataMinute.get(k);
-                Integer maxClient = getPos.getInt("wlan-num_sta");
-                Integer minClient = getPos.getInt("wlan-num_sta");
-                for ( int j=k+1; j<dataMinute.length(); j++) {
-                    JSONObject getPosMaxMin = (JSONObject) dataMinute.get(j);
-                    if ( getPosMaxMin.getLong("time") >= startTime) {
-                        if (maxClient < getPosMaxMin.getInt("wlan-num_sta")) {
-                            maxClient = getPosMaxMin.getInt("wlan-num_sta");
-                            posMax = j;
-                        }
-                        if (minClient > getPosMaxMin.getInt("wlan-num_sta")) {
-                            minClient = getPosMaxMin.getInt("wlan-num_sta");
-                            posMin = j;
-                        }
-                    }
-                    if (getPosMaxMin.getLong("time") >= endTime) {
-                        k = j;
-                        break;
-                    }
-                }
-            Integer countClient = getPosStart.getInt("wlan-num_sta");
-            Long countTraffic = getPosStart.getLong("wlan_bytes");
-            Long time = getPosStart.getLong("time");
-            listTime.add(time.toString());
-            listMax.add(maxClient.toString());
-            listMin.add(minClient.toString());
-            listClient.add(countClient.toString());
-            listTraffic.add(countTraffic.toString());
+                Integer countClient = getPosEnd.getInt("wlan-num_sta");
+                Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
             }
-
         }
-        listMaxJson.put("name","Client Max");
-        listMaxJson.put("data", listMax);
-        listMinJson.put("name","Client Min");
-        listMinJson.put("data", listMin);
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
-        result.add(listMaxJson.toString());
-        result.add(listMinJson.toString());
+        listTrafficJson.put("tooltip",traffic);
+        listTrafficJson.put("yAxis",0);
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         return result.toString();
     }
+
+    @ApiOperation(value = "5 minutes Client")
+    @PostMapping("it4u/{id}/5MinutesClient")
+    public String getMinutesClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
+        ApiRequest apiRequest = new ApiRequest();
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("wlan-num_sta");
+        Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Integer countClient = getPosEnd.getInt("wlan-num_sta");
+                Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
+            }
+        }
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("tooltip",traffic);
+        listTrafficJson.put("yAxis",0);
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Daily Client")
+    @PostMapping("it4u/{id}/dailyClient")
+    public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
+        JSONObject client = new JSONObject();
+        JSONObject traffic = new JSONObject();
+        client.put("valueSuffix", " Client");
+        traffic.put("valueSuffix", " Bytes");
+        ApiRequest apiRequest = new ApiRequest();
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("wlan-num_sta");
+        Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Integer countClient = getPosEnd.getInt("wlan-num_sta");
+                Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
+            }
+        }
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listClientJson.put("tooltip",client);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("tooltip",traffic);
+        listTrafficJson.put("yAxis",0);
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Daily AP")
+    @PostMapping("it4u/{id}/dailyAP")
+    public String getDailyAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
+
+        ApiRequest apiRequest = new ApiRequest();
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.ap/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("num_sta");
+        Long countTraffic0 = getPosZero.getLong("bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Integer countClient = getPosEnd.getInt("num_sta");
+                Long countTraffic = getPosEnd.getLong("bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
+            }
+        }
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("yAxis",0);
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Hourly AP")
+    @PostMapping("it4u/{id}/hourlyAP")
+    public String getHourlyAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
+
+        ApiRequest apiRequest = new ApiRequest();
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.ap/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("num_sta");
+        Long countTraffic0 = getPosZero.getLong("bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Integer countClient = getPosEnd.getInt("num_sta");
+                Long countTraffic = getPosEnd.getLong("bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
+            }
+        }
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("yAxis",0);
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "5 minutes AP")
+    @PostMapping("it4u/{id}/5MinutesAP")
+    public String get5MinutesAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<Integer> listClient = new ArrayList<Integer>();
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listClientJson = new JSONObject();
+        JSONObject listTrafficJson = new JSONObject();
+
+        ApiRequest apiRequest = new ApiRequest();
+        // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.ap/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataHourly.get(0);
+        Integer countClient0 = getPosZero.getInt("num_sta");
+        Long countTraffic0 = getPosZero.getLong("bytes");
+        listClient.add(countClient0);
+        listTraffic.add(countTraffic0);
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Integer countClient = getPosEnd.getInt("num_sta");
+                Long countTraffic = getPosEnd.getLong("bytes");
+                listClient.add(countClient);
+                listTraffic.add(countTraffic);
+            }
+        }
+        listClientJson.put("name","Client");
+        listClientJson.put("data", listClient);
+        listClientJson.put("yAxis",1);
+        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("data", listTraffic);
+        listTrafficJson.put("yAxis",0);
+        result.add(listClientJson.toString());
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+    
+    @ApiOperation(value = "Get time hourly")
+    @PostMapping("it4u/{id}/getTimeHourly")
+    public String getTimeHourly(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> listTime = new ArrayList<>();
+        JSONObject listResult = new JSONObject();
+        long getTimeMax = 0;
+        long getTimeMin = 0;
+        int sum = 0;
+        int avg = 0;
+        int k = 0;
+        ApiRequest apiRequest = new ApiRequest();
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPos = (JSONObject) dataHourly.get(0);
+        Integer maxClient = getPos.getInt("wlan-num_sta");
+        Integer minClient = getPos.getInt("wlan-num_sta");
+        Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
+        
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long time = getPosEnd.getLong("time");  
+                String uptime = getCalculator.ConvertSecondToDate(time);
+                if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
+                    maxClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMax = getPosStart.getLong("time");
+                }
+                if (minClient >= getPosStart.getInt("wlan-num_sta")) {
+                    minClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMin = getPosStart.getLong("time");
+                }
+                sum = sum + getPosStart.getInt("wlan-num_sta");
+                k = k + 1;
+                listTime.add(uptime.toString());
+				
+            }
+
+        }
+        avg = Math.round(sum/k);
+        String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+        String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+        listResult.put("time",listTime);
+        listResult.put("timeMax",timeMax);
+        listResult.put("clientMax",maxClient);
+        listResult.put("timeMin",timeMin);
+        listResult.put("clientMin",minClient);
+        listResult.put("clientAverage",avg);
+        return listResult.toString();
+    }
+
+    @ApiOperation(value = "Get time 5 minutes")
+    @PostMapping("it4u/{id}/getTimeMinute")
+    public String getTimeMinute(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> listTime = new ArrayList<>();
+        JSONObject listResult = new JSONObject();
+        long getTimeMax = 0;
+        long getTimeMin = 0;
+        int sum = 0;
+        int avg = 0;
+        int k = 0;
+        ApiRequest apiRequest = new ApiRequest();
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPos = (JSONObject) dataHourly.get(0);
+        Integer maxClient = getPos.getInt("wlan-num_sta");
+        Integer minClient = getPos.getInt("wlan-num_sta");
+        Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long time = getPosEnd.getLong("time");  
+                String uptime = getCalculator.ConvertSecondToDate(time);
+                if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
+                    maxClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMax = getPosStart.getLong("time");
+                }
+                if (minClient >= getPosStart.getInt("wlan-num_sta")) {
+                    minClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMin = getPosStart.getLong("time");
+                }
+                sum = sum + getPosStart.getInt("wlan-num_sta");
+                k = k + 1;
+                listTime.add(uptime.toString());
+				
+            }
+
+        }
+        avg = Math.round(sum/k);
+        String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+        String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+        listResult.put("time",listTime);
+        listResult.put("timeMax",timeMax);
+        listResult.put("clientMax",maxClient);
+        listResult.put("timeMin",timeMin);
+        listResult.put("clientMin",minClient);
+        listResult.put("clientAverage",avg);
+        return listResult.toString();
+    }
+
+    @ApiOperation(value = "Get time daily")
+    @PostMapping("it4u/{id}/getTimeDaily")
+    public String getTimeDaily(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+        List<String> listTime = new ArrayList<>();
+        JSONObject listResult = new JSONObject();
+        long getTimeMax = 0;
+        long getTimeMin = 0;
+        int sum = 0;
+        int avg = 0;
+        int k = 0;
+        ApiRequest apiRequest = new ApiRequest();
+        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getHourly);
+        JSONArray dataHourly = getData.getJSONArray("data");
+        JSONObject getPos = (JSONObject) dataHourly.get(0);
+        Integer maxClient = getPos.getInt("wlan-num_sta");
+        Integer minClient = getPos.getInt("wlan-num_sta");
+        Calculator getCalculator = new Calculator();
+        Long time0 = getPos.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
+        for (int i=0; i<dataHourly.length()-1; i++) {
+            JSONObject getPosStart = (JSONObject) dataHourly.get(i);
+            JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long time = getPosEnd.getLong("time");  
+                String uptime = getCalculator.ConvertSecondToDate(time);
+                if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
+                    maxClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMax = getPosStart.getLong("time");
+                }
+                if (minClient >= getPosStart.getInt("wlan-num_sta")) {
+                    minClient = getPosStart.getInt("wlan-num_sta");
+                    getTimeMin = getPosStart.getLong("time");
+                }
+                sum = sum + getPosStart.getInt("wlan-num_sta");
+                k = k + 1;
+                listTime.add(uptime.toString());
+				
+            }
+
+        }
+        avg = Math.round(sum/k);
+        String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+        String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+        listResult.put("time",listTime);
+        listResult.put("timeMax",timeMax);
+        listResult.put("clientMax",maxClient);
+        listResult.put("timeMin",timeMin);
+        listResult.put("clientMin",minClient);
+        listResult.put("clientAverage",avg);
+        return listResult.toString();
+    }
+
+    @ApiOperation(value = "Count AP Connect")
+    @GetMapping("it4u/{id}/apCount")
+    public String getAPConnect(@PathVariable(value = "id") String userId) {
+        Integer countConn = 0;
+        Integer countDisConn = 0;
+        List<String> result = new ArrayList<>();
+        JSONObject getConn = new JSONObject();
+        JSONObject getDisConn = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            if (getInfo.getInt("state") == 1) {
+                countConn = countConn + 1;
+            }
+            else {
+                countDisConn = countDisConn + 1;
+            }
+        }
+        getConn.put("name","AP Connected");
+        getConn.put("y",countConn);
+        result.add(getConn.toString());
+        getDisConn.put("name","AP Disconnected");
+        getDisConn.put("y",countDisConn);
+        result.add(getDisConn.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Hotspot")
+    @GetMapping("it4u/{id}/hotspot/{start}/{end}")
+    public String getHotspot(@PathVariable(value = "id") String userId,@PathVariable(value = "start") String start, @PathVariable(value = "end") String end) {
+        Integer newClient = 0;
+        Integer returnClient = 0;
+        List<String> result = new ArrayList<>();
+        JSONObject getNewClient = new JSONObject();
+        JSONObject getReturnClient = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/guest?start=" + start + "&end="+ end,csrfToken,unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            Boolean temp = getInfo.getBoolean("is_returning");
+            if (!temp) {
+                newClient = newClient + 1;
+            }
+            else {
+                returnClient = returnClient + 1;
+            }
+        }
+        getNewClient.put("name","New");
+        getNewClient.put("y",newClient);
+        getReturnClient.put("name","Returning");
+        getReturnClient.put("y", returnClient);
+        result.add(getNewClient.toString());
+        result.add(getReturnClient.toString());
+        return result.toString();
+    }
+
+    //Dashboard 2
+    @ApiOperation(value = "Customer info")
+    @GetMapping("it4u/{id}/customerInfo")
+    public String getCustomerInfo(@PathVariable(value="id") String siteName){
+        String wan2Status = "DOWN";
+        String wan1Status = "DOWN";
+        String wan3Status = "DOWN";
+        TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        dateFormat.setTimeZone(tz);
+        Calendar cal = Calendar.getInstance();
+        System.out.println(dateFormat.format(cal.getTime()));
+        // Date today = dateFormat.parse("   ");
+        List<String> result = new ArrayList<>();
+        JSONObject wan1 = new JSONObject();
+        JSONObject wan2 = new JSONObject();
+        JSONObject wan3 = new JSONObject();
+        JSONObject lb = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        Calculator convert = new Calculator();
+        String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
+        JSONObject data = new JSONObject(getData);
+        String wan1Ip = data.getString("wan1_ip");
+        
+        // String wan1Provider = data.getString("wan1_provider");
+        Integer getWan1Status = data.getInt("wan1_status");
+        if ( getWan1Status == 1) {
+            wan1Status = "UP";
+        }
+        Integer getWan1Uptime = data.getInt("wan1_uptime");
+        String wan1Uptime = convert.ConvertSecondToHHMMString(getWan1Uptime);
+        wan1.put("wanIp", wan1Ip);
+        wan1.put("wanProvider", "Kênh Truyền 1");
+        wan1.put("wanStatus", wan1Status);
+        wan1.put("wanUptime", wan1Uptime);
+        result.add(wan1.toString());
+        try {
+            String wan2Ip = data.getString("wan2_ip");
+            // String wan2Provider = data.getString("wan2_provider");
+            Integer getWan2Status = data.getInt("wan2_status");
+
+            if ( getWan2Status == 1) {
+                wan2Status = "UP";
+            }
+            Integer getWan2Uptime = data.getInt("wan2_uptime");
+            String wan2Uptime = convert.ConvertSecondToHHMMString(getWan2Uptime);
+            wan2.put("wanIp", wan2Ip);
+            wan2.put("wanProvider", "Kênh Truyền 2");
+            wan2.put("wanStatus", wan2Status);
+            wan2.put("wanUptime", wan2Uptime);
+            result.add(wan2.toString());
+            Integer getLbUptime = data.getInt("uptime_lb");
+            String lbUptime = convert.ConvertSecondToHHMMString(getLbUptime);
+            lb.put("wanProvider", "Router LoadBalance");
+            lb.put("wanUptime", lbUptime);
+            result.add(lb.toString());
+        } catch (Exception e) {
+        }
+        try {
+            String wan3Ip = data.getString("wan3_ip");
+            // String wan3Provider = data.getString("wan3_provider");
+            Integer getWan3Status = data.getInt("wan3_status");
+            if ( getWan3Status == 1) {
+                wan3Status = "UP";
+            }
+            Integer getWan3Uptime = data.getInt("wan3_uptime");
+            String wan3Uptime = convert.ConvertSecondToHHMMString(getWan3Uptime);
+            wan3.put("wanIp", wan3Ip);
+            wan3.put("wanProvider", "Kênh Truyền 3");
+            wan3.put("wanStatus", wan3Status);
+            wan3.put("wanUptime", wan3Uptime);
+            result.add(wan3.toString());
+        } catch (Exception e) {
+        }
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Traffic AP")
+    @GetMapping("it4u/{id}/trafficInfo")
+    public String getTrafficInfo(@PathVariable(value="id") String idUser){
+        List<String> result = new ArrayList<>();
+        JSONObject uploadJson = new JSONObject();
+        JSONObject downloadJson = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        long upload = 0;
+        long download = 0;
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + idUser + "/stat/sta/",csrfToken,unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            upload = upload + getInfo.getInt("tx_rate");
+            download = download + getInfo.getInt("rx_rate");
+        }
+        uploadJson.put("name","Upload");
+        uploadJson.put("y",upload*8);
+        downloadJson.put("name","Download");
+        downloadJson.put("y",download*8);
+        result.add(uploadJson.toString());
+        result.add(downloadJson.toString());
+        return result.toString();
+    }
+
 
     public String longestConn(String data) {
         JSONObject result = new JSONObject();
@@ -306,7 +871,13 @@ public class DashboardController {
         String up = convertTx.get(0) + convertTx.get(1);
         String down = convertRx.get(0) + convertRx.get(1);
         Integer getUptime = getBytes.getInt("uptime");
-        String hostname = getBytes.getString("hostname");
+        String hostname = "None";
+        try {
+            hostname = getBytes.getString("hostname");
+        } catch (Exception e) {
+            hostname = "None";
+        }
+         
         String uptime = getCalculator.ConvertSecondToHHMMString(getUptime);
         result.put("name","Longest Connect");
         result.put("hostname",hostname);

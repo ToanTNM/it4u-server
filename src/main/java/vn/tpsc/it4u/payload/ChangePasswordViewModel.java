@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class ChangePasswordViewModel {
 
-    private String newPassword;
-
     private String currentPassword;
+
+    private String newPassword;
 
     private String confirmPassword;
 }

@@ -22,5 +22,6 @@ public class UserSummary {
     private Gender gender;
     private UserType type;
     private UserStatus status;
+    private String sitename;
     private Set<Role> roles;
 }
