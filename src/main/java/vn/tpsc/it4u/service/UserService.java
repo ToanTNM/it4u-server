@@ -65,11 +65,11 @@ public class UserService {
             throw new AppException("New password is the same with the old one");
         }
 
-        if(!model.getCurrentPassword().equals(model.getConfirmPassword())){
+        if(!model.getNewPassword().equals(model.getConfirmPassword())){
             throw new AppException("Password is not match");
         }
 
-        user.setPassword(encoder.encode(model.getNewPassword()));
+        user.setPassword(encoder.encode(model.getConfirmPassword()));
 
         userRepository.save(user);
 
@@ -136,6 +136,8 @@ public class UserService {
         user.setGender(updatingUser.getGender() != null ? updatingUser.getGender() : user.getGender());
         //UserType type
         user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
+
+        user.setSitename(updatingUser.getSitename() != null ? updatingUser.getSitename() : user.getSitename());
 
         userRepository.save(user);
 

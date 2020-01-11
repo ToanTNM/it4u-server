@@ -37,4 +37,6 @@ public class SignUpRequest {
     private UserType type;
 
     private UserStatus status;
+
+    private String sitename;
 }
