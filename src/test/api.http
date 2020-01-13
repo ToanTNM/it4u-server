@@ -51,7 +51,8 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3NjMwODQxLCJleHAiOjE1NzgyMzU2NDF9.gD7X3LeVwGhImA_KLKoeVqjIhJ73jW0klzMZDjb977cKKHwaci5kfEfpTyciWTOd4_XugLS0b57jp00VuNR-cw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3LCJleHAiOjE1Nzg3NjAxMTd9.HRxHyO3-Lxz3DXytedGkTi86p0Q93F9w_W4SALNbWX1mALE6Ka9X48u-EFYSUJJ3qZ8Y_gvK272G7zM_e9aPQA
+
 ###
 
 PUT http://localhost:5000/api/v1/user/update
