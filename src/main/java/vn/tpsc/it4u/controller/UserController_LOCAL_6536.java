@@ -49,7 +49,7 @@ public class UserController {
             currentUser.getStatus(),
             currentUser.getSitename(),
             currentUser.getRoles());
-            
+
         return userSummary;
     }
 

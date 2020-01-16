@@ -38,6 +38,7 @@ public class UserController {
     @GetMapping("/user/me")
     //@PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
+<<<<<<<<< Temporary merge branch 1
         UserSummary userSummary = new UserSummary(
             currentUser.getId(), 
             currentUser.getUsername(), 
@@ -47,9 +48,20 @@ public class UserController {
             currentUser.getGender(), 
             currentUser.getType(), 
             currentUser.getStatus(),
-            currentUser.getSitename(),
             currentUser.getRoles());
             
+=========
+        UserSummary userSummary = new UserSummary(currentUser.getId(), 
+        currentUser.getUsername(), 
+        currentUser.getName(), 
+        currentUser.getEmail(),
+        currentUser.getAvatar(),
+        currentUser.getGender(), 
+        currentUser.getType(), 
+        currentUser.getStatus(),
+        currentUser.getSitename()
+        );
+>>>>>>>>> Temporary merge branch 2
         return userSummary;
     }
 
