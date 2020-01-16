@@ -41,6 +41,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/auth/signin
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTY1NDUwLCJleHAiOjE1Nzk3NzAyNTB9.rD24vdZI7fT6jQbsW6tXCkXo1Okn2WFj_yxKzXmlmE0Sn_2tSIwRKb-5JPsFecqrzyzlitCAJ5d1uzlHNav7SA
 Content-Type: application/json
 
 {
@@ -51,7 +52,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3LCJleHAiOjE1Nzg3NjAxMTd9.HRxHyO3-Lxz3DXytedGkTi86p0Q93F9w_W4SALNbWX1mALE6Ka9X48u-EFYSUJJ3qZ8Y_gvK272G7zM_e9aPQA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTY1NDUwLCJleHAiOjE1Nzk3NzAyNTB9.rD24vdZI7fT6jQbsW6tXCkXo1Okn2WFj_yxKzXmlmE0Sn_2tSIwRKb-5JPsFecqrzyzlitCAJ5d1uzlHNav7SA
 
 ###
 
