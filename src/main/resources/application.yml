@@ -15,7 +15,7 @@ app:
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
 spring:
   profiles:
-    active: dev
+    active: prod
 
   # Jackson Properties
   jackson:
