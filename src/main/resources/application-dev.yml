@@ -4,17 +4,17 @@ server:
 
 # debug: true
 
-logging:
-  file:
-    name: log.txt
-    path: ./
-  level:
-  #   root: WARN
-  #   org.springframework.web: DEBUG
-    org:
-      hibernate:
-        SQL: debug
-        type.descriptor.sql: trace
+# logging:
+#   file:
+#     name: log.txt
+#     path: ./
+#   level:
+#   #   root: WARN
+#   #   org.springframework.web: DEBUG
+#     org:
+#       hibernate:
+#         SQL: debug
+#         type.descriptor.sql: trace
 
     # org.hibernate: DEBUG
 
