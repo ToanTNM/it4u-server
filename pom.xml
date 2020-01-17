@@ -20,12 +20,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-			<version>3.8.5</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>io.springfox</groupId>
