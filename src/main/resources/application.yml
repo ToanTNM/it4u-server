@@ -8,8 +8,10 @@ app:
   
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
-    csrf_token: dOF18vvMYAVy7Ck7zFqC3ZRQ22x1V5YM
-    unifises: q6o8WVSRigOPv9RsLelFxkYzpSa2J2ZS
+    username: lap.dang@tpsc.vn
+    password: Nccvbcl0167@
+    csrf_token: pNoTDSHx71LwSrLFDCWAoWU6HmmAZOns
+    unifises: dpYFtZCjDDjvhjPWLZXtpBibn5cXG3vr
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
@@ -23,13 +25,6 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: UTC
-
-  # Database config  
-  jpa:
-    # Hibernate ddl auto (create, create-drop, validate, update)
-    hibernate.ddl-auto: update
-    properties:
-      hibernate.dialect: org.hibernate.dialect.H2Dialect
   
   #locale
   messages:

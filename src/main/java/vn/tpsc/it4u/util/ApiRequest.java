@@ -9,6 +9,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -78,33 +80,6 @@ public class ApiRequest {
                 inputReader.close();
             }
             return response.toString();
-            // byte[] out = "{\"start\":\"1576515600000\",\"end\":\"1577206800000\"}" .getBytes(StandardCharsets.UTF_8);
-            // int length = out.length;
-            // URL url = new URL( urlIt4u + infoApi);
-            // JSONObject data = new JSONObject();
-            // URLConnection conn = url.openConnection();
-            // conn.setDoOutput(true);
-            // // conn.setFixedLengthStreamingMode(length);
-            // conn.setRequestProperty("Cookie", "csrf_token=" + csrfToken + "; unifises=" + unifises);
-            // conn.connect();
-            // // byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
-            // try(OutputStream os = conn.getOutputStream()) {
-            //     os.write(out);
-            // }
-            // InputStream inputStream = conn.getInputStream();
-            // StringBuilder build = new StringBuilder();
-            //     if (inputStream != null) {
-            //         InputStreamReader ISreader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-            //         BufferedReader reader = new BufferedReader(ISreader);
-            //         String line = reader.readLine();
-            //         while (line != null) {
-            //             build.append(line);
-            //             line = reader.readLine();
-            //         }
-            //     }
-            // String jsonString = build.toString();
-            // return jsonString;
-            
         } catch (Exception e) {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();
@@ -134,6 +109,47 @@ public class ApiRequest {
             String jsonString = build.toString();
             return jsonString;
             
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
+            return e.getMessage();
+        } 
+        // return jo;
+    }
+    public String postRequestIt4u(String urlIt4u,String infoApi, String dataPost) {
+        try {
+            String url = urlIt4u + infoApi;
+            StringBuffer response = new StringBuffer();
+            URL UrlObj = new URL(url);
+        
+            HttpURLConnection connection = (HttpURLConnection) UrlObj.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+        
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            // String urlPostParameters = "start=1577379600000&end=1577552400000";
+            byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
+            outputStream.write(out);
+            outputStream.flush();
+            outputStream.close();
+        
+            System.out.println("Send 'HTTP POST' request to : " + url);
+        
+            int responseCode = connection.getResponseCode();
+            Map<String, List<String>> heads = connection.getHeaderFields();
+            List<String> cookie = heads.get("Set-Cookie");
+            // String getCookie = connection.get
+            System.out.println("Response Code : " + responseCode);
+        
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader inputReader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                while ((inputLine = inputReader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                inputReader.close();
+            }
+            return cookie.toString();
         } catch (Exception e) {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();

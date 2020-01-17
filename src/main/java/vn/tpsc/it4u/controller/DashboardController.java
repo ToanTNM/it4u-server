@@ -30,6 +30,12 @@ public class DashboardController {
     @Value("${app.ubnt.unifises}")
     private String unifises;
 
+    @Value("${app.ubnt.username}")
+    private String username;
+
+    @Value("${app.ubnt.password}")
+    private String password;
+
     @Value("${app.dev.url}")
     private String urlDev;
 
@@ -39,14 +45,44 @@ public class DashboardController {
     String sitesid="/stat/sites";
     @Autowired 
     ApiResponseUtils apiResponse;
+
+    @ApiOperation(value = "Sites id")
+    @GetMapping("/it4u/cookies")
+    public String getCookies() {
+        ApiRequest apiRequest = new  ApiRequest();
+        String dataPost = "{'username':'" + username + "','password':'" + password + "','remember':'true','strict':'true'}";
+        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
+        String [] arr = getCookies.split(";");
+        String getToken = arr[0];
+        String [] arrToken = getToken.split("=");
+        csrfToken = arrToken[1];
+        String getUnifise = arr[2];
+        String [] arrUnifise = getUnifise.split("=");
+        unifises = arrUnifise[1];
+        try {   
+            return getCookies.toString();
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
     @ApiOperation(value = "Sites id")
     @GetMapping("/it4u/sites")
     public String getSitesId() {
         ApiRequest apiRequest = new  ApiRequest();
+        String dataPost = "{'username':'" + username + "','password':'" + password + "','remember':'true','strict':'true'}";
+        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
+        String [] arr = getCookies.split(";");
+        String getToken = arr[0];
+        String [] arrToken = getToken.split("=");
+        csrfToken = arrToken[1];
+        String getUnifise = arr[2];
+        String [] arrUnifise = getUnifise.split("=");
+        unifises = arrUnifise[1];
         JSONObject result = new JSONObject();
         List<String> dataList = new ArrayList<>();
         JSONArray data = new JSONArray();
-        try {
+        try {   
             String getSites = apiRequest.getRequestApi(urlIt4u,sitesid,csrfToken,unifises);
             JSONObject jsonResult = new JSONObject(getSites);
             data = jsonResult.getJSONArray("data");
@@ -151,7 +187,6 @@ public class DashboardController {
         }
         return result.toString();
     }
-
     @ApiOperation(value = "Get mac AP")
     @GetMapping("it4u/{id}/getMacAp")
     public String getMacAp(@PathVariable(value = "id") String userId) {

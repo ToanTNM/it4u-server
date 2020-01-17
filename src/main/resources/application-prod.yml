@@ -6,9 +6,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres_demo
+    url: jdbc:postgresql://192.168.136.129:5433/it4uDb
     username: postgres
-    password: 123456
+    password: tpsc.vn@49lqd
 
 # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:

@@ -28,8 +28,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3LCJleHAiOjE1Nzg3NjAxMTd9.HRxHyO3-Lxz3DXytedGkTi86p0Q93F9w_W4SALNbWX1mALE6Ka9X48u-EFYSUJJ3qZ8Y_gvK272G7zM_e9aPQA
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTQxOTUyLCJleHAiOjE1Nzk3NDY3NTJ9.-DjlHILSJEHKZjrVlBcD_RMfMta_0zf1O2IKkhCYuaRwIJwuounQYuWI1gU1WdUHUZZwMQbhsAxmtjJOlNZUGg
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
@@ -102,8 +101,13 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:5000/api/v1/it4u/cookies
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4OTY1MTMzLCJleHAiOjE1Nzk1Njk5MzN9.hafbkW_jOOoAFyyaIfuju13KlC95A26QxVBmq2zntYlQq3GHr73G7WowSeWz6ZrwLhIWEtEWavJwztjd5MoUEg
+Content-Type: application/json
+###
+
 GET http://localhost:5000/api/v1/it4u/sites
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4OTY1MTMzLCJleHAiOjE1Nzk1Njk5MzN9.hafbkW_jOOoAFyyaIfuju13KlC95A26QxVBmq2zntYlQq3GHr73G7WowSeWz6ZrwLhIWEtEWavJwztjd5MoUEg
 Content-Type: application/json
 
 ###
