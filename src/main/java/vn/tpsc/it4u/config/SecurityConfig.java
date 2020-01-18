@@ -116,8 +116,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .antMatchers(apiVersion + "/user/checkUsernameAvailability", apiVersion + "/user/checkEmailAvailability")
                     .permitAll()
-                .antMatchers(HttpMethod.GET, apiVersion + "/polls/**", apiVersion + "/users/**")
-                    .permitAll()
                 .anyRequest()
                     .authenticated();
         
@@ -131,7 +129,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.addAllowedOrigin("*");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         //configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));

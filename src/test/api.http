@@ -282,7 +282,7 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:5000/api/v1/it4u/49lqd/customerInfo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MjQ4Mjg3LCJleHAiOjE1Nzk4NTMwODd9.--H5nGj-6zQVp3Aa4_PXkhKcu6TihqFkvdE6XpbbygB85HjMgCUzLQ0ZLfKkiWOqVYcEukLAzGagf-z8oSG49g
 Content-Type: application/json
 
 ###

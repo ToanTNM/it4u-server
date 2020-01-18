@@ -782,7 +782,6 @@ public class DashboardController {
         JSONObject wan1 = new JSONObject();
         JSONObject wan2 = new JSONObject();
         JSONObject wan3 = new JSONObject();
-        JSONObject lb = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
         Calculator convert = new Calculator();
         String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
@@ -816,11 +815,6 @@ public class DashboardController {
             wan2.put("wanStatus", wan2Status);
             wan2.put("wanUptime", wan2Uptime);
             result.add(wan2.toString());
-            Integer getLbUptime = data.getInt("uptime_lb");
-            String lbUptime = convert.ConvertSecondToHHMMString(getLbUptime);
-            lb.put("wanProvider", "Router LoadBalance");
-            lb.put("wanUptime", lbUptime);
-            result.add(lb.toString());
         } catch (Exception e) {
         }
         try {
@@ -951,7 +945,12 @@ public class DashboardController {
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
         String down = convertRx.get(0) + convertRx.get(1);
-        String hostname = getBytes.getString("hostname");
+        String hostname = "None";
+        try {
+            hostname = getBytes.getString("hostname");
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
         result.put("name","Most active client");
         result.put("hostname",hostname);
         result.put("up",up);
