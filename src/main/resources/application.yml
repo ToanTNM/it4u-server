@@ -29,31 +29,32 @@ spring:
     basename: i18n/errors,i18n/messages
   
   jpa:
+    generate-ddl: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: none
     properties:
       hibernate: 
         jdbc: 
           lob: 
             non_contextual_creation: true
 
-# liquibase:
-#   change-log: classpath:db/liquibase-changelog.yml
+  liquibase:
+    change-log: classpath:db/db.changelog-master.yml
   # flyway:
   #   enabled: false
   #   locations:
   #   - classpath:db/migration/{vendor}
----
-spring:
-  profiles: generatesql
-  flyway:    
-    enabled: false
-  jpa:
-    properties:
-      javax:
-        persistence:
-          schema-generation:
-            create-source: metadata
-            scripts:
-              action: create
-              create-target: src/main/resources/db/ddl_jpa_creation.sql
+# ---
+# spring:
+#   profiles: generatesql
+#   flyway:    
+#     enabled: false
+#   jpa:
+#     properties:
+#       javax:
+#         persistence:
+#           schema-generation:
+#             create-source: metadata
+#             scripts:
+#               action: create
+#               create-target: src/main/resources/db/ddl_jpa_creation.sql

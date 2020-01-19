@@ -1,0 +1,38 @@
+databaseChangeLog:
+    - changeSet:
+        id: initialize-data
+        author: it4u-admin
+        changes:
+        - sqlFile:
+            encoding: UTF-8
+            endDelimiter: \nGO
+            path: data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+# - changeSet:
+#   id: initialize-data
+#   author: it4u-admin
+#   changes:
+#     # - sqlFile:
+#     #   encoding: UTF-8
+#     #   path: resources/data.sql
+#     #   relativeToChangelogFile: true
+#     #   splitStatements: true
+#     #   stripComments: true
+#     - sql:
+#       endDelimiter: \nGO
+#       splitStatements: true
+#       sql: INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+#       stripComments: true
+# - changeSet:
+#     id: initialize-data
+#     author: it4u-admin
+#     changes:
+#     - sql:
+#         comment: initialize admin role
+#         endDelimiter: \nGO
+#         splitStatements: true
+#         sql: INSERT INTO roles(name) VALUES('ROLE_ADMIN')
+#         stripComments: true
+    
