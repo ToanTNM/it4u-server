@@ -44,7 +44,6 @@ public class ApiRequest {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();
         } 
-        // return jo;
     }
     public String postRequestApi(String urlIt4u,String infoApi,String csrfToken,String unifises,String dataPost) {
         try {
@@ -113,7 +112,6 @@ public class ApiRequest {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();
         } 
-        // return jo;
     }
     public String postRequestIt4u(String urlIt4u,String infoApi, String dataPost) {
         try {
@@ -154,6 +152,43 @@ public class ApiRequest {
             System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
             return e.getMessage();
         } 
-        // return jo;
+    }
+
+    public String postLoginZabbix(String urlIt4u,String infoApi, String dataPost) {
+        try {
+            String url = urlIt4u + infoApi;
+            StringBuffer response = new StringBuffer();
+            URL UrlObj = new URL(url);
+        
+            HttpURLConnection connection = (HttpURLConnection) UrlObj.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+        
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
+            outputStream.write(out);
+            outputStream.flush();
+            outputStream.close();
+        
+            System.out.println("Send 'HTTP POST' request to : " + url);
+        
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code : " + responseCode);
+        
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader inputReader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                while ((inputLine = inputReader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                inputReader.close();
+            }
+            return response.toString();
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
+            return e.getMessage();
+        } 
     }
 }

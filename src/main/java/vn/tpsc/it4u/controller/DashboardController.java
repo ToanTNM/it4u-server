@@ -41,12 +41,24 @@ public class DashboardController {
 
     @Value("${app.dev.token}")
     private String tokenDev;
-    
+
+    @Value("${app.zabbix.url}")
+    private String urlZabbix;
+
+    @Value("${app.zabbix.username}")
+    private String usernameZabbix;
+
+    @Value("${app.zabbix.password}")
+    private String passwordZabbix;
+
+    @Value("${app.zabbix.token}")
+    private String tokenZabbix;
+
     String sitesid="/stat/sites";
     @Autowired 
     ApiResponseUtils apiResponse;
 
-    @ApiOperation(value = "Sites id")
+    @ApiOperation(value = "Cookies IT4U")
     @GetMapping("/it4u/cookies")
     public String getCookies() {
         ApiRequest apiRequest = new  ApiRequest();
@@ -61,6 +73,21 @@ public class DashboardController {
         unifises = arrUnifise[1];
         try {   
             return getCookies.toString();
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    @ApiOperation(value = "Cookies Zabbix")
+    @GetMapping("/it4u/cookiesZabbix")
+    public String getCookiesZabbix() {
+        ApiRequest apiRequest = new  ApiRequest();
+        String dataPostZabbix = "{\"jsonrpc\": \"2.0\",\"method\": \"user.login\",\"params\": {\"user\": \"" + usernameZabbix + "\",\"password\": \"" + passwordZabbix + "\"},\"id\": 1}";
+        String getCookiesZabbix = apiRequest.postLoginZabbix(urlZabbix, "/api_jsonrpc.php", dataPostZabbix);
+        JSONObject getToken = new JSONObject(getCookiesZabbix);
+        tokenZabbix = getToken.getString("result");
+        try {   
+            return getCookiesZabbix.toString();
         } catch (Exception e) {
             return e.toString();
         }
@@ -851,8 +878,8 @@ public class DashboardController {
         
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
-            upload = upload + getInfo.getInt("tx_rate");
-            download = download + getInfo.getInt("rx_rate");
+            upload = upload + getInfo.getInt("rx_rate");
+            download = download + getInfo.getInt("tx_rate");
         }
         uploadJson.put("name","Upload");
         uploadJson.put("y",upload*8);
@@ -863,6 +890,62 @@ public class DashboardController {
         return result.toString();
     }
 
+    // get history zabbix
+    @ApiOperation(value = "History Network")
+    @PostMapping("it4u/{id}/history/network")
+    public String getHistoryNetwork(@PathVariable(value="id") String idUser,@RequestBody String postData) {
+        List<String> listTime = new ArrayList<>();
+        List<Float> listTraffic = new ArrayList<Float>();
+        JSONObject listResultJson = new JSONObject();
+        String dataGetHostId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": [\"hostid\"],\"selectGroups\": \"extend\",\"filter\": {\"host\": [\"" + idUser + "\"]}},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        DashboardController getDashboard = new DashboardController();
+        JSONArray getResultHost = getDashboard.getDataZabbix(urlZabbix,dataGetHostId);
+        JSONObject getItemHost = (JSONObject) getResultHost.get(0);
+        String hostId = getItemHost.getString("hostid");
+        String dataGetItemId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": \"extend\",\"hostids\": \"" + hostId + "\"},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        String itemUploadId = "";
+        String itemDownloadId = "";
+        JSONArray getResultItem = getDashboard.getDataZabbix(urlZabbix,dataGetItemId);
+        for (int i = 0; i< getResultItem.length(); i++) {
+            JSONObject getItem = (JSONObject) getResultItem.get(i);
+            String nameTest = getItem.getString("name");
+            if (nameTest.equals("download")) {
+                itemDownloadId = getItem.getString("itemid");
+            }
+            if (nameTest.equals("upload")) {
+                itemUploadId = getItem.getString("itemid");
+            }
+        }
+        JSONObject convertDataPost = new JSONObject(postData);
+        Long timeFrom = convertDataPost.getLong("time_from")/1000;
+        Long timeTill = convertDataPost.getLong("time_till")/1000;
+        String dataPostUpload = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 0,\"itemids\": \"" + itemUploadId + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        String dataPostDownload = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 0,\"itemids\": \"" + itemDownloadId + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        JSONArray getResultUpload = getDashboard.getDataZabbix(urlZabbix,dataPostUpload);
+        JSONArray getResultDownload = getDashboard.getDataZabbix(urlZabbix,dataPostDownload);
+        Calculator getCalculator = new Calculator();
+        for (int i=0; i<getResultUpload.length(); i++) {
+            JSONObject getItemUpload = (JSONObject) getResultUpload.get(i);
+            JSONObject getItemDownload = (JSONObject) getResultDownload.get(i);
+            Long time = getItemDownload.getLong("clock")*1000;
+            Float total = getItemUpload.getFloat("value") + getItemDownload.getFloat("value");
+            String convertTime = getCalculator.ConvertSecondToDate(time);
+            listTime.add(convertTime);
+            listTraffic.add(total);
+        }
+        listResultJson.put("name", "Network Monintor");
+        listResultJson.put("time", listTime);
+        listResultJson.put("data", listTraffic);
+        return listResultJson.toString();
+    }
+
+    public JSONArray getDataZabbix(String urlZabbix,String dataGetItemId){
+        ApiRequest apiRequest = new ApiRequest();
+        String getZabbixInfo = apiRequest.postLoginZabbix(urlZabbix, "/api_jsonrpc.php", dataGetItemId);
+        JSONObject convertToObject = new JSONObject(getZabbixInfo);
+        JSONArray getResultInfo = convertToObject.getJSONArray("result");
+        return getResultInfo;
+    }
 
     public String longestConn(String data) {
         JSONObject result = new JSONObject();
@@ -949,7 +1032,6 @@ public class DashboardController {
         try {
             hostname = getBytes.getString("hostname");
         } catch (Exception e) {
-            //TODO: handle exception
         }
         result.put("name","Most active client");
         result.put("hostname",hostname);
@@ -994,5 +1076,4 @@ public class DashboardController {
         result.put("down",down);
         return result.toString();   
     }
-
 }

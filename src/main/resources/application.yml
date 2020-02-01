@@ -15,6 +15,11 @@ app:
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
+  zabbix:
+    url: http://172.16.10.244
+    username: Admin
+    password: zabbix
+    token: b8a9ec9e9722d39e5d97b1c1c9555bbd
 spring:
   profiles:
     active: prod
