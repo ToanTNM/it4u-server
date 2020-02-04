@@ -241,13 +241,14 @@ public class DashboardController {
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
+        Calculator getCalculator = new Calculator();
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
             long traffic = getInfo.getLong("bytes");
-            getResult.put("name",getInfo.getString("name"));
-            getResult.put("y",traffic);
+            double convertTraffic = getCalculator.convertBytesToGb(traffic);
+            getResult.put("name", getInfo.getString("name"));
+            getResult.put("y", convertTraffic);
             result.add(getResult.toString());
-
         }
         return result.toString();
     }
@@ -300,13 +301,15 @@ public class DashboardController {
     public String getHourlyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
-        List<Long> listTraffic = new ArrayList<Long>();
+        List<Double> listTraffic = new ArrayList<Double>();
+        List<Double> listIncreaseTraffic = new ArrayList<Double>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
+        JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
         client.put("valueSuffix", " Client");
-        traffic.put("valueSuffix", " Bytes");
+        traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
@@ -315,8 +318,12 @@ public class DashboardController {
         JSONObject getPosZero = (JSONObject) dataHourly.get(0);
         Integer countClient0 = getPosZero.getInt("wlan-num_sta");
         Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Calculator getCalculator = new Calculator();
+        double convertTraffic0 = getCalculator.convertBytesToGb(countTraffic0);
+        Double sumTraffic = convertTraffic0;
         listClient.add(countClient0);
-        listTraffic.add(countTraffic0);
+        listTraffic.add(convertTraffic0);
+        listIncreaseTraffic.add(sumTraffic);
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
@@ -325,20 +332,32 @@ public class DashboardController {
             if (startTime != endTime) {
                 Integer countClient = getPosEnd.getInt("wlan-num_sta");
                 Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                double convertTraffic = getCalculator.convertBytesToGb(countTraffic);
+                sumTraffic = sumTraffic + convertTraffic;
+                double resultSumTraffic = Math.round(sumTraffic * 100.0) / 100.0;
                 listClient.add(countClient);
-                listTraffic.add(countTraffic);
+                listTraffic.add(convertTraffic);
+                listIncreaseTraffic.add(resultSumTraffic);
             }
         }
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
+
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
+
+        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("data", listIncreaseTraffic);
+        listIncreaseTrafficJson.put("tooltip", traffic);
+        listIncreaseTrafficJson.put("yAxis", 0);
+
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
+        result.add(listIncreaseTrafficJson.toString());
         return result.toString();
     }
 
@@ -347,23 +366,29 @@ public class DashboardController {
     public String getMinutesClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
-        List<Long> listTraffic = new ArrayList<Long>();
+        List<Double> listTraffic = new ArrayList<Double>();
+        List<Double> listIncreaseTraffic = new ArrayList<Double>();
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
+        JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
         client.put("valueSuffix", " Client");
-        traffic.put("valueSuffix", " Bytes");
+        traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
-        String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
-        JSONObject getData = new JSONObject(getHourly);
+        String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
+        JSONObject getData = new JSONObject(getMinute);
         JSONArray dataHourly = getData.getJSONArray("data");
         JSONObject getPosZero = (JSONObject) dataHourly.get(0);
         Integer countClient0 = getPosZero.getInt("wlan-num_sta");
-        Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Calculator getCalculator = new Calculator();
+        double convertTraffic0 = getCalculator.convertBytesToGb(countTraffic0);
+        Double sumTraffic = convertTraffic0;
         listClient.add(countClient0);
-        listTraffic.add(countTraffic0);
+        listTraffic.add(convertTraffic0);
+        listIncreaseTraffic.add(sumTraffic);
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
@@ -372,20 +397,31 @@ public class DashboardController {
             if (startTime != endTime) {
                 Integer countClient = getPosEnd.getInt("wlan-num_sta");
                 Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                double convertTraffic = getCalculator.convertBytesToGb(countTraffic);
+                sumTraffic = sumTraffic + convertTraffic;
+                double resultSumTraffic = Math.round(sumTraffic * 100.0) / 100.0;
                 listClient.add(countClient);
-                listTraffic.add(countTraffic);
+                listTraffic.add(convertTraffic);
+                listIncreaseTraffic.add(resultSumTraffic);
             }
         }
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
+
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
+
+        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("data", listIncreaseTraffic);
+        listIncreaseTrafficJson.put("tooltip", traffic);
+        listIncreaseTrafficJson.put("yAxis", 0);
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
+        result.add(listIncreaseTrafficJson.toString());
         return result.toString();
     }
 
@@ -394,13 +430,16 @@ public class DashboardController {
     public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
-        List<Long> listTraffic = new ArrayList<Long>();
+        List<Double> listTraffic = new ArrayList<Double>();
+        List<Double> listIncreaseTraffic = new ArrayList<Double>();
+        Double sumTraffic = 0.0;
         JSONObject listClientJson = new JSONObject();
         JSONObject listTrafficJson = new JSONObject();
+        JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
         client.put("valueSuffix", " Client");
-        traffic.put("valueSuffix", " Bytes");
+        traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
         // String getMinute = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/5minutes.site/",csrfToken,unifises,postData);
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/daily.site/",csrfToken,unifises,postData);
@@ -409,8 +448,12 @@ public class DashboardController {
         JSONObject getPosZero = (JSONObject) dataHourly.get(0);
         Integer countClient0 = getPosZero.getInt("wlan-num_sta");
         Long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Calculator getCalculator = new Calculator();
+        double convertTraffic0 = getCalculator.convertBytesToGb(countTraffic0);
         listClient.add(countClient0);
-        listTraffic.add(countTraffic0);
+        listTraffic.add(convertTraffic0);
+        sumTraffic = convertTraffic0;
+        listIncreaseTraffic.add(sumTraffic);
         for (int i=0; i<dataHourly.length()-1; i++) {
             JSONObject getPosStart = (JSONObject) dataHourly.get(i);
             JSONObject getPosEnd = (JSONObject) dataHourly.get(i+1);
@@ -419,20 +462,32 @@ public class DashboardController {
             if (startTime != endTime) {
                 Integer countClient = getPosEnd.getInt("wlan-num_sta");
                 Long countTraffic = getPosEnd.getLong("wlan_bytes");
+                double convertTraffic = getCalculator.convertBytesToGb(countTraffic);
+                sumTraffic = sumTraffic + convertTraffic;
+                double resultSumTraffic = Math.round(sumTraffic * 100.0) / 100.0;
                 listClient.add(countClient);
-                listTraffic.add(countTraffic);
+                listTraffic.add(convertTraffic);
+                listIncreaseTraffic.add(resultSumTraffic);
             }
         }
         listClientJson.put("name","Client");
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
+
         listTrafficJson.put("name","Traffic");
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
+
+        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("data", listIncreaseTraffic);
+        listIncreaseTrafficJson.put("tooltip", traffic);
+        listIncreaseTrafficJson.put("yAxis", 0);
+
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
+        result.add(listIncreaseTrafficJson.toString());
         return result.toString();
     }
 
@@ -881,10 +936,13 @@ public class DashboardController {
             upload = upload + getInfo.getInt("rx_rate");
             download = download + getInfo.getInt("tx_rate");
         }
+        Calculator getCalculator = new Calculator();
+        double convertUploadToMb = getCalculator.convertBytesToMb(upload);
+        double convertDownloadToMb = getCalculator.convertBytesToMb(download);
         uploadJson.put("name","Upload");
-        uploadJson.put("y",upload*8);
+        uploadJson.put("y", convertUploadToMb);
         downloadJson.put("name","Download");
-        downloadJson.put("y",download*8);
+        downloadJson.put("y", convertDownloadToMb);
         result.add(uploadJson.toString());
         result.add(downloadJson.toString());
         return result.toString();
@@ -931,7 +989,7 @@ public class DashboardController {
             Float total = getItemUpload.getFloat("value") + getItemDownload.getFloat("value");
             String convertTime = getCalculator.ConvertSecondToDate(time);
             listTime.add(convertTime);
-            listTraffic.add(total);
+            listTraffic.add(total/1024);
         }
         listResultJson.put("name", "Network Monintor");
         listResultJson.put("time", listTime);
@@ -976,8 +1034,8 @@ public class DashboardController {
         }
         JSONObject getBytes = (JSONObject) getData.get(posMax);
         Calculator getCalculator = new Calculator();
-        long txBytes = getBytes.getLong("tx_bytes");
-        long rxBytes = getBytes.getLong("rx_bytes");
+        long txBytes = getBytes.getLong("rx_bytes");
+        long rxBytes = getBytes.getLong("tx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
@@ -1022,8 +1080,8 @@ public class DashboardController {
         }
         Calculator getCalculator = new Calculator();
         JSONObject getBytes = (JSONObject) getData.get(posMax);
-        long txBytes = getBytes.getLong("tx_bytes");
-        long rxBytes = getBytes.getLong("rx_bytes");
+        long txBytes = getBytes.getLong("rx_bytes");
+        long rxBytes = getBytes.getLong("tx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);
@@ -1063,8 +1121,8 @@ public class DashboardController {
         }
         Calculator getCalculator = new Calculator();
         JSONObject getBytes = (JSONObject) getData.get(posMax);
-        long txBytes = getBytes.getLong("tx_bytes");
-        long rxBytes = getBytes.getLong("rx_bytes");
+        long txBytes = getBytes.getLong("rx_bytes");
+        long rxBytes = getBytes.getLong("tx_bytes");
         List<String> convertTx = getCalculator.ConvertBytes(txBytes);
         List<String> convertRx = getCalculator.ConvertBytes(rxBytes);
         String up = convertTx.get(0) + convertTx.get(1);

@@ -10,8 +10,8 @@ app:
     url: https://ubnt.cloud.tpsc.vn/api
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
-    csrf_token: pNoTDSHx71LwSrLFDCWAoWU6HmmAZOns
-    unifises: dpYFtZCjDDjvhjPWLZXtpBibn5cXG3vr
+    csrf_token: NBxvz8e7iSf89xYSeDL2kXMq1QzlO3l6
+    unifises: 5TQPI1uboHRVFXg88OuNMEvE1E9ukx1Y
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336

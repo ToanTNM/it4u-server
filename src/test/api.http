@@ -142,13 +142,13 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/1px5g676/5MinutesClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1578157200000",
-    "end":"1578416400000"
+    "start":"1580490000000",
+    "end":"1582995599999"
 }
 
 ###

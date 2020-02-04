@@ -99,4 +99,17 @@ public class Calculator {
         result.add(unit);
         return result;
     }
+    public double convertBytesToGb(long number) {
+        double convert = (double)number;
+        double convertToGb = convert / 1024 / 1024 / 1024;
+        double result = Math.round(convertToGb * 100.0) / 100.0;
+        return result;
+    }
+
+    public double convertBytesToMb(long number) {
+        double convert = (double) number;
+        double convertToGb = convert / 1024 / 1024;
+        double result = Math.round(convertToGb * 100.0) / 100.0;
+        return result;
+    }
 }
