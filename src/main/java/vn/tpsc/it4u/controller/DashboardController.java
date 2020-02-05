@@ -948,6 +948,49 @@ public class DashboardController {
         return result.toString();
     }
 
+    // Get network rates
+    @ApiOperation(value = "getNetworkRates")
+    @PostMapping("it4u/{id}/getNetworkRates")
+    public String getNetworkRates(@RequestBody String postData, @PathVariable(value = "id") String userId) {
+        List<String> result = new ArrayList<>();
+        List<String> listTime = new ArrayList<>();
+        List<Double> listTraffic = new ArrayList<Double>();
+        JSONObject listTrafficJson = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+
+        String getMinute = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/stat/report/5minutes.site/", csrfToken,
+                unifises, postData);
+        JSONObject getData = new JSONObject(getMinute);
+        JSONArray dataMinute = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataMinute.get(0);
+        long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Calculator getCalculator = new Calculator();
+        double convertTraffic0 = getCalculator.convertBytesToGb(countTraffic0);
+        listTraffic.add(convertTraffic0);
+        for (int i = 0; i < dataMinute.length() - 1; i++) {
+            JSONObject getPosStart = (JSONObject) dataMinute.get(i);
+            JSONObject getPosEnd = (JSONObject) dataMinute.get(i + 1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long time = getPosEnd.getLong("time");
+                String uptime = getCalculator.ConvertSecondToDate(time);
+                Long getTraffic = getPosEnd.getLong("wlan_bytes");
+                Long changeTraffic = Math.round(getTraffic/439.4);
+                double convertTraffic = getCalculator.convertBytesToMb(changeTraffic);
+                
+                listTraffic.add(convertTraffic);
+                listTime.add(uptime.toString());
+            }
+        }
+        listTrafficJson.put("time",listTime);
+        listTrafficJson.put("name", "Traffic");
+        listTrafficJson.put("data", listTraffic);
+
+        result.add(listTrafficJson.toString());
+        return result.toString();
+    }
+
     // get history zabbix
     @ApiOperation(value = "History Network")
     @PostMapping("it4u/{id}/history/network")
