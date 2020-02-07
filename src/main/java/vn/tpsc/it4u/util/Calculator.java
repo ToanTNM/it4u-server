@@ -27,6 +27,16 @@ public class Calculator {
         // return simple.format(result).toString();
     }
 
+    public String ConvertSecondToDateNotZone(long secondTime) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String time = df.format(new Date(secondTime));
+        return time;
+        // DateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        // Date result = new Date(secondTime);
+        // // System.out.println(simple.format(result));
+        // return simple.format(result).toString();
+    }
+
     public List<String> ConvertBytes(long bytes) {
         String unit = "";
         Integer i = 0;

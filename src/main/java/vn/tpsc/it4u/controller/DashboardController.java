@@ -964,8 +964,12 @@ public class DashboardController {
         JSONArray dataMinute = getData.getJSONArray("data");
         JSONObject getPosZero = (JSONObject) dataMinute.get(0);
         long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Long changeTraffic0 = Math.round(countTraffic0/37.55);
         Calculator getCalculator = new Calculator();
-        double convertTraffic0 = getCalculator.convertBytesToGb(countTraffic0);
+        double convertTraffic0 = getCalculator.convertBytesToMb(changeTraffic0);
+        Long time0 = getPosZero.getLong("time");
+        String uptime0 = getCalculator.ConvertSecondToDate(time0);
+        listTime.add(uptime0.toString());
         listTraffic.add(convertTraffic0);
         for (int i = 0; i < dataMinute.length() - 1; i++) {
             JSONObject getPosStart = (JSONObject) dataMinute.get(i);
@@ -976,7 +980,7 @@ public class DashboardController {
                 Long time = getPosEnd.getLong("time");
                 String uptime = getCalculator.ConvertSecondToDate(time);
                 Long getTraffic = getPosEnd.getLong("wlan_bytes");
-                Long changeTraffic = Math.round(getTraffic/439.4);
+                Long changeTraffic = Math.round(getTraffic/37.55);
                 double convertTraffic = getCalculator.convertBytesToMb(changeTraffic);
                 
                 listTraffic.add(convertTraffic);
@@ -984,11 +988,9 @@ public class DashboardController {
             }
         }
         listTrafficJson.put("time",listTime);
-        listTrafficJson.put("name", "Traffic");
+        listTrafficJson.put("name", "Network Monintor");
         listTrafficJson.put("data", listTraffic);
-
-        result.add(listTrafficJson.toString());
-        return result.toString();
+        return listTrafficJson.toString();
     }
 
     // get history zabbix
@@ -1030,13 +1032,183 @@ public class DashboardController {
             JSONObject getItemDownload = (JSONObject) getResultDownload.get(i);
             Long time = getItemDownload.getLong("clock")*1000;
             Float total = getItemUpload.getFloat("value") + getItemDownload.getFloat("value");
-            String convertTime = getCalculator.ConvertSecondToDate(time);
+            String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
             listTime.add(convertTime);
             listTraffic.add(total/1024);
         }
         listResultJson.put("name", "Network Monintor");
         listResultJson.put("time", listTime);
         listResultJson.put("data", listTraffic);
+        return listResultJson.toString();
+    }
+
+    @ApiOperation(value = "History Status")
+    @PostMapping("it4u/{id}/history/status")
+    public String getHistoryStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+        List<String> listTime = new ArrayList<>();
+        List<Float> listStatusWan1 = new ArrayList<>();
+        List<Float> listStatusWan2 = new ArrayList<>();
+        List<Float> listStatusWan3 = new ArrayList<>();
+        List<Float> listStatusWan4 = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        JSONObject statusWan1Json = new JSONObject();
+        JSONObject statusWan2Json = new JSONObject();
+        JSONObject statusWan3Json = new JSONObject();
+        JSONObject statusWan4Json = new JSONObject();
+        JSONObject listResultJson = new JSONObject();
+        JSONArray getResultStatusWan1 = new JSONArray();
+        JSONArray getResultStatusWan2 = new JSONArray();
+        JSONArray getResultStatusWan3 = new JSONArray();
+        JSONArray getResultStatusWan4 = new JSONArray();
+        String dataGetHostId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": [\"hostid\"],\"selectGroups\": \"extend\",\"filter\": {\"host\": [\""
+                + idUser + "\"]}},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        DashboardController getDashboard = new DashboardController();
+        JSONArray getResultHost = getDashboard.getDataZabbix(urlZabbix, dataGetHostId);
+        JSONObject getItemHost = (JSONObject) getResultHost.get(0);
+        String hostId = getItemHost.getString("hostid");
+        String dataGetItemId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": \"extend\",\"hostids\": \""
+                + hostId + "\"},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        String itemStatusWan1Id = "";
+        String itemStatusWan2Id = "";
+        String itemStatusWan3Id = "";
+        String itemStatusWan4Id = "";
+        JSONArray getResultItem = getDashboard.getDataZabbix(urlZabbix, dataGetItemId);
+        for (int i = 0; i < getResultItem.length(); i++) {
+            JSONObject getItem = (JSONObject) getResultItem.get(i);
+            String nameTest = getItem.getString("name");
+            if (nameTest.equals("wan1_status")) {
+                itemStatusWan1Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan2_status")) {
+                itemStatusWan2Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan3_status")) {
+                itemStatusWan3Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan4_status")) {
+                itemStatusWan4Id = getItem.getString("itemid");
+            }
+        }
+        JSONObject convertDataPost = new JSONObject(postData);
+        Long timeFrom = convertDataPost.getLong("time_from") / 1000;
+        Long timeTill = convertDataPost.getLong("time_till") / 1000;
+        if (itemStatusWan1Id != "") {
+            String dataPostStatusWan1 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan1Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill + "},\"auth\": \""
+                    + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan1 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan1);
+        }
+        if (itemStatusWan2Id != "") {
+            String dataPostStatusWan2 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan2Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan2);
+        }
+        if (itemStatusWan3Id != "") {
+            String dataPostStatusWan3 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan3Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan3);
+        }
+        if (itemStatusWan4Id != "") {
+            String dataPostStatusWan4 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan4Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
+        }
+        Calculator getCalculator = new Calculator();
+        for (int i = 0; i < getResultStatusWan1.length(); i++) {
+            JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
+            // Long time = getItemStatusWan1.getLong("clock") * 1000;
+            // String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
+            Float valueStatusWan1 = getItemStatusWan1.getFloat("value");
+            listStatusWan1.add(valueStatusWan1);
+            if (itemStatusWan2Id != "") {
+                JSONObject getItemStatusWan2 = (JSONObject) getResultStatusWan2.get(i);
+                Float valueStatusWan2 = getItemStatusWan2.getFloat("value");
+
+                listStatusWan2.add(valueStatusWan2);
+            }
+            if (itemStatusWan3Id != "") {
+                JSONObject getItemStatusWan3 = (JSONObject) getResultStatusWan3.get(i);
+                Float valueStatusWan3 = getItemStatusWan3.getFloat("value");
+                listStatusWan3.add(valueStatusWan3);
+            }
+            if (itemStatusWan4Id != "") {
+                JSONObject getItemStatusWan4 = (JSONObject) getResultStatusWan4.get(i);
+                Float valueStatusWan4 = getItemStatusWan4.getFloat("value");
+                listStatusWan4.add(valueStatusWan4);
+            }
+            // listTime.add(convertTime);
+        }
+        
+        statusWan1Json.put("name", "Wan1 Status");
+        statusWan1Json.put("data", listStatusWan1);
+        result.add(statusWan1Json.toString());
+        if (itemStatusWan2Id != "") {
+            statusWan2Json.put("name", "Wan2 Status");
+            statusWan2Json.put("data", listStatusWan2);
+            result.add(statusWan2Json.toString());
+        }
+        if (itemStatusWan3Id != "") {
+            statusWan3Json.put("name", "Wan3 Status");
+            statusWan3Json.put("data", listStatusWan3);
+            result.add(statusWan3Json.toString());
+        }
+
+        if (itemStatusWan4Id != "") {
+            statusWan4Json.put("name", "Wan4 Status");
+            statusWan4Json.put("data", listStatusWan4);
+            result.add(statusWan4Json.toString());
+        }
+
+        // listResultJson.put("time",listTime);
+        // result.add(listResultJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "History time status")
+    @PostMapping("it4u/{id}/history/getTimeStatus")
+    public String getTimeStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+        List<String> listTime = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        JSONObject listResultJson = new JSONObject();
+        JSONArray getResultStatusWan1 = new JSONArray();
+        String dataGetHostId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": [\"hostid\"],\"selectGroups\": \"extend\",\"filter\": {\"host\": [\""
+                + idUser + "\"]}},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        DashboardController getDashboard = new DashboardController();
+        JSONArray getResultHost = getDashboard.getDataZabbix(urlZabbix, dataGetHostId);
+        JSONObject getItemHost = (JSONObject) getResultHost.get(0);
+        String hostId = getItemHost.getString("hostid");
+        String dataGetItemId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": \"extend\",\"hostids\": \""
+                + hostId + "\"},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        String itemStatusWan1Id = "";
+        JSONArray getResultItem = getDashboard.getDataZabbix(urlZabbix, dataGetItemId);
+        for (int i = 0; i < getResultItem.length(); i++) {
+            JSONObject getItem = (JSONObject) getResultItem.get(i);
+            String nameTest = getItem.getString("name");
+            if (nameTest.equals("wan1_status")) {
+                itemStatusWan1Id = getItem.getString("itemid");
+            }
+        }
+        JSONObject convertDataPost = new JSONObject(postData);
+        Long timeFrom = convertDataPost.getLong("time_from") / 1000;
+        Long timeTill = convertDataPost.getLong("time_till") / 1000;
+        if (itemStatusWan1Id != "") {
+            String dataPostStatusWan1 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan1Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan1 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan1);
+        }
+        Calculator getCalculator = new Calculator();
+        for (int i = 0; i < getResultStatusWan1.length(); i++) {
+            JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
+            Long time = getItemStatusWan1.getLong("clock") * 1000;
+            String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
+            listTime.add(convertTime);
+        }
+        listResultJson.put("time", listTime);
+        result.add(listResultJson.toString());
         return listResultJson.toString();
     }
 

@@ -58,6 +58,8 @@ public class CustomUserDetails implements UserDetails {
 
     private String sitename;
 
+    private String language;
+
     private Set<Role> roles;
 
     private Collection<? extends GrantedAuthority> authorities;
@@ -78,6 +80,7 @@ public class CustomUserDetails implements UserDetails {
                 user.getType(),
                 user.getStatus(),
                 user.getSitename(),
+                user.getLanguage(),
                 user.getRoles(),
                 authorities
         );

@@ -23,5 +23,6 @@ public class UserSummary {
     private UserType type;
     private UserStatus status;
     private String sitename;
+    private String language;
     private Set<Role> roles;
 }

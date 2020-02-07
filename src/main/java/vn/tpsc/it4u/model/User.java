@@ -61,6 +61,10 @@ public class User extends UserDateAudit {
     @Size(max = 100)
     private String password;
 
+    @NotEmpty
+    @Size(max = 100)
+    private String language;
+
     @Size(max = 500)
     private String avatar;
 
@@ -87,7 +91,7 @@ public class User extends UserDateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String sitename) {
+    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String sitename, String language) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -96,5 +100,6 @@ public class User extends UserDateAudit {
         this.type = type;
         this.status = status;
         this.sitename = sitename;
+        this.language = language;
     }
 }

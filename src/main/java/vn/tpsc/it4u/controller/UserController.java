@@ -48,6 +48,7 @@ public class UserController {
             currentUser.getType(), 
             currentUser.getStatus(),
             currentUser.getSitename(),
+            currentUser.getLanguage(),
             currentUser.getRoles());
 
         return userSummary;

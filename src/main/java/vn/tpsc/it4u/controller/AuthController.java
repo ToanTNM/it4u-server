@@ -101,7 +101,8 @@ public class AuthController {
             signUpRequest.getGender(), 
             signUpRequest.getType(), 
             UserStatus.Active,
-            signUpRequest.getSitename()
+            signUpRequest.getSitename(),
+            signUpRequest.getLanguage()
             );
 
         final String encodedPassword = passwordEncoder.encode(user.getPassword());

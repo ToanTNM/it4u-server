@@ -50,7 +50,8 @@ public class UserService {
         user.setGender(updatingUser.getGender() != null ? updatingUser.getGender() : user.getGender());
         //UserType type
         user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
-
+        //Language
+        user.setLanguage(updatingUser.getLanguage() != null ? updatingUser.getLanguage() : user.getLanguage());
         userRepository.save(user);
 
         return true;
@@ -91,6 +92,7 @@ public class UserService {
                     user.getType(), 
                     user.getStatus(),
                     user.getSitename(),
+                    user.getLanguage(),
                     user.getRoles()
                     ))
             .collect(Collectors.toList());
@@ -117,6 +119,7 @@ public class UserService {
                     user.getType(), 
                     user.getStatus(),
                     user.getSitename(),
+                    user.getLanguage(),
                     user.getRoles()
                     ))
             .collect(Collectors.toList());
@@ -140,7 +143,8 @@ public class UserService {
         user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
 
         user.setSitename(updatingUser.getSitename() != null ? updatingUser.getSitename() : user.getSitename());
-
+        
+        user.setLanguage(updatingUser.getLanguage() != null ? updatingUser.getLanguage() : user.getLanguage());
         userRepository.save(user);
 
         return true;

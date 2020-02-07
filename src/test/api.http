@@ -13,7 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5L
 ###
 
 POST http://localhost:5000/api/v1/auth/signup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1OTQwNzc5LCJleHAiOjE1NzY1NDU1Nzl9.3tf1DeuxRUfKXh7qgx-5FcPGzcFtJzXZxeemsGyPan-5Mdb0d4Lf1-iz-IqrQr-CKXB_1H2_t_UWa3V3k-aPaA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4LCJleHAiOjE1ODE1ODcyMTh9.wjPxNtW6r0kSXbw0ZPnWg22flAXivL6AuQBf6PnQZV6T0wfHwD28Aj1h_cSffPzWTLlBbd0EWCD9ol8J8Y1BfA
 Content-Type: application/json
 
 {
@@ -23,12 +23,13 @@ Content-Type: application/json
     "password": "123456",
     "gender": "Male",
     "type": "User",
-    "sitename": "rhnl7chn"
+    "sitename": "rhnl7chn",
+    "language": "English"
 }
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTQxOTUyLCJleHAiOjE1Nzk3NDY3NTJ9.-DjlHILSJEHKZjrVlBcD_RMfMta_0zf1O2IKkhCYuaRwIJwuounQYuWI1gU1WdUHUZZwMQbhsAxmtjJOlNZUGg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4LCJleHAiOjE1ODE1ODcyMTh9.wjPxNtW6r0kSXbw0ZPnWg22flAXivL6AuQBf6PnQZV6T0wfHwD28Aj1h_cSffPzWTLlBbd0EWCD9ol8J8Y1BfA
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
@@ -55,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3L
 ###
 
 PUT http://localhost:5000/api/v1/user/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3ODc3Mzk3LCJleHAiOjE1Nzg0ODIxOTd9.r64sw38PXdDJZadR_AqLqmGpqgcTFDVnOU8IMToM54pKc1gxDfdOJHEq3c00jbLaSxcb_4e09F3tZUP-A_z6Ng
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4LCJleHAiOjE1ODE1ODcyMTh9.wjPxNtW6r0kSXbw0ZPnWg22flAXivL6AuQBf6PnQZV6T0wfHwD28Aj1h_cSffPzWTLlBbd0EWCD9ol8J8Y1BfA
 Content-Type: application/json
 
 {
@@ -64,7 +65,8 @@ Content-Type: application/json
     "email": "email27@yahoo.com",
     //"password": "123456",
     "gender": "Male",
-    "type": "User"
+    "type": "User",
+    "language": "English"
 }
 
 ###
@@ -151,16 +153,6 @@ Content-Type: application/json
     "end":"1582995599999"
 }
 
-###
-POST http://localhost:5000/api/v1/it4u/1px5g676/getNetworkRates
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
-Content-Type: application/json
-
-{
-    "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1580490000000",
-    "end":"1582995599999"
-}
 ###
 POST http://localhost:5000/api/v1/it4u/1px5g676/dailyClient
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
@@ -318,4 +310,35 @@ Content-Type: application/json
 {
     "time_from": 1579251500000,
     "time_till": 1580479568000
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/26OIK_Ha.NTC/history/status
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
+Content-Type: application/json
+
+{
+    "time_from": 1579251500000,
+    "time_till": 1580479568000
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/26OIK_Ha.NTC/history/getTimeStatus
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
+Content-Type: application/json
+
+{
+    "time_from": 1579251500000,
+    "time_till": 1580479568000
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/getNetworkRates
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1580490000000",
+    "end":"1582995599999"
 }
