@@ -5,19 +5,30 @@ import vn.tpsc.it4u.util.ApiRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 // import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.util.Calculator;
+import vn.tpsc.it4u.repository.SitesNameRepository;
+import vn.tpsc.it4u.service.SitesNameService;
+import vn.tpsc.it4u.payload.CreateSitesNameRequest;
+import vn.tpsc.it4u.model.SitesName;
+
 @RestController
 @RequestMapping("${app.api.version}")
 public class DashboardController {
@@ -55,8 +66,15 @@ public class DashboardController {
     private String tokenZabbix;
 
     String sitesid="/stat/sites";
+    
     @Autowired 
     ApiResponseUtils apiResponse;
+
+    @Autowired
+    SitesNameRepository sitesNameRepository;
+
+    @Autowired
+    SitesNameService sitenameService;
 
     @ApiOperation(value = "Cookies IT4U")
     @GetMapping("/it4u/cookies")
@@ -92,6 +110,68 @@ public class DashboardController {
             return e.toString();
         }
     }
+
+    @GetMapping("/it4u/getSitename")
+    public String getSiteName() {
+        JSONObject result = new JSONObject();
+        JSONArray getSitename = new JSONArray(sitenameService.findAll());
+        String siteName = "";
+        String idName = "";
+        List<String> dataList = new ArrayList<>();
+        for (int i=0; i<getSitename.length(); i++) {
+            JSONObject getData = (JSONObject) getSitename.get(i);
+            try {
+                siteName = getData.getString("sitename");
+                idName = getData.getString("idname");
+            } catch (Exception e) {
+            }
+            result.put("id", idName);
+            result.put("name", siteName);
+            dataList.add(result.toString());
+        }        
+        return dataList.toString();
+    }
+
+    // Register sitesname
+    @ApiOperation(value = "Create sites name request")
+    @GetMapping("/it4u/createSitesName")
+    public Boolean createSitesName() {
+        ApiRequest apiRequest = new ApiRequest();
+        String dataPost = "{'username':'" + username + "','password':'" + password
+                + "','remember':'true','strict':'true'}";
+        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
+        String[] arr = getCookies.split(";");
+        String getToken = arr[0];
+        String[] arrToken = getToken.split("=");
+        csrfToken = arrToken[1];
+        String getUnifise = arr[2];
+        String[] arrUnifise = getUnifise.split("=");
+        unifises = arrUnifise[1];
+        JSONArray data = new JSONArray();
+        try {
+            String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
+            JSONObject jsonResult = new JSONObject(getSites);
+            data = jsonResult.getJSONArray("data");
+        } catch (Exception e) {
+        }
+        String siteName = "";
+        String idName = "";
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getData = (JSONObject) data.get(i);
+            try {
+                siteName = getData.getString("desc");
+                idName = getData.getString("name");
+            } catch (Exception e) {
+            }
+
+            if (!sitesNameRepository.existsBySitename(siteName)) {
+                final SitesName createSitename = new SitesName(siteName, idName);
+                sitesNameRepository.save(createSitename);
+            }
+        }
+        return true;
+    }
+
 
     @ApiOperation(value = "Sites id")
     @GetMapping("/it4u/sites")
@@ -958,7 +1038,7 @@ public class DashboardController {
         JSONObject listTrafficJson = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
 
-        String getMinute = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/stat/report/5minutes.site/", csrfToken,
+        String getMinute = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/stat/report/hourly.site/", csrfToken,
                 unifises, postData);
         JSONObject getData = new JSONObject(getMinute);
         JSONArray dataMinute = getData.getJSONArray("data");
@@ -1349,4 +1429,5 @@ public class DashboardController {
         result.put("down",down);
         return result.toString();   
     }
+    
 }

@@ -10,16 +10,16 @@ app:
     url: https://ubnt.cloud.tpsc.vn/api
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
-    csrf_token: NBxvz8e7iSf89xYSeDL2kXMq1QzlO3l6
-    unifises: 5TQPI1uboHRVFXg88OuNMEvE1E9ukx1Y
+    csrf_token: m28sMtRiSIBcUlC2jn38nLBq6K5kMEoA
+    unifises: YWiuXrj4PghIg6yB1brBS8cy6xz0Xq4c
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
   zabbix:
-    url: http://172.16.10.244
-    username: Admin
-    password: zabbix
-    token: b8a9ec9e9722d39e5d97b1c1c9555bbd
+    url: https://monitor.tpsc.vn
+    username: Zabbix
+    password: Tpsc.vn@123
+    token: d756ebaf696799ad90ea118e68301351
 spring:
   profiles:
     active: prod

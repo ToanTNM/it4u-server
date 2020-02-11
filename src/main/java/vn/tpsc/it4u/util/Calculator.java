@@ -8,9 +8,7 @@ import java.util.List;
 
 public class Calculator {
     public String ConvertSecondToHHMMString(Integer secondtTime) {
-    TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
     SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-    df.setTimeZone(tz);
     String time = df.format(new Date(secondtTime*1000L));
     return time;
     }
