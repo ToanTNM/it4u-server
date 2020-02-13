@@ -1,45 +1,42 @@
 package vn.tpsc.it4u.controller;
 
-import vn.tpsc.it4u.util.ApiResponseUtils;
-import vn.tpsc.it4u.util.ApiRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
-import javax.validation.Valid;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 // import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import vn.tpsc.it4u.util.Calculator;
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.service.SitesNameService;
-import vn.tpsc.it4u.payload.CreateSitesNameRequest;
-import vn.tpsc.it4u.model.SitesName;
+import vn.tpsc.it4u.util.ApiRequest;
+import vn.tpsc.it4u.util.ApiResponseUtils;
+import vn.tpsc.it4u.util.Calculator;
 
 @RestController
 @RequestMapping("${app.api.version}")
 public class DashboardController {
     @Value("${app.ubnt.url}")
-    private String urlIt4u;
+    public String urlIt4u;
 
     @Value("${app.ubnt.csrf_token}")
-    private String csrfToken;
+    public String csrfToken;
 
     @Value("${app.ubnt.unifises}")
-    private String unifises;
+    public String unifises;
 
     @Value("${app.ubnt.username}")
     private String username;
@@ -66,6 +63,7 @@ public class DashboardController {
     private String tokenZabbix;
 
     String sitesid="/stat/sites";
+    String printUrlVoucher = "https://ubnt.cloud.tpsc.vn/print/hotspot/vouchers/s";
     
     @Autowired 
     ApiResponseUtils apiResponse;
@@ -218,61 +216,40 @@ public class DashboardController {
         int pos = 0;
         ApiRequest apiRequest = new  ApiRequest();
         List<String> nameSsid = new ArrayList<>();
+        List<String> listSsid = new ArrayList<>();
         List<String> result = new ArrayList<>();
         List<Integer> countClient = new ArrayList<>();
         JSONObject getResult = new JSONObject();
-        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
+        String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
+        JSONObject itemDevice0 = (JSONObject) data.get(0);
+        String devices0 = itemDevice0.getString("essid");
+        listSsid.add(devices0);
         for (int i=0; i<data.length(); i++) {
+            int k=0;
             JSONObject listDevice = (JSONObject) data.get(i);
-            JSONArray device = listDevice.getJSONArray("vap_table");
-            if(device.toString() != "") {
-                pos = i;
-                break;
-            }  
-        }
-        JSONObject device = (JSONObject) data.get(pos);
-        JSONArray vapTable = device.getJSONArray("vap_table");
-        Integer len = vapTable.length();
-        if (len%2 != 0){
-            len = len + 1;
-        }
-        Integer varPr = Math.round(len/2);
-        for ( int i=0; i<varPr; i++)
-        {
-            JSONObject getName = (JSONObject) vapTable.get(i);
-            String name = getName.getString("essid");
-            nameSsid.add(name);
-        }
-        for (int i=0; i<nameSsid.size(); i++) {
-            int countName = 0;
-            for (int j=pos; j<data.length(); j++) {
-                JSONObject deviceI = (JSONObject) data.get(j);
-                JSONArray varTableI = deviceI.getJSONArray("vap_table");
-                for (int k=0; k<varTableI.length(); k++) {
-                    JSONObject getVarTable = (JSONObject) varTableI.get(k);
-                    String getSessid = getVarTable.getString("essid");
-                    String getNameSsid = nameSsid.get(i).toString();
-                    if (getSessid.equals(getNameSsid)) {
-                        Integer getNumSta = getVarTable.getInt("num_sta");
-                        countName = countName + getNumSta;
-                    }
+            for (int j=0; j<listSsid.size(); j++) {
+                if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                    k = k + 1;
                 }
             }
-            countClient.add(countName);
+            if (k == 0) {
+                listSsid.add(listDevice.getString("essid"));
+            }    
         }
-
-        for (int i=0; i<Math.round(len/2); i++) {
-            
-            if ( countClient.get(i) != 0) {
-                JSONObject getName = (JSONObject) vapTable.get(i);
-                String name = getName.getString("essid");
-                getResult.put("name",name);
-                getResult.put("y",countClient.get(i));
-                result.add(getResult.toString());
+        for (int j=0; j<listSsid.size(); j++) {
+            int k = 0;
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject listDevice = (JSONObject) data.get(i);
+                if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                    k = k + 1;
+                }
             }
-             
+            getResult.put("name", listSsid.get(j));
+            getResult.put("y",k);
+            result.add(getResult.toString());
+            
         }
         return result.toString();
     }
@@ -956,9 +933,10 @@ public class DashboardController {
             wan1Status = "UP";
         }
         Integer getWan1Uptime = data.getInt("wan1_uptime");
+        String provider1 = data.getString("wan1_provider");
         String wan1Uptime = convert.ConvertSecondToHHMMString(getWan1Uptime);
         wan1.put("wanIp", wan1Ip);
-        wan1.put("wanProvider", "Kênh Truyền 1");
+        wan1.put("wanProvider", provider1);
         wan1.put("wanStatus", wan1Status);
         wan1.put("wanUptime", wan1Uptime);
         result.add(wan1.toString());
@@ -971,9 +949,10 @@ public class DashboardController {
                 wan2Status = "UP";
             }
             Integer getWan2Uptime = data.getInt("wan2_uptime");
+            String provider2 = data.getString("wan2_provider");
             String wan2Uptime = convert.ConvertSecondToHHMMString(getWan2Uptime);
             wan2.put("wanIp", wan2Ip);
-            wan2.put("wanProvider", "Kênh Truyền 2");
+            wan2.put("wanProvider", provider2);
             wan2.put("wanStatus", wan2Status);
             wan2.put("wanUptime", wan2Uptime);
             result.add(wan2.toString());
@@ -987,9 +966,10 @@ public class DashboardController {
                 wan3Status = "UP";
             }
             Integer getWan3Uptime = data.getInt("wan3_uptime");
+            String provider3 = data.getString("wan3_provider");
             String wan3Uptime = convert.ConvertSecondToHHMMString(getWan3Uptime);
             wan3.put("wanIp", wan3Ip);
-            wan3.put("wanProvider", "Kênh Truyền 3");
+            wan3.put("wanProvider", provider3);
             wan3.put("wanStatus", wan3Status);
             wan3.put("wanUptime", wan3Uptime);
             result.add(wan3.toString());
@@ -1197,7 +1177,7 @@ public class DashboardController {
             getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
         }
         Calculator getCalculator = new Calculator();
-        for (int i = 0; i < getResultStatusWan1.length(); i++) {
+        for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
             JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
             // Long time = getItemStatusWan1.getLong("clock") * 1000;
             // String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
@@ -1206,6 +1186,7 @@ public class DashboardController {
             if (itemStatusWan2Id != "") {
                 JSONObject getItemStatusWan2 = (JSONObject) getResultStatusWan2.get(i);
                 Float valueStatusWan2 = getItemStatusWan2.getFloat("value");
+                // if (valueStatusWan2)
 
                 listStatusWan2.add(valueStatusWan2);
             }
@@ -1281,7 +1262,7 @@ public class DashboardController {
             getResultStatusWan1 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan1);
         }
         Calculator getCalculator = new Calculator();
-        for (int i = 0; i < getResultStatusWan1.length(); i++) {
+        for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
             JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
             Long time = getItemStatusWan1.getLong("clock") * 1000;
             String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
@@ -1291,6 +1272,102 @@ public class DashboardController {
         result.add(listResultJson.toString());
         return listResultJson.toString();
     }
+    // VOUCHERS....................................................................................../
+    ///////////////////////////////////////////////////////////////////////////////
+
+    @ApiOperation(value = "Create Voucher")
+    @PostMapping("it4u/{id}/createVoucher")
+    public String postVoucher(@RequestBody String postData, @PathVariable(value = "id") String userId) {
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject getPostData = new JSONObject(postData);
+        int n = getPostData.getInt("n");
+        int quota = getPostData.getInt("quota");
+        int expire = getPostData.getInt("expire");
+        int expire_number = getPostData.getInt("expire_number");
+        int expire_unit = getPostData.getInt("expire_unit");
+        int down = getPostData.getInt("down");
+        int up = getPostData.getInt("up");
+        int bytes = getPostData.getInt("bytes");
+        String dataPostVouchers= "{\"cmd\":\"create-voucher\",\"n\":"+ n +",\"quota\":" + quota
+                + ",\"expire\":" + expire + ",\"expire_number\":" + expire_number + ",\"expire_unit\":" + expire_unit + ",\"down\":" + down + ",\"up\":" + up + ",\"bytes\":" + bytes + ",\"note\":\"Note Ok\"}";  
+        String postVoucher = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/cmd/hotspot", csrfToken, unifises,
+                dataPostVouchers);
+        return postVoucher;
+    }
+
+    @ApiOperation(value = "Get Voucher")
+    @GetMapping("it4u/{id}/voucher")
+    public String getVoucher(@PathVariable(value = "id") String userId) {
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject result = new JSONObject();
+        Integer down = 0;
+        Integer up = 0;
+        Integer byteQuota = 0;
+        Calculator getCalculator = new Calculator();
+        List<String> dataList = new ArrayList<>();
+        String getRequest = apiRequest.getRequestApi(urlIt4u, "/s/" + userId + "/stat/voucher", csrfToken, unifises);
+        JSONObject jsonResult = new JSONObject(getRequest);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getData = (JSONObject) data.get(i);
+            String id = getData.getString("_id");
+            String code = getData.getString("code");
+            long getTime = getData.getLong("create_time");
+            String createTime = getCalculator.ConvertSecondToDate(getTime * 1000);
+            // Integer down = getData.getInt("qos_rate_max_down");
+            try {
+                down = getData.getInt("qos_rate_max_down");
+            } catch (Exception e) {
+                down = 0;
+            }
+            result.put("down", down + " Kbps");
+            try {
+                up = getData.getInt("qos_rate_max_down");
+            } catch (Exception e) {
+                up = 0;
+            }
+            result.put("up", up + " Kbps");
+            try {
+                byteQuota = getData.getInt("qos_usage_quota");
+            } catch (Exception e) {
+                byteQuota = 0;
+            }
+            result.put("byteQuota", byteQuota + " MB");
+            String note = getData.getString("note");
+            Integer getDuration = getData.getInt("duration");
+            String duration = getCalculator.ConvertSecondToHHMMString(getDuration);
+            String status = getData.getString("status");
+            result.put("id", id);
+            result.put("code", code);
+            result.put("createTime", createTime);
+            result.put("notes", note);
+            result.put("duration", duration);
+            result.put("status", status);
+            dataList.add(result.toString());
+        }
+        return dataList.toString();
+    }
+
+    @ApiOperation(value = "Delete Voucher")
+    @PostMapping("it4u/{id}/deleteVoucher")
+    public String deleteVoucher(@PathVariable(value = "id") String userId, @RequestBody String postData) {
+        ApiRequest apiRequest = new ApiRequest();
+        String getData = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/cmd/hotspot", csrfToken, unifises,
+                postData);
+        return getData;
+    }
+
+    @ApiOperation(value = "Print Voucher")
+    @GetMapping("it4u/{id}/printVoucher/{idVoucher}")
+    public String printVoucher(@PathVariable(value = "id") String userId,
+            @PathVariable(value = "idVoucher") String idVoucher) {
+        ApiRequest apiRequest = new ApiRequest();
+        String getData = apiRequest.getRequestApi(printUrlVoucher, "/" + userId + "?id=" + idVoucher, csrfToken,
+                unifises);
+        return getData;
+    }
+    ///
+    ///
 
     public JSONArray getDataZabbix(String urlZabbix,String dataGetItemId){
         ApiRequest apiRequest = new ApiRequest();

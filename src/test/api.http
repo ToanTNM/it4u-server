@@ -8,7 +8,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5LCJleHAiOjE1NzYyNDcyMDl9.mlmDFJ_OJNeJcDmHeRJGtpF6qjrqezP6sYF9juaN9agCS-DZc1LBm7YHNLtIDvCXrTtbjvJcNJHkM-EqrhXuPA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxNDc5MTM0LCJleHAiOjE1ODIwODM5MzR9.4Z4kYe1JrFxgsQHmJONQ0Kmd05xvvMam8VQbTEqTKYGcjKnHLx70z9Tksz4K0t8SghIKSL7VkaF0B6aLUv28aw
 
 ###
 
@@ -118,8 +118,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2L
 Content-Type: application/json
 
 ###
-GET http://localhost:5000/api/v1/it4u/ljzf8x9r/clientEssid
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+GET http://localhost:5000/api/v1/it4u/1px5g676/clientEssid
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxNTg0NzIwLCJleHAiOjE1ODIxODk1MjB9.cKjrFEF71PprQEqZ0N_U3WRvI5nJseHZ51-WJDiCujYyuAxuBWO-VuPhPY2qWVGFg2IPZSp3DCQUhm8Xb4XRIQ
 Content-Type: application/json
 
 ###
@@ -251,15 +251,14 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/createVoucher
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
 Content-Type: application/json
 
-{"cmd":"create-voucher","n":1,"quota":1,"expire":480,"expire_number":1,"expire_unit":1440,
-"down":150,"up":150,"bytes":1,"note":"Note Ok"}
+{"cmd":"create-voucher","n":"1","quota":"1","expire":"480","expire_number":"1","expire_unit":"1440","down":false,"up":"150","bytes":"2","note":"ok"}
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/voucher
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
 Content-Type: application/json
 
 ###
@@ -314,12 +313,12 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/26OIK_Ha.NTC/history/status
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
 Content-Type: application/json
 
 {
-    "time_from": 1579251500000,
-    "time_till": 1580479568000
+    "time_from": 1580490000000,
+    "time_till": 1582995599999
 }
 
 ###
@@ -344,7 +343,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/v1/it4u/createSitesName
+GET http://localhost:5000/api/v1/it4u/createSitesName
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
 Content-Type: application/json
 
