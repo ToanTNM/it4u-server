@@ -29,7 +29,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4LCJleHAiOjE1ODE1ODcyMTh9.wjPxNtW6r0kSXbw0ZPnWg22flAXivL6AuQBf6PnQZV6T0wfHwD28Aj1h_cSffPzWTLlBbd0EWCD9ol8J8Y1BfA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyMjUyMzQ3LCJleHAiOjE1ODI4NTcxNDd9.jqG1jNmDcA7DR_RlAPMAB6ORrO0okEgsEVY1i5_hFVP6aclCqVSul7hYAdIbkxRCcqlVeq8sRtfyXWyOSRwEGg
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
@@ -113,9 +113,14 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4OTY1MTMzL
 Content-Type: application/json
 
 ###
-GET http://localhost:5000/api/v1/it4u/ljzf8x9r/apCount
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/apCount
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
+
+{
+    "Connected": "AP Connected",
+    "Disconnected": "AP Disconnected"
+}
 
 ###
 GET http://localhost:5000/api/v1/it4u/1px5g676/clientEssid
@@ -138,30 +143,54 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2L
 Content-Type: application/json
 
 ###
-GET http://localhost:5000/api/v1/it4u/rhnl7chn/quickLook
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/quickLook
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
+
+{
+    "Most_active_ap": "Most active ap",
+    "Most_active_client": "Most active client",
+    "Longest_connect": "Longest connect"
+}
 
 ###
 POST http://localhost:5000/api/v1/it4u/1px5g676/5MinutesClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
     "start":"1580490000000",
-    "end":"1582995599999"
+    "end":"1582995599999",
+    "client": "Client",
+    "traffic": "Traffic",
+    "total_traffic": "Total Traffic"
 }
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/hourlyClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+Content-Type: application/json
 
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1580490000000",
+    "end":"1582995599999",
+    "client": "Client",
+    "traffic": "Traffic",
+    "total_traffic": "Total Traffic"
+}
 ###
 POST http://localhost:5000/api/v1/it4u/1px5g676/dailyClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
     "start":"1575219402448",
-    "end":"1577811402448"
+    "end":"1577811402448",
+    "client": "Client",
+    "traffic": "Traffic",
+    "total_traffic": "Total Traffic"
 }
 
 ###
@@ -223,17 +252,6 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/v1/it4u/rhnl7chn/hourlyClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
-Content-Type: application/json
-
-{
-    "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1577898000000",
-    "end":"1578103714173"
-}
-
-###
 POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeMinute
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
 Content-Type: application/json
@@ -245,10 +263,14 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/api/v1/it4u/rhnl7chn/hotspot/1575504000000/1578182400000
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/hotspot/1575504000000/1578182400000
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
 
+{
+    "New": "Mới",
+    "Returning": "Trở lại"
+}
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/createVoucher
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
@@ -282,14 +304,26 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2L
 Content-Type: application/json
 
 ###
-GET  http://localhost:5000/api/v1/it4u/49lqd/customerInfo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MjQ4Mjg3LCJleHAiOjE1Nzk4NTMwODd9.--H5nGj-6zQVp3Aa4_PXkhKcu6TihqFkvdE6XpbbygB85HjMgCUzLQ0ZLfKkiWOqVYcEukLAzGagf-z8oSG49g
+POST  http://localhost:5000/api/v1/it4u/49LQD_Tpcoms/customerInfo
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
 
+{
+    "provider1": "Nhà cung cấp kênh truyền 1",
+    "provider2": "Nhà cung cấp kênh truyền 2",
+    "provider3": "Nhà cung cấp kênh truyền 3",
+    "provider4": "Nhà cung cấp kênh truyền 4"
+}
+
 ###
-GET  http://localhost:5000/api/v1/it4u/rhnl7chn/trafficInfo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+POST  http://localhost:5000/api/v1/it4u/rhnl7chn/trafficInfo
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
+
+{
+    "Upload": "Tốc độ tải lên",
+    "Download": "Tốc độ tải xuống"
+}
 
 ###
 GET http://localhost:5000/api/v1/it4u/cookiesZabbix
@@ -331,15 +365,43 @@ Content-Type: application/json
     "time_till": 1580479568000
 }
 
+
+###
+POST http://localhost:5000/api/v1/it4u/49LQD_Tpcoms/channel/status
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+Content-Type: application/json
+
+{
+    "time_from": 1580490000000,
+    "time_till": 1582995599999,
+    "wan1_status": "Wan1 status",
+    "wan2_status": "Wan2 status",
+    "wan3_status": "Wan3 status",
+    "wan4_status": "Wan4 status",
+    "up": "up",
+    "down": "down"
+}
+###
+POST  http://localhost:5000/api/v1/it4u/49LQD_Tpcoms/name/provider
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+Content-Type: application/json
+
+{
+    "provider1": "Nhà cung cấp kênh truyền 1",
+    "provider2": "Nhà cung cấp kênh truyền 2",
+    "provider3": "Nhà cung cấp kênh truyền 3",
+    "provider4": "Nhà cung cấp kênh truyền 4"
+}
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/getNetworkRates
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
     "start":"1581181200000",
-    "end":"1582995599999"
+    "end":"1582995599999",
+    "network_monintor": "Network monintor"
 }
 
 ###

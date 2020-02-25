@@ -213,12 +213,9 @@ public class DashboardController {
     @ApiOperation(value = "Client Essid")
     @GetMapping("it4u/{id}/clientEssid")
     public String getClientEssid(@PathVariable(value = "id") String userId) {
-        int pos = 0;
         ApiRequest apiRequest = new  ApiRequest();
-        List<String> nameSsid = new ArrayList<>();
         List<String> listSsid = new ArrayList<>();
         List<String> result = new ArrayList<>();
-        List<Integer> countClient = new ArrayList<>();
         JSONObject getResult = new JSONObject();
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
@@ -337,16 +334,16 @@ public class DashboardController {
     }
 
     @ApiOperation(value = "Quick look")
-    @GetMapping("it4u/{id}/quickLook")
-    public String getQuickLook(@PathVariable(value = "id") String userId) {
+    @PostMapping("it4u/{id}/quickLook")
+    public String getQuickLook(@PathVariable(value = "id") String userId, @RequestBody String postData) {
         ApiRequest apiRequest = new ApiRequest();
         List<String> result = new ArrayList<>();
         String getClients = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta/",csrfToken,unifises);
         String getDivices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         DashboardController dashboard = new DashboardController();
-        String longestConn = dashboard.longestConn(getClients);
-        String mostActiveClient = dashboard.mostActiveClient(getClients);
-        String mostActiveAp = dashboard.mostActiveAp(getDivices);
+        String longestConn = dashboard.longestConn(getClients, postData);
+        String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
+        String mostActiveAp = dashboard.mostActiveAp(getDivices, postData);
         result.add(longestConn);
         result.add(mostActiveClient);
         result.add(mostActiveAp);
@@ -365,6 +362,7 @@ public class DashboardController {
         JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         client.put("valueSuffix", " Client");
         traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
@@ -397,17 +395,27 @@ public class DashboardController {
                 listIncreaseTraffic.add(resultSumTraffic);
             }
         }
-        listClientJson.put("name","Client");
+        // pointStart: 1348226400000,
+        // pointInterval: 60 * 60 * 1000,
+        Long pointStart = getPosZero.getLong("time");
+        listClientJson.put("pointStart",pointStart + 7*60*60*1000);
+        listClientJson.put("pointInterval",60 * 60 * 1000);
+        listClientJson.put("name", getPostData.getString("client"));
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
 
-        listTrafficJson.put("name","Traffic");
+        // Long pointStart = getPosZero.getLong("time");
+        listTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listTrafficJson.put("pointInterval", 60 * 60 * 1000);
+        listTrafficJson.put("name", getPostData.getString("traffic"));
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
 
-        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listIncreaseTrafficJson.put("pointInterval", 60 * 60 * 1000);
+        listIncreaseTrafficJson.put("name", getPostData.getString("total_traffic"));
         listIncreaseTrafficJson.put("data", listIncreaseTraffic);
         listIncreaseTrafficJson.put("tooltip", traffic);
         listIncreaseTrafficJson.put("yAxis", 0);
@@ -430,6 +438,7 @@ public class DashboardController {
         JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         client.put("valueSuffix", " Client");
         traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
@@ -462,20 +471,28 @@ public class DashboardController {
                 listIncreaseTraffic.add(resultSumTraffic);
             }
         }
-        listClientJson.put("name","Client");
+        Long pointStart = getPosZero.getLong("time");
+        listClientJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listClientJson.put("pointInterval", 5 * 60 * 1000);
+        listClientJson.put("name",getPostData.getString("client"));
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
 
-        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listTrafficJson.put("pointInterval", 5 * 60 * 1000);
+        listTrafficJson.put("name", getPostData.getString("traffic"));
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
 
-        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listIncreaseTrafficJson.put("pointInterval", 5 * 60 * 1000);
+        listIncreaseTrafficJson.put("name", getPostData.getString("total_traffic"));
         listIncreaseTrafficJson.put("data", listIncreaseTraffic);
         listIncreaseTrafficJson.put("tooltip", traffic);
         listIncreaseTrafficJson.put("yAxis", 0);
+
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         result.add(listIncreaseTrafficJson.toString());
@@ -495,6 +512,7 @@ public class DashboardController {
         JSONObject listIncreaseTrafficJson = new JSONObject();
         JSONObject client = new JSONObject();
         JSONObject traffic = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         client.put("valueSuffix", " Client");
         traffic.put("valueSuffix", " GB");
         ApiRequest apiRequest = new ApiRequest();
@@ -527,17 +545,24 @@ public class DashboardController {
                 listIncreaseTraffic.add(resultSumTraffic);
             }
         }
-        listClientJson.put("name","Client");
+        Long pointStart = getPosZero.getLong("time");
+        listClientJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listClientJson.put("pointInterval", 24 * 60 * 60 * 1000);
+        listClientJson.put("name", getPostData.getString("client"));
         listClientJson.put("data", listClient);
         listClientJson.put("yAxis",1);
         listClientJson.put("tooltip",client);
 
-        listTrafficJson.put("name","Traffic");
+        listTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listTrafficJson.put("pointInterval",24 * 60 * 60 * 1000);
+        listTrafficJson.put("name",getPostData.getString("traffic"));
         listTrafficJson.put("data", listTraffic);
         listTrafficJson.put("tooltip",traffic);
         listTrafficJson.put("yAxis",0);
 
-        listIncreaseTrafficJson.put("name", "Total Traffic");
+        listIncreaseTrafficJson.put("pointStart", pointStart + 7 * 60 * 60 * 1000);
+        listIncreaseTrafficJson.put("pointInterval",24 * 60 * 60 * 1000);
+        listIncreaseTrafficJson.put("name", getPostData.getString("total_traffic"));
         listIncreaseTrafficJson.put("data", listIncreaseTraffic);
         listIncreaseTrafficJson.put("tooltip", traffic);
         listIncreaseTrafficJson.put("yAxis", 0);
@@ -844,13 +869,14 @@ public class DashboardController {
     }
 
     @ApiOperation(value = "Count AP Connect")
-    @GetMapping("it4u/{id}/apCount")
-    public String getAPConnect(@PathVariable(value = "id") String userId) {
+    @PostMapping("it4u/{id}/apCount")
+    public String getAPConnect(@PathVariable(value = "id") String userId, @RequestBody String postData) {
         Integer countConn = 0;
         Integer countDisConn = 0;
         List<String> result = new ArrayList<>();
         JSONObject getConn = new JSONObject();
         JSONObject getDisConn = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         ApiRequest apiRequest = new ApiRequest();
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
@@ -864,23 +890,24 @@ public class DashboardController {
                 countDisConn = countDisConn + 1;
             }
         }
-        getConn.put("name","AP Connected");
+        getConn.put("name",getPostData.getString("Connected"));
         getConn.put("y",countConn);
         result.add(getConn.toString());
-        getDisConn.put("name","AP Disconnected");
+        getDisConn.put("name",getPostData.getString("Disconnected"));
         getDisConn.put("y",countDisConn);
         result.add(getDisConn.toString());
         return result.toString();
     }
 
     @ApiOperation(value = "Hotspot")
-    @GetMapping("it4u/{id}/hotspot/{start}/{end}")
-    public String getHotspot(@PathVariable(value = "id") String userId,@PathVariable(value = "start") String start, @PathVariable(value = "end") String end) {
+    @PostMapping("it4u/{id}/hotspot/{start}/{end}")
+    public String getHotspot(@PathVariable(value = "id") String userId,@PathVariable(value = "start") String start, @PathVariable(value = "end") String end, @RequestBody String postData) {
         Integer newClient = 0;
         Integer returnClient = 0;
         List<String> result = new ArrayList<>();
         JSONObject getNewClient = new JSONObject();
         JSONObject getReturnClient = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         ApiRequest apiRequest = new ApiRequest();
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/guest?start=" + start + "&end="+ end,csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
@@ -895,9 +922,9 @@ public class DashboardController {
                 returnClient = returnClient + 1;
             }
         }
-        getNewClient.put("name","New");
+        getNewClient.put("name", getPostData.getString("New"));
         getNewClient.put("y",newClient);
-        getReturnClient.put("name","Returning");
+        getReturnClient.put("name",getPostData.getString("Returning"));
         getReturnClient.put("y", returnClient);
         result.add(getNewClient.toString());
         result.add(getReturnClient.toString());
@@ -906,21 +933,22 @@ public class DashboardController {
 
     //Dashboard 2
     @ApiOperation(value = "Customer info")
-    @GetMapping("it4u/{id}/customerInfo")
-    public String getCustomerInfo(@PathVariable(value="id") String siteName){
+    @PostMapping("it4u/{id}/customerInfo")
+    public String getCustomerInfo(@PathVariable(value="id") String siteName, @RequestBody String postData){
         String wan2Status = "DOWN";
         String wan1Status = "DOWN";
         String wan3Status = "DOWN";
+        String wan4Status = "DOWN";
         TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         dateFormat.setTimeZone(tz);
         Calendar cal = Calendar.getInstance();
         System.out.println(dateFormat.format(cal.getTime()));
-        // Date today = dateFormat.parse("   ");
         List<String> result = new ArrayList<>();
         JSONObject wan1 = new JSONObject();
         JSONObject wan2 = new JSONObject();
         JSONObject wan3 = new JSONObject();
+        JSONObject wan4 = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
         Calculator convert = new Calculator();
         String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
@@ -933,10 +961,10 @@ public class DashboardController {
             wan1Status = "UP";
         }
         Integer getWan1Uptime = data.getInt("wan1_uptime");
-        String provider1 = data.getString("wan1_provider");
+        JSONObject getPostData = new JSONObject(postData);
         String wan1Uptime = convert.ConvertSecondToHHMMString(getWan1Uptime);
         wan1.put("wanIp", wan1Ip);
-        wan1.put("wanProvider", provider1);
+        wan1.put("wanProvider", getPostData.getString("provider1"));
         wan1.put("wanStatus", wan1Status);
         wan1.put("wanUptime", wan1Uptime);
         result.add(wan1.toString());
@@ -949,10 +977,9 @@ public class DashboardController {
                 wan2Status = "UP";
             }
             Integer getWan2Uptime = data.getInt("wan2_uptime");
-            String provider2 = data.getString("wan2_provider");
             String wan2Uptime = convert.ConvertSecondToHHMMString(getWan2Uptime);
             wan2.put("wanIp", wan2Ip);
-            wan2.put("wanProvider", provider2);
+            wan2.put("wanProvider", getPostData.getString("provider2"));
             wan2.put("wanStatus", wan2Status);
             wan2.put("wanUptime", wan2Uptime);
             result.add(wan2.toString());
@@ -966,21 +993,36 @@ public class DashboardController {
                 wan3Status = "UP";
             }
             Integer getWan3Uptime = data.getInt("wan3_uptime");
-            String provider3 = data.getString("wan3_provider");
             String wan3Uptime = convert.ConvertSecondToHHMMString(getWan3Uptime);
             wan3.put("wanIp", wan3Ip);
-            wan3.put("wanProvider", provider3);
+            wan3.put("wanProvider", getPostData.getString("provider3"));
             wan3.put("wanStatus", wan3Status);
             wan3.put("wanUptime", wan3Uptime);
             result.add(wan3.toString());
+        } catch (Exception e) {
+        }
+        try {
+            String wan4Ip = data.getString("wan4_ip");
+            // String wan4Provider = data.getString("wan4_provider");
+            Integer getWan4Status = data.getInt("wan4_status");
+            if (getWan4Status == 1) {
+                wan4Status = "UP";
+            }
+            Integer getWan4Uptime = data.getInt("wan4_uptime");
+            String wan4Uptime = convert.ConvertSecondToHHMMString(getWan4Uptime);
+            wan4.put("wanIp", wan4Ip);
+            wan4.put("wanProvider", getPostData.getString("provider4"));
+            wan4.put("wanStatus", wan4Status);
+            wan4.put("wanUptime", wan4Uptime);
+            result.add(wan4.toString());
         } catch (Exception e) {
         }
         return result.toString();
     }
 
     @ApiOperation(value = "Traffic AP")
-    @GetMapping("it4u/{id}/trafficInfo")
-    public String getTrafficInfo(@PathVariable(value="id") String idUser){
+    @PostMapping("it4u/{id}/trafficInfo")
+    public String getTrafficInfo(@PathVariable(value="id") String idUser, @RequestBody String postData){
         List<String> result = new ArrayList<>();
         JSONObject uploadJson = new JSONObject();
         JSONObject downloadJson = new JSONObject();
@@ -999,9 +1041,10 @@ public class DashboardController {
         Calculator getCalculator = new Calculator();
         double convertUploadToMb = getCalculator.convertBytesToMb(upload);
         double convertDownloadToMb = getCalculator.convertBytesToMb(download);
-        uploadJson.put("name","Upload");
+        JSONObject getPostData = new JSONObject(postData);
+        uploadJson.put("name",getPostData.getString("Upload"));
         uploadJson.put("y", convertUploadToMb);
-        downloadJson.put("name","Download");
+        downloadJson.put("name",getPostData.getString("Download"));
         downloadJson.put("y", convertDownloadToMb);
         result.add(uploadJson.toString());
         result.add(downloadJson.toString());
@@ -1016,6 +1059,7 @@ public class DashboardController {
         List<String> listTime = new ArrayList<>();
         List<Double> listTraffic = new ArrayList<Double>();
         JSONObject listTrafficJson = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
         ApiRequest apiRequest = new ApiRequest();
 
         String getMinute = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/stat/report/hourly.site/", csrfToken,
@@ -1024,7 +1068,7 @@ public class DashboardController {
         JSONArray dataMinute = getData.getJSONArray("data");
         JSONObject getPosZero = (JSONObject) dataMinute.get(0);
         long countTraffic0 = getPosZero.getLong("wlan_bytes");
-        Long changeTraffic0 = Math.round(countTraffic0/37.55);
+        Long changeTraffic0 = Math.round(countTraffic0/439.08);
         Calculator getCalculator = new Calculator();
         double convertTraffic0 = getCalculator.convertBytesToMb(changeTraffic0);
         Long time0 = getPosZero.getLong("time");
@@ -1040,15 +1084,17 @@ public class DashboardController {
                 Long time = getPosEnd.getLong("time");
                 String uptime = getCalculator.ConvertSecondToDate(time);
                 Long getTraffic = getPosEnd.getLong("wlan_bytes");
-                Long changeTraffic = Math.round(getTraffic/37.55);
+                Long changeTraffic = Math.round(getTraffic/439.08);
                 double convertTraffic = getCalculator.convertBytesToMb(changeTraffic);
                 
                 listTraffic.add(convertTraffic);
                 listTime.add(uptime.toString());
             }
         }
-        listTrafficJson.put("time",listTime);
-        listTrafficJson.put("name", "Network Monintor");
+        Long pointStart = time0 + 7*60*60*1000;
+        listTrafficJson.put("pointStart", pointStart);
+        listTrafficJson.put("pointInterval",60 * 60 * 1000);
+        listTrafficJson.put("name", getPostData.getString("network_monintor"));
         listTrafficJson.put("data", listTraffic);
         return listTrafficJson.toString();
     }
@@ -1179,8 +1225,6 @@ public class DashboardController {
         Calculator getCalculator = new Calculator();
         for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
             JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
-            // Long time = getItemStatusWan1.getLong("clock") * 1000;
-            // String convertTime = getCalculator.ConvertSecondToDateNotZone(time);
             Float valueStatusWan1 = getItemStatusWan1.getFloat("value");
             listStatusWan1.add(valueStatusWan1);
             if (itemStatusWan2Id != "") {
@@ -1271,6 +1315,172 @@ public class DashboardController {
         listResultJson.put("time", listTime);
         result.add(listResultJson.toString());
         return listResultJson.toString();
+    }
+
+    @ApiOperation(value = "Channel Status")
+    @PostMapping("it4u/{id}/channel/status")
+    public String getChannelStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+        int k = 0, upWan1 = 0, upWan2 = 0, upWan3 = 0, upWan4 = 0;
+        List<Integer> listStatusUp = new ArrayList<>();
+        List<Integer> listStatusDown = new ArrayList<>();
+
+        List<String> result = new ArrayList<>();
+        JSONObject statusUpJson = new JSONObject();
+        JSONObject statusDownJson = new JSONObject();
+
+        JSONArray getResultStatusWan1 = new JSONArray();
+        JSONArray getResultStatusWan2 = new JSONArray();
+        JSONArray getResultStatusWan3 = new JSONArray();
+        JSONArray getResultStatusWan4 = new JSONArray();
+        JSONObject getPostData = new JSONObject(postData);
+        String dataGetHostId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": [\"hostid\"],\"selectGroups\": \"extend\",\"filter\": {\"host\": [\""
+                + idUser + "\"]}},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        DashboardController getDashboard = new DashboardController();
+        JSONArray getResultHost = getDashboard.getDataZabbix(urlZabbix, dataGetHostId);
+        JSONObject getItemHost = (JSONObject) getResultHost.get(0);
+        String hostId = getItemHost.getString("hostid");
+        String dataGetItemId = "{\"jsonrpc\": \"2.0\",\"method\": \"item.get\",\"params\": {\"output\": \"extend\",\"hostids\": \""
+                + hostId + "\"},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+        String itemStatusWan1Id = "";
+        String itemStatusWan2Id = "";
+        String itemStatusWan3Id = "";
+        String itemStatusWan4Id = "";
+        JSONArray getResultItem = getDashboard.getDataZabbix(urlZabbix, dataGetItemId);
+        for (int i = 0; i < getResultItem.length(); i++) {
+            JSONObject getItem = (JSONObject) getResultItem.get(i);
+            String nameTest = getItem.getString("name");
+            if (nameTest.equals("wan1_status")) {
+                itemStatusWan1Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan2_status")) {
+                itemStatusWan2Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan3_status")) {
+                itemStatusWan3Id = getItem.getString("itemid");
+            }
+            if (nameTest.equals("wan4_status")) {
+                itemStatusWan4Id = getItem.getString("itemid");
+            }
+        }
+        JSONObject convertDataPost = new JSONObject(postData);
+        Long timeFrom = convertDataPost.getLong("time_from") / 1000;
+        Long timeTill = convertDataPost.getLong("time_till") / 1000;
+        if (itemStatusWan1Id != "") {
+            String dataPostStatusWan1 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan1Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan1 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan1);
+        }
+        if (itemStatusWan2Id != "") {
+            String dataPostStatusWan2 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan2Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan2);
+        }
+        if (itemStatusWan3Id != "") {
+            String dataPostStatusWan3 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan3Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan3);
+        }
+        if (itemStatusWan4Id != "") {
+            String dataPostStatusWan4 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
+                    + itemStatusWan4Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
+                    + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
+            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
+        }
+        for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
+            k = k + 1;
+            JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
+            Float valueStatusWan1 = getItemStatusWan1.getFloat("value");
+            upWan1 = upWan1 + Math.round(valueStatusWan1);
+            if (itemStatusWan2Id != "") {
+                JSONObject getItemStatusWan2 = (JSONObject) getResultStatusWan2.get(i);
+                Float valueStatusWan2 = getItemStatusWan2.getFloat("value");
+                upWan2 = upWan2 + Math.round(valueStatusWan2);
+            }
+            if (itemStatusWan3Id != "") {
+                JSONObject getItemStatusWan3 = (JSONObject) getResultStatusWan3.get(i);
+                Float valueStatusWan3 = getItemStatusWan3.getFloat("value");
+                upWan3 = upWan3 + Math.round(valueStatusWan3);
+            }
+            if (itemStatusWan4Id != "") {
+                JSONObject getItemStatusWan4 = (JSONObject) getResultStatusWan4.get(i);
+                Float valueStatusWan4 = getItemStatusWan4.getFloat("value");
+                upWan4 = upWan4 + Math.round(valueStatusWan4);
+            }
+        }
+        try {
+            Integer valueUpWan1 = Math.round(upWan1*100/k);
+            listStatusUp.add(valueUpWan1);
+            listStatusDown.add(100 - valueUpWan1);
+            if (itemStatusWan2Id != "") {
+                Integer valueUpWan2 = Math.round(upWan2 * 100 / k);
+                listStatusUp.add(valueUpWan2);
+                listStatusDown.add(100 - valueUpWan2);
+            }
+            if (itemStatusWan3Id != "") {
+                Integer valueUpWan3 = Math.round(upWan3 * 100 / k);
+                listStatusUp.add(valueUpWan3);
+                listStatusDown.add(100 - valueUpWan3);
+            }
+            if (itemStatusWan4Id != "") {
+                Integer valueUpWan4 = Math.round(upWan4 * 100 / k);
+                listStatusUp.add(valueUpWan4);
+                listStatusDown.add(100 - valueUpWan4);
+            }
+        }catch(Exception e){
+            
+        }
+        
+        statusUpJson.put("name", getPostData.getString("up"));
+        statusUpJson.put("data", listStatusUp);
+        statusUpJson.put("valueSuffix", " %");
+        statusDownJson.put("name", getPostData.getString("down"));
+        statusDownJson.put("data", listStatusDown);
+        statusDownJson.put("valueSuffix", " %");
+
+        result.add(statusUpJson.toString());
+        result.add(statusDownJson.toString());
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Provider info")
+    @PostMapping("it4u/{id}/name/provider")
+    public String getNameProvider(@PathVariable(value = "id") String siteName, @RequestBody String postData) {
+        TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        dateFormat.setTimeZone(tz);
+        Calendar cal = Calendar.getInstance();
+        System.out.println(dateFormat.format(cal.getTime()));
+        List<String> result = new ArrayList<>();
+        JSONObject resultJson = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject getPostData = new JSONObject(postData);
+        String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
+        JSONObject data = new JSONObject(getData);
+        
+        result.add(getPostData.getString("provider1"));
+        try {
+            if (!data.getString("wan2_ip").equals("NONE")) {
+                result.add(getPostData.getString("provider2"));
+            }
+        } catch (Exception e) {
+        }
+        try {
+            if (!data.getString("wan3_ip").equals("NONE")) {
+                result.add(getPostData.getString("provider3"));
+            }     
+        } catch (Exception e) {
+        }
+        try {
+            if (!data.getString("wan4_ip").equals("NONE")) {
+                result.add(getPostData.getString("provider4"));
+            }
+        } catch (Exception e) {
+        }
+        resultJson.put("name", result);
+        return resultJson.toString();
     }
     // VOUCHERS....................................................................................../
     ///////////////////////////////////////////////////////////////////////////////
@@ -1377,9 +1587,10 @@ public class DashboardController {
         return getResultInfo;
     }
 
-    public String longestConn(String data) {
+    public String longestConn(String data, String postData) {
         JSONObject result = new JSONObject();
         JSONObject jsonResult = new JSONObject(data);
+        JSONObject getPostData = new JSONObject(postData);
         Integer pos = 0;
         Integer posMax = 0;
         JSONArray getData = jsonResult.getJSONArray("data");
@@ -1421,7 +1632,7 @@ public class DashboardController {
         }
          
         String uptime = getCalculator.ConvertSecondToHHMMString(getUptime);
-        result.put("name","Longest Connect");
+        result.put("name",getPostData.getString("Longest_connect"));
         result.put("hostname",hostname);
         result.put("uptime",uptime);
         result.put("up",up);
@@ -1429,9 +1640,10 @@ public class DashboardController {
         return result.toString();
     }
 
-    public String mostActiveClient(String data) {
+    public String mostActiveClient(String data, String postData) {
         JSONObject result = new JSONObject();
         JSONObject infoData = new JSONObject(data);
+        JSONObject getPostData = new JSONObject(postData);
         JSONArray getData = infoData.getJSONArray("data");
         JSONObject getDataMax = (JSONObject) getData.get(0);
         long max = getDataMax.getLong("tx_bytes") + getDataMax.getLong("rx_bytes");
@@ -1463,18 +1675,19 @@ public class DashboardController {
             hostname = getBytes.getString("hostname");
         } catch (Exception e) {
         }
-        result.put("name","Most active client");
+        result.put("name",getPostData.getString("Most_active_client"));
         result.put("hostname",hostname);
         result.put("up",up);
         result.put("down",down);
         return result.toString();   
     }
 
-    public String mostActiveAp(String data) {
+    public String mostActiveAp(String data, String postData) {
         JSONObject result = new JSONObject();
         JSONObject infoData = new JSONObject(data);
         JSONArray getData = infoData.getJSONArray("data");
         JSONObject getDataMax = (JSONObject) getData.get(0);
+        JSONObject getPostData = new JSONObject(postData);
         long max = getDataMax.getLong("bytes");
         Integer posMax = 0;
         for (int i=0; i<getData.length(); i++) {
@@ -1500,7 +1713,7 @@ public class DashboardController {
         String up = convertTx.get(0) + convertTx.get(1);
         String down = convertRx.get(0) + convertRx.get(1);
         String hostname = getBytes.getString("name");
-        result.put("name","Most active ap");
+        result.put("name",getPostData.getString("Most_active_ap"));
         result.put("hostname",hostname);
         result.put("up",up);
         result.put("down",down);
