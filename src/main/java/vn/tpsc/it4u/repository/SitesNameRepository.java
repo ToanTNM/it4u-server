@@ -15,6 +15,6 @@ public interface SitesNameRepository extends JpaRepository<SitesName, Long> {
     List<SitesName> findAll();
     
     Boolean existsBySitename(String username);
-
+    
     Boolean existsByIdname(String email);
 }

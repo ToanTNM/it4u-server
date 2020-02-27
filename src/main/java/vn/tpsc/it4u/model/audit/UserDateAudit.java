@@ -17,7 +17,6 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 public abstract class UserDateAudit extends DateAudit {
-
     /**
      *
      */

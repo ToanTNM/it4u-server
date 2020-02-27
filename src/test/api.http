@@ -104,12 +104,28 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/cookies
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDU5MjUyLCJleHAiOjE1ODEwNjQwNTJ9.Y1u_0kEWDptrqsHrROCSG1PVpMkpLCZ4Av3_OHbzhPWn92D8oaoXmrRm7RvRZQ6d2z6dC_uMTIfYfJoxuXDmvQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
 Content-Type: application/json
-###
 
+
+###
+GET http://localhost:5000/api/v1/it4u/postCookiesUbnt
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/checkCookiesUbnt
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
+Content-Type: application/json
+
+###
 GET http://localhost:5000/api/v1/it4u/sites
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4OTY1MTMzLCJleHAiOjE1Nzk1Njk5MzN9.hafbkW_jOOoAFyyaIfuju13KlC95A26QxVBmq2zntYlQq3GHr73G7WowSeWz6ZrwLhIWEtEWavJwztjd5MoUEg
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/getCookiesUbnt
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjIxMTY1LCJleHAiOjE1ODMyMjU5NjV9.jAs9WQ9ocplMQ28pS5hbu4-zEC30EmE0vVctqprRfze7f2nrXP594IAAZF0N7918e1LJZQfFxKC62KSGa3S3Vg
 Content-Type: application/json
 
 ###
@@ -418,3 +434,48 @@ Content-Type: application/json
 Get http://localhost:5000/api/v1/it4u/getSitename
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
 Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/configMail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjgwNDEwLCJleHAiOjE1ODMyODUyMTB9.ZgYOv_BWSjPFENXvq1zpSXtZcgr79Wi5EW-sJ48RqkIyPkgkF9Zt2mDOn8N73dv6309gwDlU17B5m2fistDIMw
+Content-Type: application/json
+
+{
+    "ccMail":"lap.dang@tpsc.vn",
+    "cronjobMail":"*/10 * * * *",
+    "hostMail": "smtp.yandex.com",
+    "maxMessages": "500",
+    "passwordMail": "Nccvbcl0167@",
+    "portMail": 587,
+    "rateDelta": 60000,
+    "rateLimit": 1,
+    "serviceMail": "Yandex gmail",
+    "subjectMail": "Report TPs",
+    "textMail": "Hi",
+    "usernameMail": "lap.dang@tpsc.vn"
+}
+
+###
+GET http://localhost:5000/api/v1/it4u/configMail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjgwNDEwLCJleHAiOjE1ODMyODUyMTB9.ZgYOv_BWSjPFENXvq1zpSXtZcgr79Wi5EW-sJ48RqkIyPkgkF9Zt2mDOn8N73dv6309gwDlU17B5m2fistDIMw
+Content-Type: application/json
+
+###
+PUT http://localhost:5000/api/v1/it4u/configMail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjgwNDEwLCJleHAiOjE1ODMyODUyMTB9.ZgYOv_BWSjPFENXvq1zpSXtZcgr79Wi5EW-sJ48RqkIyPkgkF9Zt2mDOn8N73dv6309gwDlU17B5m2fistDIMw
+Content-Type: application/json
+
+{
+    "ccMail":"lap.dang@tpsc.vn",
+    "cronjobMail":"*/20 * * * *",
+    "hostMail": "smtp.yandex.com",
+    "maxMessages": "500",
+    "passwordMail": "Nccvbcl0167@",
+    "portMail": 587,
+    "rateDelta": 60000,
+    "rateLimit": 1,
+    "serviceMail": "Yandex gmail",
+    "subjectMail": "Report TPs",
+    "textMail": "Hi",
+    "usernameMail": "lap.dang@tpsc.vn"
+}

@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,9 @@ import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.service.SitesNameService;
+import vn.tpsc.it4u.model.ConfigToken;
+import vn.tpsc.it4u.service.ConfigTokenService;
+import vn.tpsc.it4u.repository.ConfigTokenRepository;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.util.Calculator;
@@ -74,6 +78,12 @@ public class DashboardController {
     @Autowired
     SitesNameService sitenameService;
 
+    @Autowired
+    ConfigTokenRepository configTokenRepository;
+
+    @Autowired
+    ConfigTokenService configTokenService;
+
     @ApiOperation(value = "Cookies IT4U")
     @GetMapping("/it4u/cookies")
     public String getCookies() {
@@ -92,6 +102,54 @@ public class DashboardController {
         } catch (Exception e) {
             return e.toString();
         }
+    }
+
+
+    @ApiOperation(value = "Post cookies ubnt")
+    @GetMapping("/it4u/postCookiesUbnt")
+    public String getPostCookiesUbnt() {
+        String result = "Created Succesfully";
+        try {
+            final ConfigToken createCookie = new ConfigToken(csrfToken, unifises);
+            configTokenRepository.save(createCookie);
+            return result;
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    @ApiOperation(value = "Check cookies ubnt")
+    @GetMapping("/it4u/checkCookiesUbnt")
+    public String checkCookiesUbnt() {
+        ApiRequest apiRequest = new ApiRequest();
+        String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
+        try {
+            JSONObject jsonResult = new JSONObject(getSites);
+            JSONArray data = jsonResult.getJSONArray("data");
+            return "Check ok";
+        } catch (Exception e) {
+            String dataPost = "{'username':'" + username + "','password':'" + password
+                    + "','remember':'true','strict':'true'}";
+            String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
+            String[] arr = getCookies.split(";");
+            String getToken = arr[0];
+            String[] arrToken = getToken.split("=");
+            String getUnifise = arr[2];
+            String[] arrUnifise = getUnifise.split("=");
+            configTokenService.updateCookies(arrToken[1], arrUnifise[1]);
+            return "csrfToken: " + arrToken[1] +";" + "unifises" + arrUnifise[1];
+        }
+    }
+
+    @ApiOperation(value = "Get cookies ubnt")
+    @GetMapping("/it4u/getCookiesUbnt")
+    public String getCookiesUbnt() {
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        return unifises;
     }
 
     @ApiOperation(value = "Cookies Zabbix")
@@ -135,16 +193,6 @@ public class DashboardController {
     @GetMapping("/it4u/createSitesName")
     public Boolean createSitesName() {
         ApiRequest apiRequest = new ApiRequest();
-        String dataPost = "{'username':'" + username + "','password':'" + password
-                + "','remember':'true','strict':'true'}";
-        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
-        String[] arr = getCookies.split(";");
-        String getToken = arr[0];
-        String[] arrToken = getToken.split("=");
-        csrfToken = arrToken[1];
-        String getUnifise = arr[2];
-        String[] arrUnifise = getUnifise.split("=");
-        unifises = arrUnifise[1];
         JSONArray data = new JSONArray();
         try {
             String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
@@ -175,15 +223,6 @@ public class DashboardController {
     @GetMapping("/it4u/sites")
     public String getSitesId() {
         ApiRequest apiRequest = new  ApiRequest();
-        String dataPost = "{'username':'" + username + "','password':'" + password + "','remember':'true','strict':'true'}";
-        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
-        String [] arr = getCookies.split(";");
-        String getToken = arr[0];
-        String [] arrToken = getToken.split("=");
-        csrfToken = arrToken[1];
-        String getUnifise = arr[2];
-        String [] arrUnifise = getUnifise.split("=");
-        unifises = arrUnifise[1];
         JSONObject result = new JSONObject();
         List<String> dataList = new ArrayList<>();
         JSONArray data = new JSONArray();
@@ -217,6 +256,11 @@ public class DashboardController {
         List<String> listSsid = new ArrayList<>();
         List<String> result = new ArrayList<>();
         JSONObject getResult = new JSONObject();
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
