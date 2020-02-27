@@ -109,7 +109,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:5000/api/v1/it4u/postCookiesUbnt
+GET https://it4u.tpsc.vn/api/v1/it4u/postCookiesUbnt
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
 Content-Type: application/json
 
@@ -436,8 +436,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzL
 Content-Type: application/json
 
 ###
-POST http://localhost:5000/api/v1/it4u/configMail
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjgwNDEwLCJleHAiOjE1ODMyODUyMTB9.ZgYOv_BWSjPFENXvq1zpSXtZcgr79Wi5EW-sJ48RqkIyPkgkF9Zt2mDOn8N73dv6309gwDlU17B5m2fistDIMw
+POST https://it4u.tpsc.vn/api/v1/it4u/configMail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNzg1Mzk3LCJleHAiOjE1ODMzOTAxOTd9.XkPZkc7cdKECVyDk-QiCyWyUxsXQATqA20Q2PTMd9Y5VNkiTd26yLIMwEKricQkW8G4l1A66QGCak5-tgbPYJQ
 Content-Type: application/json
 
 {

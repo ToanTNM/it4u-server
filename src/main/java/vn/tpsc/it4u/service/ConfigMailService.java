@@ -52,18 +52,18 @@ public class ConfigMailService {
     public boolean updateMail(ConfigMailSummary updateMail) {
         List<ConfigMail> configMails = configMailRepository.findAll();
         ConfigMail mail = mapper.map(configMails.get(0),ConfigMail.class);
-        mail.setServiceMail(updateMail.getServiceMail().isNullorEmpty() ? updateMail.getServiceMail() : mail.getServiceMail());
-        mail.setHostMail(updateMail.getHostMail().isNullorEmpty() ? updateMail.getHostMail() : mail.getHostMail());
-        mail.setPortMail(updateMail.getPortMail().isNullorEmpty() ? updateMail.getPortMail() : mail.getPortMail());
-        mail.setMaxMessages(updateMail.getMaxMessages().isNullorEmpty() ? updateMail.getMaxMessages() : mail.getMaxMessages());
-        mail.setRateDelta(updateMail.getRateDelta().isNullorEmpty() ? updateMail.getRateDelta() : mail.getRateDelta());
-        mail.setRateLimit(updateMail.getRateLimit().isNullorEmpty() ? updateMail.getRateLimit() : mail.getRateLimit());
-        mail.setUsernameMail(updateMail.getUsernameMail().isNullorEmpty() ? updateMail.getUsernameMail() : mail.getUsernameMail());
-        mail.setPasswordMail(updateMail.getPasswordMail().isNullorEmpty() ? updateMail.getPasswordMail() : mail.getPasswordMail());
-        mail.setCcMail(updateMail.getCcMail().isNullorEmpty()  ? updateMail.getCcMail() : mail.getCcMail());
-        mail.setSubjectMail(updateMail.getSubjectMail().isNullorEmpty() ? updateMail.getSubjectMail() : mail.getSubjectMail());
-        mail.setTextMail(updateMail.getTextMail() != "" ? updateMail.getTextMail() : updateMail.getTextMail());
-        mail.setCronjobMail(updateMail.getCronjobMail().isNullorEmpty() ? updateMail.getCronjobMail() : mail.getCronjobMail());
+        mail.setServiceMail(updateMail.getServiceMail().isNullorEmpty() ? mail.getServiceMail() : updateMail.getServiceMail());
+        mail.setHostMail(updateMail.getHostMail().isNullorEmpty() ? mail.getHostMail() : updateMail.getHostMail());
+        mail.setPortMail(updateMail.getPortMail().isNullorEmpty() ? mail.getPortMail() : updateMail.getPortMail());
+        mail.setMaxMessages(updateMail.getMaxMessages().isNullorEmpty() ? mail.getMaxMessages() : updateMail.getMaxMessages());
+        mail.setRateDelta(updateMail.getRateDelta().isNullorEmpty() ? mail.getRateDelta() : updateMail.getRateDelta());
+        mail.setRateLimit(updateMail.getRateLimit().isNullorEmpty() ? mail.getRateLimit() : updateMail.getRateLimit());
+        mail.setUsernameMail(updateMail.getUsernameMail().isNullorEmpty() ? mail.getUsernameMail() : updateMail.getUsernameMail());
+        mail.setPasswordMail(updateMail.getPasswordMail().isNullorEmpty() ? mail.getPasswordMail() : updateMail.getPasswordMail());
+        mail.setCcMail(updateMail.getCcMail().isNullorEmpty()  ? mail.getCcMail() : updateMail.getCcMail());
+        mail.setSubjectMail(updateMail.getSubjectMail().isNullorEmpty() ? mail.getSubjectMail() : updateMail.getSubjectMail());
+        mail.setTextMail(updateMail.getTextMail().isNullorEmpty() ? mail.getTextMail() : updateMail.getTextMail());
+        mail.setCronjobMail(updateMail.getCronjobMail().isNullorEmpty() ? mail.getCronjobMail() : updateMail.getCronjobMail());
         configMailRepository.save(mail);
         return true;
     }
