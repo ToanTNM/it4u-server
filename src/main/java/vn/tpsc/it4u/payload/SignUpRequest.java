@@ -20,7 +20,7 @@ public class SignUpRequest {
     private String name;
 
     @NotBlank
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 40)
     private String username;
 
     @NotBlank

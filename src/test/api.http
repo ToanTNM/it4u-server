@@ -1,5 +1,5 @@
-POST http://localhost:5000/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+POST https://it4u.tpsc.vn/api/v1/role
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzc4NTA5LCJleHAiOjE1ODM5ODMzMDl9.t0vTx_dFKXDHmgDcITRDtB_tRBdF-Q6zx7SxufoiSWacXgwgh3EuvkCwQXEXUnEJc3QJyeqD5xmX0ypVTJTtWA
 Content-Type: application/json
 
 {

@@ -50,7 +50,7 @@ public class User extends UserDateAudit {
     private String name;
 
     @NotEmpty
-    @Size(max = 15)
+    @Size(max = 40)
     private String username;
 
     @NotEmpty
