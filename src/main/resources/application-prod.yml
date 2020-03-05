@@ -1,16 +1,15 @@
 ## Server Properties
 server:
-  port: 5000
+  port: ${SERVER_PORT}
 
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
     # initialization-mode: always
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.136.129:5433/it4uDb
-    username: postgres
-    password: tpsc.vn@49lqd
-
+    url: ${DATABASE_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
 # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:
