@@ -145,6 +145,7 @@ public class UserService {
         user.setSitename(updatingUser.getSitename() != null ? updatingUser.getSitename() : user.getSitename());
         
         user.setLanguage(updatingUser.getLanguage() != null ? updatingUser.getLanguage() : user.getLanguage());
+        
         userRepository.save(user);
 
         return true;

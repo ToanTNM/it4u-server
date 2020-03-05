@@ -41,4 +41,6 @@ public class SignUpRequest {
     private String sitename;
 
     private String language;
+
+    private String roles;
 }

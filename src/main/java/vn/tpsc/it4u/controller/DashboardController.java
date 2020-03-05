@@ -264,33 +264,45 @@ public class DashboardController {
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
-        JSONObject itemDevice0 = (JSONObject) data.get(0);
-        String devices0 = itemDevice0.getString("essid");
-        listSsid.add(devices0);
-        for (int i=0; i<data.length(); i++) {
-            int k=0;
-            JSONObject listDevice = (JSONObject) data.get(i);
-            for (int j=0; j<listSsid.size(); j++) {
-                if (listDevice.getString("essid").equals(listSsid.get(j))) {
-                    k = k + 1;
+        try {
+            JSONObject itemDevice0 = (JSONObject) data.get(0);
+            String devices0 = itemDevice0.getString("essid");
+            listSsid.add(devices0);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        try {
+            for (int i = 0; i < data.length(); i++) {
+                int k = 0;
+                JSONObject listDevice = (JSONObject) data.get(i);
+                for (int j = 0; j < listSsid.size(); j++) {
+                    if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                        k = k + 1;
+                    }
+                }
+                if (k == 0) {
+                    listSsid.add(listDevice.getString("essid"));
                 }
             }
-            if (k == 0) {
-                listSsid.add(listDevice.getString("essid"));
-            }    
+        } catch (Exception e) {
+            //TODO: handle exception
         }
+
         for (int j=0; j<listSsid.size(); j++) {
             int k = 0;
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject listDevice = (JSONObject) data.get(i);
-                if (listDevice.getString("essid").equals(listSsid.get(j))) {
-                    k = k + 1;
+            try {
+                for (int i = 0; i < data.length(); i++) {
+                    JSONObject listDevice = (JSONObject) data.get(i);
+                    if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                        k = k + 1;
+                    }
                 }
+            } catch (Exception e) {
+                //TODO: handle exception
             }
             getResult.put("name", listSsid.get(j));
             getResult.put("y",k);
-            result.add(getResult.toString());
-            
+            result.add(getResult.toString());  
         }
         return result.toString();
     }
@@ -385,12 +397,16 @@ public class DashboardController {
         String getClients = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta/",csrfToken,unifises);
         String getDivices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         DashboardController dashboard = new DashboardController();
-        String longestConn = dashboard.longestConn(getClients, postData);
-        String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
-        String mostActiveAp = dashboard.mostActiveAp(getDivices, postData);
-        result.add(longestConn);
-        result.add(mostActiveClient);
-        result.add(mostActiveAp);
+        try {
+            String longestConn = dashboard.longestConn(getClients, postData);
+            String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
+            String mostActiveAp = dashboard.mostActiveAp(getDivices, postData);
+            result.add(longestConn);
+            result.add(mostActiveClient);
+            result.add(mostActiveAp);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
         return result.toString();
     }
 
@@ -1425,13 +1441,13 @@ public class DashboardController {
             String dataPostStatusWan3 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
                     + itemStatusWan3Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
                     + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
-            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan3);
+            getResultStatusWan3 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan3);
         }
         if (itemStatusWan4Id != "") {
             String dataPostStatusWan4 = "{\"jsonrpc\": \"2.0\",\"method\": \"history.get\",\"params\": {\"output\": \"extend\",\"history\": 3,\"itemids\": \""
                     + itemStatusWan4Id + "\",\"time_from\":" + timeFrom + ",\"time_till\":" + timeTill
                     + "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
-            getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
+            getResultStatusWan4 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
         }
         for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
             k = k + 1;

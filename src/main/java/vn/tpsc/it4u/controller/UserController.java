@@ -50,7 +50,6 @@ public class UserController {
             currentUser.getSitename(),
             currentUser.getLanguage(),
             currentUser.getRoles());
-
         return userSummary;
     }
 

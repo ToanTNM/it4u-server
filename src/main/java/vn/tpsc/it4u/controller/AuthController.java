@@ -107,11 +107,49 @@ public class AuthController {
 
         final String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
-        final Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
-
-        user.setRoles(Collections.singleton(userRole));
+        try {
+            switch (signUpRequest.getRoles()) {
+                case "ROLE_ADMIN":
+                    final Role roleAdmin = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleAdmin));
+                    break;
+                case "ROLE_USER":
+                    final Role roleUser = roleRepository.findByName(RoleName.ROLE_USER)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleUser));
+                    break;
+                case "ROLE_MANAGER":
+                    final Role roleMG = roleRepository.findByName(RoleName.ROLE_MANAGER)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleMG));
+                    break;
+                case "ROLE_CSKH":
+                    final Role userRoleCSKH = roleRepository.findByName(RoleName.ROLE_CSKH)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(userRoleCSKH));
+                    break;
+                case "ROLE_KT":
+                    final Role roleKT = roleRepository.findByName(RoleName.ROLE_KT)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleKT));
+                    break;
+                case "ROLE_KD":
+                    final Role roleKD = roleRepository.findByName(RoleName.ROLE_KD)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleKD));
+                    break;
+                default:
+                    final Role roleKH = roleRepository.findByName(RoleName.ROLE_KH)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleKH));
+                    break;
+            }
+        } catch (Exception e) {
+            final Role roleKH = roleRepository.findByName(RoleName.ROLE_KH)
+                    .orElseThrow(() -> new AppException("User Role not set."));
+            user.setRoles(Collections.singleton(roleKH));
+        }
 
         final User result = userRepository.save(user);
 

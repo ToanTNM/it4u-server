@@ -5,6 +5,8 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +33,11 @@ public class RoleController {
     private ApiResponseUtils apiResponse;
 
     @GetMapping()
-    public ResponseEntity<?> get(Locale locale) {
+    public String get(Locale locale) {
         List<Role> roles = repository.findAll();
-
-        return ResponseEntity.ok(apiResponse.success(roles, locale));
+        JSONObject getRoles = new JSONObject(ResponseEntity.ok(repository.findAll()));
+        JSONArray getBody = getRoles.getJSONArray("body");
+        return getBody.toString();
     }
 
     @PostMapping
