@@ -153,7 +153,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/trafficUsage
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU4NDUwMDE3NSwiZXhwIjoxNTg1MTA0OTc1fQ.qE1BsYBQgVQqAn2SNk5aLFtFlV0nxsBVWX5wBTW9oAGCkiFcA8-O3h7_6z3tmNpZonB6LH5d8jaZRtq_pfvisw
 Content-Type: application/json
 
 ###
@@ -163,7 +163,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/quickLook
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU4NDUwMDE3NSwiZXhwIjoxNTg1MTA0OTc1fQ.qE1BsYBQgVQqAn2SNk5aLFtFlV0nxsBVWX5wBTW9oAGCkiFcA8-O3h7_6z3tmNpZonB6LH5d8jaZRtq_pfvisw
 Content-Type: application/json
 
 {

@@ -354,8 +354,13 @@ public class DashboardController {
         Calculator getCalculator = new Calculator();
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
-            long traffic = getInfo.getLong("bytes");
-            double convertTraffic = getCalculator.convertBytesToGb(traffic);
+            double convertTraffic = 0;
+            try {
+                long traffic = getInfo.getLong("bytes");
+                convertTraffic = getCalculator.convertBytesToGb(traffic);
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
             getResult.put("name", getInfo.getString("name"));
             getResult.put("y", convertTraffic);
             result.add(getResult.toString());
@@ -1748,18 +1753,33 @@ public class DashboardController {
         JSONArray getData = infoData.getJSONArray("data");
         JSONObject getDataMax = (JSONObject) getData.get(0);
         JSONObject getPostData = new JSONObject(postData);
-        long max = getDataMax.getLong("bytes");
+        long max = 0;
+        try {
+            max = getDataMax.getLong("bytes");
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
         Integer posMax = 0;
         for (int i=0; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            long dataCompare = getPosCompare.getLong("bytes");
+            long dataCompare = 0;
+            try {
+                dataCompare = getPosCompare.getLong("bytes");
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
             if (max < dataCompare) {
                 max = dataCompare;
             }
         }
         for (int i=0; i<getData.length(); i++) {
             JSONObject getPosCompare = (JSONObject) getData.get(i);
-            long dataCompare = getPosCompare.getLong("bytes");
+            long dataCompare = 0;
+            try {
+                dataCompare = getPosCompare.getLong("bytes");
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             if (max <= dataCompare) {
                 posMax = i;
             }
