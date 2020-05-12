@@ -768,7 +768,9 @@ public class DashboardController {
     @PostMapping("it4u/{id}/getTimeHourly")
     public String getTimeHourly(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> listTime = new ArrayList<>();
-        JSONObject listResult = new JSONObject();
+        List<String> listResult = new ArrayList<>();
+        JSONObject listResultTraffic = new JSONObject();
+        JSONObject listResultClient = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
         long sumTraffic = 0;
@@ -822,17 +824,24 @@ public class DashboardController {
         }
         avgTraffic = Math.round(sumTraffic/k);
         avg = Math.round(sum/k);
+        JSONObject getPostData = new JSONObject(postData);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
-        listResult.put("time",listTime);
-        listResult.put("timeMax",timeMax);
-        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
-        listResult.put("clientMax",maxClient);
-        listResult.put("timeMin",timeMin);
-        listResult.put("clientMin",minClient);
-        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
-        listResult.put("clientAverage",avg);
-        listResult.put("trafficAverage",getCalculator.convertBytesToGb(avgTraffic));
+        // listResult.put("time",listTime);
+        // listResultClient.put("timeMax",timeMax);
+        // listResult.put("timeMin",timeMin);
+        listResultTraffic.put("name", getPostData.getString("traffic"));
+        listResultTraffic.put("max", getCalculator.convertBytesToGb(maxTraffic) + " GB");
+        listResultTraffic.put("min", getCalculator.convertBytesToGb(minTraffic) + " GB");
+        listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
+        
+        listResultClient.put("name", getPostData.getString("client"));
+        listResultClient.put("max",maxClient + " " + getPostData.getString("client"));
+        listResultClient.put("min",minClient + " " + getPostData.getString("client"));
+        listResultClient.put("average",avg  + " " + getPostData.getString("client"));
+
+        listResult.add(listResultClient.toString());
+        listResult.add(listResultTraffic.toString());
         return listResult.toString();
     }
 
@@ -840,7 +849,9 @@ public class DashboardController {
     @PostMapping("it4u/{id}/getTimeMinute")
     public String getTimeMinute(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> listTime = new ArrayList<>();
-        JSONObject listResult = new JSONObject();
+        List<String> listResult = new ArrayList<>();
+        JSONObject listResultTraffic = new JSONObject();
+        JSONObject listResultClient = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
         long sumTraffic = 0;
@@ -893,17 +904,24 @@ public class DashboardController {
         }
         avgTraffic = Math.round(sumTraffic / k);
         avg = Math.round(sum/k);
+        JSONObject getPostData = new JSONObject(postData);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
-        listResult.put("time",listTime);
-        listResult.put("timeMax",timeMax);
-        listResult.put("clientMax",maxClient);
-        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
-        listResult.put("timeMin",timeMin);
-        listResult.put("clientMin",minClient);
-        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
-        listResult.put("clientAverage",avg);
-        listResult.put("trafficAverage", getCalculator.convertBytesToGb(avgTraffic));
+        // listResult.put("time",listTime);
+        // listResultClient.put("timeMax",timeMax);
+        // listResult.put("timeMin",timeMin);
+        listResultTraffic.put("name", getPostData.getString("traffic"));
+        listResultTraffic.put("max", getCalculator.convertBytesToGb(maxTraffic) + " GB");
+        listResultTraffic.put("min", getCalculator.convertBytesToGb(minTraffic) + " GB");
+        listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
+
+        listResultClient.put("name", getPostData.getString("client"));
+        listResultClient.put("max", maxClient + " " + getPostData.getString("client"));
+        listResultClient.put("min", minClient + " " + getPostData.getString("client"));
+        listResultClient.put("average", avg + " " + getPostData.getString("client"));
+
+        listResult.add(listResultClient.toString());
+        listResult.add(listResultTraffic.toString());
         return listResult.toString();
     }
 
@@ -911,7 +929,9 @@ public class DashboardController {
     @PostMapping("it4u/{id}/getTimeDaily")
     public String getTimeDaily(@RequestBody String postData,@PathVariable(value = "id") String userId) {
         List<String> listTime = new ArrayList<>();
-        JSONObject listResult = new JSONObject();
+        List<String> listResult = new ArrayList<>();
+        JSONObject listResultTraffic = new JSONObject();
+        JSONObject listResultClient = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
         long sumTraffic = 0;
@@ -964,17 +984,24 @@ public class DashboardController {
         }
         avgTraffic = Math.round(sumTraffic / k);
         avg = Math.round(sum/k);
+        JSONObject getPostData = new JSONObject(postData);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
-        listResult.put("time", listTime);
-        listResult.put("timeMax", timeMax);
-        listResult.put("clientMax", maxClient);
-        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
-        listResult.put("timeMin", timeMin);
-        listResult.put("clientMin", minClient);
-        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
-        listResult.put("clientAverage", avg);
-        listResult.put("trafficAverage", getCalculator.convertBytesToGb(avgTraffic));
+        // listResult.put("time",listTime);
+        // listResultClient.put("timeMax",timeMax);
+        // listResult.put("timeMin",timeMin);
+        listResultTraffic.put("name", getPostData.getString("traffic"));
+        listResultTraffic.put("max", getCalculator.convertBytesToGb(maxTraffic) + " GB");
+        listResultTraffic.put("min", getCalculator.convertBytesToGb(minTraffic) + " GB");
+        listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
+
+        listResultClient.put("name", getPostData.getString("client"));
+        listResultClient.put("max", maxClient + " " + getPostData.getString("client"));
+        listResultClient.put("min", minClient + " " + getPostData.getString("client"));
+        listResultClient.put("average", avg + " " + getPostData.getString("client"));
+
+        listResult.add(listResultClient.toString());
+        listResult.add(listResultTraffic.toString());
         return listResult.toString();
     }
 
