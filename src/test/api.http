@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "admin",
-    "password": "123456"
+    "password": "Tpsc.vn@49lqd"
 }
 
 ###
@@ -104,6 +104,68 @@ Content-Type: application/json
     "type":"User",
     "sitename":"rhnl7chn"
 }
+
+###
+POST http://localhost:5000/api/v1/it4u/79CTVT_Hanh.PTM/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Content-Type: application/json
+
+{
+    "sitename": "79CTVT_Hanh.PTM",
+    "wan1Provider": "VNPT",
+    "wan1Ip": "14.241.120.54",
+    "wan1Status": "1",
+    "wan1Uptime": "39721",
+    "wan2Provider": "VIETTEL",
+    "wan2Ip": "0.0.0.0",
+    "wan2Status": "1",
+    "wan2Uptime": "43224",
+    "wan3Provider": "NONE",
+    "wan3Ip": "NONE",
+    "wan3Status": "0",
+    "wan3Uptime": "NONE",
+    "wan4Provider": "NONE",
+    "wan4Ip": "NONE",
+    "wan4Status": "0",
+    "wan4Uptime": "NONE",
+    "uptimeLb": "278677"
+}
+
+###
+PUT http://localhost:5000/api/v1/it4u/49LQD_TPcoms/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Content-Type: application/json
+
+{
+    "sitename": "49LQD_TPcoms",
+    "wan1Provider": "VNPT",
+    "wan1Ip": "14.241.120.54",
+    "wan1Status": "1",
+    "wan1Uptime": "39721",
+    "wan2Provider": "VIETTEL",
+    "wan2Ip": "0.0.0.0",
+    "wan2Status": "1",
+    "wan2Uptime": "43224",
+    "wan3Provider": "NONE",
+    "wan3Ip": "NONE",
+    "wan3Status": "0",
+    "wan3Uptime": "NONE",
+    "wan4Provider": "NONE",
+    "wan4Ip": "NONE",
+    "wan4Status": "0",
+    "wan4Uptime": "NONE",
+    "uptimeLb": "278677"
+}
+it4u/1/customer_info
+###
+DELETE  http://localhost:5000/api/v1/it4u/1/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/cookies
@@ -249,36 +311,45 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeDaily
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTimeDaily
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MjcxNjk0LCJleHAiOjE1ODk4NzY0OTR9.KoJiV8q_KBwSAT2RHdbJcB7kOqKsfC5J0XOU1vHS0qPAC3u8E-UmTsrLvvZCr1Krsbv4p6NMt7AezqUfgs2jug
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1577898000000",
-    "end":"1578103714173"
+    "start":"1588266000000",
+    "end":"1590944399999",
+    "client": "Thiết bị",
+    "traffic": "Lưu lượng",
+    "total_traffic": "Tổng lưu lượng",
 }
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTimeHourly
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MjcxNjk0LCJleHAiOjE1ODk4NzY0OTR9.KoJiV8q_KBwSAT2RHdbJcB7kOqKsfC5J0XOU1vHS0qPAC3u8E-UmTsrLvvZCr1Krsbv4p6NMt7AezqUfgs2jug
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1577898000000",
-    "end":"1578103714173"
+    "start":"1588266000000",
+    "end":"1590944399999",
+    "client": "Thiết bị",
+    "traffic": "Lưu lượng",
+    "total_traffic": "Tổng lưu lượng",
 }
 
 ###
-POST http://localhost:5000/api/v1/it4u/8pcpfwkw/getTimeMinute
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwNDQ0NTExLCJleHAiOjE1ODEwNDkzMTF9.STKHBkf7ueuG0-8yiyt11dZfM7Dgi-dXG1otI6cPM8z0CsBfhfLobEQhWZaG1d7eKutOES4wwHfcDRAR92waQA
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTimeMinute
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MjcxNjk0LCJleHAiOjE1ODk4NzY0OTR9.KoJiV8q_KBwSAT2RHdbJcB7kOqKsfC5J0XOU1vHS0qPAC3u8E-UmTsrLvvZCr1Krsbv4p6NMt7AezqUfgs2jug
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1575219402448",
-    "end":"1577811402448"
+    "start":"1588266000000",
+    "end":"1590944399999",
+     "client": "Thiết bị",
+    "traffic": "Lưu lượng",
+    "total_traffic": "Tổng lưu lượng",
 }
 
 ###
@@ -481,4 +552,13 @@ Content-Type: application/json
     "subjectMail": "Report TPs",
     "textMail": "Hi",
     "usernameMail": "lap.dang@tpsc.vn"
+}
+
+###
+Post http://localhost:5000/api/v1/forgot
+# Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Content-Type: application/json
+
+{
+    "email":"lapdangdtu@gmail.com",
 }

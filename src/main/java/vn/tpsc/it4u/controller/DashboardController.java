@@ -213,7 +213,7 @@ public class DashboardController {
             if (!sitesNameRepository.existsBySitename(siteName)) {
                 final SitesName createSitename = new SitesName(siteName, idName);
                 sitesNameRepository.save(createSitename);
-            }
+            }                          
         }
         return true;
     }
@@ -771,6 +771,8 @@ public class DashboardController {
         JSONObject listResult = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
+        long sumTraffic = 0;
+        long avgTraffic = 0;
         int sum = 0;
         int avg = 0;
         int k = 0;
@@ -781,6 +783,8 @@ public class DashboardController {
         JSONObject getPos = (JSONObject) dataHourly.get(0);
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
+        Long maxTraffic = getPos.getLong("wlan_bytes");
+        Long minTraffic = getPos.getLong("wlan_bytes");
         Calculator getCalculator = new Calculator();
         Long time0 = getPos.getLong("time");
         String uptime0 = getCalculator.ConvertSecondToDate(time0);
@@ -802,6 +806,13 @@ public class DashboardController {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
                 }
+                if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
+                    maxTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                if (minTraffic >= getPosStart.getLong("wlan_bytes")) {
+                    minTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                sumTraffic = sumTraffic + getPosStart.getLong("wlan_bytes");
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
                 listTime.add(uptime.toString());
@@ -809,15 +820,19 @@ public class DashboardController {
             }
 
         }
+        avgTraffic = Math.round(sumTraffic/k);
         avg = Math.round(sum/k);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
         listResult.put("time",listTime);
         listResult.put("timeMax",timeMax);
+        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
         listResult.put("clientMax",maxClient);
         listResult.put("timeMin",timeMin);
         listResult.put("clientMin",minClient);
+        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
         listResult.put("clientAverage",avg);
+        listResult.put("trafficAverage",getCalculator.convertBytesToGb(avgTraffic));
         return listResult.toString();
     }
 
@@ -828,6 +843,8 @@ public class DashboardController {
         JSONObject listResult = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
+        long sumTraffic = 0;
+        long avgTraffic = 0;
         int sum = 0;
         int avg = 0;
         int k = 0;
@@ -838,6 +855,8 @@ public class DashboardController {
         JSONObject getPos = (JSONObject) dataHourly.get(0);
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
+        Long maxTraffic = getPos.getLong("wlan_bytes");
+        Long minTraffic = getPos.getLong("wlan_bytes");
         Calculator getCalculator = new Calculator();
         Long time0 = getPos.getLong("time");
         String uptime0 = getCalculator.ConvertSecondToDate(time0);
@@ -858,6 +877,13 @@ public class DashboardController {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
                 }
+                if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
+                    maxTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                if (minTraffic >= getPosStart.getLong("wlan_bytes")) {
+                    minTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                sumTraffic = sumTraffic + getPosStart.getLong("wlan_bytes");
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
                 listTime.add(uptime.toString());
@@ -865,15 +891,19 @@ public class DashboardController {
             }
 
         }
+        avgTraffic = Math.round(sumTraffic / k);
         avg = Math.round(sum/k);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
         listResult.put("time",listTime);
         listResult.put("timeMax",timeMax);
         listResult.put("clientMax",maxClient);
+        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
         listResult.put("timeMin",timeMin);
         listResult.put("clientMin",minClient);
+        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
         listResult.put("clientAverage",avg);
+        listResult.put("trafficAverage", getCalculator.convertBytesToGb(avgTraffic));
         return listResult.toString();
     }
 
@@ -884,6 +914,8 @@ public class DashboardController {
         JSONObject listResult = new JSONObject();
         long getTimeMax = 0;
         long getTimeMin = 0;
+        long sumTraffic = 0;
+        long avgTraffic = 0;
         int sum = 0;
         int avg = 0;
         int k = 0;
@@ -894,6 +926,8 @@ public class DashboardController {
         JSONObject getPos = (JSONObject) dataHourly.get(0);
         Integer maxClient = getPos.getInt("wlan-num_sta");
         Integer minClient = getPos.getInt("wlan-num_sta");
+        Long maxTraffic = getPos.getLong("wlan_bytes");
+        Long minTraffic = getPos.getLong("wlan_bytes");
         Calculator getCalculator = new Calculator();
         Long time0 = getPos.getLong("time");
         String uptime0 = getCalculator.ConvertSecondToDate(time0);
@@ -914,6 +948,13 @@ public class DashboardController {
                     minClient = getPosStart.getInt("wlan-num_sta");
                     getTimeMin = getPosStart.getLong("time");
                 }
+                if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
+                    maxTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                if (minTraffic >= getPosStart.getLong("wlan_bytes")) {
+                    minTraffic = getPosStart.getLong("wlan_bytes");
+                }
+                sumTraffic = sumTraffic + getPosStart.getLong("wlan_bytes");
                 sum = sum + getPosStart.getInt("wlan-num_sta");
                 k = k + 1;
                 listTime.add(uptime.toString());
@@ -921,15 +962,19 @@ public class DashboardController {
             }
 
         }
+        avgTraffic = Math.round(sumTraffic / k);
         avg = Math.round(sum/k);
         String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
         String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
-        listResult.put("time",listTime);
-        listResult.put("timeMax",timeMax);
-        listResult.put("clientMax",maxClient);
-        listResult.put("timeMin",timeMin);
-        listResult.put("clientMin",minClient);
-        listResult.put("clientAverage",avg);
+        listResult.put("time", listTime);
+        listResult.put("timeMax", timeMax);
+        listResult.put("clientMax", maxClient);
+        listResult.put("trafficMax", getCalculator.convertBytesToGb(maxTraffic));
+        listResult.put("timeMin", timeMin);
+        listResult.put("clientMin", minClient);
+        listResult.put("trafficMin", getCalculator.convertBytesToGb(minTraffic));
+        listResult.put("clientAverage", avg);
+        listResult.put("trafficAverage", getCalculator.convertBytesToGb(avgTraffic));
         return listResult.toString();
     }
 
@@ -1619,6 +1664,63 @@ public class DashboardController {
             result.put("duration", duration);
             result.put("status", status);
             dataList.add(result.toString());
+        }
+        return dataList.toString();
+    }
+
+    @ApiOperation(value = "Get voucher app")
+    @GetMapping("it4u/{id}/voucherApp")
+    public String getVoucherApp(@PathVariable(value = "id") String userId) {
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject result = new JSONObject();
+        Integer down = 0;
+        Integer up = 0;
+        Integer byteQuota = 0;
+        Calculator getCalculator = new Calculator();
+        List<String> dataList = new ArrayList<>();
+        String getRequest = apiRequest.getRequestApi(urlIt4u, "/s/" + userId + "/stat/voucher", csrfToken, unifises);
+        JSONObject jsonResult = new JSONObject(getRequest);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            List<String> lish = new ArrayList<>();
+            JSONObject getData = (JSONObject) data.get(i);
+            String id = getData.getString("_id");
+            String code = getData.getString("code");
+            long getTime = getData.getLong("create_time");
+            String createTime = getCalculator.ConvertSecondToDate(getTime * 1000);
+            // Integer down = getData.getInt("qos_rate_max_down");
+            try {
+                down = getData.getInt("qos_rate_max_down");
+            } catch (Exception e) {
+                down = 0;
+            }
+            lish.add(down + " Kbps");
+            // result.put("down", down + " Kbps");
+            try {
+                up = getData.getInt("qos_rate_max_down");
+            } catch (Exception e) {
+                up = 0;
+            }
+            lish.add(up + " Kbps");
+            //result.put("up", up + " Kbps");
+            try {
+                byteQuota = getData.getInt("qos_usage_quota");
+            } catch (Exception e) {
+                byteQuota = 0;
+            }
+            lish.add(byteQuota + " MB");
+            //result.put("byteQuota", byteQuota + " MB");
+            String note = getData.getString("note");
+            Integer getDuration = getData.getInt("duration");
+            String duration = getCalculator.ConvertSecondToHHMMString(getDuration);
+            String status = getData.getString("status");
+            lish.add(id);
+            lish.add(code);
+            lish.add(createTime);
+            lish.add(note);
+            lish.add(duration);
+            lish.add(status);
+            dataList.add(lish.toString());
         }
         return dataList.toString();
     }

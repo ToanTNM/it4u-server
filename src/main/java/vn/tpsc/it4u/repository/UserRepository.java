@@ -3,6 +3,8 @@ package vn.tpsc.it4u.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +26,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
+
+    Optional<User> findByResetToken(String resetToken);
+
+    
 }
