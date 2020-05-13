@@ -173,14 +173,18 @@ public class ReporterController {
             } catch (Exception e) {
             }
         }
-        String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + idUser + "/stat/sta/", csrfToken, unifises);
-        JSONObject jsonResult = new JSONObject(getData);
-        JSONArray data = jsonResult.getJSONArray("data");
+        try {
+            String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + idUser + "/stat/sta/", csrfToken, unifises);
+            JSONObject jsonResult = new JSONObject(getData);
+            JSONArray data = jsonResult.getJSONArray("data");
 
-        for (int i = 0; i < data.length(); i++) {
-            JSONObject getInfo = (JSONObject) data.get(i);
-            upload = upload + getInfo.getInt("rx_rate");
-            download = download + getInfo.getInt("tx_rate");
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject getInfo = (JSONObject) data.get(i);
+                upload = upload + getInfo.getInt("rx_rate");
+                download = download + getInfo.getInt("tx_rate");
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
         }
         Calculator getCalculator = new Calculator();
         double convertUploadToMb = getCalculator.convertBytesToMb(upload);
@@ -188,16 +192,20 @@ public class ReporterController {
         double convertDownloadToMb = getCalculator.convertBytesToMb(download);
         String Download = Double.toString(convertDownloadToMb);
         // AP connected
-        String getDataAP = apiRequest.getRequestApi(urlIt4u, "/s/" + idUser + "/stat/device/", csrfToken, unifises);
-        JSONObject jsonResultAP = new JSONObject(getDataAP);
-        JSONArray dataAP = jsonResultAP.getJSONArray("data");
-        for (int i = 0; i < dataAP.length(); i++) {
-            JSONObject getInfo = (JSONObject) dataAP.get(i);
-            if (getInfo.getInt("state") == 1) {
-                countConn = countConn + 1;
-            } else {
-                countDisConn = countDisConn + 1;
+        try {
+            String getDataAP = apiRequest.getRequestApi(urlIt4u, "/s/" + idUser + "/stat/device/", csrfToken, unifises);
+            JSONObject jsonResultAP = new JSONObject(getDataAP);
+            JSONArray dataAP = jsonResultAP.getJSONArray("data");
+            for (int i = 0; i < dataAP.length(); i++) {
+                JSONObject getInfo = (JSONObject) dataAP.get(i);
+                if (getInfo.getInt("state") == 1) {
+                    countConn = countConn + 1;
+                } else {
+                    countDisConn = countDisConn + 1;
+                }
             }
+        } catch (Exception e) {
+            //TODO: handle exception
         }
         String countAPConnected = Integer.toString(countConn);
         String countAPDisconnected = Integer.toString(countDisConn);

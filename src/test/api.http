@@ -107,7 +107,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/79CTVT_Hanh.PTM/customer_info
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MzM3OTI5LCJleHAiOjE1ODk5NDI3Mjl9.yXx3Yd9U-wFCS0NMD616Ki1QD0AhQkWdyRvdwXfd0KAqx_kqk5O2j-QzZFr1CWQvdV0lPu9HogW_50fYSHV7Qw
 Content-Type: application/json
 
 {
@@ -132,12 +132,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5000/api/v1/it4u/49LQD_TPcoms/customer_info
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg3NTQzMzU4LCJleHAiOjE1ODgxNDgxNTh9.-3ltpOyPzxAxpzBm0VWDLCK90Lz62e_McQfwPaQmzijb9GH2uo7CdCPVgLLf4SyI4T4D6D5OZMTDDSwmzEw9Hg
+PUT http://localhost:5000/api/v1/it4u/537THD_Hai.TN/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MzM3OTI5LCJleHAiOjE1ODk5NDI3Mjl9.yXx3Yd9U-wFCS0NMD616Ki1QD0AhQkWdyRvdwXfd0KAqx_kqk5O2j-QzZFr1CWQvdV0lPu9HogW_50fYSHV7Qw
 Content-Type: application/json
 
 {
-    "sitename": "49LQD_TPcoms",
+    "sitename": "89NTMK_ICS",
     "wan1Provider": "VNPT",
     "wan1Ip": "14.241.120.54",
     "wan1Status": "1",
