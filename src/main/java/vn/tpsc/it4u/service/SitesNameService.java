@@ -12,7 +12,6 @@ import vn.tpsc.it4u.payload.SitesNameSummary;
 import vn.tpsc.it4u.util.StringUtils;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 
-
 /**
  * SitesNameService
  */
@@ -32,6 +31,9 @@ public class SitesNameService {
 
         return listSitesName;
     }
+
+    // public addSiteForUser() {
+    // }
 
     public Boolean deleteAll() {
         sitesNameRepository.deleteAll();

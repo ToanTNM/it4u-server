@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import vn.tpsc.it4u.model.Role;
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.enums.UserType;
@@ -22,7 +23,7 @@ public class UserSummary {
     private Gender gender;
     private UserType type;
     private UserStatus status;
-    private String sitename;
+    private Set<SitesName> sitename;
     private String language;
     private Set<Role> roles;
 }

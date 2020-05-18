@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.User;
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.enums.UserType;
@@ -56,7 +57,7 @@ public class CustomUserDetails implements UserDetails {
 
     private UserStatus status;
 
-    private String sitename;
+    private Set<SitesName> sitename;
 
     private String language;
 

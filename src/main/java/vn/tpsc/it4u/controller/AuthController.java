@@ -3,8 +3,9 @@ package vn.tpsc.it4u.controller;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Locale;
-
+import java.util.Set;
 import javax.validation.Valid;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.model.enums.RoleName;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.User;
@@ -32,6 +34,7 @@ import vn.tpsc.it4u.payload.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payload.LoginRequest;
 import vn.tpsc.it4u.payload.SignUpRequest;
 import vn.tpsc.it4u.repository.RoleRepository;
+import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.JwtTokenProvider;
 import vn.tpsc.it4u.util.ApiResponseUtils;
@@ -52,6 +55,9 @@ public class AuthController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    SitesNameRepository sitenamesRepository;
+    
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -101,7 +107,6 @@ public class AuthController {
             signUpRequest.getGender(), 
             signUpRequest.getType(), 
             UserStatus.Active,
-            signUpRequest.getSitename(),
             signUpRequest.getLanguage(),
             null
             );
@@ -151,7 +156,13 @@ public class AuthController {
                     .orElseThrow(() -> new AppException("User Role not set."));
             user.setRoles(Collections.singleton(roleKH));
         }
-
+        Set<String> strSites = signUpRequest.getSitename();
+        Set<SitesName> sitenames = new HashSet<>();
+        strSites.forEach(site -> {
+            SitesName sitename = sitenamesRepository.findByIdname(site);
+            sitenames.add(sitename);
+        });
+        user.setSitename(sitenames);
         final User result = userRepository.save(user);
 
         final URI location = ServletUriComponentsBuilder
@@ -159,5 +170,5 @@ public class AuthController {
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
-    }    
+    }
 }

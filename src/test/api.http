@@ -18,20 +18,34 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4L
 Content-Type: application/json
 
 {
-    "name": "KH432",
-    "username": "KH423",
-    "email": "lap.dang5@tpsc.vn",
+    "name": "KH4326",
+    "username": "KH4236",
+    "email": "lap.dang11@tpsc.vn",
     "password": "123456",
     "gender": "Male",
     "type": "User",
-    "sitename": "rhnl7chn",
-    "language": "English"
-    // "roles": "ROLE_KT"
+    "sitename": ["rhnl7chn"],
+    "language": "English",
+    "roles": "ROLE_KD"
+}
+
+###
+
+POST http://localhost:5000/api/v1/auth/addSitename
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4LCJleHAiOjE1ODE1ODcyMTh9.wjPxNtW6r0kSXbw0ZPnWg22flAXivL6AuQBf6PnQZV6T0wfHwD28Aj1h_cSffPzWTLlBbd0EWCD9ol8J8Y1BfA
+Content-Type: application/json
+
+{
+    "name": "KH4322",
+    "username": "KH4232",
+    "email": "lap.dang7@tpsc.vn",
+    "password": "123456",
+    "sitename": "vr5hy29h"
 }
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MzYxODYwLCJleHAiOjE1ODk5NjY2NjB9.CoUEu5IgPuc3yllh1Hmpv4zSuawUifFLG898XutubIWStOIid6TlN8tyrSQWJKw-Co4e98k90-SBFfkaCe2asQ
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
@@ -46,25 +60,24 @@ POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "usernameOrEmail": "lapdang",
+    "usernameOrEmail": "KH4234",
     "password": "123456"
 }
 
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOCIsImlhdCI6MTU4OTQ1MDA4MywiZXhwIjoxNTkwMDU0ODgzfQ.QVtVcNAgUQSn2GyvZsgCz5MtZI9vImQCUt7_-AzzXy5rd5PJco5l1ErITokvXp4AgX5glhO6nZ_4EC3jKJXlpA
 ###
 
 PUT http://localhost:5000/api/v1/user/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU4OTc3NDIxNiwiZXhwIjoxNTkwMzc5MDE2fQ.bbakWh3awt3V_lKQpypqPkgxY0bsisoK3WfvvkU3krbKuju5tSkPO94fDTDCIJ1-Zka5M8JxQqyK2xAlawYrzg
 Content-Type: application/json
 
 {
-    "name": "Lap Dang",
-    "username": "lapdang2",
-    "email": "email27@yahoo.com",
+    "name": "KH4234",
+    "username": "KH4234",
+    "email": "KH4234@yahoo.com",
     //"password": "123456",
     "gender": "Male",
     "type": "User",
@@ -87,22 +100,22 @@ DELETE http://localhost:5000/api/v1/users/3
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4LCJleHAiOjE1NzY1NzE4ODh9.hR5gDm_vVyuPyM99WSilHBsipLrid-G9foL-ZvEh784xN-B6KbN51cQWOQ4PBwzO2BSvzdUpFmE-vjSwTgkzmA
 
 ###
-GET http://localhost:5000/api/v1/users/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+GET http://localhost:5000/api/v1/users/20
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5NzcxMjgyLCJleHAiOjE1OTAzNzYwODJ9.Hnrst8XZILLIWZvAFh4f8UunFMQwZOFDvRqV1zDpo3vuTQtoJ6gi2Bd96IcEB34odmXe-Kqro71CwbuwA9itLw
 
 ###
-PUT http://localhost:5000/api/v1/users/6
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+PUT http://localhost:5000/api/v1/users/20
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5NzcxMjgyLCJleHAiOjE1OTAzNzYwODJ9.Hnrst8XZILLIWZvAFh4f8UunFMQwZOFDvRqV1zDpo3vuTQtoJ6gi2Bd96IcEB34odmXe-Kqro71CwbuwA9itLw
 Content-Type: application/json
 
 {
-    "name":"TEST3",
-    "username":"test3",
-    "email":"lap.dang2@tpsc.vn",
-    "gender":"Male",
-    "language":"English",
-    "type":"User",
-    "sitename":"rhnl7chn"
+    "name": "KH4325",
+    "username": "KH4235",
+    "email": "lap.dang17@tpsc.vn",
+    "gender": "Male",
+    "type": "User",
+    "sitename":  ["rhnl7chn"],
+    "language": "English"
 }
 
 ###
@@ -312,7 +325,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTimeDaily
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MjcxNjk0LCJleHAiOjE1ODk4NzY0OTR9.KoJiV8q_KBwSAT2RHdbJcB7kOqKsfC5J0XOU1vHS0qPAC3u8E-UmTsrLvvZCr1Krsbv4p6NMt7AezqUfgs2jug
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU4OTU5ODY4MSwiZXhwIjoxNTkwMjAzNDgxfQ.Z9odyZDZsXktqpJgVXpW7nJr2DvsrHrIaCh6dYRl8sekKsBeqj956vsh9FdARNP76U_k1NwECg-ZaIkKa42VBg
 Content-Type: application/json
 
 {
@@ -326,7 +339,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTimeHourly
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MjcxNjk0LCJleHAiOjE1ODk4NzY0OTR9.KoJiV8q_KBwSAT2RHdbJcB7kOqKsfC5J0XOU1vHS0qPAC3u8E-UmTsrLvvZCr1Krsbv4p6NMt7AezqUfgs2jug
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU4OTU5ODg4OSwiZXhwIjoxNTkwMjAzNjg5fQ.4AjLH1ZMePGsH0rDzqxWoVXfcPCGfLh8uLFLWF9kGGxDXJIDyEQ4WiiOGNYUnbJ-dVxLscfG6PcOu4xRypPKrQ
 Content-Type: application/json
 
 {

@@ -53,6 +53,7 @@ public class UserService {
         user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
         //Language
         user.setLanguage(updatingUser.getLanguage() != null ? updatingUser.getLanguage() : user.getLanguage());
+       
         userRepository.save(user);
 
         return true;

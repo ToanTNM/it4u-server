@@ -1,5 +1,6 @@
 package vn.tpsc.it4u.payload;
 
+import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -38,7 +39,7 @@ public class SignUpRequest {
 
     private UserStatus status;
 
-    private String sitename;
+    private Set<String> sitename;
 
     private String language;
 

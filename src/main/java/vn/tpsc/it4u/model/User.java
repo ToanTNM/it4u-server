@@ -10,6 +10,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Proxy;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -82,8 +89,8 @@ public class User extends UserDateAudit {
     //@ColumnDefault("Active")
     private UserStatus status;
 
-    @Size(max = 100)
-    private String sitename;
+    // @Size(max = 100)
+    // private String sitename;
 
     @Size(max = 100)
     private String resetToken;
@@ -95,7 +102,15 @@ public class User extends UserDateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String sitename, String language, String resetToken) {
+    @ManyToMany @Fetch(FetchMode.JOIN)
+    // @JsonIgnore
+    @JoinTable(name = "user_site",
+            joinColumns =  @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "site_id"))
+
+    private Set<SitesName> sitename = new HashSet<>();
+
+    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String language, String resetToken) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -103,7 +118,7 @@ public class User extends UserDateAudit {
         this.gender = gender;
         this.type = type;
         this.status = status;
-        this.sitename = sitename;
+        // this.sitename = sitename;
         this.language = language;
         this.resetToken = resetToken;
     }

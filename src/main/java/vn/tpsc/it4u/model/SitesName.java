@@ -1,10 +1,13 @@
 package vn.tpsc.it4u.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import org.hibernate.annotations.Proxy;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +24,7 @@ import vn.tpsc.it4u.model.audit.UserDateAudit;
 @Entity
 @Table(name = "sitesname", uniqueConstraints = { @UniqueConstraint(columnNames = { "sitename" }),
         @UniqueConstraint(columnNames = { "idname" }) })
+
 public class SitesName extends UserDateAudit {
 
     /**

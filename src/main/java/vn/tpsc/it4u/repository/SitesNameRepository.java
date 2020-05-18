@@ -1,6 +1,7 @@
 package vn.tpsc.it4u.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,7 @@ public interface SitesNameRepository extends JpaRepository<SitesName, Long> {
     
     Boolean existsBySitename(String username);
     
-    Boolean existsByIdname(String email);
+    Boolean existsByIdname(String idname);
+
+    SitesName findByIdname(String idname);
 }

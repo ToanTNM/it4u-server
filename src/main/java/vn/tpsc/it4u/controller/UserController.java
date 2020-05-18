@@ -1,7 +1,11 @@
 package vn.tpsc.it4u.controller;
 
+import java.util.HashSet;
 import java.util.List;
+
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.payload.*;
+import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.UserService;
@@ -9,6 +13,7 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.security.CurrentUser;
 
 import java.util.Locale;
+import java.util.Set;
 
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;
@@ -25,6 +30,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SitesNameRepository sitenamesRepository;
 
     @Autowired 
     UserService userService;
@@ -103,8 +111,27 @@ public class UserController {
 
     @ApiOperation(value = "Update user infomation, except: role, password, avatar")
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId, @RequestBody UserSummary updatingUser, Locale locale) {        
-        userService.updateUser(userId, updatingUser);
+    public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId, @RequestBody SignUpRequest updatingUser, Locale locale) {         
+        Set<String> strSites = updatingUser.getSitename();
+        Set<SitesName> sitenames = new HashSet<>();
+        strSites.forEach(site -> {
+            SitesName sitename = sitenamesRepository.findByIdname(site);
+            sitenames.add(sitename);
+        });
+        UserSummary user = new UserSummary(
+                    null, 
+                    updatingUser.getUsername(), 
+                    updatingUser.getName(), 
+                    updatingUser.getEmail(), 
+                    null, 
+                    updatingUser.getGender(), 
+                    updatingUser.getType(), 
+                    updatingUser.getStatus(),
+                    sitenames,
+                    updatingUser.getLanguage(),
+                    null
+            );
+        userService.updateUser(userId, user);
 
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }

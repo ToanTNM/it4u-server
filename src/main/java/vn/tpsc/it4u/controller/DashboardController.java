@@ -4,7 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
+
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,8 +27,11 @@ import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.service.SitesNameService;
 import vn.tpsc.it4u.model.ConfigToken;
+import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.service.ConfigTokenService;
 import vn.tpsc.it4u.repository.ConfigTokenRepository;
+import vn.tpsc.it4u.security.CustomUserDetails;
+import vn.tpsc.it4u.security.CurrentUser;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.util.Calculator;
@@ -251,8 +257,14 @@ public class DashboardController {
     
     @ApiOperation(value = "Client Essid")
     @GetMapping("it4u/{id}/clientEssid")
-    public String getClientEssid(@PathVariable(value = "id") String userId) {
+    public String getClientEssid(@PathVariable(value = "id") String userId,
+        @CurrentUser CustomUserDetails currentUser) {
         ApiRequest apiRequest = new  ApiRequest();
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listSsid = new ArrayList<>();
         List<String> result = new ArrayList<>();
         JSONObject getResult = new JSONObject();
@@ -309,8 +321,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Current client usage")
     @GetMapping("it4u/{id}/clientUsage")
-    public String getClientUsage(@PathVariable(value = "id") String userId) {
+    public String getClientUsage(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         JSONObject getResult = new JSONObject();
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new  ApiRequest();
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
@@ -326,7 +343,12 @@ public class DashboardController {
     }
     @ApiOperation(value = "Get mac AP")
     @GetMapping("it4u/{id}/getMacAp")
-    public String getMacAp(@PathVariable(value = "id") String userId) {
+    public String getMacAp(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         JSONObject getResult = new JSONObject();
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new  ApiRequest();
@@ -344,7 +366,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Current traffic usage")
     @GetMapping("it4u/{id}/trafficUsage")
-    public String getTrafficUsage(@PathVariable(value = "id") String userId) {
+    public String getTrafficUsage(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         JSONObject getResult = new JSONObject();
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new  ApiRequest();
@@ -370,7 +397,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Per radio type")
     @GetMapping("it4u/{id}/radioType")
-    public String getClientRadio(@PathVariable(value = "id") String userId) {
+    public String getClientRadio(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         Integer lowRadio = 0;
         Integer highRadio = 0;
         List<String> result = new ArrayList<>();
@@ -396,12 +428,17 @@ public class DashboardController {
 
     @ApiOperation(value = "Quick look")
     @PostMapping("it4u/{id}/quickLook")
-    public String getQuickLook(@PathVariable(value = "id") String userId, @RequestBody String postData) {
+    public String getQuickLook(@PathVariable(value = "id") String userId, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
         ApiRequest apiRequest = new ApiRequest();
         List<String> result = new ArrayList<>();
         String getClients = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta/",csrfToken,unifises);
         String getDivices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         try {
             String longestConn = dashboard.longestConn(getClients, postData);
             String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
@@ -417,7 +454,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Hourly Client")
     @PostMapping("it4u/{id}/hourlyClient")
-    public String getHourlyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getHourlyClient(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Double> listTraffic = new ArrayList<Double>();
@@ -493,7 +535,13 @@ public class DashboardController {
 
     @ApiOperation(value = "5 minutes Client")
     @PostMapping("it4u/{id}/5MinutesClient")
-    public String getMinutesClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getMinutesClient(@RequestBody String postData,@PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Double> listTraffic = new ArrayList<Double>();
@@ -566,7 +614,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Daily Client")
     @PostMapping("it4u/{id}/dailyClient")
-    public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getDailyClient(@RequestBody String postData,@PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Double> listTraffic = new ArrayList<Double>();
@@ -640,7 +694,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Daily AP")
     @PostMapping("it4u/{id}/dailyAP")
-    public String getDailyAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getDailyAP(@RequestBody String postData,@PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Long> listTraffic = new ArrayList<Long>();
@@ -682,7 +742,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Hourly AP")
     @PostMapping("it4u/{id}/hourlyAP")
-    public String getHourlyAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getHourlyAP(@RequestBody String postData,@PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Long> listTraffic = new ArrayList<Long>();
@@ -724,7 +790,13 @@ public class DashboardController {
 
     @ApiOperation(value = "5 minutes AP")
     @PostMapping("it4u/{id}/5MinutesAP")
-    public String get5MinutesAP(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String get5MinutesAP(@RequestBody String postData,@PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<Integer> listClient = new ArrayList<Integer>();
         List<Long> listTraffic = new ArrayList<Long>();
@@ -766,7 +838,7 @@ public class DashboardController {
     
     @ApiOperation(value = "Get time hourly")
     @PostMapping("it4u/{id}/getTimeHourly")
-    public String getTimeHourly(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getTimeHourly(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         List<String> listTime = new ArrayList<>();
         List<String> listResult = new ArrayList<>();
         JSONObject listResultTraffic = new JSONObject();
@@ -779,6 +851,12 @@ public class DashboardController {
         int avg = 0;
         int k = 0;
         ApiRequest apiRequest = new ApiRequest();
+        // condition get data
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
         JSONObject getData = new JSONObject(getHourly);
         JSONArray dataHourly = getData.getJSONArray("data");
@@ -847,7 +925,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Get time 5 minutes")
     @PostMapping("it4u/{id}/getTimeMinute")
-    public String getTimeMinute(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getTimeMinute(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listTime = new ArrayList<>();
         List<String> listResult = new ArrayList<>();
         JSONObject listResultTraffic = new JSONObject();
@@ -927,7 +1010,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Get time daily")
     @PostMapping("it4u/{id}/getTimeDaily")
-    public String getTimeDaily(@RequestBody String postData,@PathVariable(value = "id") String userId) {
+    public String getTimeDaily(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listTime = new ArrayList<>();
         List<String> listResult = new ArrayList<>();
         JSONObject listResultTraffic = new JSONObject();
@@ -1007,7 +1095,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Count AP Connect")
     @PostMapping("it4u/{id}/apCount")
-    public String getAPConnect(@PathVariable(value = "id") String userId, @RequestBody String postData) {
+    public String getAPConnect(@PathVariable(value = "id") String userId, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         Integer countConn = 0;
         Integer countDisConn = 0;
         List<String> result = new ArrayList<>();
@@ -1038,7 +1132,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Hotspot")
     @PostMapping("it4u/{id}/hotspot/{start}/{end}")
-    public String getHotspot(@PathVariable(value = "id") String userId,@PathVariable(value = "start") String start, @PathVariable(value = "end") String end, @RequestBody String postData) {
+    public String getHotspot(@PathVariable(value = "id") String userId,@PathVariable(value = "start") String start, @PathVariable(value = "end") String end, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         Integer newClient = 0;
         Integer returnClient = 0;
         List<String> result = new ArrayList<>();
@@ -1071,7 +1171,13 @@ public class DashboardController {
     //Dashboard 2
     @ApiOperation(value = "Customer info")
     @PostMapping("it4u/{id}/customerInfo")
-    public String getCustomerInfo(@PathVariable(value="id") String siteName, @RequestBody String postData){
+    public String getCustomerInfo(@PathVariable(value="id") String siteName, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser){
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(siteName, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         String wan2Status = "DOWN";
         String wan1Status = "DOWN";
         String wan3Status = "DOWN";
@@ -1159,7 +1265,8 @@ public class DashboardController {
 
     @ApiOperation(value = "Traffic AP")
     @PostMapping("it4u/{id}/trafficInfo")
-    public String getTrafficInfo(@PathVariable(value="id") String idUser, @RequestBody String postData){
+    public String getTrafficInfo(@PathVariable(value="id") String idUser, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser){
         List<String> result = new ArrayList<>();
         JSONObject uploadJson = new JSONObject();
         JSONObject downloadJson = new JSONObject();
@@ -1169,7 +1276,11 @@ public class DashboardController {
         String getData = apiRequest.getRequestApi(urlIt4u,"/s/" + idUser + "/stat/sta/",csrfToken,unifises);
         JSONObject jsonResult = new JSONObject(getData);
         JSONArray data = jsonResult.getJSONArray("data");
-        
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(idUser, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
             upload = upload + getInfo.getInt("rx_rate");
@@ -1191,7 +1302,13 @@ public class DashboardController {
     // Get network rates
     @ApiOperation(value = "getNetworkRates")
     @PostMapping("it4u/{id}/getNetworkRates")
-    public String getNetworkRates(@RequestBody String postData, @PathVariable(value = "id") String userId) {
+    public String getNetworkRates(@RequestBody String postData, @PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> result = new ArrayList<>();
         List<String> listTime = new ArrayList<>();
         List<Double> listTraffic = new ArrayList<Double>();
@@ -1239,7 +1356,13 @@ public class DashboardController {
     // get history zabbix
     @ApiOperation(value = "History Network")
     @PostMapping("it4u/{id}/history/network")
-    public String getHistoryNetwork(@PathVariable(value="id") String idUser,@RequestBody String postData) {
+    public String getHistoryNetwork(@PathVariable(value="id") String idUser,@RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listTime = new ArrayList<>();
         List<Float> listTraffic = new ArrayList<Float>();
         JSONObject listResultJson = new JSONObject();
@@ -1287,7 +1410,13 @@ public class DashboardController {
 
     @ApiOperation(value = "History Status")
     @PostMapping("it4u/{id}/history/status")
-    public String getHistoryStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+    public String getHistoryStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listTime = new ArrayList<>();
         List<Float> listStatusWan1 = new ArrayList<>();
         List<Float> listStatusWan2 = new ArrayList<>();
@@ -1411,7 +1540,13 @@ public class DashboardController {
 
     @ApiOperation(value = "History time status")
     @PostMapping("it4u/{id}/history/getTimeStatus")
-    public String getTimeStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+    public String getTimeStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<String> listTime = new ArrayList<>();
         List<String> result = new ArrayList<>();
         JSONObject listResultJson = new JSONObject();
@@ -1456,8 +1591,14 @@ public class DashboardController {
 
     @ApiOperation(value = "Channel Status")
     @PostMapping("it4u/{id}/channel/status")
-    public String getChannelStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData) {
+    public String getChannelStatus(@PathVariable(value = "id") String idUser, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
         int k = 0, upWan1 = 0, upWan2 = 0, upWan3 = 0, upWan4 = 0;
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         List<Integer> listStatusUp = new ArrayList<>();
         List<Integer> listStatusDown = new ArrayList<>();
 
@@ -1584,7 +1725,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Provider info")
     @PostMapping("it4u/{id}/name/provider")
-    public String getNameProvider(@PathVariable(value = "id") String siteName, @RequestBody String postData) {
+    public String getNameProvider(@PathVariable(value = "id") String siteName, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(siteName, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         dateFormat.setTimeZone(tz);
@@ -1624,7 +1771,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Create Voucher")
     @PostMapping("it4u/{id}/createVoucher")
-    public String postVoucher(@RequestBody String postData, @PathVariable(value = "id") String userId) {
+    public String postVoucher(@RequestBody String postData, @PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         ApiRequest apiRequest = new ApiRequest();
         JSONObject getPostData = new JSONObject(postData);
         int n = getPostData.getInt("n");
@@ -1644,7 +1797,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Get Voucher")
     @GetMapping("it4u/{id}/voucher")
-    public String getVoucher(@PathVariable(value = "id") String userId) {
+    public String getVoucher(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         ApiRequest apiRequest = new ApiRequest();
         JSONObject result = new JSONObject();
         Integer down = 0;
@@ -1697,7 +1855,12 @@ public class DashboardController {
 
     @ApiOperation(value = "Get voucher app")
     @GetMapping("it4u/{id}/voucherApp")
-    public String getVoucherApp(@PathVariable(value = "id") String userId) {
+    public String getVoucherApp(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         ApiRequest apiRequest = new ApiRequest();
         JSONObject result = new JSONObject();
         Integer down = 0;
@@ -1754,7 +1917,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Delete Voucher")
     @PostMapping("it4u/{id}/deleteVoucher")
-    public String deleteVoucher(@PathVariable(value = "id") String userId, @RequestBody String postData) {
+    public String deleteVoucher(@PathVariable(value = "id") String userId, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         ApiRequest apiRequest = new ApiRequest();
         String getData = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/cmd/hotspot", csrfToken, unifises,
                 postData);
@@ -1764,7 +1933,12 @@ public class DashboardController {
     @ApiOperation(value = "Print Voucher")
     @GetMapping("it4u/{id}/printVoucher/{idVoucher}")
     public String printVoucher(@PathVariable(value = "id") String userId,
-            @PathVariable(value = "idVoucher") String idVoucher) {
+            @PathVariable(value = "idVoucher") String idVoucher, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
         ApiRequest apiRequest = new ApiRequest();
         String getData = apiRequest.getRequestApi(printUrlVoucher, "/" + userId + "?id=" + idVoucher, csrfToken,
                 unifises);
@@ -1927,6 +2101,63 @@ public class DashboardController {
         result.put("up",up);
         result.put("down",down);
         return result.toString();   
+    }
+    
+    public String conditionGetData(String userId, @CurrentUser CustomUserDetails currentUser) {
+        int dk = 0;
+        JSONObject result = new JSONObject();
+        Set<Role> strRoles = currentUser.getRoles();
+        JSONObject strRolesJson = new JSONObject(strRoles);
+        JSONArray getRoles = strRolesJson.getJSONArray("value");
+        JSONObject roles = (JSONObject) getRoles.get(0);
+        String convertString = roles.toString();
+        JSONObject convertObject = new JSONObject(convertString);
+        String getRole = convertObject.getString("name");
+        Set<SitesName> strSites = currentUser.getSitename();
+        JSONObject strSitesJson = new JSONObject(strSites);
+        JSONArray getSites = strSitesJson.getJSONArray("value");
+        int length = getSites.length();
+        for (int i=0; i<getSites.length(); i++) {
+            JSONObject site = (JSONObject) getSites.get(i);
+            String getIdname = site.getString("idname");
+            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH")) {
+                break;
+            }
+            else {
+                dk = dk + 1;
+            }
+        }
+        result.put("dk", dk);
+        result.put("length", length);
+        return result.toString();
+    }
+
+    public String conditionGetTraffic(String userId, @CurrentUser CustomUserDetails currentUser) {
+        int dk = 0;
+        JSONObject result = new JSONObject();
+        Set<Role> strRoles = currentUser.getRoles();
+        JSONObject strRolesJson = new JSONObject(strRoles);
+        JSONArray getRoles = strRolesJson.getJSONArray("value");
+        JSONObject roles = (JSONObject) getRoles.get(0);
+        String convertString = roles.toString();
+        JSONObject convertObject = new JSONObject(convertString);
+        String getRole = convertObject.getString("name");
+        Set<SitesName> strSites = currentUser.getSitename();
+        JSONObject strSitesJson = new JSONObject(strSites);
+        JSONArray getSites = strSitesJson.getJSONArray("value");
+        int length = getSites.length();
+        for (int i = 0; i < getSites.length(); i++) {
+            JSONObject site = (JSONObject) getSites.get(i);
+            String getIdname = site.getString("sitename");
+            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH")) {
+                break;
+            } else {
+                dk = dk + 1;
+            }
+        }
+        result.put("dk", dk);
+        result.put("length", length);
+        return result.toString();
     }
     
 }
