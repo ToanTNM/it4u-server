@@ -117,11 +117,15 @@ public class Reporter extends UserDateAudit {
     @NotEmpty
     @Size(max = 40)
     private String APConnected;
+
+    @NotEmpty
+    @Size(max = 40)
+    private String groupClient;
     
 
     public Reporter(String sitename, String wan1Provider, String wan1Ip, String wan1Status, String wan1Uptime,String wan2Provider, String wan2Ip, String wan2Status, String wan2Uptime,
     String wan3Provider, String wan3Ip, String wan3Status, String wan3Uptime,String wan4Provider, String wan4Ip, String wan4Status, String wan4Uptime, String uptimeLb, String upload,
-    String download, String APDisconnected, String APConnected) {
+    String download, String APDisconnected, String APConnected, String groupClient) {
         this.sitename = sitename;
         this.wan1Ip = wan1Ip;
         this.wan1Provider = wan1Provider;
@@ -143,6 +147,7 @@ public class Reporter extends UserDateAudit {
         this.upload = upload;
         this.download = download;
         this.APConnected = APConnected;
-        this.APDisconnected = APDisconnected;  
+        this.APDisconnected = APDisconnected;
+        this.groupClient = groupClient;
     }
 }

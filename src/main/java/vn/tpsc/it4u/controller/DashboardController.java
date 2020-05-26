@@ -262,7 +262,7 @@ public class DashboardController {
         ApiRequest apiRequest = new  ApiRequest();
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listSsid = new ArrayList<>();
@@ -325,7 +325,7 @@ public class DashboardController {
         JSONObject getResult = new JSONObject();
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -346,7 +346,7 @@ public class DashboardController {
     public String getMacAp(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         JSONObject getResult = new JSONObject();
@@ -369,7 +369,7 @@ public class DashboardController {
     public String getTrafficUsage(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         JSONObject getResult = new JSONObject();
@@ -400,7 +400,7 @@ public class DashboardController {
     public String getClientRadio(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         Integer lowRadio = 0;
@@ -436,7 +436,7 @@ public class DashboardController {
         String getDivices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         try {
@@ -457,7 +457,7 @@ public class DashboardController {
     public String getHourlyClient(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -539,7 +539,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -618,7 +618,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -698,7 +698,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -746,7 +746,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -794,7 +794,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -854,7 +854,7 @@ public class DashboardController {
         // condition get data
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         String getHourly = apiRequest.postRequestApi(urlIt4u,"/s/" + userId + "/stat/report/hourly.site/",csrfToken,unifises,postData);
@@ -928,7 +928,7 @@ public class DashboardController {
     public String getTimeMinute(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listTime = new ArrayList<>();
@@ -1013,7 +1013,7 @@ public class DashboardController {
     public String getTimeDaily(@RequestBody String postData,@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listTime = new ArrayList<>();
@@ -1099,7 +1099,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         Integer countConn = 0;
@@ -1136,7 +1136,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         Integer newClient = 0;
@@ -1175,7 +1175,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser){
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(siteName, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         String wan2Status = "DOWN";
@@ -1278,7 +1278,7 @@ public class DashboardController {
         JSONArray data = jsonResult.getJSONArray("data");
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(idUser, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         for (int i=0; i<data.length(); i++) {
@@ -1306,7 +1306,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> result = new ArrayList<>();
@@ -1360,7 +1360,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listTime = new ArrayList<>();
@@ -1414,7 +1414,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listTime = new ArrayList<>();
@@ -1544,7 +1544,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<String> listTime = new ArrayList<>();
@@ -1596,7 +1596,7 @@ public class DashboardController {
         int k = 0, upWan1 = 0, upWan2 = 0, upWan3 = 0, upWan4 = 0;
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(idUser, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         List<Integer> listStatusUp = new ArrayList<>();
@@ -1729,7 +1729,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetTraffic(siteName, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
@@ -1775,7 +1775,7 @@ public class DashboardController {
         
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         ApiRequest apiRequest = new ApiRequest();
@@ -1800,7 +1800,7 @@ public class DashboardController {
     public String getVoucher(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         ApiRequest apiRequest = new ApiRequest();
@@ -1858,7 +1858,7 @@ public class DashboardController {
     public String getVoucherApp(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         ApiRequest apiRequest = new ApiRequest();
@@ -1921,7 +1921,7 @@ public class DashboardController {
             @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         ApiRequest apiRequest = new ApiRequest();
@@ -1936,7 +1936,7 @@ public class DashboardController {
             @PathVariable(value = "idVoucher") String idVoucher, @CurrentUser CustomUserDetails currentUser) {
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
-        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+        if (conditionGetData.getInt("dk") < conditionGetData.getInt("length")) {
             return "Access denied!";
         }
         ApiRequest apiRequest = new ApiRequest();
@@ -2113,6 +2113,7 @@ public class DashboardController {
         String convertString = roles.toString();
         JSONObject convertObject = new JSONObject(convertString);
         String getRole = convertObject.getString("name");
+        String getUsername = currentUser.getName();
         Set<SitesName> strSites = currentUser.getSitename();
         JSONObject strSitesJson = new JSONObject(strSites);
         JSONArray getSites = strSitesJson.getJSONArray("value");
@@ -2120,7 +2121,7 @@ public class DashboardController {
         for (int i=0; i<getSites.length(); i++) {
             JSONObject site = (JSONObject) getSites.get(i);
             String getIdname = site.getString("idname");
-            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH")) {
+            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH") || !getUsername.equals("admin")) {
                 break;
             }
             else {
@@ -2142,6 +2143,7 @@ public class DashboardController {
         String convertString = roles.toString();
         JSONObject convertObject = new JSONObject(convertString);
         String getRole = convertObject.getString("name");
+        String getUsername = currentUser.getName();
         Set<SitesName> strSites = currentUser.getSitename();
         JSONObject strSitesJson = new JSONObject(strSites);
         JSONArray getSites = strSitesJson.getJSONArray("value");
@@ -2149,7 +2151,7 @@ public class DashboardController {
         for (int i = 0; i < getSites.length(); i++) {
             JSONObject site = (JSONObject) getSites.get(i);
             String getIdname = site.getString("sitename");
-            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH")) {
+            if (getIdname.equals(userId) || !getRole.equals("ROLE_KH") || !getUsername.equals("admin")) {
                 break;
             } else {
                 dk = dk + 1;

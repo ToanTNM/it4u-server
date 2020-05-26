@@ -63,6 +63,68 @@ public class ReporterService {
         return true;
     }
 
+    public List<ReporterSummary> findByService(String service) {
+        List<Reporter> reporters = reporterRepository.findByGroupClient(service);
+        List<ReporterSummary> infos = reporters.stream().map(sitename -> new ReporterSummary(
+            sitename.getId(),
+                sitename.getSitename(),
+                sitename.getWan1Ip(), 
+                sitename.getWan1Provider(), 
+                sitename.getWan1Status(),
+                sitename.getWan1Uptime(),
+                sitename.getWan2Ip(), 
+                sitename.getWan2Provider(), 
+                sitename.getWan2Status(),
+                sitename.getWan2Uptime(),
+                sitename.getWan3Ip(), 
+                sitename.getWan3Provider(), 
+                sitename.getWan3Status(),
+                sitename.getWan3Uptime(),
+                sitename.getWan4Ip(), 
+                sitename.getWan4Provider(), 
+                sitename.getWan4Status(),
+                sitename.getWan4Uptime(),
+                sitename.getUptimeLb(),
+                sitename.getUpload(),
+                sitename.getDownload(),
+                sitename.getAPConnected(),
+                sitename.getAPDisconnected(),
+                sitename.getGroupClient()))
+                .collect(Collectors.toList());
+            return infos;
+    }
+
+    public List<ReporterSummary> findById(List<Long> sitenameId) {
+        List<Reporter> reporters = reporterRepository.findByIdIn(sitenameId);
+        List<ReporterSummary> sitenames = reporters.stream().map(sitename -> new ReporterSummary(
+                sitename.getId(),
+                sitename.getSitename(),
+                sitename.getWan1Ip(), 
+                sitename.getWan1Provider(), 
+                sitename.getWan1Status(),
+                sitename.getWan1Uptime(),
+                sitename.getWan2Ip(), 
+                sitename.getWan2Provider(), 
+                sitename.getWan2Status(),
+                sitename.getWan2Uptime(),
+                sitename.getWan3Ip(), 
+                sitename.getWan3Provider(), 
+                sitename.getWan3Status(),
+                sitename.getWan3Uptime(),
+                sitename.getWan4Ip(), 
+                sitename.getWan4Provider(), 
+                sitename.getWan4Status(),
+                sitename.getWan4Uptime(),
+                sitename.getUptimeLb(),
+                sitename.getUpload(),
+                sitename.getDownload(),
+                sitename.getAPConnected(),
+                sitename.getAPDisconnected(),
+                sitename.getGroupClient()
+        )).collect(Collectors.toList());
+        return sitenames;
+    }
+
     public List<ReporterSummary> findAll() {
         List<Reporter> reporters = reporterRepository.findAll();
         
@@ -90,7 +152,8 @@ public class ReporterService {
                     reporter.getUpload(),
                     reporter.getDownload(),
                     reporter.getAPConnected(),
-                    reporter.getAPDisconnected()
+                    reporter.getAPDisconnected(),
+                    reporter.getGroupClient()
                 ))
             .collect(Collectors.toList());
         return listReporter;

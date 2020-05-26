@@ -18,15 +18,15 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4L
 Content-Type: application/json
 
 {
-    "name": "KH4326",
-    "username": "KH4236",
-    "email": "lap.dang11@tpsc.vn",
+    "name": "KH4328",
+    "username": "KH4238",
+    "email": "lap.dang18@tpsc.vn",
     "password": "123456",
     "gender": "Male",
     "type": "User",
     "sitename": ["rhnl7chn"],
     "language": "English",
-    "roles": "ROLE_KD"
+    "roles": "ROLE_ADMIN"
 }
 
 ###
@@ -575,3 +575,37 @@ Content-Type: application/json
 {
     "email":"lapdangdtu@gmail.com",
 }
+
+###
+GET http://localhost:5000/api/v1/it4u/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/18/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json
+
+###
+Delete http://localhost:5000/api/v1/it4u/8/customer_info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/group
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json
+
+{
+    "groupName": "MA"
+}
+
+###
+GET http://localhost:5000/api/v1/it4u/group
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/customer_info/Ms
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
+Content-Type: application/json

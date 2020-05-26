@@ -17,6 +17,10 @@ public interface ReporterRepository extends JpaRepository<Reporter, Long> {
 
     Optional<Reporter> findBySitename(String sitename);
 
+    List<Reporter> findByGroupClient(String service);
+
+    List<Reporter> findByIdIn(List<Long> sitenameIds);
+
     // List<Reporter> findByList(String userIds);
     
     Boolean existsBySitename(String sitename);

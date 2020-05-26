@@ -10,14 +10,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
+
+import java.util.List;
 import java.util.Locale;
 
+import javax.validation.Valid;
+
+import vn.tpsc.it4u.model.GroupClient;
 import vn.tpsc.it4u.model.Reporter;
 import vn.tpsc.it4u.payload.ReporterSummary;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.Calculator;
 import vn.tpsc.it4u.repository.ReporterRepository;
+import vn.tpsc.it4u.repository.GroupClientRepository;
 import vn.tpsc.it4u.service.ConfigTokenService;
+import vn.tpsc.it4u.service.GroupClientService;
 import vn.tpsc.it4u.service.ReporterService;
 import vn.tpsc.it4u.service.SitesNameService;
 
@@ -34,7 +41,13 @@ public class ReporterController {
     ReporterRepository reporterRepository;
 
     @Autowired
+    GroupClientRepository groupClientRepository;
+
+    @Autowired
     SitesNameService sitenameService;
+
+    @Autowired
+    GroupClientService groupClientService;
 
     @Autowired
     ReporterService reporterService;
@@ -44,13 +57,29 @@ public class ReporterController {
 
     ApiResponseUtils apiResponse;
 
-    @ApiOperation(value = "get information from all clients")
+    @ApiOperation(value = "Get information from all clients")
     @GetMapping("it4u/customer_info")
     public ResponseEntity<?> getAllUser() {
         return ResponseEntity.ok(reporterService.findAll());
     }
 
-    @ApiOperation(value = "get information from clients")
+    @ApiOperation(value = "Get client from all Clients ")
+    @GetMapping("it4u/{id}/customer_info")
+    public ResponseEntity<?> getGroupClient(@PathVariable(value = "id") List<Long> sitename) {
+        return ResponseEntity.ok(reporterService.findById(sitename));
+    }
+
+    @ApiOperation(value = "Get client from service")
+    @GetMapping("it4u/customer_info/{service}")
+    public ResponseEntity<?> getGroupClientFromServices(@PathVariable(value = "service") String service) {
+        if (service.equals("ALL")) {
+            return ResponseEntity.ok(reporterService.findAll());
+        }
+        reporterService.findByService(service);
+        return ResponseEntity.ok(reporterService.findByService(service));
+    }
+
+    @ApiOperation(value = "Get information from clients")
     @PostMapping("it4u/customer_info")
     public ResponseEntity<?> PostInfoClient(@RequestBody final Reporter bodyData) {
         Reporter reporter = mapper.map(bodyData, Reporter.class);
@@ -138,7 +167,8 @@ public class ReporterController {
                 Upload,
                 Download,
                 countAPConnected,
-                countAPDisconnected
+                countAPDisconnected,
+                reporter.getGroupClient()
             );
             reporterRepository.save(createSitename);
             return ResponseEntity.ok(reporterService.findAll());
@@ -218,14 +248,32 @@ public class ReporterController {
         return "Updated Successfully";
     }
     
-    @ApiOperation(value = "get information from all clients")
+    @ApiOperation(value = "Get information from all clients")
     @DeleteMapping("it4u/{id}/customer_info")
-    public ResponseEntity<?> deleteInfoClient(@PathVariable(value = "id") Long id) {
-        try {
-            reporterService.deleteReporter(id);
-            return ResponseEntity.ok(reporterService.findAll());
-        } catch (Exception e) {
-            return ResponseEntity.ok(reporterService.findAll());
-        } 
+    public ResponseEntity<?> deleteInfoClient(@PathVariable(value = "id") Long id, Locale locale) {
+        reporterService.deleteReporter(id);
+        return ResponseEntity.ok(reporterService.findAll()); 
     }
+
+    @ApiOperation(value = "Post group client")
+    @PostMapping("it4u/group")
+    public ResponseEntity<?> postGroupsClient(@RequestBody final GroupClient bodyData) {
+        groupClientRepository.save(bodyData);
+        return ResponseEntity.ok(groupClientService.findAll());
+    }
+
+    @ApiOperation(value = "Get all group")
+    @GetMapping("it4u/group")
+    public ResponseEntity<?> getGroupsClient() {
+        return ResponseEntity.ok(groupClientService.findAll());
+    }
+
+    @ApiOperation(value = "Get a group client")
+    @DeleteMapping("it4u/{id}/group")
+    public ResponseEntity<?> getGroupClient(@PathVariable(value = "id") Long id) {
+        groupClientService.deleteGroupClient(id);
+        return ResponseEntity.ok(groupClientService.findAll());
+    }
+
+    
 }

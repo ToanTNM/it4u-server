@@ -31,4 +31,5 @@ public class ReporterSummary {
     private String download;
     private String APDisconnected;
     private String APConnected;
+    private String groupClient;
 }
