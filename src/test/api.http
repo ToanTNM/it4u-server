@@ -223,7 +223,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientUsage
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwNDk1MzEwLCJleHAiOjE1OTExMDAxMTB9.34pEES9dD0ntGWq2Wh6lqU0Havdq6xwYzxelxq2WKpnQoibWUgj3oz-pi9I4XuVGY-VTzA5tuevl5Hl-gvd-tw
 Content-Type: application/json
 
 ###
@@ -592,12 +592,12 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwL
 Content-Type: application/json
 
 ###
-Post http://localhost:5000/api/v1/it4u/group
+Post https://it4u.tpsc.vn/api/v1/it4u/group
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
 Content-Type: application/json
 
 {
-    "groupName": "MA"
+    "groupName": "ALL"
 }
 
 ###
