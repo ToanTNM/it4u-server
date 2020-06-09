@@ -3,6 +3,7 @@ package vn.tpsc.it4u.controller;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
 import java.util.HashSet;
@@ -22,21 +23,27 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+import vn.tpsc.it4u.exception.UserLoginException;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.model.enums.RoleName;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.User;
+import vn.tpsc.it4u.model.token.RefreshToken;
 import vn.tpsc.it4u.payload.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payload.LoginRequest;
 import vn.tpsc.it4u.payload.SignUpRequest;
+import vn.tpsc.it4u.payload.TokenRefreshRequest;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.JwtTokenProvider;
+import vn.tpsc.it4u.service.AuthService;
+import vn.tpsc.it4u.service.UserService;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 
 /**
@@ -67,6 +74,13 @@ public class AuthController {
     @Autowired 
     ApiResponseUtils apiResponse;
 
+    @Autowired
+    AuthService authService;
+
+    @Autowired
+    UserService userService;
+    
+
     @PostMapping("/signin")
     @ApiOperation(value = "Sign In App")
     @ApiResponses(value = {
@@ -83,7 +97,21 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         final String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt), locale));
+        return authService.createAndPersistRefreshTokenForDevice(authentication)
+                .map(User::getRefreshToken).map(refreshToken -> {
+                    return ResponseEntity.ok(
+                            new JwtAuthenticationResponse(jwt, refreshToken));
+                }).orElseThrow(() -> new UserLoginException("Couldn't create refresh token for: [" + loginRequest + "]"));
+        // return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt, refreshToken), locale));
+    }
+
+    @PostMapping("/refresh")
+    @ApiOperation(value = "Refesh the expired jwt authentication")
+    public ResponseEntity refeshJwtToken(@ApiParam(value = "The TokenRefreshRequest payload") @Valid @RequestBody TokenRefreshRequest tokenRefreshRequest, Locale locale) {
+        Optional<User> user = userService.getRefreshToken(tokenRefreshRequest.getRefreshToken());
+        Long userId = user.get().getId();
+        final String updatedToken = tokenProvider.generateTokenFromUserId(userId);
+        return ResponseEntity.ok(new JwtAuthenticationResponse(updatedToken, tokenRefreshRequest.getRefreshToken()));
     }
 
     @PostMapping("/signup")
@@ -108,6 +136,7 @@ public class AuthController {
             signUpRequest.getType(), 
             UserStatus.Active,
             signUpRequest.getLanguage(),
+            null,
             null
             );
 

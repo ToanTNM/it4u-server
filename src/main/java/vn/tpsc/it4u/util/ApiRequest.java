@@ -85,6 +85,45 @@ public class ApiRequest {
         } 
     }
 
+    public String putRequestApi(String urlIt4u, String infoApi, String csrfToken, String unifises, String dataPost) {
+        try {
+            String url = urlIt4u + infoApi;
+            StringBuffer response = new StringBuffer();
+            URL UrlObj = new URL(url);
+
+            HttpURLConnection connection = (HttpURLConnection) UrlObj.openConnection();
+            connection.setRequestMethod("PUT");
+            connection.setRequestProperty("X-Csrf-Token", csrfToken);
+            connection.setRequestProperty("Cookie", "csrf_token=" + csrfToken + "; unifises=" + unifises);
+            connection.setDoOutput(true);
+
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            // String urlPostParameters = "start=1577379600000&end=1577552400000";
+            byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
+            outputStream.write(out);
+            outputStream.flush();
+            outputStream.close();
+
+            System.out.println("Send 'HTTP POST' request to : " + url);
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code : " + responseCode);
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                while ((inputLine = inputReader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                inputReader.close();
+            }
+            return response.toString();
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n");
+            return e.getMessage();
+        }
+    }
+
     public String getRequestDev(String urlIt4u,String infoApi) {
         try {
             HttpsURLConnection conn = null;

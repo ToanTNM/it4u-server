@@ -24,6 +24,7 @@ import vn.tpsc.it4u.model.audit.UserDateAudit;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.enums.UserType;
+import vn.tpsc.it4u.model.token.RefreshToken;
 
 /**
  * User
@@ -110,7 +111,10 @@ public class User extends UserDateAudit {
 
     private Set<SitesName> sitename = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String language, String resetToken) {
+    private String refreshToken;
+
+    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String language, String resetToken,
+            String refreshToken) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -121,5 +125,6 @@ public class User extends UserDateAudit {
         // this.sitename = sitename;
         this.language = language;
         this.resetToken = resetToken;
+        this.refreshToken = refreshToken;
     }
 }

@@ -107,6 +107,10 @@ public class UserService {
         return true;
     }
 
+    public Optional<User> getRefreshToken(String refreshToken) {
+        return userRepository.findByRefreshToken(refreshToken);
+    }
+
     public List<UserSummary> findUser(List<Long> userId) {
         List<User> users = userRepository.findByIdIn(userId);
         List<UserSummary> listUsers = users.stream()

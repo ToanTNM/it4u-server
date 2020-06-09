@@ -18,15 +18,28 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwOTgyNDE4L
 Content-Type: application/json
 
 {
-    "name": "KH4328",
-    "username": "KH4238",
-    "email": "lap.dang18@tpsc.vn",
+    "name": "Dang Van Lap",
+    "username": "lap.dang@tpsc.vn",
+    "email": "lap.dang@tpsc.vn",
     "password": "123456",
+    "currentPassword":"123456",
     "gender": "Male",
     "type": "User",
-    "sitename": ["rhnl7chn"],
+    "sitename": ["1px5g676", "rhnl7chn"],
     "language": "English",
     "roles": "ROLE_ADMIN"
+}
+{
+    "name":"Dang Van Lap",
+    "username":"lap.dang@tpsc.vn",
+    "email":"lap.dang@tpsc.vn",
+    "currentPassword":"123456",
+    "password":"123456",
+    "gender":"Male",
+    "language":"English",
+    "type":"User",
+    "roles":"ROLE_ADMIN",
+    "sitename":["1px5g676","rhnl7chn"]
 }
 
 ###
@@ -62,6 +75,14 @@ Content-Type: application/json
 {
     "usernameOrEmail": "KH4234",
     "password": "123456"
+}
+
+###
+POST http://localhost:5000/api/v1/auth/refresh
+Content-Type: application/json
+
+{
+    "refreshToken":  "8d531d06-1a96-40f2-8b65-9015aa3805c2"
 }
 
 ###
@@ -193,7 +214,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/checkCookiesUbnt
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
 Content-Type: application/json
 
 ###
@@ -217,8 +238,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/api/v1/it4u/xa74u3wt/clientEssid
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientEssid
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU5MTY2OTE2OSwiZXhwIjoxNTkyMjczOTY5fQ.U5A0sTW9YvdfyNKPKviQMAq_J7ydRVI8UT0BeMeDQ8mfIxpAHOUuXnjfcUJEdFHmoAg6onFXZKx5qaiv29Qo5g
 Content-Type: application/json
 
 ###
@@ -609,3 +630,105 @@ Content-Type: application/json
 GET http://localhost:5000/api/v1/it4u/customer_info/Ms
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkwMzk4MjQwLCJleHAiOjE1OTEwMDMwNDB9.Vf7FrmsxcGU66D1BPCwvnq6GcwE5ZfhLIdWyAI-yx_s4fz6VG092gaGIFQc0J7bQ_Kxk4VBDVvXRiWqV_wasKg
 Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "roam_radio":"ng",
+    "roam_channel_na":36,
+    "roam_channel_ng":1,
+    "pmf_mode":"optional",
+    "name":"5GHz Test3"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "enabled":true,
+    "security":"wpapsk",
+    "wep_idx":1,
+    "wpa_mode":"wpa2",
+    "wpa_enc":"ccmp",
+    "usergroup_id":"5d65e680e4b04e62db0c728b",
+    "dtim_mode":"default",
+    "dtim_ng":1,
+    "dtim_na":1,
+    "minrate_ng_enabled":false,
+    "minrate_ng_advertising_rates":false,
+    "minrate_ng_data_rate_kbps":1000,
+    "minrate_ng_cck_rates_enabled":true,
+    "minrate_na_enabled":false,
+    "minrate_na_advertising_rates":false,
+    "minrate_na_data_rate_kbps":6000,
+    "mac_filter_enabled":false,
+    "mac_filter_policy":"allow",
+    "mac_filter_list":[],
+    "name_combine_enabled":true,
+    "name_combine_suffix":"_IoT",
+    "bc_filter_enabled":false,
+    "bc_filter_list":[],
+    "group_rekey":3600,
+    "is_guest":false,
+    "name":"TPs test2 Hispeed",
+    "x_passphrase":"12345678",
+    "fast_roaming_enabled":true,
+    "mcastenhance_enabled":false,
+    "wlangroup_id":"5edf1045c414790009d3e1e9",
+    "radius_das_enabled":false,
+    "schedule":[],
+    "minrate_ng_mgmt_rate_kbps":1000,
+    "minrate_na_mgmt_rate_kbps":6000,
+    "minrate_ng_beacon_rate_kbps":1000,
+    "minrate_na_beacon_rate_kbps":6000
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "radio_table":[{"radio":"ng","wlangroup_id":"5edefc00c414790009d3e0de"},{"radio":"na","wlangroup_id":"5edf1045c414790009d3e1e9"}],
+    "wlan_overrides":[]
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "bandsteering_mode":"prefer_5g"
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "radio_table":[{"radio":"ng","tx_power_mode":"medium"},{"radio":"na"}]
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Content-Type: application/json
+
+{
+    "radio_table":[{"radio":"ng","wlangroup_id":"5edefc00c414790009d3e0de","tx_power_mode":"medium"},{"radio":"na","wlangroup_id":"5edf1045c414790009d3e1e9"}],
+    "wlan_overrides":[],
+    "bandsteering_mode":"prefer_5g"
+}
+
