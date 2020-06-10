@@ -417,10 +417,10 @@ public class DashboardController {
             lowRadio = lowRadio + getInfo.getInt("ng-num_sta");
             highRadio = highRadio + getInfo.getInt("na-num_sta");
         }
-        getLowRadio.put("name","2.4 GH");
+        getLowRadio.put("name","2.4 GHz");
         getLowRadio.put("y",lowRadio);
         result.add(getLowRadio.toString());
-        getHighRadio.put("name","5 GH");
+        getHighRadio.put("name","5 GHz");
         getHighRadio.put("y",highRadio);
         result.add(getHighRadio.toString());
         return result.toString();
@@ -914,9 +914,9 @@ public class DashboardController {
         listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
         
         listResultClient.put("name", getPostData.getString("client"));
-        listResultClient.put("max",maxClient + " " + getPostData.getString("client"));
-        listResultClient.put("min",minClient + " " + getPostData.getString("client"));
-        listResultClient.put("average",avg  + " " + getPostData.getString("client"));
+        listResultClient.put("max",maxClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("min",minClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("average",avg  + " " + getPostData.getString("client_init"));
 
         listResult.add(listResultClient.toString());
         listResult.add(listResultTraffic.toString());
@@ -999,9 +999,9 @@ public class DashboardController {
         listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
 
         listResultClient.put("name", getPostData.getString("client"));
-        listResultClient.put("max", maxClient + " " + getPostData.getString("client"));
-        listResultClient.put("min", minClient + " " + getPostData.getString("client"));
-        listResultClient.put("average", avg + " " + getPostData.getString("client"));
+        listResultClient.put("max", maxClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("min", minClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("average", avg + " " + getPostData.getString("client_init"));
 
         listResult.add(listResultClient.toString());
         listResult.add(listResultTraffic.toString());
@@ -1084,9 +1084,9 @@ public class DashboardController {
         listResultTraffic.put("average", getCalculator.convertBytesToGb(avgTraffic) + " GB");
 
         listResultClient.put("name", getPostData.getString("client"));
-        listResultClient.put("max", maxClient + " " + getPostData.getString("client"));
-        listResultClient.put("min", minClient + " " + getPostData.getString("client"));
-        listResultClient.put("average", avg + " " + getPostData.getString("client"));
+        listResultClient.put("max", maxClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("min", minClient + " " + getPostData.getString("client_init"));
+        listResultClient.put("average", avg + " " + getPostData.getString("client_init"));
 
         listResult.add(listResultClient.toString());
         listResult.add(listResultTraffic.toString());
