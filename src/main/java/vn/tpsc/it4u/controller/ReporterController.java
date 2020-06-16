@@ -69,6 +69,49 @@ public class ReporterController {
         return ResponseEntity.ok(reporterService.findById(sitename));
     }
 
+    @ApiOperation(value = "Convert info to prometheus metrics")
+    @GetMapping("it4u/prometheus/metrics")
+    public String getInfoToMetrics() {
+        JSONObject getData = new JSONObject(ResponseEntity.ok(reporterService.findAll()));
+        StringBuilder result = new StringBuilder();
+        // getChannel("APConnected",,getData);
+        String apConnected = getChannelMetrics("APConnected","Number of access point connected.", getData);
+        result.append(apConnected + "\n");
+        String apDisconnected = getChannelMetrics("APDisconnected", "Number of access point disconnected.", getData);
+        result.append(apDisconnected + "\n");
+        String upload = getChannelMetrics("upload", "upload", getData);
+        result.append(upload + "\n");
+        String download = getChannelMetrics("download", "download", getData);
+        result.append(download + "\n");
+        String uptimeLb = getChannelMetrics("uptimeLb", "uptimeLb", getData);
+        result.append(uptimeLb + "\n");
+        String wan1IP = getAPMetrics("wan1Ip", "wan1Ip", getData);
+        result.append(wan1IP + "\n");
+        String wan1Status = getAPMetrics("wan1Status", "wan1Status", getData);
+        result.append(wan1Status + "\n");
+        String wan1Uptime = getAPMetrics("wan1Uptime", "wan1Uptime", getData);
+        result.append(wan1Uptime + "\n");
+        String wan2IP = getAPMetrics("wan2Ip", "wan2Ip", getData);
+        result.append(wan2IP + "\n");
+        String wan2Status = getAPMetrics("wan2Status", "wan2Status", getData);
+        result.append(wan2Status + "\n");
+        String wan2Uptime = getAPMetrics("wan2Uptime", "wan2Uptime", getData);
+        result.append(wan2Uptime + "\n");
+        String wan3IP = getAPMetrics("wan3Ip", "wan3Ip", getData);
+        result.append(wan3IP + "\n");
+        String wan3Status = getAPMetrics("wan3Status", "wan3Status", getData);
+        result.append(wan3Status + "\n");
+        String wan3Uptime = getAPMetrics("wan3Uptime", "wan3Uptime", getData);
+        result.append(wan3Uptime + "\n");
+        String wan4IP = getAPMetrics("wan4Ip", "wan4Ip", getData);
+        result.append(wan4IP + "\n");
+        String wan4Status = getAPMetrics("wan4Status", "wan4Status", getData);
+        result.append(wan4Status + "\n");
+        String wan4Uptime = getAPMetrics("wan4Uptime", "wan4Uptime", getData);
+        result.append(wan4Uptime + "\n");
+        return result.toString(); 
+    }
+
     @ApiOperation(value = "Get client from service")
     @GetMapping("it4u/customer_info/{service}")
     public ResponseEntity<?> getGroupClientFromServices(@PathVariable(value = "service") String service) {
@@ -273,6 +316,31 @@ public class ReporterController {
     public ResponseEntity<?> getGroupClient(@PathVariable(value = "id") Long id) {
         groupClientService.deleteGroupClient(id);
         return ResponseEntity.ok(groupClientService.findAll());
+    }
+
+    public String getChannelMetrics(String typeMetric, String typeHelp,JSONObject data) {
+        StringBuilder result = new StringBuilder("# HELP " + typeMetric + " " + typeHelp +"\n"); 
+        result.append("# TYPE " + typeMetric + " gauge\n");
+        JSONArray getBody = data.getJSONArray("body");
+        for (int i=0; i<getBody.length(); i++) {
+            JSONObject getItem = (JSONObject) getBody.get(i);
+            String type = typeMetric + "{group=" + getItem.getString("groupClient") + ",job=ap,customer=" + getItem.getString("sitename") + "} " + getItem.getString(typeMetric) + "\n";
+            result.append(type);
+        }
+        return result.toString();    
+    }
+
+    public String getAPMetrics(String typeMetric, String typeHelp, JSONObject data) {
+        StringBuilder result = new StringBuilder("# HELP " + typeMetric + " " + typeHelp + "\n");
+        result.append("# TYPE " + typeMetric + " gauge\n");
+        JSONArray getBody = data.getJSONArray("body");
+        for (int i = 0; i < getBody.length(); i++) {
+            JSONObject getItem = (JSONObject) getBody.get(i);
+            String type = typeMetric + "{group=" + getItem.getString("groupClient") + ",wan_provider=" + getItem.getString(typeMetric.substring(0, 4) + "Provider") + ",job=ap,customer="
+                    + getItem.getString("sitename") + "} " + getItem.getString(typeMetric) + "\n";
+            result.append(type);
+        }
+        return result.toString();
     }
 
     
