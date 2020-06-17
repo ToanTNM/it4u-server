@@ -203,7 +203,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/cookies
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjE0NTQzLCJleHAiOjE1ODMyMTkzNDN9.Qycd-w9z0AP7Bvx5ubd2uQoB8_Dy6gSJ8y1aiBqiZP0hV3Fdz9vVGUsgB6X4byXJDj_uS9ZSf1s0A_IYiTfYcQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
 Content-Type: application/json
 
 
@@ -734,11 +734,11 @@ Content-Type: application/json
 /sitemgr
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/sitemgr
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
 Content-Type: application/json
 
 {
-    "desc":"Test 4",
+    "desc":"Test 7",
     "cmd":"add-site"
 }
 
@@ -751,3 +751,15 @@ Content-Type: application/json
 //"auth":"hotspot"
 //"auth":"facebook_wifi"
 // https://ubnt49.cloud.tpsc.vn/api/s/rhnl7chn/stat/sta
+it4u/{id}/hotspot
+###
+Post http://localhost:5000/api/v1/it4u/4pusx4n9/hotspot
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
+Content-Type: application/json
+
+{
+    "auth":"password",
+    "redirect_url": "https://www.facebook.com/DNG.TPs.Solutions/",
+    "x_password": "123456789",
+    "facebook_wifi_gw_name": "49LQD_TPcoms"
+}

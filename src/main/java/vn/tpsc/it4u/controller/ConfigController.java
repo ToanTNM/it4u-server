@@ -26,11 +26,20 @@ public class ConfigController {
     @Value("${app.ubnt.url_test}")
     private String urlIt4u;
 
+    @Value("${app.ubnt.hotspot_template}")
+    private String hotspotTemplate;
+
     @Value("${app.ubnt.csrf_token}")
     private String csrfToken;
 
     @Value("${app.ubnt.unifises}")
     private String unifises;
+
+    @Value("${app.ubnt.username}")
+    private String username;
+
+    @Value("${app.ubnt.password}")
+    private String password;
 
     @Autowired
     private ConfigTokenService configTokenService;
@@ -47,9 +56,16 @@ public class ConfigController {
         csrfToken = body.getString("csrfToken");
         unifises = body.getString("unifises");
         ApiRequest apiRequest = new ApiRequest();
-        String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises,
-                postData);
-        return createVlanGroup;
+        try {
+            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken,
+                    unifises, postData);
+            return createVlanGroup;
+        } catch (Exception e) {
+            getCookies();
+            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken,
+                    unifises, postData);
+            return createVlanGroup;
+        }
     }
 
     @ApiOperation(value = "Get vlan group")
@@ -61,32 +77,60 @@ public class ConfigController {
         csrfToken = body.getString("csrfToken");
         unifises = body.getString("unifises");
         ApiRequest apiRequest = new ApiRequest();
-        String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
-        JSONObject convertData = new JSONObject(getData);
-        JSONArray data = convertData.getJSONArray("data");
-        return data.toString();
+        try {
+            String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
+            JSONObject convertData = new JSONObject(getData);
+            JSONArray data = convertData.getJSONArray("data");
+            return data.toString();
+        } catch (Exception e) {
+            getCookies();
+            String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
+            JSONObject convertData = new JSONObject(getData);
+            JSONArray data = convertData.getJSONArray("data");
+            return data.toString();
+        }
+        
     }
 
     @ApiOperation(value = "Create SSID to vlan group")
     @PostMapping("it4u/{id}/wlanconf")
     public String createSSID(@PathVariable(value = "id") String id, @RequestBody String postData) {
         ApiRequest apiRequest = new ApiRequest();
-        String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken, unifises,
-                postData);
-        JSONObject convertData = new JSONObject(createVlanGroup);
-        JSONArray data = convertData.getJSONArray("data");
-        return data.toString();
+        try {
+            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises, postData);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            JSONArray data = convertData.getJSONArray("data");
+            return data.toString();
+        } catch (Exception e) {
+            getCookies();
+            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises, postData);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            JSONArray data = convertData.getJSONArray("data");
+            return data.toString();
+        }
     }
 
     @ApiOperation(value = "Assign vlan group to APs")
     @PostMapping("it4u/{id}/group/device")
     public String assignVG(@PathVariable(value = "id") String id, @RequestBody String postData) {
+        getCookies();
         ApiRequest apiRequest = new ApiRequest();
         JSONObject createPostData = new JSONObject();
         List<String> itemDevicesArray = new ArrayList<>();
-        String getDeviceId = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device", csrfToken, unifises);
-        JSONObject convertData = new JSONObject(getDeviceId);
-        JSONArray getDataDevices = convertData.getJSONArray("data");
+        String getDeviceId = "";
+        JSONArray getDataDevices = new JSONArray();
+        try {
+            getDeviceId = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device", csrfToken, unifises);
+            JSONObject convertData = new JSONObject(getDeviceId);
+            getDataDevices = convertData.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            getDeviceId = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device", csrfToken, unifises);
+            JSONObject convertData = new JSONObject(getDeviceId);
+            getDataDevices = convertData.getJSONArray("data");
+        }
         for (int i = 0; i < getDataDevices.length(); i++) {
             JSONObject itemDevice = (JSONObject) getDataDevices.get(i);
             itemDevicesArray.add(itemDevice.getString("device_id"));
@@ -109,10 +153,19 @@ public class ConfigController {
         csrfToken = body.getString("csrfToken");
         unifises = body.getString("unifises");
         ApiRequest apiRequest = new ApiRequest();
-        String createSitename = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/cmd/sitemgr", csrfToken, unifises,
-                postData);
-        JSONObject convertData = new JSONObject(createSitename);
-        JSONArray getData = convertData.getJSONArray("data");
+        JSONArray getData = new JSONArray();
+        try {
+            String createSitename = apiRequest.postRequestApi(urlIt4u, "/s/bkhsurc7/cmd/sitemgr", csrfToken, unifises,
+                    postData);
+            JSONObject convertData = new JSONObject(createSitename);
+            getData = convertData.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String createSitename = apiRequest.postRequestApi(urlIt4u, "/s/bkhsurc7/cmd/sitemgr", csrfToken, unifises,
+                    postData);
+            JSONObject convertData = new JSONObject(createSitename);
+            getData = convertData.getJSONArray("data");
+        }
         JSONObject data = (JSONObject) getData.get(0);
         final SitesName addSitename = new SitesName(data.getString("desc"), data.getString("name"));
         sitesNameRepository.save(addSitename);
@@ -121,9 +174,73 @@ public class ConfigController {
 
     @ApiOperation(value = "Create a hotspot")
     @PostMapping("it4u/{id}/hotspot")
-    public String createHotspot(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String createHotspot(@PathVariable(value = "id") String id, @RequestBody String data) {
+        JSONObject postData = new JSONObject(data);
         String result = "";
-
-        return result;
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        ApiRequest apiRequest = new ApiRequest();
+        JSONArray getDataFromPostData = new JSONArray();
+        try {
+            String getPostData = apiRequest.getRequestApi(urlIt4u, hotspotTemplate, csrfToken, unifises);
+            JSONObject convertPostData = new JSONObject(getPostData);
+            getDataFromPostData = convertPostData.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String getPostData = apiRequest.getRequestApi(urlIt4u, hotspotTemplate, csrfToken, unifises);
+            JSONObject convertPostData = new JSONObject(getPostData);
+            getDataFromPostData = convertPostData.getJSONArray("data");
+        }
+        Boolean portal = true;
+        int positionPortal = 0;
+        for (int i = 0; i < getDataFromPostData.length(); i++) {
+            JSONObject getItem = (JSONObject) getDataFromPostData.get(i);
+            try {
+                portal = getItem.getBoolean("portal_enabled");
+                positionPortal = i;
+            } catch (Exception e) {
+                //TODO: handle exception
+            }  
+        }
+        JSONObject getDataHotspot = (JSONObject) getDataFromPostData.get(positionPortal);
+        switch (postData.getString("auth")) {
+            case "none":
+                getDataHotspot.put("auth", "none");
+                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                break;
+            case "hotspot":
+                getDataHotspot.put("auth", "hotspot");
+                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                break;
+            case "password":
+                getDataHotspot.put("auth", "password");
+                getDataHotspot.put("x_password", postData.getString("x_password"));
+                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                break;
+            default:
+                break;
+        }
+        return getDataHotspot.toString();
+    }
+    
+    public String getCookies() {
+        ApiRequest apiRequest = new ApiRequest();
+        String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"remember\":\"true\",\"strict\":\"true\"}";
+        String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
+        String[] arr = getCookies.split(";");
+        String getToken = arr[0];
+        String[] arrToken = getToken.split("=");
+        csrfToken = arrToken[1];
+        String getUnifise = arr[2];
+        String[] arrUnifise = getUnifise.split("=");
+        unifises = arrUnifise[1];
+        try {
+            return getCookies.toString();
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 }

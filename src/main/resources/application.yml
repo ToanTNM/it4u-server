@@ -9,6 +9,7 @@ app:
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
     url_test: https://ubnt49.cloud.tpsc.vn/api
+    hotspot_template: /s/bkhsurc7/get/setting
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
     csrf_token: ecVw3wbyKYKuqIakdijwhI7o0C6NFfNh
