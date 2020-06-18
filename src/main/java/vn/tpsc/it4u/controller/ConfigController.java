@@ -145,20 +145,59 @@ public class ConfigController {
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
+        JSONObject convertDataPost = new JSONObject(postData);
+        String putData = "";
         try {
-            String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
-                    unifises, postData);
-            JSONObject convertData = new JSONObject(createVlanGroup);
-            data = convertData.getJSONArray("data");
-            return data.toString();
+            String getVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises);
+            JSONObject convertVlanGroup = new JSONObject(getVlanGroup);
+            JSONArray getVlanGroupJson = convertVlanGroup.getJSONArray("data");
+            for (int i = 0; i< getVlanGroupJson.length(); i++) {
+                JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
+                if (ssid.equals(getItem.getString("_id"))) {
+                    if (convertDataPost.getString("security").equals("wpapsk")) {
+                        getItem.put("security", "wpapsk");
+                        getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
+                        getItem.put("name", convertDataPost.getString("name"));
+                        putData = getItem.toString();
+                        break;
+                    }
+                    else {
+                        getItem.put("security", "open");
+                        getItem.put("name", convertDataPost.getString("name"));
+                        putData = getItem.toString();
+                        break;
+                    }
+                }
+            }
         } catch (Exception e) {
             getCookies();
-            String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
-                    unifises, postData);
-            JSONObject convertData = new JSONObject(createVlanGroup);
-            data = convertData.getJSONArray("data");
-            return data.toString();
+            String getVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken, unifises);
+            JSONObject convertVlanGroup = new JSONObject(getVlanGroup);
+            JSONArray getVlanGroupJson = convertVlanGroup.getJSONArray("data");
+            for (int i = 0; i < getVlanGroupJson.length(); i++) {
+                JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
+                if (ssid.equals(getItem.getString("_id"))) {
+                    if (convertDataPost.getString("security").equals("wpapsk")) {
+                        getItem.put("security", "wpapsk");
+                        getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
+                        getItem.put("name", convertDataPost.getString("name"));
+                        putData = getItem.toString();
+                        break;
+                    } else {
+                        getItem.put("security", "open");
+                        getItem.put("name", convertDataPost.getString("name"));
+                        putData = getItem.toString();
+                        break;
+                    }
+                }
+            }
         }
+        String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
+                unifises, putData);
+        JSONObject convertData = new JSONObject(createVlanGroup);
+        data = convertData.getJSONArray("data");
+        return data.toString();
     }
 
     @ApiOperation(value = "Assign vlan group to APs")
