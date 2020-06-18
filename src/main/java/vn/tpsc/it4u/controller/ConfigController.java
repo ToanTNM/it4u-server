@@ -112,10 +112,58 @@ public class ConfigController {
         }
     }
 
+    @ApiOperation(value = "Get SSID to vlan group")
+    @GetMapping("it4u/{id}/wlanconf/{wlan}")
+    public String getSSID(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONArray data = new JSONArray();
+        try {
+            String createVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String createVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+        }
+        for (int i=0; i < data.length(); i++) {
+            JSONObject getItem = (JSONObject) data.get(i);
+            if (wlan.equals(getItem.getString("wlangroup_id"))) {
+                result.add(getItem.toString());
+            }
+        }
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Put SSID to vlan group")
+    @PutMapping("it4u/{id}/wlanconf/{ssid}")
+    public String putSSID(@PathVariable(value = "id") String id, @PathVariable(value = "ssid") String ssid, @RequestBody String postData) {
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONArray data = new JSONArray();
+        try {
+            String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
+                    unifises, postData);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+            return data.toString();
+        } catch (Exception e) {
+            getCookies();
+            String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
+                    unifises, postData);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+            return data.toString();
+        }
+    }
+
     @ApiOperation(value = "Assign vlan group to APs")
     @PostMapping("it4u/{id}/group/device")
     public String assignVG(@PathVariable(value = "id") String id, @RequestBody String postData) {
-        getCookies();
         ApiRequest apiRequest = new ApiRequest();
         JSONObject createPostData = new JSONObject();
         List<String> itemDevicesArray = new ArrayList<>();
@@ -196,34 +244,61 @@ public class ConfigController {
         }
         Boolean portal = true;
         int positionPortal = 0;
+        int positionPortalSetting = 0;
         for (int i = 0; i < getDataFromPostData.length(); i++) {
             JSONObject getItem = (JSONObject) getDataFromPostData.get(i);
             try {
                 portal = getItem.getBoolean("portal_enabled");
-                positionPortal = i;
+                positionPortalSetting = i;
             } catch (Exception e) {
                 //TODO: handle exception
             }  
         }
-        JSONObject getDataHotspot = (JSONObject) getDataFromPostData.get(positionPortal);
+        String getSetting = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/get/setting", csrfToken, unifises);
+        JSONObject convertDataSetting = new JSONObject(getSetting);
+        JSONArray getDataSetting = convertDataSetting.getJSONArray("data");
+        for (int i = 0; i < getDataSetting.length(); i++) {
+            JSONObject getItem = (JSONObject) getDataSetting.get(i);
+            if (getItem.getString("key").equals("guest_access")) {
+                positionPortal = i;
+                break;
+            }
+        }
+        JSONObject getDataId = (JSONObject) getDataSetting.get(positionPortal);
+        String idSetting = getDataId.getString("_id");
+        String idSite = getDataId.getString("site_id");
+        JSONObject getDataHotspot = (JSONObject) getDataFromPostData.get(positionPortalSetting);
         switch (postData.getString("auth")) {
             case "none":
+                getDataHotspot.put("_id", idSetting);
+                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "none");
                 getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             case "hotspot":
+                getDataHotspot.put("_id", idSetting);
+                getDataHotspot.put("site_id", idSite);
+                getDataHotspot.put("_id", idSetting);
+                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "hotspot");
                 getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             case "password":
+                getDataHotspot.put("_id", idSetting);
+                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "password");
                 getDataHotspot.put("x_password", postData.getString("x_password"));
                 getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             default:
                 break;
         }
-        return getDataHotspot.toString();
+        String createHotspot = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/set/setting/guest_access/" + idSetting,
+                csrfToken, unifises, getDataHotspot.toString());
+        return createHotspot.toString();
     }
     
     public String getCookies() {

@@ -646,8 +646,57 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
 Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/rhnl7chn/wlanconf/5cf637b3e4b0c9b85fe7a263
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Content-Type: application/json
+
+###
+Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5e67359be4b0c4fb81c8fd08
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Content-Type: application/json
+
+{
+    "_id":"5e67359be4b0c4fb81c8fd08",
+    "x_iapp_key":"75df6e6ad4cf926f76a9bdb084c5bfe5",
+    "wpa_mode":"wpa2",
+    "minrate_na_advertising_rates":false,
+    "dtim_na":1,
+    "minrate_na_enabled":false,
+    "minrate_ng_advertising_rates":false,
+    "enabled":true,
+    "mac_filter_policy":"allow",
+    "security":"wpapsk",
+    "wep_idx":1,
+    "group_rekey":3600,
+    "minrate_ng_enabled":false,
+    "minrate_ng_data_rate_kbps":1000,
+    "wpa_enc":"ccmp",
+    "wlangroup_id":"5e566a29e4b083762e0377ef",
+    "bc_filter_enabled":false,
+    "x_passphrase":"12345678",
+    "minrate_na_beacon_rate_kbps":6000,
+    "usergroup_id":"5d65e680e4b04e62db0c7293",
+    "mac_filter_list":[],
+    "minrate_na_mgmt_rate_kbps":6000,
+    "dtim_mode":"default",
+    "schedule":[],
+    "minrate_ng_beacon_rate_kbps":1000,
+    "minrate_ng_mgmt_rate_kbps":1000,
+    "bc_filter_list":[],
+    "name":"TPs member",
+    "site_id":"5d65e680e4b04e62db0c728b",
+    "minrate_na_data_rate_kbps":6000,
+    "mac_filter_enabled":false,
+    "dtim_ng":1,
+    "minrate_ng_cck_rates_enabled":true,
+    "name_combine_enabled":true,
+    "name_combine_suffix":"_IoT",
+    "radius_das_enabled":false
+}
 
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf
@@ -753,13 +802,13 @@ Content-Type: application/json
 // https://ubnt49.cloud.tpsc.vn/api/s/rhnl7chn/stat/sta
 it4u/{id}/hotspot
 ###
-Post http://localhost:5000/api/v1/it4u/4pusx4n9/hotspot
+Post http://localhost:5000/api/v1/it4u/jxvx5dzg/hotspot
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
 Content-Type: application/json
 
 {
     "auth":"password",
     "redirect_url": "https://www.facebook.com/DNG.TPs.Solutions/",
-    "x_password": "123456789",
-    "facebook_wifi_gw_name": "49LQD_TPcoms"
+    "facebook_wifi_gw_name": "test 10",
+    "x_password": "12345678"
 }
