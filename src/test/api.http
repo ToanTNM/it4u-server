@@ -644,29 +644,35 @@ Content-Type: application/json
     "name":"5GHz Test3"
 }
 
-###
+### get vlangroup
 Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
 Content-Type: application/json
 
-###
+### get thông tin ssid của vlan group
 Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5e566a29e4b083762e0377ef
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
 Content-Type: application/json
 
-###
-//open, wpapsk
+
+### get info ssid
+Get http://localhost:5000/api/v1/it4u/bkhsurc7/essid/5e566de8e4b0f1a8a14d4479
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Content-Type: application/json
+
+###Update thông tin SSID
+//open, wpapsk 
 Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5e67359be4b0c4fb81c8fd08
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
 Content-Type: application/json
 
 {
-    "security":"wpapsk",
-    "x_passphrase":"12345678",
+    "security":"open",
+    // "x_passphrase":"1234567890",
     "name":"TPs member"
 }
 
-###
+### Tạo SSID
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
 Content-Type: application/json
@@ -780,3 +786,8 @@ Content-Type: application/json
     "facebook_wifi_gw_name": "test 10",
     "x_password": "12345678"
 }
+
+###
+Get http://localhost:5000/api/v1/it4u/jxvx5dzg/hotspot
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
+Content-Type: application/json

@@ -112,9 +112,9 @@ public class ConfigController {
         }
     }
 
-    @ApiOperation(value = "Get SSID to vlan group")
+    @ApiOperation(value = "Get wlanconf to vlan group")
     @GetMapping("it4u/{id}/wlanconf/{wlan}")
-    public String getSSID(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
+    public String getWlanconf(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
@@ -134,6 +134,34 @@ public class ConfigController {
             JSONObject getItem = (JSONObject) data.get(i);
             if (wlan.equals(getItem.getString("wlangroup_id"))) {
                 result.add(getItem.toString());
+            }
+        }
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Get SSID to vlan group")
+    @GetMapping("it4u/{id}/essid/{wlan}")
+    public String getSSID(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
+        JSONObject result = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONArray data = new JSONArray();
+        try {
+            String createVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String createVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
+                    unifises);
+            JSONObject convertData = new JSONObject(createVlanGroup);
+            data = convertData.getJSONArray("data");
+        }
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getItem = (JSONObject) data.get(i);
+            if (wlan.equals(getItem.getString("_id"))) {
+                result = getItem = (JSONObject) data.get(i);
+                break;
             }
         }
         return result.toString();
@@ -259,6 +287,38 @@ public class ConfigController {
         return data.toString();
     }
 
+    @ApiOperation(value = "Get a hotspot")
+    @GetMapping("it4u/{id}/hotspot")
+    public String getHotspot(@PathVariable(value = "id") String id) {
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        ApiRequest apiRequest = new ApiRequest();
+        int positionPortal = 0;
+        JSONArray getDataSetting = new JSONArray();
+        try {
+            String getSetting = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/get/setting", csrfToken, unifises);
+            JSONObject convertDataSetting = new JSONObject(getSetting);
+            getDataSetting = convertDataSetting.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String getSetting = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/get/setting", csrfToken, unifises);
+            JSONObject convertDataSetting = new JSONObject(getSetting);
+            getDataSetting = convertDataSetting.getJSONArray("data");
+        }
+        for (int i = 0; i < getDataSetting.length(); i++) {
+            JSONObject getItem = (JSONObject) getDataSetting.get(i);
+            if (getItem.getString("key").equals("guest_access")) {
+                positionPortal = i;
+                break;
+            }
+        }
+        JSONObject getData = (JSONObject) getDataSetting.get(positionPortal);
+        return getData.toString();
+    }
+
     @ApiOperation(value = "Create a hotspot")
     @PostMapping("it4u/{id}/hotspot")
     public String createHotspot(@PathVariable(value = "id") String id, @RequestBody String data) {
@@ -307,30 +367,20 @@ public class ConfigController {
         String idSetting = getDataId.getString("_id");
         String idSite = getDataId.getString("site_id");
         JSONObject getDataHotspot = (JSONObject) getDataFromPostData.get(positionPortalSetting);
+        getDataHotspot.put("_id", idSetting);
+        getDataHotspot.put("site_id", idSite);
+        getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
+        getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
         switch (postData.getString("auth")) {
             case "none":
-                getDataHotspot.put("_id", idSetting);
-                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "none");
-                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
-                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             case "hotspot":
-                getDataHotspot.put("_id", idSetting);
-                getDataHotspot.put("site_id", idSite);
-                getDataHotspot.put("_id", idSetting);
-                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "hotspot");
-                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
-                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             case "password":
-                getDataHotspot.put("_id", idSetting);
-                getDataHotspot.put("site_id", idSite);
                 getDataHotspot.put("auth", "password");
                 getDataHotspot.put("x_password", postData.getString("x_password"));
-                getDataHotspot.put("redirect_url", postData.getString("redirect_url"));
-                getDataHotspot.put("facebook_wifi_gw_name", postData.getString("facebook_wifi_gw_name"));
                 break;
             default:
                 break;
