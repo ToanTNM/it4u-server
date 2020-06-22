@@ -633,7 +633,7 @@ Content-Type: application/json
 
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyODAxMDEzLCJleHAiOjE1OTM0MDU4MTN9.tCLQVOcHC3GcHBvqIDTh29JhLXnfsfbpE1fI9IR8Pb773-CyCxbQ3XRuO5HxVhc3RFEc_9_yj6i_xKARlkEEng
 Content-Type: application/json
 
 {
@@ -641,7 +641,7 @@ Content-Type: application/json
     "roam_channel_na":36,
     "roam_channel_ng":1,
     "pmf_mode":"optional",
-    "name":"5GHz Test3"
+    "name":"5GHz Test6"
 }
 
 ### get vlangroup
