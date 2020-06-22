@@ -29,6 +29,9 @@ public class ConfigController {
     @Value("${app.ubnt.hotspot_template}")
     private String hotspotTemplate;
 
+    @Value("${app.ubnt.ssid_template}")
+    private String ssidTemplate;
+
     @Value("${app.ubnt.csrf_token}")
     private String csrfToken;
 
@@ -100,20 +103,32 @@ public class ConfigController {
     @PostMapping("it4u/{id}/wlanconf")
     public String createSSID(@PathVariable(value = "id") String id, @RequestBody String postData) {
         ApiRequest apiRequest = new ApiRequest();
+        JSONArray dataVlanGr = new JSONArray();
         try {
-            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
-                    unifises, postData);
-            JSONObject convertData = new JSONObject(createVlanGroup);
-            JSONArray data = convertData.getJSONArray("data");
-            return data.toString();
+            String getVlanGr = apiRequest.getRequestApi(urlIt4u, ssidTemplate, csrfToken, unifises);
+            JSONObject convertGetDataVlanGr = new JSONObject(getVlanGr);
+            dataVlanGr = convertGetDataVlanGr.getJSONArray("data");
         } catch (Exception e) {
             getCookies();
-            String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
-                    unifises, postData);
-            JSONObject convertData = new JSONObject(createVlanGroup);
-            JSONArray data = convertData.getJSONArray("data");
-            return data.toString();
+            String getVlanGr = apiRequest.getRequestApi(urlIt4u, ssidTemplate, csrfToken, unifises);
+            JSONObject convertGetDataVlanGr = new JSONObject(getVlanGr);
+            dataVlanGr = convertGetDataVlanGr.getJSONArray("data");
         }
+        JSONObject postDataJson = new JSONObject(postData);
+        JSONObject getItemVlanGr = (JSONObject) dataVlanGr.get(0);
+        getItemVlanGr.put("is_guest", postDataJson.getBoolean("is_guest"));
+        getItemVlanGr.put("usergroup_id", postDataJson.getString("usergroup_id"));
+        getItemVlanGr.put("name", postDataJson.getString("name"));
+        getItemVlanGr.put("wlangroup_id", postDataJson.getString("wlangroup_id"));
+        getItemVlanGr.put("security", postDataJson.getString("security"));
+        if (postDataJson.getString("security").equals("wpapsk")) {
+            getItemVlanGr.put("x_passphrase", postDataJson.getString("x_passphrase"));
+        }
+        String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken, unifises,
+                getItemVlanGr.toString());
+        JSONObject convertData = new JSONObject(createVlanGroup);
+        JSONArray data = convertData.getJSONArray("data");
+        return data.toString();
     }
 
     @ApiOperation(value = "Get wlanconf to vlan group")
@@ -234,11 +249,13 @@ public class ConfigController {
 
     @ApiOperation(value = "Assign vlan group to APs")
     @PostMapping("it4u/{id}/group/device")
-    public String assignVG(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String assignVG(@PathVariable(value = "id") String id) {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject createPostData = new JSONObject();
         List<String> itemDevicesArray = new ArrayList<>();
         String getDeviceId = "";
+        String highSpeed = "";
+        String lowSpeed = "";
         JSONArray getDataDevices = new JSONArray();
         try {
             getDeviceId = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device", csrfToken, unifises);
@@ -254,6 +271,19 @@ public class ConfigController {
             JSONObject itemDevice = (JSONObject) getDataDevices.get(i);
             itemDevicesArray.add(itemDevice.getString("device_id"));
         }
+        String getVlanGr = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
+        JSONObject convertDataVlanGr = new JSONObject(getVlanGr);
+        JSONArray dataVlanGr = convertDataVlanGr.getJSONArray("data");
+        for (int i=0; i<dataVlanGr.length(); i++) {
+            JSONObject getItem = (JSONObject) dataVlanGr.get(i);
+            if (getItem.getString("name").equals("5G")) {
+                highSpeed = getItem.getString("_id");
+            }
+            if (getItem.getString("name").equals("2G")) {
+                lowSpeed = getItem.getString("_id");
+            }
+        }
+        String postData = "{\"radio_table\":[{\"radio\":\"ng\",\"wlangroup_id\":\"" + lowSpeed + "\",\"tx_power_mode\":\"medium\"},{\"radio\":\"na\",\"wlangroup_id\":\"" + highSpeed + "\"}],\"wlan_overrides\":[],\"bandsteering_mode\":\"prefer_5g\"}";
         createPostData.put("id", itemDevicesArray);
         createPostData.put("data", postData);
         String putData = "{\"id\":" + itemDevicesArray + ", \"data\":" + postData + "}";

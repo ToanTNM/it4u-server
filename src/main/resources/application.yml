@@ -10,6 +10,7 @@ app:
     url: https://ubnt.cloud.tpsc.vn/api
     url_test: https://ubnt49.cloud.tpsc.vn/api
     hotspot_template: /s/rhnl7chn/get/setting
+    ssid_template: /s/rhnl7chn/rest/wlanconf
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
     csrf_token: ecVw3wbyKYKuqIakdijwhI7o0C6NFfNh

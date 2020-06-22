@@ -668,8 +668,10 @@ Content-Type: application/json
 
 {
     "security":"open",
-    // "x_passphrase":"1234567890",
-    "name":"TPs member"
+    "x_passphrase":"1234567890",
+    "name":"TPs member",
+    "vlan_enabled": true,
+    "vlan": "3",
 }
 
 ### Tạo SSID
@@ -679,11 +681,11 @@ Content-Type: application/json
 
 {
     "enabled":true,
-    "security":"wpapsk",
+    //"security":"wpapsk",
     "wep_idx":1,
     "wpa_mode":"wpa2",
     "wpa_enc":"ccmp",
-    "usergroup_id":"5d65e680e4b04e62db0c728b",
+    //"usergroup_id":"5d65e680e4b04e62db0c728b",
     "dtim_mode":"default",
     "dtim_ng":1,
     "dtim_na":1,
@@ -703,11 +705,11 @@ Content-Type: application/json
     "bc_filter_list":[],
     "group_rekey":3600,
     ////"is_guest":false,
-    "name":"TPs test2 Hispeed",
-    "x_passphrase":"12345678",
+    //"name":"TPs test2 Hispeed",
+    //"x_passphrase":"12345678",
     "fast_roaming_enabled":true,
     "mcastenhance_enabled":false,
-    "wlangroup_id":"5edf1045c414790009d3e1e9",
+    //"wlangroup_id":"5edf1045c414790009d3e1e9",
     "radius_das_enabled":false,
     "schedule":[],
     "minrate_ng_mgmt_rate_kbps":1000,
@@ -715,7 +717,19 @@ Content-Type: application/json
     "minrate_ng_beacon_rate_kbps":1000,
     "minrate_na_beacon_rate_kbps":6000
 }
+### Tạo SSID
+Post http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyODQ3NDczLCJleHAiOjE1OTM0NTIyNzN9.Z6xZbhZxSahn1tnc3LBkrnvVyTr2Lhr4Pz9YYa5yA_PbS6xoi1Dvaepj1iBkZ_U9eeoG97U1Hiyl3GezJpTySQ
+Content-Type: application/json
 
+{
+    "security":"wpapsk",
+    "usergroup_id":"5d65e680e4b04e62db0c728b",
+    "is_guest":false,
+    "name":"TPs test2 Hispeed",
+    "x_passphrase":"12345678",
+    "wlangroup_id":"5e566a29e4b083762e0377ef",
+}
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
@@ -746,14 +760,9 @@ Content-Type: application/json
 
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/group/device
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyODIwNTMxLCJleHAiOjE1OTM0MjUzMzF9.ndDrkbSG7odjW5A98I3Pf75f_lVHE9lQaxjZJZkFx3hLKv_72gYEVOLttQoeFfa4o78ER9YnyEWtCC4iJl59oA
 Content-Type: application/json
 
-{
-    "radio_table":[{"radio":"ng","wlangroup_id":"5edefc00c414790009d3e0de","tx_power_mode":"medium"},{"radio":"na","wlangroup_id":"5edf1045c414790009d3e1e9"}],
-    "wlan_overrides":[],
-    "bandsteering_mode":"prefer_5g"
-}
 /sitemgr
 ###
 Post http://localhost:5000/api/v1/it4u/bkhsurc7/sitemgr
