@@ -116,6 +116,7 @@ public class ConfigController {
         }
         JSONObject postDataJson = new JSONObject(postData);
         JSONObject getItemVlanGr = (JSONObject) dataVlanGr.get(0);
+        getItemVlanGr.put("enabled", postDataJson.getBoolean("enabled"));
         getItemVlanGr.put("is_guest", postDataJson.getBoolean("is_guest"));
         getItemVlanGr.put("usergroup_id", postDataJson.getString("usergroup_id"));
         getItemVlanGr.put("name", postDataJson.getString("name"));
@@ -202,16 +203,18 @@ public class ConfigController {
             for (int i = 0; i< getVlanGroupJson.length(); i++) {
                 JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
                 if (ssid.equals(getItem.getString("_id"))) {
+                    getItem.put("enabled", convertDataPost.getBoolean("enabled"));
+                    getItem.put("name", convertDataPost.getString("name"));
+                    getItem.put("vlan_enabled", convertDataPost.getString("vlan_enabled"));
+                    getItem.put("vlan", convertDataPost.getString("vlan"));
                     if (convertDataPost.getString("security").equals("wpapsk")) {
                         getItem.put("security", "wpapsk");
                         getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
-                        getItem.put("name", convertDataPost.getString("name"));
                         putData = getItem.toString();
                         break;
                     }
                     else {
                         getItem.put("security", "open");
-                        getItem.put("name", convertDataPost.getString("name"));
                         putData = getItem.toString();
                         break;
                     }
@@ -225,15 +228,17 @@ public class ConfigController {
             for (int i = 0; i < getVlanGroupJson.length(); i++) {
                 JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
                 if (ssid.equals(getItem.getString("_id"))) {
+                    getItem.put("enabled", convertDataPost.getBoolean("enabled"));
+                    getItem.put("name", convertDataPost.getString("name"));
+                    getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
+                    getItem.put("vlan", convertDataPost.getString("vlan"));
                     if (convertDataPost.getString("security").equals("wpapsk")) {
                         getItem.put("security", "wpapsk");
                         getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
-                        getItem.put("name", convertDataPost.getString("name"));
                         putData = getItem.toString();
                         break;
                     } else {
                         getItem.put("security", "open");
-                        getItem.put("name", convertDataPost.getString("name"));
                         putData = getItem.toString();
                         break;
                     }

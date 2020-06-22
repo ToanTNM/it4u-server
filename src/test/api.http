@@ -662,14 +662,15 @@ Content-Type: application/json
 
 ###Update thông tin SSID
 //open, wpapsk 
-Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5e67359be4b0c4fb81c8fd08
+Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5ef0eea8be0777000d090b1d
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
 Content-Type: application/json
 
 {
+    "enabled":true,
     "security":"open",
     "x_passphrase":"1234567890",
-    "name":"TPs member",
+    "name":"TPs test2 Hispeed",
     "vlan_enabled": true,
     "vlan": "3",
 }
@@ -723,6 +724,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyODQ3NDczL
 Content-Type: application/json
 
 {
+    "enabled":true,
     "security":"wpapsk",
     "usergroup_id":"5d65e680e4b04e62db0c728b",
     "is_guest":false,
