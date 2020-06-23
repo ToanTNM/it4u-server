@@ -205,8 +205,12 @@ public class ConfigController {
                 if (ssid.equals(getItem.getString("_id"))) {
                     getItem.put("enabled", convertDataPost.getBoolean("enabled"));
                     getItem.put("name", convertDataPost.getString("name"));
-                    getItem.put("vlan_enabled", convertDataPost.getString("vlan_enabled"));
-                    getItem.put("vlan", convertDataPost.getString("vlan"));
+                    getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
+                    getItem.put("is_guest", convertDataPost.getString("is_guest"));
+                    try {
+                        getItem.put("vlan", convertDataPost.getString("vlan"));
+                    } catch (Exception e) {
+                    }
                     if (convertDataPost.getString("security").equals("wpapsk")) {
                         getItem.put("security", "wpapsk");
                         getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
@@ -230,8 +234,12 @@ public class ConfigController {
                 if (ssid.equals(getItem.getString("_id"))) {
                     getItem.put("enabled", convertDataPost.getBoolean("enabled"));
                     getItem.put("name", convertDataPost.getString("name"));
+                    getItem.put("is_guest", convertDataPost.getBoolean("is_guest"));
                     getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
-                    getItem.put("vlan", convertDataPost.getString("vlan"));
+                    try {
+                        getItem.put("vlan", convertDataPost.getString("vlan"));
+                    } catch (Exception ex) {
+                    }
                     if (convertDataPost.getString("security").equals("wpapsk")) {
                         getItem.put("security", "wpapsk");
                         getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));

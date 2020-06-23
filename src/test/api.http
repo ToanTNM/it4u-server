@@ -671,8 +671,9 @@ Content-Type: application/json
     "security":"open",
     "x_passphrase":"1234567890",
     "name":"TPs test2 Hispeed",
-    "vlan_enabled": true,
-    "vlan": "3",
+    "vlan_enabled": false,
+    //"vlan": "3",
+    "is_guest":false
 }
 
 ### Tạo SSID
