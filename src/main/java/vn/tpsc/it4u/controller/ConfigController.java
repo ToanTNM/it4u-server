@@ -1,15 +1,12 @@
 package vn.tpsc.it4u.controller;
 
 import vn.tpsc.it4u.util.ApiRequest;
-import vn.tpsc.it4u.util.ApiResponseUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import javax.ws.rs.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

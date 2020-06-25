@@ -197,8 +197,7 @@ public class DashboardController {
     // Register sitesname
     @ApiOperation(value = "Create sites name request")
     @GetMapping("/it4u/createSitesName")
-    public Boolean createSitesName() {
-        ApiRequest apiRequest = new ApiRequest();
+    public Boolean createSitesName() {        ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
         try {
             String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
@@ -216,7 +215,7 @@ public class DashboardController {
             } catch (Exception e) {
             }
 
-            if (!sitesNameRepository.existsBySitename(siteName)) {
+            if (!sitesNameRepository.existsBySitename(siteName) && !sitesNameRepository.existsByIdname(idName)) {
                 final SitesName createSitename = new SitesName(siteName, idName);
                 sitesNameRepository.save(createSitename);
             }                          

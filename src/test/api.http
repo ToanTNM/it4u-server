@@ -530,7 +530,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/createSitesName
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgxMzE5ODUzLCJleHAiOjE1ODE5MjQ2NTN9.JFX3_V9zk9LJ_wa9jMQSZ1n3pq9O05XL7ZnGtoy4yp-0p5jCtllf7xfQv-iFcOi5UC3FJOHQ447cDnNhnDE1UA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTA0MzI2LCJleHAiOjE1OTM1MDkxMjZ9.oHshAt924zKQmrQbylPPdAevhUpqUXIIoRGFJX5wWHhuQOkCYxfFcglDzXypUmxADXVJfQ6NtiP8ozo_zVzljA
 Content-Type: application/json
 
 {
@@ -803,3 +803,34 @@ Content-Type: application/json
 Get http://localhost:5000/api/v1/it4u/jxvx5dzg/hotspot
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
 Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/rhnl7chn/devices
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/rhnl7chn/block/info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
+Content-Type: application/json
+
+
+###
+Post http://localhost:5000/api/v1/it4u/rhnl7chn/block/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
+Content-Type: application/json
+
+{
+    "mac":"60:f8:1d:2a:fc:d2",
+    "cmd":"block-sta"
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/rhnl7chn/block/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
+Content-Type: application/json
+
+{
+    "mac":"60:f8:1d:2a:fc:d2",
+    "cmd":"unblock-sta"
+}
