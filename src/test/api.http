@@ -656,14 +656,14 @@ Content-Type: application/json
 
 
 ### get info ssid
-Get http://localhost:5000/api/v1/it4u/bkhsurc7/essid/5e566de8e4b0f1a8a14d4479
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Get http://localhost:5000/api/v1/it4u/bkhsurc7/essid/5ef0eea8be0777000d090b1d
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU5MzQyMzg4NywiZXhwIjoxNTk0MDI4Njg3fQ.J_GiQQPTCM6veG6HZrzlUeBsJckEs4LMYivIOcbpNAg6NDej7pbnKeMJR2ZdD94TqE-x-11d6hAennglh1yhAA
 Content-Type: application/json
 
 ###Update thông tin SSID
 //open, wpapsk 
-Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5ef0eea8be0777000d090b1d
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5ef1873dbe0777000d0915b4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU5MzQyMzg4NywiZXhwIjoxNTk0MDI4Njg3fQ.J_GiQQPTCM6veG6HZrzlUeBsJckEs4LMYivIOcbpNAg6NDej7pbnKeMJR2ZdD94TqE-x-11d6hAennglh1yhAA
 Content-Type: application/json
 
 {
@@ -673,7 +673,16 @@ Content-Type: application/json
     "name":"TPs test2 Hispeed",
     "vlan_enabled": false,
     //"vlan": "3",
-    "is_guest":false
+    "is_guest":false,  
+    "schedule_enabled":true,
+    //"schedule":["mon|0800-1800","thu|0800-1800","fri|0800-1800","sat|0800-1800","sun|0800-1800"],
+    "monday": "mon|0800-1800",
+    "tuesday": "disable",
+    "wednessday": "disable",
+    "thursday": "disable",
+    "friday": "disable",
+    "saturday": "disable",
+    "sunday": "disable"
 }
 
 ### Tạo SSID

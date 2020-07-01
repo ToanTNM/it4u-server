@@ -5,8 +5,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.google.common.base.Splitter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -162,6 +166,7 @@ public class ConfigController {
         JSONObject result = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
+        // List<String> schedule = new ArrayList<>();
         try {
             String createVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
                     unifises);
@@ -177,9 +182,102 @@ public class ConfigController {
         for (int i = 0; i < data.length(); i++) {
             JSONObject getItem = (JSONObject) data.get(i);
             if (wlan.equals(getItem.getString("_id"))) {
-                result = getItem = (JSONObject) data.get(i);
+                result = (JSONObject) data.get(i);
                 break;
             }
+        }
+        result.put("status_monday", false);
+        result.put("status_tuesday", false);
+        result.put("status_wednessday", false);
+        result.put("status_thursday", false);
+        result.put("status_friday", false);
+        result.put("status_saturday", false);
+        result.put("status_sunday", false);
+        JSONArray getSchedule = result.getJSONArray("schedule");
+        try {
+            if (result.getBoolean("schedule_enabled")) {
+                List<String> schedule = Arrays.asList(getSchedule.toString());
+                // String[] textArray = schedule.get(0);
+                for (int i=0; i<schedule.size(); i++) {
+                    final String getItem = schedule.get(i);
+                    final String regex = "\\[(.*)\\]";
+                    String getDay = "";
+                    final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+                    final Matcher matcher = pattern.matcher(getItem);
+
+                    while (matcher.find()) {
+                        String getSch = matcher.group(1);
+                        String[] listSchedule = getSch.split(",");
+                        for (int k=0; k<listSchedule.length; k++) {
+                            List<Integer> listTimeDay = new ArrayList<Integer>();
+                            String getItemSch = listSchedule[k];
+                            String item = getItemSch.substring(1, 14);
+                            String[] parts = item.split("\\|");
+                            String getTimeSch = parts[1];
+                            getDay = parts[0];
+                            String[] partTime = getTimeSch.split("-");
+                            for (int j = 0; j < partTime.length; j++) {
+                                int index = 0;
+                                int time = 0;
+                                String getItemTime = partTime[j];
+                                while (index < getItemTime.length()) {
+                                    String getTime = getItemTime.substring(index, Math.min(index + 2, getItemTime.length()));
+                                    if (index == 0) {
+                                        time = Integer.parseInt(getTime) * 60;
+                                    } else {
+                                        time = time + Integer.parseInt(getTime);
+                                    }
+                                    index = index + 2;
+                                }
+                                listTimeDay.add(time / 15);
+
+                            }
+                            switch (getDay) {
+                                case "mon":
+                                    result.put("status_monday", true);
+                                    result.put("mon_schedule", item);
+                                    result.put("valid_monday", listTimeDay);
+                                    break;
+                                case "tue":
+                                    result.put("tue_schedule", item);
+                                    result.put("status_tueday", true);
+                                    result.put("valid_tueday", listTimeDay);
+                                    break;
+                                case "wed":
+                                    result.put("wed_schedule", item);
+                                    result.put("status_wedday", true);
+                                    result.put("valid_wedday", listTimeDay);
+                                    break;
+                                case "thu":
+                                    result.put("thu_schedule", item);
+                                    result.put("status_thuday", true);
+                                    result.put("valid_thuday", listTimeDay);
+                                    break;
+                                case "fri":
+                                    result.put("fri_schedule", item);
+                                    result.put("status_friday", true);
+                                    result.put("valid_friday", listTimeDay);
+                                    break;
+                                case "sat":
+                                    result.put("sat_schedule", item);
+                                    result.put("status_satday", true);
+                                    result.put("valid_satday", listTimeDay);
+                                    break;
+                                case "sun":
+                                    result.put("sun_schedule", item);
+                                    result.put("status_sunday", true);
+                                    result.put("valid_sunday", listTimeDay);
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+            } 
+        } catch (Exception e) {
+            result.put("schedule_enabled", false);
         }
         return result.toString();
     }
@@ -188,65 +286,68 @@ public class ConfigController {
     @PutMapping("it4u/{id}/wlanconf/{ssid}")
     public String putSSID(@PathVariable(value = "id") String id, @PathVariable(value = "ssid") String ssid, @RequestBody String postData) {
         List<String> result = new ArrayList<>();
+        List<String> schedule = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
+        JSONArray getVlanGroupJson = new JSONArray();
         JSONObject convertDataPost = new JSONObject(postData);
         String putData = "";
         try {
             String getVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken,
                     unifises);
             JSONObject convertVlanGroup = new JSONObject(getVlanGroup);
-            JSONArray getVlanGroupJson = convertVlanGroup.getJSONArray("data");
-            for (int i = 0; i< getVlanGroupJson.length(); i++) {
-                JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
-                if (ssid.equals(getItem.getString("_id"))) {
-                    getItem.put("enabled", convertDataPost.getBoolean("enabled"));
-                    getItem.put("name", convertDataPost.getString("name"));
-                    getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
-                    getItem.put("is_guest", convertDataPost.getString("is_guest"));
-                    try {
-                        getItem.put("vlan", convertDataPost.getString("vlan"));
-                    } catch (Exception e) {
-                    }
-                    if (convertDataPost.getString("security").equals("wpapsk")) {
-                        getItem.put("security", "wpapsk");
-                        getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
-                        putData = getItem.toString();
-                        break;
-                    }
-                    else {
-                        getItem.put("security", "open");
-                        putData = getItem.toString();
-                        break;
-                    }
-                }
-            }
+            getVlanGroupJson = convertVlanGroup.getJSONArray("data");
         } catch (Exception e) {
             getCookies();
             String getVlanGroup = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf", csrfToken, unifises);
             JSONObject convertVlanGroup = new JSONObject(getVlanGroup);
-            JSONArray getVlanGroupJson = convertVlanGroup.getJSONArray("data");
-            for (int i = 0; i < getVlanGroupJson.length(); i++) {
-                JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
-                if (ssid.equals(getItem.getString("_id"))) {
-                    getItem.put("enabled", convertDataPost.getBoolean("enabled"));
-                    getItem.put("name", convertDataPost.getString("name"));
-                    getItem.put("is_guest", convertDataPost.getBoolean("is_guest"));
-                    getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
-                    try {
-                        getItem.put("vlan", convertDataPost.getString("vlan"));
-                    } catch (Exception ex) {
-                    }
-                    if (convertDataPost.getString("security").equals("wpapsk")) {
-                        getItem.put("security", "wpapsk");
-                        getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
-                        putData = getItem.toString();
-                        break;
-                    } else {
-                        getItem.put("security", "open");
-                        putData = getItem.toString();
-                        break;
-                    }
+            getVlanGroupJson = convertVlanGroup.getJSONArray("data");
+        }
+        if (convertDataPost.getBoolean("schedule_enabled")) {
+            if (!convertDataPost.getString("monday").equals("disable")) {
+                schedule.add(convertDataPost.getString("monday"));
+            }
+            if (!convertDataPost.getString("tuesday").equals("disable")) {
+                schedule.add(convertDataPost.getString("tuesday"));
+            }
+            if (!convertDataPost.getString("wednessday").equals("disable")) {
+                schedule.add(convertDataPost.getString("wednessday"));
+            }
+            if (!convertDataPost.getString("thursday").equals("disable")) {
+                schedule.add(convertDataPost.getString("thursday"));
+            }
+            if (!convertDataPost.getString("friday").equals("disable")) {
+                schedule.add(convertDataPost.getString("friday"));
+            }
+            if (!convertDataPost.getString("saturday").equals("disable")) {
+                schedule.add(convertDataPost.getString("saturday"));
+            }
+            if (!convertDataPost.getString("sunday").equals("disable")) {
+                schedule.add(convertDataPost.getString("sunday"));
+            }
+        }
+        for (int i = 0; i< getVlanGroupJson.length(); i++) {
+            JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
+            if (ssid.equals(getItem.getString("_id"))) {
+                getItem.put("enabled", convertDataPost.getBoolean("enabled"));
+                getItem.put("name", convertDataPost.getString("name"));
+                getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
+                getItem.put("is_guest", convertDataPost.getBoolean("is_guest"));
+                getItem.put("schedule", schedule);
+                try {
+                    getItem.put("vlan", convertDataPost.getString("vlan"));
+                } catch (Exception e) {
+                }
+                if (convertDataPost.getString("security").equals("wpapsk")) {
+                    getItem.put("security", "wpapsk");
+                    getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
+                    putData = getItem.toString();
+                    break;
+                }
+                else {
+                    getItem.put("security", "open");
+                    putData = getItem.toString();
+                    break;
                 }
             }
         }
