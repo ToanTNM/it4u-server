@@ -19,7 +19,7 @@ import vn.tpsc.it4u.util.Calculator;
 @RestController
 @RequestMapping("${app.api.version}")
 public class DevicesController {
-    @Value("${app.ubnt.url_test}")
+    @Value("${app.ubnt.url}")
     private String urlIt4u;
 
     @Value("${app.ubnt.csrf_token}")
