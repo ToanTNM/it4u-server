@@ -13,8 +13,8 @@ app:
     ssid_template: /s/rhnl7chn/rest/wlanconf
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
-    csrf_token: gBWUaN59ockCOqnBt6pzkBLZoDPJbI80
-    unifises: gH4DdaC5tktZ6REyPcUKUrdLk2pr4QCs
+    csrf_token: QKqPrDFO3ASqNHNFXtkQtnIlHCGcUK2l
+    unifises: WawAtAx9esQWnfS73iEcqB5nhEgpRzZx
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336

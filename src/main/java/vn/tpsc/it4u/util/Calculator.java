@@ -58,8 +58,15 @@ public class Calculator {
             i = i + 3;
         }
         else if (bytes < tb) {
-            data = Math.round(bytes/(1024*1024*1024*1024));
-            i = i + 1;
+            try {
+                long data1 = Math.round(bytes / (1024 * 1024 * 1024));
+                data = Math.round(data1/1024);
+                i = i + 4;
+            } catch (Exception e) {
+               System.out.print(e);
+                //TODO: handle exception
+            }
+            
         }
         switch(i) {
             case 1: unit = " KB";break;

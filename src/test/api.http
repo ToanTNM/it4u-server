@@ -73,7 +73,7 @@ POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "usernameOrEmail": "KH4234",
+    "usernameOrEmail": "lap.dang@tpsc.vn",
     "password": "123456"
 }
 
@@ -810,11 +810,11 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/jxvx5dzg/hotspot
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyMzYyMTI0LCJleHAiOjE1OTI5NjY5MjR9.eLdSOVbjVmKwHqygbmOAwmA5Yb8zOGD4id0TReBef6Yn7vpjvEImTtT9Ly_SnHYkWlsfynZUk8JQFiOtMcUmYA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
 Content-Type: application/json
 
 ###
-Get http://localhost:5000/api/v1/it4u/rhnl7chn/devices
+Get http://localhost:5000/api/v1/it4u/xld34lgx/devices
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
 Content-Type: application/json
 

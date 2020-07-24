@@ -114,6 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .antMatchers(apiVersion + "/auth", apiVersion + "/auth/**")
                     .permitAll()
+                .antMatchers("/websocket-chat", "/websocket-chat/**")
+                    .permitAll()
                 .antMatchers(apiVersion + "/reset", apiVersion + "/reset/**")
                     .permitAll()
                 .antMatchers(apiVersion + "/forgot", apiVersion + "/forgot/**")
