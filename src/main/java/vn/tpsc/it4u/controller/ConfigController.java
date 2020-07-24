@@ -24,7 +24,7 @@ import vn.tpsc.it4u.service.ConfigTokenService;
 @RestController
 @RequestMapping("${app.api.version}")
 public class ConfigController {
-    @Value("${app.ubnt.url_test}")
+    @Value("${app.ubnt.url}")
     private String urlIt4u;
 
     @Value("${app.ubnt.hotspot_template}")
