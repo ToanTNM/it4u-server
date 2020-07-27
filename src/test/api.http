@@ -59,6 +59,7 @@ Content-Type: application/json
 
 GET http://localhost:5000/api/v1/user
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MzYxODYwLCJleHAiOjE1ODk5NjY2NjB9.CoUEu5IgPuc3yllh1Hmpv4zSuawUifFLG898XutubIWStOIid6TlN8tyrSQWJKw-Co4e98k90-SBFfkaCe2asQ
+
 ###
 POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
@@ -88,7 +89,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOCIsImlhdCI6MTU4OTQ1MDA4MywiZXhwIjoxNTkwMDU0ODgzfQ.QVtVcNAgUQSn2GyvZsgCz5MtZI9vImQCUt7_-AzzXy5rd5PJco5l1ErITokvXp4AgX5glhO6nZ_4EC3jKJXlpA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTY0ODAyNiwiZXhwIjoxNTk2MjUyODI2fQ.1kSjNWa0mJvEslKq59ROzdI9-bskYwGZIzJeGDZE39hqtOWhscupckU2ayR3IT6c6tB-5taagE5v1bJskHPmfw
 ###
 
 PUT http://localhost:5000/api/v1/user/update
@@ -394,6 +395,17 @@ Content-Type: application/json
 {
     "New": "Mới",
     "Returning": "Trở lại"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/detail/hotspot/1593129600000/1595721600000
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTgxMjU4NSwiZXhwIjoxNTk2NDE3Mzg1fQ.0rJS5ws2opclblNWmv4t1wGfPOIXHWq1ZzANnBcTfSHEmDAmMAxjRL1hUcppPGDAPe6WmQePrOjlasrLkFIovw
+Content-Type: application/json
+
+{
+    "New": "Mới",
+    "Returning": "Trở lại",
+    "total_connect": "Total connection"
 }
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/createVoucher
@@ -815,7 +827,7 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/xld34lgx/devices
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyOTY3MTcwLCJleHAiOjE1OTM1NzE5NzB9.PtLW_fUBlMFEB-yk2N489DWcIDuDqjkfpRmkBwRDt95bx_euwJziWG_P8kRih_v6d6yUONzH3XixPl-ujyYRTg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk1ODExOTIzLCJleHAiOjE1OTY0MTY3MjN9.22Spft2qgnLp2g20ITheitQNkDoaphRs_1kN0NCdl1d5VbjLPa1A2clYIr1aUSEAszI3wMkqJKk8Bvn-sV4zlg
 Content-Type: application/json
 
 ###
@@ -843,3 +855,27 @@ Content-Type: application/json
     "mac":"60:f8:1d:2a:fc:d2",
     "cmd":"unblock-sta"
 }
+
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/getTrafficHistory
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTgxMjU4NSwiZXhwIjoxNTk2NDE3Mzg1fQ.0rJS5ws2opclblNWmv4t1wGfPOIXHWq1ZzANnBcTfSHEmDAmMAxjRL1hUcppPGDAPe6WmQePrOjlasrLkFIovw
+Content-Type: application/json
+
+{
+    "attrs":["wlan_bytes","wlan-num_sta","time"],
+    "start":"1593129600000",
+    "end":"1595721600000",
+    "network_monintor": "Traffic Monitor"
+}
+/1593536400000/1596214799999
+###
+POST http://localhost:5000/api/v1/it4u/rhnl7chn/detail/hotspot/1593536400000/1596214799999
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTgxMjU4NSwiZXhwIjoxNTk2NDE3Mzg1fQ.0rJS5ws2opclblNWmv4t1wGfPOIXHWq1ZzANnBcTfSHEmDAmMAxjRL1hUcppPGDAPe6WmQePrOjlasrLkFIovw
+Content-Type: application/json
+
+{
+    "New": "Mới",
+    "Returning": "Trở lại",
+    "total_connect": "Total connection"
+}
+

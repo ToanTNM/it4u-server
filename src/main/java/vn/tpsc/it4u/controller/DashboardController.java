@@ -1167,6 +1167,62 @@ public class DashboardController {
         return result.toString();
     }
 
+    @ApiOperation(value = "View detail hotspot")
+    @PostMapping("it4u/{id}/detail/hotspot/{start}/{end}")
+    public String getDetailHotspot(@PathVariable(value = "id") String userId, @PathVariable(value = "start") String start,
+            @PathVariable(value = "end") String end, @RequestBody String postData, @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
+        List<Integer> resultCountClient = new ArrayList<Integer>(); 
+        JSONObject listHotspotJson = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
+        ApiRequest apiRequest = new ApiRequest();
+        String getData = apiRequest.getRequestApi(urlIt4u,
+                "/s/" + userId + "/stat/guest?start=" + start + "&end=" + end, csrfToken, unifises);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        Calculator convert = new Calculator();
+        JSONObject getData0 = (JSONObject) data.get(data.length() - 1);
+        long getTimeStart = getData0.getLong("start");
+        String convertTimeCond = convert.ConvertSecondToDate(getTimeStart*1000);
+        String[] timeCond = convertTimeCond.split("-");
+        int startTime = Integer.parseInt(timeCond[0]);
+        JSONObject getDataEnd = (JSONObject) data.get(0);
+        long getDateEnd = getDataEnd.getLong("start");
+        String convertDateEnd = convert.ConvertSecondToDate(getDateEnd*1000);
+        String[] timeDateEnd = convertDateEnd.split("-");
+        int endTime = Integer.parseInt(timeDateEnd[0]);
+        //end
+        int countClient = 0;
+        int k = 0;
+        for(int j = startTime; j<=endTime; j++) {
+            for (int i = data.length() - 1; i > 0; i--) {
+                JSONObject getInfo = (JSONObject) data.get(i);
+                long getTimeEnd = getInfo.getLong("start");
+                String convertTimeEnd = convert.ConvertSecondToDate(getTimeEnd * 1000);
+                String[] partTime = convertTimeEnd.split("-");
+                int getDay = Integer.parseInt(partTime[0]);
+                if (getDay == j) {
+                    countClient = countClient + 1;
+                }
+            }
+            resultCountClient.add(countClient);
+            countClient = 0;
+        }
+        listHotspotJson.put("pointStart", getTimeStart * 1000 + 7*60*60*1000);
+        listHotspotJson.put("pointInterval", 24 * 60 * 60 * 1000);
+        listHotspotJson.put("name", getPostData.getString("total_connect"));
+        listHotspotJson.put("data", resultCountClient);
+        // listTrafficJson.put("pointStart", pointStart);
+        // listTrafficJson.put("pointInterval", 60 * 60 * 1000);
+        // listTrafficJson.put("name", getPostData.getString("network_monintor"));
+        // listTrafficJson.put("data", listTraffic);
+        return listHotspotJson.toString();
+    }
+
     //Dashboard 2
     @ApiOperation(value = "Customer info")
     @PostMapping("it4u/{id}/customerInfo")
@@ -1347,6 +1403,47 @@ public class DashboardController {
         Long pointStart = time0 + 7*60*60*1000;
         listTrafficJson.put("pointStart", pointStart);
         listTrafficJson.put("pointInterval",60 * 60 * 1000);
+        listTrafficJson.put("name", getPostData.getString("network_monintor"));
+        listTrafficJson.put("data", listTraffic);
+        return listTrafficJson.toString();
+    }
+
+    // Get traffic history
+    @ApiOperation(value = "Get traffic history")
+    @PostMapping("it4u/{id}/getTrafficHistory")
+    public String getTrafficHistory(@RequestBody String postData, @PathVariable(value = "id") String userId,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
+        List<Long> listTraffic = new ArrayList<Long>();
+        JSONObject listTrafficJson = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
+        ApiRequest apiRequest = new ApiRequest();
+
+        String getMinute = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/stat/report/daily.site/", csrfToken,
+                unifises, postData);
+        JSONObject getData = new JSONObject(getMinute);
+        JSONArray dataMinute = getData.getJSONArray("data");
+        JSONObject getPosZero = (JSONObject) dataMinute.get(0);
+        long countTraffic0 = getPosZero.getLong("wlan_bytes");
+        Long time0 = getPosZero.getLong("time");
+        listTraffic.add(countTraffic0);
+        for (int i = 0; i < dataMinute.length() - 1; i++) {
+            JSONObject getPosStart = (JSONObject) dataMinute.get(i);
+            JSONObject getPosEnd = (JSONObject) dataMinute.get(i + 1);
+            long startTime = getPosStart.getLong("time");
+            long endTime = getPosEnd.getLong("time");
+            if (startTime != endTime) {
+                Long getTraffic = getPosEnd.getLong("wlan_bytes");
+                listTraffic.add(getTraffic);
+            }
+        }
+        Long pointStart = time0 + 7 * 60 * 60 * 1000;
+        listTrafficJson.put("pointStart", pointStart);
+        listTrafficJson.put("pointInterval", 24 * 60 * 60 * 1000);
         listTrafficJson.put("name", getPostData.getString("network_monintor"));
         listTrafficJson.put("data", listTraffic);
         return listTrafficJson.toString();
