@@ -1430,7 +1430,7 @@ public class DashboardController {
         JSONObject getPosZero = (JSONObject) dataMinute.get(0);
         long countTraffic0 = getPosZero.getLong("wlan_bytes");
         Long time0 = getPosZero.getLong("time");
-        listTraffic.add(countTraffic0);
+        listTraffic.add(countTraffic0 / (1024 * 1024 * 1024));
         for (int i = 0; i < dataMinute.length() - 1; i++) {
             JSONObject getPosStart = (JSONObject) dataMinute.get(i);
             JSONObject getPosEnd = (JSONObject) dataMinute.get(i + 1);
@@ -1438,7 +1438,7 @@ public class DashboardController {
             long endTime = getPosEnd.getLong("time");
             if (startTime != endTime) {
                 Long getTraffic = getPosEnd.getLong("wlan_bytes");
-                listTraffic.add(getTraffic);
+                listTraffic.add(getTraffic/(1024*1024*1024));
             }
         }
         Long pointStart = time0 + 7 * 60 * 60 * 1000;
