@@ -255,7 +255,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/radioType
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4NTU5NzY2LCJleHAiOjE1NzkxNjQ1NjZ9.QbyTtKWwfz5lsm0H0SLyhzeY5yS-GoLOI6f_I7iAx94A6wcDujzpMbrWtKwgf2jbRL0KpU8yudz5tUBiLbQ2wQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NzYyNTQ2MiwiZXhwIjoxNTk4MjMwMjYyfQ.SfGYG-bjwDFulTcmAFEW-7XFwSlFuE3UvFfvtKh8Euqme1lRGvarsx4q7zb755v-ywLf-Cd4n_ELQ3kBlDz0Sw
 Content-Type: application/json
 
 ###

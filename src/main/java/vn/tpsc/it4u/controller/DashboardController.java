@@ -413,8 +413,16 @@ public class DashboardController {
         JSONArray data = jsonResult.getJSONArray("data");
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
-            lowRadio = lowRadio + getInfo.getInt("ng-num_sta");
-            highRadio = highRadio + getInfo.getInt("na-num_sta");
+            JSONArray getRadioTable = getInfo.getJSONArray("radio_table_stats");
+            for (int j=0; j<getRadioTable.length(); j++) {
+                JSONObject getInfoRadio = (JSONObject) getRadioTable.get(j);
+                if (getInfoRadio.getString("radio").equals("ng")) {
+                    lowRadio = lowRadio + getInfoRadio.getInt("num_sta");
+                }
+                if (getInfoRadio.getString("radio").equals("na")) {
+                    highRadio = highRadio + getInfoRadio.getInt("num_sta");
+                }
+            }
         }
         getLowRadio.put("name","2.4 GHz");
         getLowRadio.put("y",lowRadio);
