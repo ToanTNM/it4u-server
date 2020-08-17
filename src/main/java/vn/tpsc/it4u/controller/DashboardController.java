@@ -134,8 +134,8 @@ public class DashboardController {
             JSONArray data = jsonResult.getJSONArray("data");
             return "Check ok";
         } catch (Exception e) {
-            String dataPost = "{'username':'" + username + "','password':'" + password
-                    + "','remember':'true','strict':'true'}";
+            String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password
+                    + "\",\"remember\":\"true\",\"strict\":\"true\"}";
             String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
             String[] arr = getCookies.split(";");
             String getToken = arr[0];

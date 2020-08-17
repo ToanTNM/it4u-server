@@ -215,7 +215,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/checkCookiesUbnt
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkxNjY4Mjk1LCJleHAiOjE1OTIyNzMwOTV9.XpaOrLUWCl5sXVKGQnOK2-LorqPDvt44IjHus4uANFMdvRQTsENax4iZk-DbB_7Y-qKSMJ7tPiZopJ1Gz13hZQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NzYyMjEzMCwiZXhwIjoxNTk4MjI2OTMwfQ.HVmj1g6pFrHyBLmFSMKgUHYdu5ofRMXV0_lot7SwtpFqRQNA53NhZSvpBAbCOgvT5aOMkFWgn5sWSmLqRlOtaA
 Content-Type: application/json
 
 ###
@@ -240,7 +240,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/rhnl7chn/clientEssid
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU5MTY2OTE2OSwiZXhwIjoxNTkyMjczOTY5fQ.U5A0sTW9YvdfyNKPKviQMAq_J7ydRVI8UT0BeMeDQ8mfIxpAHOUuXnjfcUJEdFHmoAg6onFXZKx5qaiv29Qo5g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NzYyMjEzMCwiZXhwIjoxNTk4MjI2OTMwfQ.HVmj1g6pFrHyBLmFSMKgUHYdu5ofRMXV0_lot7SwtpFqRQNA53NhZSvpBAbCOgvT5aOMkFWgn5sWSmLqRlOtaA
 Content-Type: application/json
 
 ###
