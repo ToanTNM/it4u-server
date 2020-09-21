@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
+import vn.tpsc.it4u.DTOs.NotificationDTO;
+import vn.tpsc.it4u.exception.UserNotFoundException;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.ChangePasswordViewModel;
@@ -36,6 +38,10 @@ public class UserService {
 
     public Boolean isMatchPassword(String rawPassword, String encodedPassword) {
         return encoder.matches(rawPassword, encodedPassword);
+    }
+
+    public User getUser(long userId) {
+        return userRepository.findById(userId);
     }
 
     public Boolean updateInfo(CustomUserDetails currentUser, UserSummary updatingUser) {

@@ -113,6 +113,10 @@ public class User extends UserDateAudit {
 
     private String refreshToken;
 
+    public User(long id) {
+        this.id = id;
+    }
+
     public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String language, String resetToken,
             String refreshToken) {
         this.name = name;

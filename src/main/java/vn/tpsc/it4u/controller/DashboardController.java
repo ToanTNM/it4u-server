@@ -72,7 +72,7 @@ public class DashboardController {
     @Value("${app.zabbix.token}")
     private String tokenZabbix;
 
-    String sitesid="/stat/sites";
+    String sitesid="/self/sites";
     String printUrlVoucher = "https://ubnt.cloud.tpsc.vn/print/hotspot/vouchers/s";
     
     @Autowired 
@@ -340,6 +340,7 @@ public class DashboardController {
         }
         return result.toString();
     }
+
     @ApiOperation(value = "Get mac AP")
     @GetMapping("it4u/{id}/getMacAp")
     public String getMacAp(@PathVariable(value = "id") String userId, @CurrentUser CustomUserDetails currentUser) {
@@ -440,7 +441,7 @@ public class DashboardController {
         ApiRequest apiRequest = new ApiRequest();
         List<String> result = new ArrayList<>();
         String getClients = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/sta/",csrfToken,unifises);
-        String getDivices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
+        String getDevices = apiRequest.getRequestApi(urlIt4u,"/s/" + userId + "/stat/device/",csrfToken,unifises);
         DashboardController dashboard = new DashboardController();
         JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
         if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
@@ -449,7 +450,7 @@ public class DashboardController {
         try {
             String longestConn = dashboard.longestConn(getClients, postData);
             String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
-            String mostActiveAp = dashboard.mostActiveAp(getDivices, postData);
+            String mostActiveAp = dashboard.mostActiveAp(getDevices, postData);
             result.add(longestConn);
             result.add(mostActiveClient);
             result.add(mostActiveAp);
@@ -2275,5 +2276,229 @@ public class DashboardController {
         result.put("length", length);
         return result.toString();
     }
+
+    //Update V2
+    @ApiOperation(value = "Stat device")
+    @PostMapping("it4u/{id}/stat/device/")
+    public String getStatDevice(@PathVariable(value = "id") String userId, @RequestBody String postData,
+            @CurrentUser CustomUserDetails currentUser) {
+        DashboardController dashboard = new DashboardController();
+        JSONObject conditionGetData = new JSONObject(dashboard.conditionGetData(userId, currentUser));
+        if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
+            return "Access denied!";
+        }
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        JSONObject result = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        String getClients = apiRequest.getRequestApi(urlIt4u, "/s/" + userId + "/stat/sta/", csrfToken, unifises);
+        String getDevices = apiRequest.getRequestApi(urlIt4u, "/s/" + userId + "/stat/device/", csrfToken, unifises);
+        try {
+            String quickLook = dashboard.quickLook(getClients, getDevices, postData);
+            result.put("quick_look", quickLook);
+            String trafficInfo = dashboard.trafficInfo(getClients, postData);
+            result.put("traffic_info", trafficInfo);
+            String clientSSid = dashboard.clientSSid(getClients);
+            result.put("client_ssid", clientSSid);
+            String clienUsage = dashboard.clienUsage(getDevices);
+            result.put("client_usage", clienUsage);
+            String trafficUsage = dashboard.trafficUsage(getDevices);
+            result.put("traffic_usage", trafficUsage);
+            String radioType = dashboard.radioType(getDevices);
+            result.put("radio_type", radioType);
+            String apConnect = dashboard.apConnect(getDevices, postData);
+            result.put("ap_conn", apConnect);
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        return result.toString();
+    }
+
+    //function
+    public String quickLook(String getClients, String getDevices, String postData) {
+        DashboardController dashboard = new DashboardController();
+        List<String> result = new ArrayList<>();
+        try {
+            String longestConn = dashboard.longestConn(getClients, postData);
+            String mostActiveClient = dashboard.mostActiveClient(getClients, postData);
+            String mostActiveAp = dashboard.mostActiveAp(getDevices, postData);
+            result.add(longestConn);
+            result.add(mostActiveClient);
+            result.add(mostActiveAp);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return result.toString();
+    }
+    public String trafficInfo(String getData, String postData) {
+        List<String> result = new ArrayList<>();
+        JSONObject uploadJson = new JSONObject();
+        JSONObject downloadJson = new JSONObject();
+        long upload = 0;
+        long download = 0;
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            upload = upload + getInfo.getInt("rx_rate");
+            download = download + getInfo.getInt("tx_rate");
+        }
+        Calculator getCalculator = new Calculator();
+        double convertUploadToMb = getCalculator.convertBytesToMb(upload);
+        double convertDownloadToMb = getCalculator.convertBytesToMb(download);
+        JSONObject getPostData = new JSONObject(postData);
+        uploadJson.put("name", getPostData.getString("Upload"));
+        uploadJson.put("y", convertUploadToMb);
+        downloadJson.put("name", getPostData.getString("Download"));
+        downloadJson.put("y", convertDownloadToMb);
+        result.add(uploadJson.toString());
+        result.add(downloadJson.toString());
+        return result.toString();
+    }
+    //
+    public String clienUsage(String getData) {
+        JSONObject getResult = new JSONObject();
+        List<String> result = new ArrayList<>();
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i=0; i<data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            getResult.put("name",getInfo.getString("name"));
+            getResult.put("y",getInfo.getInt("num_sta"));
+            result.add(getResult.toString());
+        }
+        return result.toString();
+    }
+
+    public String trafficUsage(String getData) {
+        JSONObject getResult = new JSONObject();
+        List<String> result = new ArrayList<>();
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        Calculator getCalculator = new Calculator();
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            double convertTraffic = 0;
+            try {
+                long traffic = getInfo.getLong("bytes");
+                convertTraffic = getCalculator.convertBytesToGb(traffic);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            getResult.put("name", getInfo.getString("name"));
+            getResult.put("y", convertTraffic);
+            result.add(getResult.toString());
+        }
+        return result.toString();
+    }
+
+    public String radioType(String getData) {
+        Integer lowRadio = 0;
+        Integer highRadio = 0;
+        List<String> result = new ArrayList<>();
+        JSONObject getLowRadio = new JSONObject();
+        JSONObject getHighRadio = new JSONObject();
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            JSONArray getRadioTable = getInfo.getJSONArray("radio_table_stats");
+            for (int j = 0; j < getRadioTable.length(); j++) {
+                JSONObject getInfoRadio = (JSONObject) getRadioTable.get(j);
+                if (getInfoRadio.getString("radio").equals("ng")) {
+                    lowRadio = lowRadio + getInfoRadio.getInt("num_sta");
+                }
+                if (getInfoRadio.getString("radio").equals("na")) {
+                    highRadio = highRadio + getInfoRadio.getInt("num_sta");
+                }
+            }
+        }
+        getLowRadio.put("name", "2.4 GHz");
+        getLowRadio.put("y", lowRadio);
+        result.add(getLowRadio.toString());
+        getHighRadio.put("name", "5 GHz");
+        getHighRadio.put("y", highRadio);
+        result.add(getHighRadio.toString());
+        return result.toString();
+    }
+
+    public String apConnect(String getData, String postData) {
+        Integer countConn = 0;
+        Integer countDisConn = 0;
+        List<String> result = new ArrayList<>();
+        JSONObject getConn = new JSONObject();
+        JSONObject getDisConn = new JSONObject();
+        JSONObject getPostData = new JSONObject(postData);
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getInfo = (JSONObject) data.get(i);
+            if (getInfo.getInt("state") == 1) {
+                countConn = countConn + 1;
+            } else {
+                countDisConn = countDisConn + 1;
+            }
+        }
+        getConn.put("name", getPostData.getString("Connected"));
+        getConn.put("y", countConn);
+        result.add(getConn.toString());
+        getDisConn.put("name", getPostData.getString("Disconnected"));
+        getDisConn.put("y", countDisConn);
+        result.add(getDisConn.toString());
+        return result.toString();
+    }
+
+    public String clientSSid(String getData) {
+        List<String> listSsid = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        JSONObject getResult = new JSONObject();
+        JSONObject jsonResult = new JSONObject(getData);
+        JSONArray data = jsonResult.getJSONArray("data");
+        try {
+            JSONObject itemDevice0 = (JSONObject) data.get(0);
+            String devices0 = itemDevice0.getString("essid");
+            listSsid.add(devices0);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        try {
+            for (int i = 0; i < data.length(); i++) {
+                int k = 0;
+                JSONObject listDevice = (JSONObject) data.get(i);
+                for (int j = 0; j < listSsid.size(); j++) {
+                    if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                        k = k + 1;
+                    }
+                }
+                if (k == 0) {
+                    listSsid.add(listDevice.getString("essid"));
+                }
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        for (int j = 0; j < listSsid.size(); j++) {
+            int k = 0;
+            try {
+                for (int i = 0; i < data.length(); i++) {
+                    JSONObject listDevice = (JSONObject) data.get(i);
+                    if (listDevice.getString("essid").equals(listSsid.get(j))) {
+                        k = k + 1;
+                    }
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            getResult.put("name", listSsid.get(j));
+            getResult.put("y", k);
+            result.add(getResult.toString());
+        }
+        return result.toString();
+    }
+
     
 }

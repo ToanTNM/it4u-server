@@ -3,7 +3,7 @@ package vn.tpsc.it4u.repository;
 import java.util.List;
 import java.util.Optional;
 
-import javax.jws.soap.SOAPBinding.Use;
+// import javax.jws.soap.SOAPBinding.Use;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -22,6 +22,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByRefreshToken(String refreshToken);
 
     List<User> findByIdIn(List<Long> userIds);
+
+    public User findById(long id);
 
     User findByUsername(String username);
 
