@@ -286,6 +286,7 @@ public class ConfigController {
     @PutMapping("it4u/{id}/wlanconf/{ssid}")
     public String putSSID(@PathVariable(value = "id") String id, @PathVariable(value = "ssid") String ssid, @RequestBody String postData) {
         List<String> result = new ArrayList<>();
+        String name = "";
         List<String> schedule = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
@@ -329,32 +330,40 @@ public class ConfigController {
         for (int i = 0; i< getVlanGroupJson.length(); i++) {
             JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
             if (ssid.equals(getItem.getString("_id"))) {
+                name = convertDataPost.getString("name");
+                break;
+            }
+        }
+        for (int i = 0; i< getVlanGroupJson.length(); i++) {
+            JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
+            if (name.equals(getItem.getString("name"))) {
+                String ssidName = getItem.getString("_id");
                 getItem.put("enabled", convertDataPost.getBoolean("enabled"));
                 getItem.put("name", convertDataPost.getString("name"));
                 getItem.put("vlan_enabled", convertDataPost.getBoolean("vlan_enabled"));
-                getItem.put("is_guest", convertDataPost.getBoolean("is_guest"));
                 getItem.put("schedule", schedule);
                 try {
                     getItem.put("vlan", convertDataPost.getString("vlan"));
+                } catch (Exception e) {
+                }
+                try {
+                    getItem.put("is_guest", convertDataPost.getBoolean("is_guest"));
                 } catch (Exception e) {
                 }
                 if (convertDataPost.getString("security").equals("wpapsk")) {
                     getItem.put("security", "wpapsk");
                     getItem.put("x_passphrase", convertDataPost.getString("x_passphrase"));
                     putData = getItem.toString();
-                    break;
-                }
-                else {
+                } else {
                     getItem.put("security", "open");
                     putData = getItem.toString();
-                    break;
                 }
+                String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssidName,
+                        csrfToken, unifises, putData);
+                JSONObject convertData = new JSONObject(createVlanGroup);
+                data = convertData.getJSONArray("data");
             }
         }
-        String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssid, csrfToken,
-                unifises, putData);
-        JSONObject convertData = new JSONObject(createVlanGroup);
-        data = convertData.getJSONArray("data");
         return data.toString();
     }
 

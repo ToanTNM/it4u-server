@@ -230,4 +230,83 @@ public class ApiRequest {
             return e.getMessage();
         } 
     }
+
+    public String getTokenUcrm(String urlUcrm) {
+        try {
+            HttpsURLConnection conn = null;
+            URL url = new URL(urlUcrm);
+            conn = (HttpsURLConnection) url.openConnection();
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
+            conn.setSSLSocketFactory(sc.getSocketFactory());
+            conn.connect();
+            InputStream inputStream = conn.getInputStream();
+            StringBuilder build = new StringBuilder();
+            if (inputStream != null) {
+                InputStreamReader ISreader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+                BufferedReader reader = new BufferedReader(ISreader);
+                String line = reader.readLine();
+                while (line != null) {
+                    build.append(line);
+                    line = reader.readLine();
+                }
+            }
+            String jsonString = build.toString();
+            return jsonString;
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n");
+            return e.getMessage();
+        }
+    }
+
+    public String getCookieUcrm(String urlUcrm, String dataPost) {
+        try {
+            URL UrlObj = new URL(urlUcrm);
+        
+            HttpURLConnection connection = (HttpURLConnection) UrlObj.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+        
+            DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+            byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
+            outputStream.write(out);
+            outputStream.flush();
+            outputStream.close();
+        
+            System.out.println("Send 'HTTP POST' request to : " + urlUcrm);
+            Map<String, List<String>> heads = connection.getHeaderFields();
+            List<String> cookie = heads.get("set-cookie");
+            return cookie.toString();
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n"); 
+            return e.getMessage();
+        }
+    }
+
+    public String getRequestUCRM(String urlUcrm, String cookies) {
+        try {
+            URL url = new URL(urlUcrm);
+            URLConnection conn = url.openConnection();
+            conn.setRequestProperty("Cookie", cookies);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.connect();
+            InputStream inputStream = conn.getInputStream();
+            StringBuilder build = new StringBuilder();
+            if (inputStream != null) {
+                InputStreamReader ISreader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+                BufferedReader reader = new BufferedReader(ISreader);
+                String line = reader.readLine();
+                while (line != null) {
+                    build.append(line);
+                    line = reader.readLine();
+                }
+            }
+            String jsonString = build.toString();
+            return jsonString;
+
+        } catch (Exception e) {
+            System.out.println("===============ERROR===============\n" + e.getMessage() + "\n\n\n");
+            return e.getMessage();
+        }
+    }
 }

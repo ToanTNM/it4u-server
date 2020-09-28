@@ -674,27 +674,23 @@ Content-Type: application/json
 
 ###Update thông tin SSID
 //open, wpapsk 
-Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5ef1873dbe0777000d0915b4
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU5MzQyMzg4NywiZXhwIjoxNTk0MDI4Njg3fQ.J_GiQQPTCM6veG6HZrzlUeBsJckEs4LMYivIOcbpNAg6NDej7pbnKeMJR2ZdD94TqE-x-11d6hAennglh1yhAA
+Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5f714d49c9e77c000d72f6fc
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTI2MjQ4MiwiZXhwIjoxNjAxODY3MjgyfQ.B2QpfZDcTUqcX2cDHuRKpAwqxTAH1c8B8xu7vJSrGxeW2_yKTuFMLNROoYOi1gSo7Q18xR_V_awv_1Yz8IAQiQ
 Content-Type: application/json
 
 {
     "enabled":true,
-    "security":"open",
-    "x_passphrase":"1234567890",
-    "name":"TPs test2 Hispeed",
-    "vlan_enabled": false,
-    //"vlan": "3",
-    "is_guest":false,  
-    "schedule_enabled":true,
-    //"schedule":["mon|0800-1800","thu|0800-1800","fri|0800-1800","sat|0800-1800","sun|0800-1800"],
-    "monday": "mon|0800-1800",
-    "tuesday": "disable",
-    "wednessday": "disable",
-    "thursday": "disable",
-    "friday": "disable",
-    "saturday": "disable",
-    "sunday": "disable"
+    "name":"Tps Test",
+    "security":"wpapsk",
+    "x_passphrase":"123456789",
+    "vlan_enabled":false,
+    "schedule_enabled":false,
+    "monday":"mon|0800-1800",
+    "wednessday":"wed|0800-1800",
+    "thursday":"thu|0800-1800",
+    "friday":"fri|0800-1800",
+    "saturday":"sat|0800-1800",
+    "sunday":"sun|0800-1800"
 }
 
 ### Tạo SSID
@@ -892,4 +888,9 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/api/v1/private-chat/channel/685ff00a-8de8-4cfd-8149-f31cc7ada04a
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5ODkyODQzMCwiZXhwIjoxNTk5NTMzMjMwfQ.i0699oUip537muvhwgxJsaJrS-GK1oxB-F_gpiUsvmG7h-iFicetsWJ7F4IXcda1o812JyzcM5RXpxkiT7RMoQ
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/clients
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
 Content-Type: application/json
