@@ -1147,6 +1147,11 @@ public class DashboardController {
         if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
             return "Access denied!";
         }
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
         Integer newClient = 0;
         Integer returnClient = 0;
         List<String> result = new ArrayList<>();
@@ -1159,12 +1164,15 @@ public class DashboardController {
         JSONArray data = jsonResult.getJSONArray("data");
         for (int i=0; i<data.length(); i++) {
             JSONObject getInfo = (JSONObject) data.get(i);
-            Boolean temp = getInfo.getBoolean("is_returning");
-            if (!temp) {
-                newClient = newClient + 1;
-            }
-            else {
-                returnClient = returnClient + 1;
+            try {
+                Boolean temp = getInfo.getBoolean("is_returning");
+                if (!temp) {
+                    newClient = newClient + 1;
+                }
+                else {
+                    returnClient = returnClient + 1;
+                }
+            } catch (Exception e) {
             }
         }
         getNewClient.put("name", getPostData.getString("New"));
