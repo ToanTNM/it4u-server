@@ -113,12 +113,14 @@ public class User extends UserDateAudit {
 
     private String refreshToken;
 
+    private String registrationId;
+
     public User(long id) {
         this.id = id;
     }
 
     public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String language, String resetToken,
-            String refreshToken) {
+            String refreshToken, String registrationId) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -130,5 +132,6 @@ public class User extends UserDateAudit {
         this.language = language;
         this.resetToken = resetToken;
         this.refreshToken = refreshToken;
+        this.registrationId = registrationId;
     }
 }

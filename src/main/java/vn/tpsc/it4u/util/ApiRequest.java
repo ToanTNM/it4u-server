@@ -2,6 +2,9 @@ package vn.tpsc.it4u.util;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -9,6 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +20,14 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
+import org.springframework.beans.factory.annotation.Value;
+
+// import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+// import com.google.auth.oauth2.AccessToken;
+// import com.google.auth.oauth2.GoogleCredentials;
+// import com.google.auth.oauth2.ServiceAccountCredentials;
 import org.springframework.stereotype.Component;
+
 @Component
 public class ApiRequest {
 
@@ -283,11 +294,11 @@ public class ApiRequest {
         }
     }
 
-    public String getRequestUCRM(String urlUcrm, String cookies) {
+    public String getRequestUCRM(String urlUcrm, String auth) {
         try {
             URL url = new URL(urlUcrm);
             URLConnection conn = url.openConnection();
-            conn.setRequestProperty("Cookie", cookies);
+            conn.setRequestProperty("X-Auth-App-Key", auth);
             conn.setRequestProperty("Content-Type", "application/json");
             conn.connect();
             InputStream inputStream = conn.getInputStream();
@@ -309,4 +320,41 @@ public class ApiRequest {
             return e.getMessage();
         }
     }
+
+    public String getConnectionFirebase(String urlFirebase, String senderId, String getAccessToken, String dataPost) throws IOException {
+        URL url = new URL(urlFirebase);
+        StringBuffer response = new StringBuffer();
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestProperty("Authorization", "key=" + getAccessToken);
+        httpURLConnection.setRequestProperty("Sender", "id=" + senderId);
+        httpURLConnection.setRequestProperty("Content-Type", "application/json; UTF-8");
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+        byte[] out = dataPost.getBytes(StandardCharsets.UTF_8);
+        outputStream.write(out);
+        outputStream.flush();
+        outputStream.close();
+        System.out.println("Send 'HTTP POST' request to : " + url);
+        int responseCode = httpURLConnection.getResponseCode();
+        System.out.println("Response Code : " + responseCode);
+
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String inputLine;
+            while ((inputLine = inputReader.readLine()) != null) {
+                response.append(inputLine);
+            }
+            inputReader.close();
+        }
+        return response.toString();
+    }
+
+    // public static String getAccessToken() throws IOException {
+    //     String path = ".//serviceAccountKey.json";
+    //     GoogleCredential googleCredential = GoogleCredential.fromStream(new FileInputStream(path))
+    //             .createScoped(Arrays.asList(SCOPES));
+    //     googleCredential.refreshToken();
+    //     return googleCredential.getAccessToken();
+    // }
 }

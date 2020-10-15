@@ -137,6 +137,7 @@ public class AuthController {
             UserStatus.Active,
             signUpRequest.getLanguage(),
             null,
+            null,
             null
             );
 

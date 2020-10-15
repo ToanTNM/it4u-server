@@ -26,4 +26,5 @@ public class UserSummary {
     private Set<SitesName> sitename;
     private String language;
     private Set<Role> roles;
+    private String registrationId;
 }

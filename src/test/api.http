@@ -93,16 +93,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTY0ODAyN
 ###
 
 PUT http://localhost:5000/api/v1/user/update
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOSIsImlhdCI6MTU4OTc3NDIxNiwiZXhwIjoxNTkwMzc5MDE2fQ.bbakWh3awt3V_lKQpypqPkgxY0bsisoK3WfvvkU3krbKuju5tSkPO94fDTDCIJ1-Zka5M8JxQqyK2xAlawYrzg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
 Content-Type: application/json
 
 {
-    "name": "KH4234",
-    "username": "KH4234",
-    "email": "KH4234@yahoo.com",
-    //"password": "123456",
-    "gender": "Male",
-    "type": "User",
     "language": "English"
 }
 
@@ -388,8 +382,8 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/v1/it4u/rhnl7chn/hotspot/1575504000000/1578182400000
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+POST http://localhost:5000/api/v1/it4u/3swlfrvr/hotspot/1598949011527/1601541011527
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTU0MDEwOCwiZXhwIjoxNjAyMTQ0OTA4fQ.TWaDj_aaou1uZjIn4iCRB7tMm2pvBE34k1pnLNH9mYE9tQfhcSrzRXfyuhxW_iwE-hecS_y-cwTckSwcZOZ5xg
 Content-Type: application/json
 
 {
@@ -399,7 +393,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/detail/hotspot/1593129600000/1595721600000
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5NTgxMjU4NSwiZXhwIjoxNTk2NDE3Mzg1fQ.0rJS5ws2opclblNWmv4t1wGfPOIXHWq1ZzANnBcTfSHEmDAmMAxjRL1hUcppPGDAPe6WmQePrOjlasrLkFIovw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTU0MDEwOCwiZXhwIjoxNjAyMTQ0OTA4fQ.TWaDj_aaou1uZjIn4iCRB7tMm2pvBE34k1pnLNH9mYE9tQfhcSrzRXfyuhxW_iwE-hecS_y-cwTckSwcZOZ5xg
 Content-Type: application/json
 
 {
@@ -893,4 +887,73 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/api/v1/it4u/clients
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/it4u/client/116
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/channel/name
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Content-Type: application/json
+
+{
+    "name": "CMC"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/channel/value
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Content-Type: application/json
+
+{
+    "servicePack": "Fiber50Eco",
+    "value": "100 Mbps"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/channel/attribute
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTYzMTI2MiwiZXhwIjoxNjAyMjM2MDYyfQ.Sh1cdDz4K4gsHBSA2J47SuO4GnHBXDhD4R0FioBzCH34kx3GLLeItQkKJn18i-1oSRApasNRSmRQISXO6RD5ww
+Content-Type: application/json
+
+{
+    "channelName": "CMC",
+    "channelValue": "Fiber30",
+    "status": "Offline"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/channel/attribute.all
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTYzMTI2MiwiZXhwIjoxNjAyMjM2MDYyfQ.Sh1cdDz4K4gsHBSA2J47SuO4GnHBXDhD4R0FioBzCH34kx3GLLeItQkKJn18i-1oSRApasNRSmRQISXO6RD5ww
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/channel/attribute.all.CMC
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Content-Type: application/json
+
+###
+Put http://localhost:5000/api/v1/user/update/registrationId
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Content-Type: application/json
+
+{
+    "registrationId": "fQvfe8fQTk21xbJ3SQjbvA:APA91bExmvpdo82xhH3iHm_eHS80-3sTBU5wn7vrm1EWSBI-2aiZJ9z93iUsebvEaiJ9gUiP_tYh5ZcPHRkCWHRyxscDsBw305kmwy46iLAVvk5Zj3_zDGvW2z-ydHaFG8oP6MW7YHL7"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/monitor/daily/trafficAndClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/monitor/weekly/trafficAndClient
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/segments/client
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
 Content-Type: application/json

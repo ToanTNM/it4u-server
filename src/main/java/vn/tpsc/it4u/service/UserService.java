@@ -10,8 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
-import vn.tpsc.it4u.DTOs.NotificationDTO;
-import vn.tpsc.it4u.exception.UserNotFoundException;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.ChangePasswordViewModel;
@@ -46,7 +44,6 @@ public class UserService {
 
     public Boolean updateInfo(CustomUserDetails currentUser, UserSummary updatingUser) {
         User user = mapper.map(currentUser, User.class);
-
         //name
         user.setName(updatingUser.getName().isNullorEmpty() ? currentUser.getName() : updatingUser.getName());
         //username
@@ -62,6 +59,13 @@ public class UserService {
        
         userRepository.save(user);
 
+        return true;
+    }
+
+    public Boolean updateRegisterId(CustomUserDetails currentUser, UserSummary updatingUser) {
+        User user = mapper.map(currentUser, User.class);
+        user.setRegistrationId(updatingUser.getRegistrationId() != null ? updatingUser.getRegistrationId() : user.getRegistrationId());
+        userRepository.save(user);
         return true;
     }
 
@@ -101,8 +105,9 @@ public class UserService {
                     user.getStatus(),
                     user.getSitename(),
                     user.getLanguage(),
-                    user.getRoles()
-                    ))
+                    user.getRoles(),
+                    user.getRegistrationId()
+                ))
             .collect(Collectors.toList());
 
         return listUsers;
@@ -127,12 +132,13 @@ public class UserService {
                     user.getName(), 
                     user.getEmail(), 
                     user.getAvatar(), 
-                    user.getGender(), 
+                    user.getGender(),
                     user.getType(), 
                     user.getStatus(),
                     user.getSitename(),
                     user.getLanguage(),
-                    user.getRoles()
+                    user.getRoles(),
+                    user.getRegistrationId()
                     ))
             .collect(Collectors.toList());
         return listUsers;

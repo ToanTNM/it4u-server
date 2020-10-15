@@ -5,10 +5,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import org.hibernate.annotations.Proxy;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +16,6 @@ import vn.tpsc.it4u.model.audit.UserDateAudit;
 @Getter
 @Setter
 @NoArgsConstructor
-// @Document("sitesname")
 @Entity
 @Table(name = "sitesname", uniqueConstraints = { @UniqueConstraint(columnNames = { "sitename" }),
         @UniqueConstraint(columnNames = { "idname" }) })

@@ -8,15 +8,11 @@ import vn.tpsc.it4u.model.ChatChannel;
 import vn.tpsc.it4u.model.ChatMessage;
 import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.ChatMessageRepository;
-import vn.tpsc.it4u.DTOs.NotificationDTO;
 import vn.tpsc.it4u.exception.IsSameUserException;
 import vn.tpsc.it4u.exception.UserNotFoundException;
 import vn.tpsc.it4u.model.User;
-import vn.tpsc.it4u.service.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 import java.util.List;
@@ -28,9 +24,6 @@ public class ChatService implements IChatService {
   private ChatMessageRepository chatMessageRepository;
 
   private UserService userService;
-  
-  private final int MAX_PAGABLE_CHAT_MESSAGES = 100;
-  
 
   @Autowired
   public ChatService(

@@ -3,8 +3,6 @@ package vn.tpsc.it4u.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import vn.tpsc.it4u.model.User;
-
 import java.util.Date;
 
 @Entity

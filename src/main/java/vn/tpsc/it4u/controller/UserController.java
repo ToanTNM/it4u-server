@@ -15,6 +15,8 @@ import vn.tpsc.it4u.security.CurrentUser;
 import java.util.Locale;
 import java.util.Set;
 
+import com.google.api.services.compute.Compute.Autoscalers.Update;
+
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +59,9 @@ public class UserController {
             currentUser.getStatus(),
             currentUser.getSitename(),
             currentUser.getLanguage(),
-            currentUser.getRoles());
+            currentUser.getRoles(),
+            currentUser.getRegistrationId()
+            );
         return userSummary;
     }
 
@@ -83,9 +87,16 @@ public class UserController {
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
 
+    @ApiOperation(value = "Update registration id")
+    @PutMapping("/user/update/registrationId")
+    public ResponseEntity<?> updateRegistrationId(@CurrentUser CustomUserDetails currentUser, @RequestBody UserSummary updateUser, Locale locale) {
+        userService.updateRegisterId(currentUser, updateUser);
+
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
     @PutMapping("/user/changePassword")
     public ResponseEntity<?> changePassword(@CurrentUser CustomUserDetails currentUser, @RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
-
         userService.changePassword(currentUser, updatingPassword);
 
         return ResponseEntity.ok(apiResponse.success(1001, locale));
@@ -129,6 +140,7 @@ public class UserController {
                     updatingUser.getStatus(),
                     sitenames,
                     updatingUser.getLanguage(),
+                    null,
                     null
             );
         userService.updateUser(userId, user);
