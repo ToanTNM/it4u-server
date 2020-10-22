@@ -111,6 +111,10 @@ public class User extends UserDateAudit {
 
     private Set<SitesName> sitename = new HashSet<>();
 
+    private Long lastTimeLogin;
+
+    private Long numLogin;
+
     private String refreshToken;
 
     private String registrationId;

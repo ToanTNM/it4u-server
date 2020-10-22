@@ -1,5 +1,6 @@
 package vn.tpsc.it4u.payload;
 
+import java.util.Date;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ public class UserSummary {
     private UserType type;
     private UserStatus status;
     private Set<SitesName> sitename;
+    private Long lastTimeLogin;
+    private Long numLogin;
     private String language;
     private Set<Role> roles;
     private String registrationId;

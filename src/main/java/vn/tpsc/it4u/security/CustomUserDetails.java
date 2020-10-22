@@ -1,6 +1,7 @@
 package vn.tpsc.it4u.security;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,6 +60,10 @@ public class CustomUserDetails implements UserDetails {
 
     private Set<SitesName> sitename;
 
+    private Long lastTimeLogin;
+
+    private Long numLogin;
+
     private String language;
 
     private Set<Role> roles;
@@ -83,6 +88,8 @@ public class CustomUserDetails implements UserDetails {
                 user.getType(),
                 user.getStatus(),
                 user.getSitename(),
+                user.getLastTimeLogin(),
+                user.getNumLogin(),
                 user.getLanguage(),
                 user.getRoles(),
                 user.getRegistrationId(),

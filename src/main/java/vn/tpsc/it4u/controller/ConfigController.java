@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.repository.SitesNameRepository;
+import vn.tpsc.it4u.security.CurrentUser;
+import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.ConfigTokenService;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 @RequestMapping("${app.api.version}")
 public class ConfigController {
     @Value("${app.ubnt.url}")
@@ -53,7 +57,7 @@ public class ConfigController {
 
     @ApiOperation(value = "Create vlan group")
     @PostMapping("it4u/{id}/wlangroup")
-    public String createVLGroup(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String createVLGroup(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser, @RequestBody String postData) {
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
         JSONObject body = (JSONObject) getBody.get(0);
@@ -65,6 +69,7 @@ public class ConfigController {
                     unifises, postData);
             JSONObject getData = new JSONObject(createVlanGroup);
             JSONArray result = getData.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlangroup");
             return result.toString();
         } catch (Exception e) {
             getCookies();
@@ -72,13 +77,14 @@ public class ConfigController {
                     unifises, postData);
             JSONObject getData = new JSONObject(createVlanGroup);
             JSONArray result = getData.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlangroup");
             return result.toString();
         }
     }
 
     @ApiOperation(value = "Get vlan group")
     @GetMapping("it4u/{id}/wlangroup")
-    public String getVLGroup(@PathVariable(value = "id") String id) {
+    public String getVLGroup(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
         JSONObject body = (JSONObject) getBody.get(0);
@@ -89,12 +95,14 @@ public class ConfigController {
             String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
             JSONObject convertData = new JSONObject(getData);
             JSONArray data = convertData.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - Get: it4u/" + id + "/wlangroup");
             return data.toString();
         } catch (Exception e) {
             getCookies();
             String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
             JSONObject convertData = new JSONObject(getData);
             JSONArray data = convertData.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - Get: it4u/" + id + "/wlangroup");
             return data.toString();
         }
         
@@ -102,7 +110,8 @@ public class ConfigController {
 
     @ApiOperation(value = "Create SSID to vlan group")
     @PostMapping("it4u/{id}/wlanconf")
-    public String createSSID(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String createSSID(@PathVariable(value = "id") String id,
+            @CurrentUser CustomUserDetails currentUser, @RequestBody String postData) {
         ApiRequest apiRequest = new ApiRequest();
         JSONArray dataVlanGr = new JSONArray();
         try {
@@ -130,12 +139,14 @@ public class ConfigController {
                 getItemVlanGr.toString());
         JSONObject convertData = new JSONObject(createVlanGroup);
         JSONArray data = convertData.getJSONArray("data");
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlanconf");
         return data.toString();
     }
-
+    
     @ApiOperation(value = "Get wlanconf to vlan group")
     @GetMapping("it4u/{id}/wlanconf/{wlan}")
-    public String getWlanconf(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
+    public String getWlanconf(@PathVariable(value = "id") String id, 
+            @CurrentUser CustomUserDetails currentUser, @PathVariable(value = "wlan") String wlan) {
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
@@ -157,12 +168,13 @@ public class ConfigController {
                 result.add(getItem.toString());
             }
         }
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlanconf/" + wlan);
         return result.toString();
     }
-
+    
     @ApiOperation(value = "Get SSID to vlan group")
     @GetMapping("it4u/{id}/essid/{wlan}")
-    public String getSSID(@PathVariable(value = "id") String id, @PathVariable(value = "wlan") String wlan) {
+    public String getSSID(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser, @PathVariable(value = "wlan") String wlan) {
         JSONObject result = new JSONObject();
         ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
@@ -279,12 +291,14 @@ public class ConfigController {
         } catch (Exception e) {
             result.put("schedule_enabled", false);
         }
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/essid/" + wlan);
         return result.toString();
     }
-
+    
     @ApiOperation(value = "Put SSID to vlan group")
     @PutMapping("it4u/{id}/wlanconf/{ssid}")
-    public String putSSID(@PathVariable(value = "id") String id, @PathVariable(value = "ssid") String ssid, @RequestBody String postData) {
+    public String putSSID(@PathVariable(value = "id") String id,
+            @CurrentUser CustomUserDetails currentUser, @PathVariable(value = "ssid") String ssid, @RequestBody String postData) {
         List<String> result = new ArrayList<>();
         String name = "";
         List<String> schedule = new ArrayList<>();
@@ -364,12 +378,13 @@ public class ConfigController {
                 data = convertData.getJSONArray("data");
             }
         }
+        log.info(currentUser.getUsername() + " - Put: it4u/" + id + "/wlanconf/" + ssid);
         return data.toString();
     }
-
+    
     @ApiOperation(value = "Assign vlan group to APs")
     @PostMapping("it4u/{id}/group/device")
-    public String assignVG(@PathVariable(value = "id") String id) {
+    public String assignVG(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject createPostData = new JSONObject();
         List<String> itemDevicesArray = new ArrayList<>();
@@ -410,12 +425,14 @@ public class ConfigController {
         JSONObject convertPutData = new JSONObject(putData);
         String assignVG = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/group/device", csrfToken, unifises,
                 convertPutData.toString());
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/group/device");
         return assignVG;
     }
 
     @ApiOperation(value = "Create a sitename")
     @PostMapping("it4u/{id}/sitemgr")
-    public String createSitename(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String createSitename(@PathVariable(value = "id") String id,
+            @CurrentUser CustomUserDetails currentUser, @RequestBody String postData) {
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
         JSONObject body = (JSONObject) getBody.get(0);
@@ -438,12 +455,13 @@ public class ConfigController {
         JSONObject data = (JSONObject) getData.get(0);
         final SitesName addSitename = new SitesName(data.getString("desc"), data.getString("name"));
         sitesNameRepository.save(addSitename);
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/sitemgr");
         return data.toString();
     }
-
+   
     @ApiOperation(value = "Get a hotspot")
     @GetMapping("it4u/{id}/hotspot")
-    public String getHotspot(@PathVariable(value = "id") String id) {
+    public String getHotspot(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
         JSONObject body = (JSONObject) getBody.get(0);
@@ -470,12 +488,14 @@ public class ConfigController {
             }
         }
         JSONObject getData = (JSONObject) getDataSetting.get(positionPortal);
+        log.info(currentUser.getUsername() + " - Get: it4u/" + id + "/hotspot");
         return getData.toString();
     }
-
+ 
     @ApiOperation(value = "Create a hotspot")
     @PostMapping("it4u/{id}/hotspot")
-    public String createHotspot(@PathVariable(value = "id") String id, @RequestBody String data) {
+    public String createHotspot(@PathVariable(value = "id") String id,
+            @CurrentUser CustomUserDetails currentUser, @RequestBody String data) {
         JSONObject postData = new JSONObject(data);
         String result = "";
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
@@ -541,6 +561,7 @@ public class ConfigController {
         }
         String createHotspot = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/set/setting/guest_access/" + idSetting,
                 csrfToken, unifises, getDataHotspot.toString());
+        log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/hotspot");
         return createHotspot.toString();
     }
     

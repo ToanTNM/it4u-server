@@ -1,5 +1,6 @@
 package vn.tpsc.it4u.controller;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,9 +15,15 @@ import vn.tpsc.it4u.security.CurrentUser;
 
 import java.util.Locale;
 import java.util.Set;
+import java.util.TimeZone;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import com.google.api.services.compute.Compute.Autoscalers.Update;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 // import org.slf4j.Logger;
 // import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +65,8 @@ public class UserController {
             currentUser.getType(), 
             currentUser.getStatus(),
             currentUser.getSitename(),
+            currentUser.getLastTimeLogin(),
+            currentUser.getNumLogin(),
             currentUser.getLanguage(),
             currentUser.getRoles(),
             currentUser.getRegistrationId()
@@ -91,9 +100,42 @@ public class UserController {
     @PutMapping("/user/update/registrationId")
     public ResponseEntity<?> updateRegistrationId(@CurrentUser CustomUserDetails currentUser, @RequestBody UserSummary updateUser, Locale locale) {
         userService.updateRegisterId(currentUser, updateUser);
-
+        
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
+
+    @ApiOperation(value = "Update number of login")
+    @GetMapping("/user/updateNumLogin")
+    public ResponseEntity<?> updateNumLogin(@CurrentUser CustomUserDetails currentUser, Locale locale) {
+        userService.updateNumLogin(currentUser);
+        
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
+    @ApiOperation(value = "Get user online")
+    @GetMapping("/user/online")
+    public String getUserOnline() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        int count = 0;
+        JSONObject result = new JSONObject();
+        long currentTime = timestamp.getTime();
+        JSONArray getAllUser = new JSONArray(userService.findAll());
+        for (int i = 0; i < getAllUser.length(); i++) {
+            JSONObject getUser = (JSONObject) getAllUser.get(i);
+            try {
+                long getLastTimeLogin = getUser.getLong("lastTimeLogin");
+                if ((currentTime - getLastTimeLogin) < 86400000) {
+                    count = count + 1;
+                }
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+        }
+        result.put("online", count);
+        return result.toString();
+    }
+
+
 
     @PutMapping("/user/changePassword")
     public ResponseEntity<?> changePassword(@CurrentUser CustomUserDetails currentUser, @RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
@@ -139,6 +181,8 @@ public class UserController {
                     updatingUser.getType(), 
                     updatingUser.getStatus(),
                     sitenames,
+                    null,
+                    null,
                     updatingUser.getLanguage(),
                     null,
                     null

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
 
 // import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,6 +38,7 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.util.Calculator;
 
 @RestController
+@Slf4j
 @RequestMapping("${app.api.version}")
 public class DashboardController {
     @Value("${app.ubnt.url}")
@@ -197,7 +199,8 @@ public class DashboardController {
     // Register sitesname
     @ApiOperation(value = "Create sites name request")
     @GetMapping("/it4u/createSitesName")
-    public Boolean createSitesName() {        ApiRequest apiRequest = new ApiRequest();
+    public Boolean createSitesName() {        
+        ApiRequest apiRequest = new ApiRequest();
         JSONArray data = new JSONArray();
         try {
             String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
@@ -215,9 +218,15 @@ public class DashboardController {
             } catch (Exception e) {
             }
 
-            if (!sitesNameRepository.existsBySitename(siteName) && !sitesNameRepository.existsByIdname(idName)) {
-                final SitesName createSitename = new SitesName(siteName, idName);
-                sitesNameRepository.save(createSitename);
+            if (!sitesNameRepository.existsBySitename(siteName)) {
+                try {
+                    final SitesName createSitename = new SitesName(siteName, idName);
+                    sitesNameRepository.save(createSitename);
+                } catch (Exception e) {
+                    SitesName createSitename = sitesNameRepository.findByIdname(idName);
+                    createSitename.setSitename(siteName);
+                    sitesNameRepository.save(createSitename);
+                }
             }                          
         }
         return true;
@@ -538,6 +547,7 @@ public class DashboardController {
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         result.add(listIncreaseTrafficJson.toString());
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/hourlyClient");
         return result.toString();
     }
 
@@ -617,6 +627,7 @@ public class DashboardController {
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         result.add(listIncreaseTrafficJson.toString());
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/5MinutesClient");
         return result.toString();
     }
 
@@ -697,6 +708,7 @@ public class DashboardController {
         result.add(listClientJson.toString());
         result.add(listTrafficJson.toString());
         result.add(listIncreaseTrafficJson.toString());
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/dailyClient");
         return result.toString();
     }
 
@@ -1237,6 +1249,7 @@ public class DashboardController {
         // listTrafficJson.put("pointInterval", 60 * 60 * 1000);
         // listTrafficJson.put("name", getPostData.getString("network_monintor"));
         // listTrafficJson.put("data", listTraffic);
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/detail/hotspot/");
         return listHotspotJson.toString();
     }
 
@@ -1422,6 +1435,7 @@ public class DashboardController {
         listTrafficJson.put("pointInterval",60 * 60 * 1000);
         listTrafficJson.put("name", getPostData.getString("network_monintor"));
         listTrafficJson.put("data", listTraffic);
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/getNetworkRates");
         return listTrafficJson.toString();
     }
 
@@ -1463,6 +1477,7 @@ public class DashboardController {
         listTrafficJson.put("pointInterval", 24 * 60 * 60 * 1000);
         listTrafficJson.put("name", getPostData.getString("network_monintor"));
         listTrafficJson.put("data", listTraffic);
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/getTrafficHistory");
         return listTrafficJson.toString();
     }
 
@@ -1963,6 +1978,7 @@ public class DashboardController {
             result.put("status", status);
             dataList.add(result.toString());
         }
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/voucher");
         return dataList.toString();
     }
 
@@ -2025,6 +2041,7 @@ public class DashboardController {
             lish.add(status);
             dataList.add(lish.toString());
         }
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/voucherApp");
         return dataList.toString();
     }
 
@@ -2040,6 +2057,7 @@ public class DashboardController {
         ApiRequest apiRequest = new ApiRequest();
         String getData = apiRequest.postRequestApi(urlIt4u, "/s/" + userId + "/cmd/hotspot", csrfToken, unifises,
                 postData);
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/deleteVoucher");
         return getData;
     }
 
@@ -2322,6 +2340,7 @@ public class DashboardController {
         } catch (Exception e) {
             //TODO: handle exception
         }
+        log.info(currentUser.getUsername() + " - it4u/" + userId + "/stat/device/");
         return result.toString();
     }
 

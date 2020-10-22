@@ -1,5 +1,8 @@
 package vn.tpsc.it4u.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,6 +72,21 @@ public class UserService {
         return true;
     }
 
+    public Boolean updateNumLogin(CustomUserDetails currentUser) {
+        User user = mapper.map(currentUser, User.class);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        user.setLastTimeLogin(timestamp.getTime());
+        long numLogin = 0;
+        try {
+            numLogin = currentUser.getNumLogin() + 1;
+        } catch (Exception e) {
+            numLogin = 1;
+        }
+        user.setNumLogin(numLogin);
+        userRepository.save(user);
+        return true;
+    }
+
     public Boolean changePassword(CustomUserDetails currentUser, ChangePasswordViewModel model) {
         // User user = new User();
         // mapper.map(currentUser, user);
@@ -104,6 +122,8 @@ public class UserService {
                     user.getType(), 
                     user.getStatus(),
                     user.getSitename(),
+                    user.getLastTimeLogin(),
+                    user.getNumLogin(),
                     user.getLanguage(),
                     user.getRoles(),
                     user.getRegistrationId()
@@ -136,6 +156,8 @@ public class UserService {
                     user.getType(), 
                     user.getStatus(),
                     user.getSitename(),
+                    user.getLastTimeLogin(),
+                    user.getNumLogin(),
                     user.getLanguage(),
                     user.getRoles(),
                     user.getRegistrationId()

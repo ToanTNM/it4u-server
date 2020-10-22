@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -50,6 +51,7 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
  * AuthController
  */
 @RestController
+@Slf4j
 @RequestMapping("${app.api.version}/auth")
 public class AuthController {
 
@@ -95,7 +97,7 @@ public class AuthController {
         final Authentication authentication = authenticationManager.authenticate(token);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        log.info(loginRequest.getUsernameOrEmail() + " - Login");
         final String jwt = tokenProvider.generateToken(authentication);
         return authService.createAndPersistRefreshTokenForDevice(authentication)
                 .map(User::getRefreshToken).map(refreshToken -> {

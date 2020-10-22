@@ -139,7 +139,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Post channel attribute")
-    @PostMapping("it4u/channel/attribute")
+    @PostMapping("/it4u/channel/attribute")
     public ResponseEntity<?> PostChannelAttribute(@RequestBody final ChannelAttributeRequest postData) {
         ChannelAttribute getChannelAttribute = new ChannelAttribute(postData.getStatus());
         Set<ChannelName> channelName = new HashSet<>();
@@ -155,7 +155,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Post channel name")
-    @PostMapping("it4u/channel/name")
+    @PostMapping("/it4u/channel/name")
     public ResponseEntity<?> postChannelName(@RequestBody final ChannelName postData) {
         ChannelName getChannelName = new ChannelName(postData.getName());
         channelNameRespository.save(getChannelName);
@@ -163,7 +163,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Post channel value")
-    @PostMapping("it4u/channel/value")
+    @PostMapping("/it4u/channel/value")
     public ResponseEntity<?> postChannelValue(@RequestBody final ChannelValue postData) {
         ChannelValue getChannelValue = new ChannelValue(postData.getServicePack(), postData.getValue());
         channelValueRespository.save(getChannelValue);
@@ -171,7 +171,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Get channel attribute")
-    @GetMapping("it4u/channel/attribute.all")
+    @GetMapping("/it4u/channel/attribute.all")
     public String getAllChannelAttribute() {
         List<String> result = new ArrayList<>();
         JSONObject data = new JSONObject();
@@ -192,7 +192,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Get channel attribute to name")
-    @GetMapping("it4u/channel/attribute.all.{name}")
+    @GetMapping("/it4u/channel/attribute.all.{name}")
     public String getChannelToName(@PathVariable(value = "name") String name) {
         // String result = "";
         List<String> result = new ArrayList<>();
@@ -216,7 +216,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Monitor daily traffic and client for customers")
-    @GetMapping("it4u/monitor/daily/trafficAndClient")
+    @GetMapping("/it4u/monitor/daily/trafficAndClient")
     public String getDailyTrafficAndClient()
     {
         String result = "";
@@ -263,7 +263,7 @@ public class ChannelInfoController {
     }
 
     @ApiOperation(value = "Monitor weekly traffic and client for customers")
-    @GetMapping("it4u/monitor/weekly/trafficAndClient")
+    @GetMapping("/it4u/monitor/weekly/trafficAndClient")
     public String getWeeklyTrafficAndClient() {
         String result = "";
         String title = "Báo cáo theo tuần";
@@ -343,7 +343,7 @@ public class ChannelInfoController {
             }
         }
         if ((startData > endData) && (startData > 20)) {
-            if ((startData / endData) > 1) {
+            if ((startData / endData) > 0) {
                 checkNotif = true;
                 body = "Số lượng thiết bị sử dụng giảm, login vào app IT4U để xem chi tiết.";
             }

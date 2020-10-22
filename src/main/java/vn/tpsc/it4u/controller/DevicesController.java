@@ -11,12 +11,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 import vn.tpsc.it4u.util.ApiRequest;
+import vn.tpsc.it4u.security.CurrentUser;
+import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.ConfigTokenService;
 import vn.tpsc.it4u.util.Calculator;
 
 @RestController
+@Slf4j
 @RequestMapping("${app.api.version}")
 public class DevicesController {
     @Value("${app.ubnt.url}")
@@ -39,7 +43,7 @@ public class DevicesController {
 
     @ApiOperation(value = "Get devices information")
     @GetMapping("it4u/{id}/devices")
-    public String getDevicesInf(@PathVariable(value = "id") String id) {
+    public String getDevicesInf(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
         List<String> txBytes = new ArrayList<>();
         List<String> rxBytes = new ArrayList<>();
         List<String> result = new ArrayList<>();
@@ -71,12 +75,13 @@ public class DevicesController {
             getItem.put("tx_bytes", txBytes.get(0) + txBytes.get(1));
             result.add(getItem.toString());
         }
+        log.info(currentUser.getUsername() + " - it4u/" + id + "/devices");
         return result.toString();
     }
 
     @ApiOperation(value = "Get block devices infomation")
     @GetMapping("it4u/{id}/block/info")
-    public String getBlockInfo(@PathVariable(value = "id") String id) {
+    public String getBlockInfo(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
         JSONArray getData = new JSONArray();
         List<String> result = new ArrayList<>();
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
@@ -106,12 +111,13 @@ public class DevicesController {
             } catch (Exception e) {
             }
         }
+        log.info(currentUser.getUsername() + " - it4u/" + id + "/block/info");
         return result.toString();
     }
 
     @ApiOperation(value = "Block and unblock device")
     @PostMapping("it4u/{id}/block/device")
-    public String blockAndUnBlockDevice(@PathVariable(value = "id") String id, @RequestBody String postData) {
+    public String blockAndUnBlockDevice(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser, @RequestBody String postData) {
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
         JSONObject body = (JSONObject) getBody.get(0);
@@ -122,12 +128,14 @@ public class DevicesController {
             String getDeviceInf = apiRequest.postRequestApi(urlIt4u , "/s/" + id + "/cmd/stamgr", csrfToken, unifises, postData);
             JSONObject getDataDeviceInf = new JSONObject(getDeviceInf);
             JSONArray result = getDataDeviceInf.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - it4u/" + id + "/block/device");
             return result.toString();
         } catch (Exception e) {
             getCookies();
             String getDeviceInf = apiRequest.postRequestApi(urlIt4u , "/s/" + id + "/cmd/stamgr", csrfToken, unifises, postData);
             JSONObject getDataDeviceInf = new JSONObject(getDeviceInf);
             JSONArray result = getDataDeviceInf.getJSONArray("data");
+            log.info(currentUser.getUsername() + " - it4u/" + id + "/block/device");
             return result.toString();
         }
     }

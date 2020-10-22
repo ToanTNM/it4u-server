@@ -13,8 +13,8 @@ app:
     ssid_template: /s/rhnl7chn/rest/wlanconf
     username: lap.dang@tpsc.vn
     password: Nccvbcl0167@
-    csrf_token: QKqPrDFO3ASqNHNFXtkQtnIlHCGcUK2l
-    unifises: WawAtAx9esQWnfS73iEcqB5nhEgpRzZx
+    csrf_token: DSBg0h0XdDa9crwlbXXFtuHiJAbRuShz
+    unifises: 4MGBgBEl3esuGUlZCRQm2fCTlNKEdaAa
   dev:
     url: https://dev.tpsc.vn/api/customer_info
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
@@ -45,4 +45,13 @@ spring:
   messages:
     basename: i18n/errors,i18n/messages
   
-  
+logging:
+  file:
+    path: logs
+    name: logs/client.log
+  pattern:
+      console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+management:
+  endpoint:
+    logfile:
+      external-file: logs/client.log

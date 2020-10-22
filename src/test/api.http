@@ -278,13 +278,13 @@ Content-Type: application/json
 }
 ###
 POST http://localhost:5000/api/v1/it4u/rhnl7chn/hourlyClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzE4OTI0NiwiZXhwIjoxNjAzNzk0MDQ2fQ.IaNMjEe-CTCu-k5dljLASzc8pStO-FS53ApiWjBV9SkgHC1PoDcQfYpAjCTMMqXwoqRKtLScyzWihKRAUM-xMg
 Content-Type: application/json
 
 {
     "attrs":["wlan_bytes","wlan-num_sta","time"],
-    "start":"1580490000000",
-    "end":"1582995599999",
+    "start":"1601485200000",
+    "end":"1604163599999",
     "client": "Client",
     "traffic": "Traffic",
     "total_traffic": "Total Traffic"
@@ -447,7 +447,7 @@ Content-Type: application/json
 
 ###
 POST  http://localhost:5000/api/v1/it4u/rhnl7chn/trafficInfo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNTA5NzI4LCJleHAiOjE1ODMxMTQ1Mjh9.LOkZkDt3N63wunZ1bLPUV3YsXYgjc5HHioyQVSmXbPj5YHbpyO4kVLiJT9wlib-G7sWVw7MTiTOcWscsQgDYOQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzE2NTQ3MywiZXhwIjoxNjAzNzcwMjczfQ.2jJv3ZEUngN4CFLcY4ebi35YiCrCbgf20oW9iCJE0erbXXgy1xn5BgeDboClvuWFZvVa3A6cX6QhESQCcnhZfA
 Content-Type: application/json
 
 {
@@ -817,7 +817,7 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/xld34lgx/devices
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk1ODExOTIzLCJleHAiOjE1OTY0MTY3MjN9.22Spft2qgnLp2g20ITheitQNkDoaphRs_1kN0NCdl1d5VbjLPa1A2clYIr1aUSEAszI3wMkqJKk8Bvn-sV4zlg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzE2NTI5MywiZXhwIjoxNjAzNzcwMDkzfQ.VSlW3pzX-ygi5o2V79VsacOnr4Wv6qxmUCWtVCODqoiguywLSsMr9-11Htfym0PouimhpL_cOrWNAQBnbTJdIw
 Content-Type: application/json
 
 ###
@@ -945,7 +945,7 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/monitor/daily/trafficAndClient
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMjc3OTgyMSwiZXhwIjoxNjAzMzg0NjIxfQ.87mM5KXzACDwN0exopfmyB84uCBlp4YXwNPHvxlWkRUJTaozgu3VBPDDTRm8bRUt0YdXdgpIY2iX-5pU8bZSOw
 Content-Type: application/json
 
 ###
@@ -955,5 +955,15 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/segments/client
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzE2NzgwNiwiZXhwIjoxNjAzNzcyNjA2fQ.VHWPPP7u3lSG3aqzoIxkn1ffwJTGVIWYQQ00ZYz8l94c3fEWkBhoJxB1nbEvXBnIZKriXpCdKX9S2fvns5TGlw
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/user/updateNumLogin
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzI5MTk4MywiZXhwIjoxNjAzODk2NzgzfQ.Vn9cEgkK5T_J7zzVzf0NaQmk2RnOOxqIVyJZclRMXp1f74rphA2OyjQsc_1OoRFJtJrbtDXcmyOsgd4QrKSNxw
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/user/online
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzI5MTk4MywiZXhwIjoxNjAzODk2NzgzfQ.Vn9cEgkK5T_J7zzVzf0NaQmk2RnOOxqIVyJZclRMXp1f74rphA2OyjQsc_1OoRFJtJrbtDXcmyOsgd4QrKSNxw
 Content-Type: application/json
