@@ -47,6 +47,7 @@ public class DevicesController {
         List<String> txBytes = new ArrayList<>();
         List<String> rxBytes = new ArrayList<>();
         List<String> result = new ArrayList<>();
+        String getMac = "";
         JSONArray getData = new JSONArray();
         JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
         JSONArray getBody = getCookies.getJSONArray("body");
@@ -56,14 +57,18 @@ public class DevicesController {
         ApiRequest apiRequest = new ApiRequest();
         try {
             String getDeviceInf = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/sta", csrfToken, unifises);
+            getMac = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device-basic", csrfToken, unifises);
             JSONObject getDataDeviceInf = new JSONObject(getDeviceInf);
             getData = getDataDeviceInf.getJSONArray("data");
         } catch (Exception e) {
             getCookies();
             String getDeviceInf = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/sta", csrfToken, unifises);
+            getMac = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/stat/device-basic", csrfToken, unifises);
             JSONObject getDataDeviceInf = new JSONObject(getDeviceInf);
             getData = getDataDeviceInf.getJSONArray("data");
         }
+        JSONObject convertDataMac = new JSONObject(getMac);
+        JSONArray getDataMac = convertDataMac.getJSONArray("data");
         Calculator getCalculator = new Calculator();
         for(int i=0; i<getData.length(); i++) {
             JSONObject getItem = (JSONObject) getData.get(i);
@@ -71,6 +76,15 @@ public class DevicesController {
             long getTxBytes = getItem.getLong("tx_bytes");
             rxBytes = getCalculator.ConvertBytes(getRxBytes);
             txBytes = getCalculator.ConvertBytes(getTxBytes);
+            for (int j = 0; j < getDataMac.length(); j++) {
+                JSONObject getItemMac = (JSONObject) getDataMac.get(j);
+                if (getItemMac.getString("mac").equals(getItem.getString("ap_mac"))) {
+                    getItem.put("mac_name", getItemMac.getString("name"));
+                }
+            }
+            if(getItem.getString("radio").equals("ng")) {
+                getItem.put("radio_name", "2.4GHz");
+            } else getItem.put("radio_name", "5GHz");
             getItem.put("rx_bytes", rxBytes.get(0)+ rxBytes.get(1));
             getItem.put("tx_bytes", txBytes.get(0) + txBytes.get(1));
             result.add(getItem.toString());
