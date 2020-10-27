@@ -967,3 +967,14 @@ Content-Type: application/json
 Get http://localhost:5000/api/v1/user/online
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzI5MTk4MywiZXhwIjoxNjAzODk2NzgzfQ.Vn9cEgkK5T_J7zzVzf0NaQmk2RnOOxqIVyJZclRMXp1f74rphA2OyjQsc_1OoRFJtJrbtDXcmyOsgd4QrKSNxw
 Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/fwa21ejj/history/device
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzgwOTQyMiwiZXhwIjoxNjA0NDE0MjIyfQ.m7lJFJq3x-QED5009nOevzKltc9PglsCh3PU2XL3YpDesviygEY7mef2_GgPRcQQch8tjgbok72QJPifiJ6lvg
+Content-Type: application/json
+
+{
+    "mac": "28:3f:69:55:95:00",
+    "_limit": 30,
+    "_sort": "-assoc_time"
+}

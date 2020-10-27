@@ -129,6 +129,47 @@ public class DevicesController {
         return result.toString();
     }
 
+    @ApiOperation(value = "Get History device") 
+    @PostMapping("/it4u/{id}/history/device")
+    public String getHistoryDevice(@PathVariable(value = "id") String id, @RequestBody String postData) {
+        List<String> txBytes = new ArrayList<>();
+        List<String> rxBytes = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONArray getData = new JSONArray();
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        Calculator getCalculator = new Calculator();
+        try {
+            String getSession = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/stat/session", csrfToken, unifises, postData);
+            JSONObject convertSession = new JSONObject(getSession);
+            getData = convertSession.getJSONArray("data");
+        } catch (Exception e) {
+            getCookies();
+            String getSession = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/stat/session", csrfToken, unifises, postData);
+            JSONObject convertSession = new JSONObject(getSession);
+            getData = convertSession.getJSONArray("data");
+        }
+        for (int i=0; i < getData.length(); i++) {
+            JSONObject getItem = (JSONObject) getData.get(i);
+            long getRxBytes = getItem.getLong("rx_bytes");
+            long getTxBytes = getItem.getLong("tx_bytes");
+            rxBytes = getCalculator.ConvertBytes(getRxBytes);
+            txBytes = getCalculator.ConvertBytes(getTxBytes);
+            long getAssocTime = getItem.getLong("assoc_time")*1000;
+            Integer getDuration = getItem.getInt("duration");
+            getItem.put("duration", getCalculator.ConvertSecondToHHMMString(getDuration));
+            getItem.put("assoc_time", getCalculator.ConvertSecondToDate(getAssocTime));
+            getItem.put("rx_bytes", rxBytes.get(0) + rxBytes.get(1));
+            getItem.put("tx_bytes", txBytes.get(0) + txBytes.get(1));
+            result.add(getItem.toString());
+        }
+        return result.toString();
+    }
+
     @ApiOperation(value = "Block and unblock device")
     @PostMapping("it4u/{id}/block/device")
     public String blockAndUnBlockDevice(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser, @RequestBody String postData) {
