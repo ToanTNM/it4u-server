@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import vn.tpsc.it4u.model.ChannelName;
 
 @Repository
-public interface ChannelNameRespository extends JpaRepository<ChannelName, Long>{
+public interface ChannelNameRepository extends JpaRepository<ChannelName, Long>{
     ChannelName findByName(String name);
 }

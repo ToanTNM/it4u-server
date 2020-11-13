@@ -219,7 +219,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/getCookiesUbnt
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgyNjIxMTY1LCJleHAiOjE1ODMyMjU5NjV9.jAs9WQ9ocplMQ28pS5hbu4-zEC30EmE0vVctqprRfze7f2nrXP594IAAZF0N7918e1LJZQfFxKC62KSGa3S3Vg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
 Content-Type: application/json
 
 ###
@@ -498,7 +498,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/L1415D29_Dat.NVT/channel/status
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzA0NzY2LCJleHAiOjE1ODM5MDk1NjZ9.y-vC6xBQXGYFQpk2MO8Qt3n0Ix1ffddKFAYyXTvTUL3ZpcaVCZGJru0ub8jF8M9NhLeEqPj00Goci3xm_ohhdg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNDM3NTgwOSwiZXhwIjoxNjA0OTgwNjA5fQ.O3zlAxh9ylgzdwiV3b2sy761-n2gH60OBKOu9culKjPhhSO-8vg50QkOi77p176Jd3v0JbJckzLOMDMt0ACY7Q
 Content-Type: application/json
 
 {
@@ -884,6 +884,7 @@ GET http://localhost:5000/api/v1/private-chat/channel/685ff00a-8de8-4cfd-8149-f3
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5ODkyODQzMCwiZXhwIjoxNTk5NTMzMjMwfQ.i0699oUip537muvhwgxJsaJrS-GK1oxB-F_gpiUsvmG7h-iFicetsWJ7F4IXcda1o812JyzcM5RXpxkiT7RMoQ
 Content-Type: application/json
 
+########################################### Channel ####################
 ###
 GET http://localhost:5000/api/v1/it4u/clients
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
@@ -891,7 +892,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/api/v1/it4u/client/116
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTAwMDUzNSwiZXhwIjoxNjA1NjA1MzM1fQ.7hMQiTvAfh__h9giAtMd4KyOtUc5erHAtp92C5roC03n1sYnAB_xY1aYaaSpGzulTbwYWEeqvBvv2c0E2i0OQw
 Content-Type: application/json
 
 ###
@@ -905,28 +906,29 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/channel/value
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
 Content-Type: application/json
 
 {
     "servicePack": "Fiber50Eco",
-    "value": "100 Mbps"
+    "value": "100 Mbps",
+    "channelName": "CMC"
 }
 
 ###
 POST http://localhost:5000/api/v1/it4u/channel/attribute
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTYzMTI2MiwiZXhwIjoxNjAyMjM2MDYyfQ.Sh1cdDz4K4gsHBSA2J47SuO4GnHBXDhD4R0FioBzCH34kx3GLLeItQkKJn18i-1oSRApasNRSmRQISXO6RD5ww
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
 Content-Type: application/json
 
 {
-    "channelName": "CMC",
-    "channelValue": "Fiber30",
+    "customer": "TPs",
+    "channelValue": "Fiber50Eco",
     "status": "Offline"
 }
 
 ###
 Get http://localhost:5000/api/v1/it4u/channel/attribute.all
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTYzMTI2MiwiZXhwIjoxNjAyMjM2MDYyfQ.Sh1cdDz4K4gsHBSA2J47SuO4GnHBXDhD4R0FioBzCH34kx3GLLeItQkKJn18i-1oSRApasNRSmRQISXO6RD5ww
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
 Content-Type: application/json
 
 ###
@@ -934,6 +936,43 @@ Get http://localhost:5000/api/v1/it4u/channel/attribute.all.CMC
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
 Content-Type: application/json
 
+###
+Post http://localhost:5000/api/v1/it4u/channel/detail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTI0MDk0OCwiZXhwIjoxNjA1ODQ1NzQ4fQ.1jTr_s3DX7fhbhlVmZUgtw_5jb5wVOkE84jopkLoHhbct-6vcpJpMOQ6O4CCn4hJ91lxDb3zjL-lN50y8-7ggw
+Content-Type: application/json
+
+{
+    "routerType": "routerType",
+    "customerMove": "Huỳnh Thị Châu Tuyền 121BHTQuan",
+    "votesRequire": "5",
+    "ipType": "routerType",
+    "virtualNum": "routerType",
+    "deviceStatus": "Đã thu hồi",
+    "ipAddress": "",
+    "regionalEngineer": "routerType",
+    "deployRequestDate": 1604714539,
+    "dateAcceptance": 1604714539,
+    "dateRequestStop": 1604714539,
+    "dateStop": 1604714539,
+    "dateOnlineRequest": 1604714539,
+    "dateOnline": 1604714539,
+    "fees": "Trả hàng thngs",
+    "servicePack": "Fiber50Eco",
+    "customId": "VIP00001",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe 214 Lương Nhữ Hộc",
+    "servicePlans": "MS2.2.60",
+    "street": "214 Lương Nhữ Hộc,P. Khuê Trung, Q. Cẩm Lệ, Đà Nẵng, 550000, Vietnam"
+}
+
+
+###
+Get http://localhost:5000/api/v1/it4u/channel/detail.all
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTIzNTU2OCwiZXhwIjoxNjA1ODQwMzY4fQ.AhNaO_6pz_gg_T5gHl5neqW_I3X11jtkFHvOhjFAhC8mvfczol-XST78vGaXuH5Z3EFhEac-f7kt6wfAHSNGWg
+Content-Type: application/json
+
+
+############################################# End Channel ##########################
 ###
 Put http://localhost:5000/api/v1/user/update/registrationId
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
@@ -954,9 +993,13 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4O
 Content-Type: application/json
 
 ###
-Get http://localhost:5000/api/v1/it4u/segments/client
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzE2NzgwNiwiZXhwIjoxNjAzNzcyNjA2fQ.VHWPPP7u3lSG3aqzoIxkn1ffwJTGVIWYQQ00ZYz8l94c3fEWkBhoJxB1nbEvXBnIZKriXpCdKX9S2fvns5TGlw
+Post http://localhost:5000/api/v1/it4u/segments/client
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
 Content-Type: application/json
+
+{
+    "segment": "segment"
+}
 
 ###
 Get http://localhost:5000/api/v1/user/updateNumLogin
@@ -970,7 +1013,7 @@ Content-Type: application/json
 
 ###
 Post http://localhost:5000/api/v1/it4u/fwa21ejj/history/device
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwMzgwOTQyMiwiZXhwIjoxNjA0NDE0MjIyfQ.m7lJFJq3x-QED5009nOevzKltc9PglsCh3PU2XL3YpDesviygEY7mef2_GgPRcQQch8tjgbok72QJPifiJ6lvg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzk0MzY2NywiZXhwIjoxNjA0NTQ4NDY3fQ.dZ4fB5MuYkMJ55Zy_aa3V7WNTpfw2hqV8VYDO5wTucOy8P31CcgG6b7kx97WAdNs_VC3b3K6JkVZFL_q1IhX6w
 Content-Type: application/json
 
 {
@@ -978,3 +1021,135 @@ Content-Type: application/json
     "_limit": 30,
     "_sort": "-assoc_time"
 }
+
+###
+Get http://localhost:5000/api/v1/it4u/mac/info
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzk0MzY2NywiZXhwIjoxNjA0NTQ4NDY3fQ.dZ4fB5MuYkMJ55Zy_aa3V7WNTpfw2hqV8VYDO5wTucOy8P31CcgG6b7kx97WAdNs_VC3b3K6JkVZFL_q1IhX6w
+Content-Type: application/json
+
+
+###
+Get http://localhost:5000/api/v1/it4u/info/mac
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzk0MzY2NywiZXhwIjoxNjA0NTQ4NDY3fQ.dZ4fB5MuYkMJ55Zy_aa3V7WNTpfw2hqV8VYDO5wTucOy8P31CcgG6b7kx97WAdNs_VC3b3K6JkVZFL_q1IhX6w
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/dashboard/overview
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzk0MzY2NywiZXhwIjoxNjA0NTQ4NDY3fQ.dZ4fB5MuYkMJ55Zy_aa3V7WNTpfw2hqV8VYDO5wTucOy8P31CcgG6b7kx97WAdNs_VC3b3K6JkVZFL_q1IhX6w
+Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/customer/breakdowns
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+{
+    "customId": "VIP00004",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe Kaotea",
+    "servicePlans": "MS2.2.60",
+    "receiver": "Cường, Việt",
+    "error": "KH báo rớt mạng",
+    "firstTime": 1604714538,
+    "secondTime": 1604714545,
+    "duration": 1201,
+    "influenceLevel": "Mức 3",
+    "reason": "Tụt nguồn điện",
+    "result": "KT đã check hệ thống",
+    "verify": "Hoàn thành",
+    "status": "Nguồn điện",
+    "classify": "Hoàn thành"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/customer/breakdowns.all
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+###
+Post http://localhost:5000/api/v1/it4u/handle/service
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+{
+    "customId": "VIP00004",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe Kaotea",
+    "servicePlans": "MS2.2.60",
+    "request": "Ngưng",
+    "receiver": "Cường, Việt",
+    "firstTime": 1604714541,
+    "secondTime": 1604714541,
+    "duration": 1201,
+    "result": "KT đã check hệ thống",
+    "completionRate": "100%",
+    "happyCall": "L1: NOK"
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/customer/support
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+{
+    "customId": "VIP00004",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe Kaotea",
+    "servicePlans": "MS2.2.60",
+    "request": "Rớt mạng",
+    "receiver": "Cường, Việt",
+    "firstTime": 1604714541,
+    "secondTime": 1604714541,
+    "duration": 1201,
+    "result": "KT đã check hệ thống",
+    "status": "Hoàn thành"
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/service/deployment
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+{
+    "customId": "VIP00004",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe Kaotea",
+    "servicePlans": "MS2.2.60",
+    "receiver": "Cường, Việt",
+    "firstTime": 1604714541,
+    "secondTime": 1604714541,
+    "duration": 1201,
+    "result": "Hoàn thành",
+    "completionRate": "100%",
+    "verify": ""
+}
+
+###
+Post http://localhost:5000/api/v1/it4u/customer/breakdowns.time
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+{
+    "firstTime": 1604714539,
+    "secondTime": 1604714542
+}
+
+
+###
+Get http://localhost:5000/api/v1/it4u/service/sta/month
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+
+###
+Get http://localhost:5000/api/v1/it4u/service/plans
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+
+###
+Get http://localhost:5000/api/v1/it4u/service/status
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
+Content-Type: application/json
+
+

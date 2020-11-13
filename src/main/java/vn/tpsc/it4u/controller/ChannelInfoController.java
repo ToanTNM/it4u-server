@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +16,18 @@ import org.modelmapper.ModelMapper;
 
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.ChannelAttribute;
+import vn.tpsc.it4u.model.ChannelDetail;
 import vn.tpsc.it4u.model.ChannelName;
 import vn.tpsc.it4u.model.ChannelValue;
+import vn.tpsc.it4u.model.Contract;
 import vn.tpsc.it4u.payload.ChannelAttributeRequest;
 import vn.tpsc.it4u.repository.ChannelAttributeRepository;
-import vn.tpsc.it4u.repository.ChannelNameRespository;
-import vn.tpsc.it4u.repository.ChannelValueRespository;
+import vn.tpsc.it4u.repository.ChannelDetailRepository;
+import vn.tpsc.it4u.repository.ChannelNameRepository;
+import vn.tpsc.it4u.repository.ChannelValueRepository;
+import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.util.ApiRequest;
-import vn.tpsc.it4u.service.ChannelAttributeService;
+import vn.tpsc.it4u.service.ChannelInfoService;
 import vn.tpsc.it4u.service.ConfigTokenService;
 import vn.tpsc.it4u.service.UserService;
 
@@ -37,7 +42,6 @@ import java.util.regex.Pattern;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.google.gson.JsonObject;
 
 @RestController
@@ -74,13 +78,19 @@ public class ChannelInfoController {
     private ChannelAttributeRepository channelAttributeRepository;
 
     @Autowired
-    private ChannelValueRespository channelValueRespository;
+    private ChannelValueRepository channelValueRepository;
 
     @Autowired
-    private ChannelNameRespository channelNameRespository;
+    private ChannelNameRepository channelNameRepository;
 
     @Autowired
-    private ChannelAttributeService channelAttributeService;
+    private ChannelDetailRepository channelDetailRepository;
+
+    @Autowired
+    private ChannelInfoService channelInfoService;
+
+    @Autowired
+    private ContractRepository contractRepository;
 
     @Autowired UserService userService;
 
@@ -105,6 +115,42 @@ public class ChannelInfoController {
             } catch (Exception e) {
                 itemData.put("companyName", getItem.getString("firstName") + " " + getItem.getString("lastName"));
             }
+            result.add(itemData.toString());
+        }
+        return result.toString();
+    }
+
+
+    @ApiOperation(value = "Get MAC")
+    @GetMapping("/it4u/info/mac")
+    public String getInfoMAC() {
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new ApiRequest();
+        String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
+        JSONArray convertInfoClient = new JSONArray(getInfoClient);
+        for (int i=0; i<convertInfoClient.length(); i++) {
+            String getCompanyName = "";
+            JSONObject getItem = (JSONObject) convertInfoClient.get(i);
+            List<String> listMac = new ArrayList<>();
+            JSONObject itemData = new JSONObject();
+            try {
+                getCompanyName = getItem.getString("companyName");
+            } catch (Exception e) {
+                getCompanyName = getItem.getString("firstName") + " " + getItem.getString("lastName");
+            }
+            JSONArray getAttribute = getItem.getJSONArray("attributes");
+            for (int j=0; j < getAttribute.length(); j++) {
+                JSONObject getItemAttribute = (JSONObject) getAttribute.get(j);
+                if (getItemAttribute.getString("name").equals("AP1") && !getItemAttribute.getString("value").isEmpty())
+                    listMac.add(getItemAttribute.getString("value"));
+                if (getItemAttribute.getString("name").equals("AP2") && !getItemAttribute.getString("value").isEmpty())
+                    listMac.add(getItemAttribute.getString("value"));
+                if (getItemAttribute.getString("name").equals("AP3") && !getItemAttribute.getString("value").isEmpty())
+                    listMac.add(getItemAttribute.getString("value"));
+                if (getItemAttribute.getString("name").equals("AP4") && !getItemAttribute.getString("value").isEmpty())
+                    listMac.add(getItemAttribute.getString("value"));
+            }
+            itemData.put(getCompanyName, listMac);
             result.add(itemData.toString());
         }
         return result.toString();
@@ -135,21 +181,16 @@ public class ChannelInfoController {
             itemData.put("companyName",
                     convertInfoClient.getString("firstName") + " " + convertInfoClient.getString("lastName"));
         }
+        itemData.put("street", convertInfoClient.getString("companyName"));
         return itemData.toString();
     }
 
     @ApiOperation(value = "Post channel attribute")
     @PostMapping("/it4u/channel/attribute")
     public ResponseEntity<?> PostChannelAttribute(@RequestBody final ChannelAttributeRequest postData) {
-        ChannelAttribute getChannelAttribute = new ChannelAttribute(postData.getStatus());
-        Set<ChannelName> channelName = new HashSet<>();
-        ChannelName getChannelName = channelNameRespository.findByName(postData.getChannelName());
-        channelName.add(getChannelName);
-        getChannelAttribute.setChannelName(channelName);
-        ChannelValue getChannelValue = channelValueRespository.findByServicePack(postData.getChannelValue());
-        Set<ChannelValue> channelValue = new HashSet<>();
-        channelValue.add(getChannelValue);
-        getChannelAttribute.setChannelValue(channelValue);
+        ChannelAttribute getChannelAttribute = new ChannelAttribute(postData.getCustomer(),postData.getStatus());
+        ChannelValue getChannelValue = channelValueRepository.findByServicePack(postData.getChannelValue());
+        getChannelAttribute.setChannelValue(getChannelValue);
         channelAttributeRepository.save(getChannelAttribute);
         return ResponseEntity.ok("ok");
     }
@@ -157,16 +198,19 @@ public class ChannelInfoController {
     @ApiOperation(value = "Post channel name")
     @PostMapping("/it4u/channel/name")
     public ResponseEntity<?> postChannelName(@RequestBody final ChannelName postData) {
-        ChannelName getChannelName = new ChannelName(postData.getName());
-        channelNameRespository.save(getChannelName);
+        ChannelName createChannelName = new ChannelName(postData.getName());
+        channelNameRepository.save(createChannelName);
         return ResponseEntity.ok("ok");
     }
 
     @ApiOperation(value = "Post channel value")
     @PostMapping("/it4u/channel/value")
     public ResponseEntity<?> postChannelValue(@RequestBody final ChannelValue postData) {
-        ChannelValue getChannelValue = new ChannelValue(postData.getServicePack(), postData.getValue());
-        channelValueRespository.save(getChannelValue);
+        ChannelValue createChannelValue = new ChannelValue(postData.getServicePack(), postData.getValue());
+        JSONObject getChannelName = new JSONObject(postData.getChannelName());
+        ChannelName channelName = channelNameRepository.findByName(getChannelName.getString("name"));
+        createChannelValue.setChannelName(channelName);
+        channelValueRepository.save(createChannelValue);
         return ResponseEntity.ok("ok");
     }
 
@@ -175,45 +219,98 @@ public class ChannelInfoController {
     public String getAllChannelAttribute() {
         List<String> result = new ArrayList<>();
         JSONObject data = new JSONObject();
-        JSONArray getChannelAttribute = new JSONArray(channelAttributeService.findAll());
+        JSONArray getChannelAttribute = new JSONArray(channelInfoService.findAll());
         for (int i = 0; i < getChannelAttribute.length(); i++) {
             JSONObject getItem = (JSONObject) getChannelAttribute.get(i);
-            JSONArray getChannelName = getItem.getJSONArray("channelName");
-            JSONObject channelName = (JSONObject) getChannelName.get(0);
-            JSONArray getChannelValue = getItem.getJSONArray("channelValue");
-            JSONObject channelValue = (JSONObject) getChannelValue.get(0);
-            data.put("name", channelName.getString("name"));
-            data.put("servicePack", channelValue.getString("servicePack"));
-            data.put("value", channelValue.getString("value"));
-            data.put("status", getItem.getString("status"));
-            result.add(data.toString());
+            try {
+                JSONObject getChannelValue = getItem.getJSONObject("channelValue");
+                JSONObject getChannelName = getChannelValue.getJSONObject("channelName");
+                data.put("name", getChannelName.getString("name"));
+                data.put("servicePack", getChannelValue.getString("servicePack"));
+                data.put("value", getChannelValue.getString("value"));
+                data.put("status", getItem.getString("status"));
+                result.add(data.toString());
+            } catch (Exception e) {
+            }
         }
         return result.toString();
     }
 
-    @ApiOperation(value = "Get channel attribute to name")
-    @GetMapping("/it4u/channel/attribute.all.{name}")
-    public String getChannelToName(@PathVariable(value = "name") String name) {
-        // String result = "";
-        List<String> result = new ArrayList<>();
-        JSONObject data = new JSONObject();
-        JSONArray getChannelAttribute = new JSONArray(channelAttributeService.findChannelName(name));
-        for (int i = 0; i < getChannelAttribute.length(); i++) {
-            JSONObject getItem = (JSONObject) getChannelAttribute.get(i);
-            if (!getItem.getString("status").equals("Online")) {
-                JSONArray getChannelName = getItem.getJSONArray("channelName");
-                JSONObject channelName = (JSONObject) getChannelName.get(0);
-                JSONArray getChannelValue = getItem.getJSONArray("channelValue");
-                JSONObject channelValue = (JSONObject) getChannelValue.get(0);
-                data.put("name", channelName.getString("name"));
-                data.put("servicePack", channelValue.getString("servicePack"));
-                data.put("value", channelValue.getString("value"));
-            }
-            result.add(data.toString());
+    @ApiOperation(value = "Create a channel detail")
+    @PostMapping("/it4u/channel/detail")
+    public Boolean createChannelDetail(@RequestBody String data) {
+        JSONObject getData = new JSONObject(data);
+        ChannelDetail createChannelDetail = new ChannelDetail(
+            getData.getString("routerType"),
+            getData.getString("customerMove"),
+            getData.getString("deviceStatus"),
+            getData.getString("votesRequire"),
+            getData.getString("ipType"),
+            getData.getString("virtualNum"),
+            getData.getString("regionalEngineer"),
+            getData.getLong("deployRequestDate"),
+            getData.getLong("dateAcceptance"),
+            getData.getString("ipAddress"),
+            getData.getLong("dateRequestStop"),
+            getData.getLong("dateStop"),
+            getData.getLong("dateOnlineRequest"),
+            getData.getLong("dateOnline"),
+            getData.getString("fees") 
+        );
+        ChannelValue getChannelValue = channelValueRepository.findByServicePack(getData.getString("servicePack"));
+        List<ChannelAttribute> getChannelAttribute = channelAttributeRepository.findByChannelValue(getChannelValue);
+        createChannelDetail.setChannelAttribute(getChannelAttribute.get(0));
+        if (contractRepository.existsByCustomId(getData.getString("customId"))) {
+            Contract getContract = contractRepository.findByCustomId(getData.getString("customId"));
+            createChannelDetail.setContract(getContract);
+            channelDetailRepository.save(createChannelDetail);
+            return true;
+        } else {
+            Contract createContract = new Contract(
+                getData.getString("customId"), 
+                getData.getString("numContract"),
+                getData.getString("clientName"), 
+                getData.getString("servicePlans"),
+                getData.getString("street")
+            );
+            contractRepository.save(createContract);
+            createChannelDetail.setContract(createContract);
+            channelDetailRepository.save(createChannelDetail);
+            return true;
         }
-        
-        return result.toString();
     }
+
+    @ApiOperation(value = "Get all channel detail")
+    @GetMapping("/it4u/channel/detail.all")
+    public String getAllChannelDetail() {
+        String result = "";
+        JSONArray getAllChannelDetail = new JSONArray(channelInfoService.findAllChannelDetail());
+        return getAllChannelDetail.toString();
+    }
+
+    // @ApiOperation(value = "Get channel attribute to name")
+    // @GetMapping("/it4u/channel/attribute.all.{name}")
+    // public String getChannelToName(@PathVariable(value = "name") String name) {
+    //     // String result = "";
+    //     List<String> result = new ArrayList<>();
+    //     JSONObject data = new JSONObject();
+    //     JSONArray getChannelAttribute = new JSONArray(channelAttributeService.findChannelName(name));
+    //     for (int i = 0; i < getChannelAttribute.length(); i++) {
+    //         JSONObject getItem = (JSONObject) getChannelAttribute.get(i);
+    //         if (!getItem.getString("status").equals("Online")) {
+    //             JSONArray getChannelName = getItem.getJSONArray("channelName");
+    //             JSONObject channelName = (JSONObject) getChannelName.get(0);
+    //             JSONArray getChannelValue = getItem.getJSONArray("channelValue");
+    //             JSONObject channelValue = (JSONObject) getChannelValue.get(0);
+    //             data.put("name", channelName.getString("name"));
+    //             data.put("servicePack", channelValue.getString("servicePack"));
+    //             data.put("value", channelValue.getString("value"));
+    //         }
+    //         result.add(data.toString());
+    //     }
+        
+    //     return result.toString();
+    // }
 
     @ApiOperation(value = "Monitor daily traffic and client for customers")
     @GetMapping("/it4u/monitor/daily/trafficAndClient")

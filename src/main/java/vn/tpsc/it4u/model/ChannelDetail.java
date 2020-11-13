@@ -23,30 +23,26 @@ public class ChannelDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    @Size(max = 40)
-    private String customId;
-    
-    @NotEmpty
-    @Size(max = 40)
-    private String numContact;
-
-    @NotEmpty
-    @Size(max = 40)
-    private String clientName;
-
-    @NotEmpty
-    @Size(max = 40)
-    private String servicePlans;
+    @OneToOne
+    @JoinColumn(name = "contract_id")
+    private Contract contract;
 
     @Size(max = 40)
     private String routerType;
+
+    private String customerMove;
 
     @Size(max = 40)
     private String votesRequire;
 
     @Size(max = 40)
     private String ipType;
+
+    @Size(max = 40)
+    private String deviceStatus;
+
+    @Size(max = 40)
+    private String ipAddress;
 
     @NotEmpty
     @Size(max = 40)
@@ -55,64 +51,40 @@ public class ChannelDetail {
     @Size(max = 40)
     private String regionalEngineer;
 
-    @Size(max = 40)
-    private Date deployRequestDate;
+    private Long deployRequestDate;
 
-    @Size(max = 40)
-    private Long dayAcceptance;
+    private Long dateAcceptance;
 
-    @Size(max = 40)
-    private Date monthAcceptance;
+    private Long dateRequestStop;
 
-    @Size(max = 40)
-    private String addressIP;
+    private Long dateStop;
 
-    @Size(max = 40)
-    private String dateRequestStop;
+    private Long dateOnlineRequest;
 
-    @Size(max = 40)
-    private Long dayStop;
-
-    @Size(max = 40)
-    private Date monthStop;
-
-    @Size(max = 40)
-    private Date dateOnline;
-
-    @Size(max = 40)
-    private Long dayOnline;
-
-    @Size(max = 40)
-    private Date monthOnline;
+    private Long dateOnline;
 
     @Size(max = 40)
     private String fees;
 
-    @ManyToMany
-    @JoinTable(name = "channel_attribute_detail", joinColumns = @JoinColumn(name = "channel_detail_id"), inverseJoinColumns = @JoinColumn(name = "channel_attribute_id"))
-    private Set<ChannelAttribute> channelValue = new HashSet<>();
+    @OneToOne
+    @JoinColumn(name = "channel_attribute_id")
+    private ChannelAttribute channelAttribute;
 
-    public ChannelDetail(String customId, String numContact, String clientName, String servicePlans, String routerType, String votesRequire, String ipType, String virtualNum, String regionalEngineer, Date deployRequestDate,
-        Long dayAcceptance, Date monthAcceptance, String addressIp, String dateRequestStop, Long dayStop, Date monthStop, Date dateOnline, Long dayOnline, Date monthOnline, String fees) {
-        this.customId = customId;
-        this.numContact = numContact;
-        this.clientName = clientName;
-        this.servicePlans = servicePlans;
+    public ChannelDetail(String routerType, String customerMove, String deviceStatus, String votesRequire, String ipType, String virtualNum, String regionalEngineer, Long deployRequestDate,
+        Long dateAcceptance, String ipAddress, Long dateRequestStop, Long dateStop, Long dateOnlineRequest, Long dateOnline, String fees) {
         this.routerType = routerType;
+        this.customerMove = customerMove;
         this.votesRequire = votesRequire;
         this.ipType = ipType;
         this.virtualNum = virtualNum;
         this.regionalEngineer = regionalEngineer;
         this.deployRequestDate = deployRequestDate;
-        this.dayAcceptance = dayAcceptance;
-        this.monthAcceptance = monthAcceptance;
-        this.addressIP = addressIp;
+        this.dateAcceptance = dateAcceptance;
+        this.ipAddress = ipAddress;
         this.dateRequestStop = dateRequestStop;
-        this.dayStop = dayStop;
-        this.monthStop = monthStop;
+        this.dateStop = dateStop;
+        this.dateOnlineRequest = dateOnlineRequest;
         this.dateOnline = dateOnline;
-        this.dayOnline = dayOnline;
-        this.monthOnline = monthOnline;
         this.fees = fees;
     }
 

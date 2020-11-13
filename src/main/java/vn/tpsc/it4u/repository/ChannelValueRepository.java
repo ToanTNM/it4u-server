@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import vn.tpsc.it4u.model.ChannelValue;
 
 @Repository
-public interface ChannelValueRespository extends JpaRepository<ChannelValue, Long>{
+public interface ChannelValueRepository extends JpaRepository<ChannelValue, Long>{
     ChannelValue findByServicePack(String servicePack);
     ChannelValue findByValue(String value);
 }

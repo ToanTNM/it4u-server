@@ -12,8 +12,12 @@ import vn.tpsc.it4u.model.ChannelValue;
 @Getter
 @Setter
 public class ChannelAttributeSummary {
+
     private Long id;
-    private Set<ChannelName> channelName;
-    private Set<ChannelValue> channelValue;
+
+    private String customer;
+
+    private ChannelValue channelValue;
+
     private String status;
 }

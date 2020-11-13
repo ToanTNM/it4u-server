@@ -1,13 +1,12 @@
 package vn.tpsc.it4u.controller;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
-
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -1894,7 +1893,97 @@ public class DashboardController {
         resultJson.put("name", result);
         return resultJson.toString();
     }
-    // VOUCHERS....................................................................................../
+    
+    //Dashboard - Overview
+    @ApiOperation(value = "Dashboard overview")
+    @GetMapping("/it4u/dashboard/overview")
+    public String showDashboard() {
+        JSONObject result = new JSONObject();
+        Integer activeSites = 0;
+        Integer warningSites = 0;
+        Integer errorSites = 0;
+        JSONObject activeSitesJson = new JSONObject();
+        JSONObject warningSitesJson = new JSONObject();
+        JSONObject errorSitesJson = new JSONObject();
+        List<String> listErrorSites = new ArrayList<>();
+        List<String> listWarningSites = new ArrayList<>();
+        List<String> listErrorWeekly = new ArrayList<>();
+        List<String> listSites = new ArrayList<>();
+        JSONObject errorWeekly = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        String getSites = apiRequest.getRequestApi(urlIt4u, "/stat/sites", csrfToken, unifises);
+        JSONObject convertSites = new JSONObject(getSites);
+        JSONArray getDataSites = convertSites.getJSONArray("data");
+        for (int i = 0; i < getDataSites.length(); i++) {
+            JSONObject errorSitesName = new JSONObject();
+            JSONObject warningSitesName = new JSONObject();
+            JSONObject getItemSite = (JSONObject) getDataSites.get(i);
+            JSONArray getHealth = getItemSite.getJSONArray("health");
+            JSONObject getItemHealth = (JSONObject) getHealth.get(0);
+            String getStatus = getItemHealth.getString("status");
+            try {
+                switch (getStatus) {
+                    case "error":
+                        errorSitesName.put("name", getItemSite.getString("desc"));
+                        errorSitesName.put("id", getItemSite.getString("name"));
+                        errorSitesName.put("value", getItemHealth.getInt("num_ap") + "/" + getItemHealth.getInt("num_adopted"));
+                        listErrorSites.add(errorSitesName.toString());
+                        errorSites = errorSites + 1;
+                        break;
+                    case "warning":
+                        warningSitesName.put("name", getItemSite.getString("desc"));
+                        warningSitesName.put("id", getItemSite.getString("name"));
+                        warningSitesName.put("value", getItemHealth.getInt("num_ap") + "/" + getItemHealth.getInt("num_adopted"));
+                        listWarningSites.add(warningSitesName.toString());
+                        warningSites = warningSites + 1;
+                        break;
+                    case "ok":
+                        activeSites = activeSites + 1;
+                        break;
+                
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+            }
+        }
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Long endTime = timestamp.getTime();
+        Long startTime = endTime - 7*24*60*60*100;
+        String postData = "{\"attrs\":[\"time\"],\"start\":\"" + startTime + "\",\"end\":\""+ endTime +"\"}";
+        for (int i = 0; i < listErrorSites.size(); i++) {
+            JSONObject getErrorSite = new JSONObject(listErrorSites.get(i));
+            String idSite = getErrorSite.getString("id");
+            String getDaily = apiRequest.postRequestApi(urlIt4u, "/s/" + idSite + "/stat/report/daily.site/",
+                    csrfToken, unifises, postData);
+            JSONObject convertData = new JSONObject(getDaily);
+            JSONArray getData = convertData.getJSONArray("data");
+            try {
+                JSONObject getEndData = (JSONObject) getData.get(getData.length() - 1);
+                errorWeekly.put("name", getErrorSite.getString("name"));
+                errorWeekly.put("time", getEndData.getLong("time"));
+                listErrorWeekly.add(errorWeekly.toString());
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+        }
+        result.put("errorWeekly", listErrorWeekly.toString());
+        result.put("listErrorSites", listErrorSites.toString());
+        result.put("listWarningSites", listWarningSites.toString());
+        activeSitesJson.put("name", "Active");
+        activeSitesJson.put("y", activeSites);
+        errorSitesJson.put("name", "Error");
+        errorSitesJson.put("y", errorSites);
+        warningSitesJson.put("name", "Warning");
+        warningSitesJson.put("y", warningSites);
+        listSites.add(activeSitesJson.toString());
+        listSites.add(errorSitesJson.toString());
+        listSites.add(warningSitesJson.toString());
+        result.put("overview", listSites.toString());
+        return result.toString();
+    }
+
+    // VOUCHERS......................................................................................
     ///////////////////////////////////////////////////////////////////////////////
 
     @ApiOperation(value = "Create Voucher")

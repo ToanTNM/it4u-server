@@ -9,7 +9,10 @@ import lombok.Data;
  */
 @Data
 public class ChannelAttributeRequest {
-    private String channelName;
+
+    private String customer;
+
     private String channelValue;
+    
     private String status;
 }

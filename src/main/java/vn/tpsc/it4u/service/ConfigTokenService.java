@@ -30,8 +30,12 @@ public class ConfigTokenService {
         List<ConfigToken> configToken = configTokenRepository.findAll();
 
         List<ConfigTokenSummary> listConfigToken = configToken.stream()
-                .map(token -> new ConfigTokenSummary(token.getId(), 
-                        token.getCsrfToken(), token.getUnifises()))
+                .map(token -> new ConfigTokenSummary(
+                    token.getId(), 
+                    token.getCsrfToken(),
+                    token.getUnifises()
+                    )
+                )
                 .collect(Collectors.toList());
         return listConfigToken;
     }

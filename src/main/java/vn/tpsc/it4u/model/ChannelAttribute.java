@@ -21,25 +21,19 @@ public class ChannelAttribute{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
-    @JoinTable(name = "channel_name_attribute", 
-        joinColumns = @JoinColumn(name = "channel_attribute_id"), 
-        inverseJoinColumns = @JoinColumn(name = "channel_name_id")
-    )
-    private Set<ChannelName> channelName = new HashSet<>();
+    @Size(max = 40)
+    private String customer;
 
-    @ManyToMany
-    @JoinTable(name = "channel_value_attribute", 
-        joinColumns = @JoinColumn(name = "channel_attribute_id"), 
-        inverseJoinColumns = @JoinColumn(name = "channel_value_id")
-    )
-    private Set<ChannelValue> channelValue = new HashSet<>();
+    @OneToOne
+    @JoinColumn(name = "channel_value_id")
+    private ChannelValue channelValue;
 
     @NotEmpty
     @Size(max = 40)
     private String status;
 
-    public ChannelAttribute(String status) {
+    public ChannelAttribute(String customer,String status) {
+        this.customer = customer;
         this.status = status;
     }
 }

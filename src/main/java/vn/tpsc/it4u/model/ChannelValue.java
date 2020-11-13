@@ -34,6 +34,10 @@ public class ChannelValue {
     @Size(max = 40)
     private String value;
 
+    @OneToOne
+    @JoinColumn(name = "channelName_id")
+    private ChannelName channelName;
+
     public ChannelValue(String servicePack, String value) {
         this.servicePack = servicePack;
         this.value = value;

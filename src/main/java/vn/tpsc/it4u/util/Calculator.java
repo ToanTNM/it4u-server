@@ -2,6 +2,7 @@ package vn.tpsc.it4u.util;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.TimeZone;
 import java.util.List;
@@ -23,6 +24,14 @@ public class Calculator {
         // Date result = new Date(secondTime); 
         // // System.out.println(simple.format(result));
         // return simple.format(result).toString();
+    }
+
+    public String ConvertSecondToDateNotTime(long secondTime) {
+        TimeZone tz = TimeZone.getTimeZone("Asia/Ho_Chi_Minh");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        df.setTimeZone(tz);
+        String time = df.format(new Date(secondTime));
+        return time;
     }
 
     public String ConvertSecondToDateNotZone(long secondTime) {
@@ -127,4 +136,51 @@ public class Calculator {
         double result = Math.round(convertToGb * 100.0) / 100.0;
         return result;
     }
+
+    public int dayOfMonth(int month) {
+        int year = Year.now().getValue();
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            return 31;
+        } else if ((month == 2) && ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)))
+            return 29;
+        else if (month == 2)
+            return 28;
+        else
+            return 30;
+    }
+//     function firstDayOfWeek(week, year) { 
+
+//     if (year==null) {
+//         year = (new Date()).getFullYear();
+//     }
+
+//     var date       = firstWeekOfYear(year),
+//         weekTime   = weeksToMilliseconds(week),
+//         targetTime = date.getTime() + weekTime;
+
+//     return date.setTime(targetTime); 
+
+// }
+
+// function weeksToMilliseconds(weeks) {
+//     return 1000 * 60 * 60 * 24 * 7 * (weeks - 1);
+// }
+
+// function firstWeekOfYear(year) {
+//     var date = new Date();
+//     date = firstDayOfYear(date,year);
+//     date = firstWeekday(date);
+//     return date;
+// }
+
+// function firstDayOfYear(date, year) {
+//     date.setYear(year);
+//     date.setDate(1);
+//     date.setMonth(0);
+//     date.setHours(0);
+//     date.setMinutes(0);
+//     date.setSeconds(0);
+//     date.setMilliseconds(0);
+//     return date;
+// }
 }

@@ -41,6 +41,8 @@ public class DevicesController {
     @Autowired
     private ConfigTokenService configTokenService;
 
+    String sitesid = "/self/sites";
+
     @ApiOperation(value = "Get devices information")
     @GetMapping("it4u/{id}/devices")
     public String getDevicesInf(@PathVariable(value = "id") String id, @CurrentUser CustomUserDetails currentUser) {
@@ -90,6 +92,44 @@ public class DevicesController {
             result.add(getItem.toString());
         }
         log.info(currentUser.getUsername() + " - it4u/" + id + "/devices");
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Get mac devices infomation")
+    @GetMapping("/it4u/mac/info")
+    public String getMacDevices() {
+        List<String> result = new ArrayList<>();
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
+        JSONArray getBody = getCookies.getJSONArray("body");
+        JSONObject body = (JSONObject) getBody.get(0);
+        csrfToken = body.getString("csrfToken");
+        unifises = body.getString("unifises");
+        getCookies();
+        String getMac = "";
+        String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
+        JSONObject jsonResult = new JSONObject(getSites);
+        JSONArray data = jsonResult.getJSONArray("data");
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject getData = (JSONObject) data.get(i);
+            JSONObject itemData = new JSONObject();
+            List<String> listMac = new ArrayList<>();
+            try {
+                String siteName = getData.getString("desc");
+                String idName = getData.getString("name");
+                getMac = apiRequest.getRequestApi(urlIt4u, "/s/" + idName + "/stat/device-basic", csrfToken, unifises);
+                JSONObject convertDataMac = new JSONObject(getMac);
+                JSONArray getDataMac = convertDataMac.getJSONArray("data");
+                for (int j = 0; j < getDataMac.length(); j++) {
+                    JSONObject getItemMac = (JSONObject) getDataMac.get(j);
+                    listMac.add(getItemMac.getString("mac"));
+                }
+                itemData.put(siteName, listMac);
+                result.add(itemData.toString());
+            } catch (Exception e) {
+            }
+
+        }
         return result.toString();
     }
 
