@@ -158,8 +158,10 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-        public ResponseEntity<?> getUser(@PathVariable(value = "id") List<Long> userId, Locale locale) {
-            return ResponseEntity.ok(apiResponse.success(userService.findUser(userId), locale));
+        public String getUser(@PathVariable(value = "id") List<Long> userId) {
+            JSONArray getUser = new JSONArray(userService.findUser(userId));
+            JSONObject result = (JSONObject) getUser.get(0);
+            return getUser.toString();
         }
 
     @ApiOperation(value = "Update user infomation, except: role, password, avatar")
