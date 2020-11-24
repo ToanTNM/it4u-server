@@ -1,5 +1,7 @@
 package vn.tpsc.it4u.service;
 
+import org.json.JSONObject;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,9 @@ import vn.tpsc.it4u.payload.ChannelAttributeSummary;
 import vn.tpsc.it4u.payload.ChannelDetailSummary;
 import vn.tpsc.it4u.util.StringUtils;
 import vn.tpsc.it4u.repository.ChannelValueRepository;
+import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.model.ChannelValue;
+import vn.tpsc.it4u.model.Contract;
 /**
  * ChannelAttribute
  */
@@ -34,6 +38,12 @@ public class ChannelInfoService {
     @Autowired
     private ChannelValueRepository channelValueRepository;
 
+    @Autowired
+    private ContractRepository contractRepository;
+
+    @Autowired
+    private ModelMapper mapper;
+
     public List<ChannelAttributeSummary> findAll() {
         List<ChannelAttribute> channelAttributes = channelAttributeRepository.findAll();
         List<ChannelAttributeSummary> listChannelAttributes = channelAttributes.stream()
@@ -41,7 +51,25 @@ public class ChannelInfoService {
                 channel.getId(),
                 channel.getCustomer(),
                 channel.getChannelValue(),
-                channel.getStatus()))
+                channel.getStatus(),
+                channel.getVirtualNum(),
+                channel.getUsernamePPPoE()
+                ))
+            .collect(Collectors.toList());
+        return listChannelAttributes;
+    }
+
+     public List<ChannelAttributeSummary> findChannelAttributeByStatus(String status) {
+        List<ChannelAttribute> channelAttributes = channelAttributeRepository.findByStatus(status);
+        List<ChannelAttributeSummary> listChannelAttributes = channelAttributes.stream()
+            .map(channel -> new ChannelAttributeSummary(
+                channel.getId(),
+                channel.getCustomer(),
+                channel.getChannelValue(),
+                channel.getStatus(),
+                channel.getVirtualNum(),
+                channel.getUsernamePPPoE()
+                ))
             .collect(Collectors.toList());
         return listChannelAttributes;
     }
@@ -56,7 +84,10 @@ public class ChannelInfoService {
                 channel.getId(),
                 channel.getCustomer(),
                 channel.getChannelValue(), 
-                channel.getStatus()))
+                channel.getStatus(),
+                channel.getVirtualNum(),
+                channel.getUsernamePPPoE()
+                ))
             .collect(Collectors.toList());
         return listChannelAttributes;
     }
@@ -72,7 +103,6 @@ public class ChannelInfoService {
                channelDetail.getCustomerMove(),
                channelDetail.getVotesRequire(),
                channelDetail.getIpType(),
-               channelDetail.getVirtualNum(),
                channelDetail.getDeviceStatus(),
                channelDetail.getIpAddress(),
                channelDetail.getRegionalEngineer(),
@@ -85,5 +115,72 @@ public class ChannelInfoService {
                channelDetail.getFees()
             )).collect(Collectors.toList());
         return listChannelDetails;
+    }
+
+    public Contract findContractByCustomId(String customId) {
+        Contract getContract = contractRepository.findByCustomId(customId);
+        return getContract;
+    }
+
+    public boolean updateInfoChannelDetail(long channelDetailId, JSONObject updatingChannelDetail) {
+        ChannelDetail channelDetail = channelDetailRepository.findById(channelDetailId);
+        channelDetail.setRouterType(updatingChannelDetail.getString("routerType").isNullorEmpty() ? channelDetail.getRouterType() : updatingChannelDetail.getString("routerType"));
+        channelDetail.setCustomerMove(updatingChannelDetail.getString("customerMove").isNullorEmpty() ? channelDetail.getCustomerMove() : updatingChannelDetail.getString("customerMove"));
+        channelDetail.setDeviceStatus(updatingChannelDetail.getString("deviceStatus").isNullorEmpty() ? channelDetail.getDeviceStatus() : updatingChannelDetail.getString("deviceStatus"));
+        channelDetail.setVotesRequire(updatingChannelDetail.getString("votesRequire"));
+        channelDetail.setIpType(updatingChannelDetail.getString("ipType"));
+        channelDetail.setRegionalEngineer(updatingChannelDetail.getString("regionalEngineer"));
+        channelDetail.setIpAddress(updatingChannelDetail.getString("ipAddress"));
+        channelDetail.setFees(updatingChannelDetail.getString("fees"));
+        channelDetail.setDeployRequestDate(updatingChannelDetail.getLong("deployRequestDate"));
+        channelDetail.setDateAcceptance(updatingChannelDetail.getLong("dateAcceptance"));
+        channelDetail.setDateRequestStop(updatingChannelDetail.getLong("dateRequestStop"));
+        channelDetail.setDateStop(updatingChannelDetail.getLong("dateStop"));
+        channelDetail.setDateOnline(updatingChannelDetail.getLong("dateOnlineRequest"));
+        channelDetail.setDateOnlineRequest(updatingChannelDetail.getLong("dateOnline"));
+        JSONObject getChannelAttribute = new JSONObject(channelDetail.getChannelAttribute());
+        ChannelAttribute channelAttribute = channelAttributeRepository.findById(getChannelAttribute.getLong("id"));
+        channelAttribute.setCustomer(updatingChannelDetail.getString("customer"));
+        channelAttribute.setStatus(updatingChannelDetail.getString("status"));
+        channelAttribute.setVirtualNum(updatingChannelDetail.getString("virtualNum"));
+        channelAttribute.setUsernamePPPoE(updatingChannelDetail.getString("usernamePPPoE"));
+        ChannelValue channelValue = channelValueRepository.findByServicePack(updatingChannelDetail.getString("servicePack"));
+        channelAttribute.setChannelValue(channelValue);
+        channelAttributeRepository.save(channelAttribute);
+        if (contractRepository.existsByCustomId(updatingChannelDetail.getString("customId"))) {
+            Contract getContract = contractRepository.findByCustomId(updatingChannelDetail.getString("customId"));
+            channelDetail.setContract(getContract);
+            channelDetailRepository.save(channelDetail);
+            return true;
+        } else {
+            Contract createContract = new Contract(
+                updatingChannelDetail.getString("customId"), 
+                updatingChannelDetail.getString("numContract"),
+                updatingChannelDetail.getString("clientName"), 
+                updatingChannelDetail.getString("servicePlans"),
+                updatingChannelDetail.getString("street")
+            );
+            contractRepository.save(createContract);
+            channelDetail.setContract(createContract);
+            channelDetailRepository.save(channelDetail);
+            return true;
+        }
+    }
+
+    public Boolean updateChannelAttribute(long channelId, JSONObject data) {
+        ChannelAttribute channelAttribute = channelAttributeRepository.findById(channelId);
+        channelAttribute.setCustomer(data.getString("customer"));
+        channelAttribute.setStatus(data.getString("status"));
+        channelAttribute.setUsernamePPPoE(data.getString("usernamePPPoE"));
+        channelAttribute.setVirtualNum(data.getString("virtualNum"));
+        ChannelValue channelValue = channelValueRepository.findByServicePack(data.getString("channelValue"));
+        channelAttribute.setChannelValue(channelValue);
+        channelAttributeRepository.save(channelAttribute);
+        return true;
+    }
+
+    public Boolean deleteChannelAttribute(Long channelId) {
+        channelAttributeRepository.deleteById(channelId);
+        return true;
     }
 }

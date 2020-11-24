@@ -20,4 +20,8 @@ public class ChannelAttributeSummary {
     private ChannelValue channelValue;
 
     private String status;
+
+    private String virtualNum;
+
+    private String usernamePPPoE;
 }

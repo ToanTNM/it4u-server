@@ -1,6 +1,7 @@
 package vn.tpsc.it4u.util;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
@@ -8,10 +9,27 @@ import java.util.TimeZone;
 import java.util.List;
 
 public class Calculator {
+
     public String ConvertSecondToHHMMString(Integer secondtTime) {
     SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
     String time = df.format(new Date(secondtTime*1000L));
     return time;
+    }
+
+    public Long ConvertStringToSecond(String time) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        long getTime = 0;
+        if (time.isEmpty()) {
+            return getTime;
+        }
+        try {
+            java.util.Date date = formatter.parse(time);
+            getTime = date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return getTime;
     }
 
     public String ConvertSecondToDate(long secondTime) {
@@ -20,10 +38,6 @@ public class Calculator {
         df.setTimeZone(tz);
         String time = df.format(new Date(secondTime));
         return time;
-        // DateFormat simple = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"); 
-        // Date result = new Date(secondTime); 
-        // // System.out.println(simple.format(result));
-        // return simple.format(result).toString();
     }
 
     public String ConvertSecondToDateNotTime(long secondTime) {

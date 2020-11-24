@@ -27,7 +27,6 @@ public class ChannelDetail {
     @JoinColumn(name = "contract_id")
     private Contract contract;
 
-    @Size(max = 40)
     private String routerType;
 
     private String customerMove;
@@ -44,10 +43,6 @@ public class ChannelDetail {
     @Size(max = 40)
     private String ipAddress;
 
-    @NotEmpty
-    @Size(max = 40)
-    private String virtualNum;
-
     @Size(max = 40)
     private String regionalEngineer;
 
@@ -63,20 +58,19 @@ public class ChannelDetail {
 
     private Long dateOnline;
 
-    @Size(max = 40)
     private String fees;
 
     @OneToOne
     @JoinColumn(name = "channel_attribute_id")
     private ChannelAttribute channelAttribute;
 
-    public ChannelDetail(String routerType, String customerMove, String deviceStatus, String votesRequire, String ipType, String virtualNum, String regionalEngineer, Long deployRequestDate,
+    public ChannelDetail(String routerType, String customerMove, String deviceStatus, String votesRequire, String ipType, String regionalEngineer, Long deployRequestDate,
         Long dateAcceptance, String ipAddress, Long dateRequestStop, Long dateStop, Long dateOnlineRequest, Long dateOnline, String fees) {
         this.routerType = routerType;
         this.customerMove = customerMove;
         this.votesRequire = votesRequire;
         this.ipType = ipType;
-        this.virtualNum = virtualNum;
+        this.deviceStatus = deviceStatus;
         this.regionalEngineer = regionalEngineer;
         this.deployRequestDate = deployRequestDate;
         this.dateAcceptance = dateAcceptance;

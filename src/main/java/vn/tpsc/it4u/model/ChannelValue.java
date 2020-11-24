@@ -38,8 +38,9 @@ public class ChannelValue {
     @JoinColumn(name = "channelName_id")
     private ChannelName channelName;
 
-    public ChannelValue(String servicePack, String value) {
+    public ChannelValue(String servicePack, String value, ChannelName channelName) {
         this.servicePack = servicePack;
         this.value = value;
+        this.channelName = channelName;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
+import vn.tpsc.it4u.model.Contract;
 import vn.tpsc.it4u.model.CustomerBreakdowns;
 import vn.tpsc.it4u.model.CustomerSupport;
 import vn.tpsc.it4u.model.HandleService;
@@ -20,6 +21,7 @@ import vn.tpsc.it4u.payload.CustomerBreakdownsSummary;
 import vn.tpsc.it4u.payload.CustomerSupportSummary;
 import vn.tpsc.it4u.payload.HandleServiceSummary;
 import vn.tpsc.it4u.payload.ServiceDeploymentSummary;
+import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.repository.CustomerBreakdownsRepository;
 import vn.tpsc.it4u.repository.ServiceDeploymentRepository;
 import vn.tpsc.it4u.repository.CustomerSupportRepository;
@@ -43,6 +45,9 @@ public class CustomerService {
 
     @Autowired
     HandleServiceRepository handleServiceRepository;
+
+    @Autowired
+    ContractRepository contractRepository;
 
     public List<CustomerBreakdownsSummary> findAllBreakdowns() {
         List<CustomerBreakdowns> getBreakdowns = customerBreakdownsRepository.findAll();

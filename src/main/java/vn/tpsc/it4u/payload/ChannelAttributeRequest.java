@@ -15,4 +15,8 @@ public class ChannelAttributeRequest {
     private String channelValue;
     
     private String status;
+
+    private String virtualNum;
+
+    private String usernamePPPoE;
 }

@@ -7,5 +7,8 @@ import vn.tpsc.it4u.model.ChannelDetail;
 
 @Repository
 public interface ChannelDetailRepository extends JpaRepository<ChannelDetail, Long> {
-    
+    ChannelDetail findById(long id);
+
+    Boolean existsById(long id);
+
 }

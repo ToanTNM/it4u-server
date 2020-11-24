@@ -13,6 +13,10 @@ import vn.tpsc.it4u.model.ChannelValue;
 @Repository
 public interface ChannelAttributeRepository extends JpaRepository <ChannelAttribute, Long>{
     
+    Boolean existsByChannelValue(ChannelValue channelValue);
+
+    ChannelAttribute findById(long id);
+
     List<ChannelAttribute> findByStatus(String status);
 
     List<ChannelAttribute> findByChannelValue(ChannelValue channelValue);

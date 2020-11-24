@@ -24,8 +24,6 @@ public class ChannelDetailSummary {
 
     private String ipType;
 
-    private String virtualNum;
-
     private String deviceStatus;
 
     private String ipAddress;

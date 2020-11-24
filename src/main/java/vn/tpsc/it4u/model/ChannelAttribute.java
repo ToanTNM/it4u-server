@@ -32,8 +32,17 @@ public class ChannelAttribute{
     @Size(max = 40)
     private String status;
 
-    public ChannelAttribute(String customer,String status) {
+    @Size(max = 40)
+    private String virtualNum;
+
+    @Size(max = 40)
+    private String usernamePPPoE;
+
+    public ChannelAttribute(String customer, String status, String virtualNum, String usernamePPPoE, ChannelValue channelValue) {
         this.customer = customer;
         this.status = status;
+        this.virtualNum = virtualNum;
+        this.usernamePPPoE = usernamePPPoE;
+        this.channelValue = channelValue;
     }
 }

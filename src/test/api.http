@@ -897,67 +897,106 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/channel/name
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTAyMzMxNCwiZXhwIjoxNjAxNjI4MTE0fQ.NF2XG0h4AtIR8taBSK-oEeBQW_BPKhxKrpw6O9-5jeSsXAiiuHfA_o9FxPPScy5ubnnsRULhOBTbopIlHy6wwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNTIzMTQ1MSwiZXhwIjoxNjA1ODM2MjUxfQ.MN-dUhMX2ZmLsg4tY6DCkZE6Z5wBbdOT1BLBZL8nS-T4lu_e2LsggMp-DLFlTEhLgWlvbLBd-vbDrc-bCzwUuw
 Content-Type: application/json
 
 {
-    "name": "CMC"
+    "name": "VNPT"
 }
 
 ###
 POST http://localhost:5000/api/v1/it4u/channel/value
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
 Content-Type: application/json
 
 {
-    "servicePack": "Fiber50Eco",
-    "value": "100 Mbps",
-    "channelName": "CMC"
+    "servicePack": "Fiber20Eco",
+    "value": "20 Mbps",
+    "channelName": "VNPT"
 }
+###
+Get http://localhost:5000/api/v1/it4u/channel.name
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/channel/value.all.CMC
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+Content-Type: application/json
 
 ###
 POST http://localhost:5000/api/v1/it4u/channel/attribute
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
 Content-Type: application/json
 
 {
     "customer": "TPs",
     "channelValue": "Fiber50Eco",
-    "status": "Offline"
+    "status": "Offline",
+    "virtualNum": "A00848777777",
+    "usernamePPPoE": "d511_gftth_tpsctcpgp2"
+}
+
+###
+Put http://localhost:5000/api/v1/it4u/channel/attribute.2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+Content-Type: application/json
+
+{
+    "customer": "TPs",
+    "channelValue": "Fiber50Eco",
+    "status": "Offline",
+    "virtualNum": "A00848749",
+    "usernamePPPoE": "d511_gftth_tpsctcpgp2"
 }
 
 ###
 Get http://localhost:5000/api/v1/it4u/channel/attribute.all
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTE1MTQ1OSwiZXhwIjoxNjA1NzU2MjU5fQ.BsHi53Yee6kBztX3oKVfedVsvhVpiKVD4BtveqzlV_WN8aTJS-9hZNQKPvNoYc5uQ6h0H2WTDsyJLuuhM8wh-Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
 Content-Type: application/json
 
 ###
+Get http://localhost:5000/api/v1/it4u/channel/status.online
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+Content-Type: application/json
+
+###
+Get http://localhost:5000/api/v1/it4u/channel/attribute.2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNTU0NTI5MiwiZXhwIjoxNjA2MTUwMDkyfQ.cNt9ZmkHkU6b2yeIwlHXPOZD-mEbqgJ4yh2mz-POO1jqdlkxRMoBwH0ui-BvFVhxt67LIdYg4OdVuGe9vlOURg
+Content-Type: application/json
+
+
+###
+Delete http://localhost:5000/api/v1/it4u/channel/attribute.2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNTU0NTI5MiwiZXhwIjoxNjA2MTUwMDkyfQ.cNt9ZmkHkU6b2yeIwlHXPOZD-mEbqgJ4yh2mz-POO1jqdlkxRMoBwH0ui-BvFVhxt67LIdYg4OdVuGe9vlOURg
+Content-Type: application/json
+###
 Get http://localhost:5000/api/v1/it4u/channel/attribute.all.CMC
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMjQ2NTY4OSwiZXhwIjoxNjAzMDcwNDg5fQ.rG_q55aQyVG9_sZswpbGORaxtd8qn1_qE-qzHKeJXYguxzIcqFvFhzUqxTzPtAeJVR259RTS40q7Gpbh_yUtpw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNTU0NTI5MiwiZXhwIjoxNjA2MTUwMDkyfQ.cNt9ZmkHkU6b2yeIwlHXPOZD-mEbqgJ4yh2mz-POO1jqdlkxRMoBwH0ui-BvFVhxt67LIdYg4OdVuGe9vlOURg
 Content-Type: application/json
 
 ###
 Post http://localhost:5000/api/v1/it4u/channel/detail
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTI0MDk0OCwiZXhwIjoxNjA1ODQ1NzQ4fQ.1jTr_s3DX7fhbhlVmZUgtw_5jb5wVOkE84jopkLoHhbct-6vcpJpMOQ6O4CCn4hJ91lxDb3zjL-lN50y8-7ggw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
 Content-Type: application/json
 
 {
+    "id": "2",
     "routerType": "routerType",
     "customerMove": "Huỳnh Thị Châu Tuyền 121BHTQuan",
     "votesRequire": "5",
     "ipType": "routerType",
-    "virtualNum": "routerType",
     "deviceStatus": "Đã thu hồi",
     "ipAddress": "",
     "regionalEngineer": "routerType",
-    "deployRequestDate": 1604714539,
-    "dateAcceptance": 1604714539,
-    "dateRequestStop": 1604714539,
-    "dateStop": 1604714539,
-    "dateOnlineRequest": 1604714539,
-    "dateOnline": 1604714539,
+    "deployRequestDate": 1604714539000,
+    "dateAcceptance": 1604714539000,
+    "dateRequestStop": 1604714539000,
+    "dateStop": 1604714539000,
+    "dateOnlineRequest": 1604714539000,
+    "dateOnline": 1604714539000,
     "fees": "Trả hàng thngs",
-    "servicePack": "Fiber50Eco",
+    "servicePack": "Fiber10Eco",
     "customId": "VIP00001",
     "numContract": "001/2019/CNTT/TPCOMS/DNG",
     "clientName": "Cafe 214 Lương Nhữ Hộc",
@@ -965,12 +1004,92 @@ Content-Type: application/json
     "street": "214 Lương Nhữ Hộc,P. Khuê Trung, Q. Cẩm Lệ, Đà Nẵng, 550000, Vietnam"
 }
 
+###
+Post http://localhost:5000/api/v1/it4u/import/channel
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+Content-Type: application/json
+
+[{
+    "customId": "VIP00001",
+    "numContract": "001/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cafe 214 Lương Nhữ Hộc",
+    "servicePlans": "MS2.2.60",
+    "street": "214 Lương Nhữ Hộc -P. Khuê Trung - Q. Cẩm Lệ - Đà Nẵng - 550000 - Vietnam",
+    "status": "paused",
+    "name": "VNPT",
+    "routerType": "",
+    "deviceStatus": "Đã thu hồi",
+    "customerMove": "",
+    "votesRequire": "",
+    "customer": "TPs",
+    "servicePack": "Fiber30",
+    "ipType": "IP động",
+    "value": "60 Mbps",
+    "virtualNum": "A00848796",
+    "usernamePPPoE": "",
+    "regionalEngineer": "Hà Nhật Tân (0914112157)",
+    "deployRequestDate": "3/7/19",
+    "dateAcceptance": "3/9/19",
+    "Ngày": "",
+    "Tháng / Năm": "",
+    "ipAddress": "",
+    "dateRequestStop": "",
+    "dateStop": "10/17/20",
+    "dateOnlineRequest": "",
+    "dateOnline": "",
+    "fees": "\"- Trả sau hàng tháng;\n- Miễn phí lắp đặt;\"",
+    "\"end\"\"": "\"end\"\""
+  },{
+    "id": "140",
+    "customId": "VIP00051",
+    "numContract": "083/2019/CNTT/TPCOMS/DNG",
+    "clientName": "Cty TNHH Đầu tư Phát triển và TMDV Hàn Việt",
+    "servicePlans": "MS0.2.80.6",
+    "street": "254 Đống Đa - phường Thuận Phước - quận Hải Châu - Đà Nẵng - Vietnam",
+    "status": "online",
+    "name": "VNPT",
+    "routerType": "",
+    "deviceStatus": "Hoạt động",
+    "customerMove": "Công ty cố phần The Team Group - (Công ty TNHH Cars Đà Nẵng cũ)",
+    "votesRequire": "\"LA44TVT\nPYC 18\"",
+    "customer": "TPs",
+    "servicePack": "Fiber30",
+    "ipType": "IP động",
+    "value": "60 Mbps",
+    "virtualNum": "A00860257",
+    "usernamePPPoE": "",
+    "regionalEngineer": "VNPT - 0913438048",
+    "deployRequestDate": "4/25/19",
+    "dateAcceptance": "4/28/19",
+    "Ngày": "",
+    "Tháng / Năm": "",
+    "ipAddress": "",
+    "dateRequestStop": "",
+    "dateStop": "",
+    "dateOnlineRequest": "",
+    "dateOnline": "",
+    "fees": "\"- Trả sau hàng tháng;\n- Miễn phí lắp đặt;\"",
+    "\"end\"\"": "\"end\"\""
+  }
+  ]
+
 
 ###
 Get http://localhost:5000/api/v1/it4u/channel/detail.all
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTIzNTU2OCwiZXhwIjoxNjA1ODQwMzY4fQ.AhNaO_6pz_gg_T5gHl5neqW_I3X11jtkFHvOhjFAhC8mvfczol-XST78vGaXuH5Z3EFhEac-f7kt6wfAHSNGWg
 Content-Type: application/json
 
+
+###
+Get http://localhost:5000/api/v1/it4u/customId
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTIzNTU2OCwiZXhwIjoxNjA1ODQwMzY4fQ.AhNaO_6pz_gg_T5gHl5neqW_I3X11jtkFHvOhjFAhC8mvfczol-XST78vGaXuH5Z3EFhEac-f7kt6wfAHSNGWg
+Content-Type: application/json
+
+/it4u/contract/customId.VIP00001
+###
+Get http://localhost:5000/api/v1/it4u/contract/customId.VIP00001
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTIzNTU2OCwiZXhwIjoxNjA1ODQwMzY4fQ.AhNaO_6pz_gg_T5gHl5neqW_I3X11jtkFHvOhjFAhC8mvfczol-XST78vGaXuH5Z3EFhEac-f7kt6wfAHSNGWg
+Content-Type: application/json
 
 ############################################# End Channel ##########################
 ###
@@ -1048,6 +1167,7 @@ Content-Type: application/json
     "numContract": "001/2019/CNTT/TPCOMS/DNG",
     "clientName": "Cafe Kaotea",
     "servicePlans": "MS2.2.60",
+    "street": "214 Lương Nhữ Hộc,P. Khuê Trung, Q. Cẩm Lệ, Đà Nẵng, 550000, Vietnam",
     "receiver": "Cường, Việt",
     "error": "KH báo rớt mạng",
     "firstTime": 1604714538,

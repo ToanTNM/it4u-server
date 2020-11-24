@@ -38,15 +38,12 @@ public class Contract {
     private String customId;
     
     @NotEmpty
-    @Size(max = 40)
     private String numContract;
 
     @NotEmpty
-    @Size(max = 40)
     private String clientName;
 
     @NotEmpty
-    @Size(max = 40)
     private String servicePlans;
 
     private String street;
