@@ -1,9 +1,12 @@
 package vn.tpsc.it4u.util;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.TimeZone;
 import java.util.List;
@@ -14,6 +17,20 @@ public class Calculator {
     SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
     String time = df.format(new Date(secondtTime*1000L));
     return time;
+    }
+
+    public java.util.Date convertStringToDate(String dateTime) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = formatter.parse(dateTime);
+        return date;
+    }
+
+    public Timestamp convertStringToTimestamp(String dateTime) {
+        String pattern = "yyyy-MM-dd HH:mm:ss.SSSSSSSS";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        LocalDateTime localDateTime = LocalDateTime.from(formatter.parse(dateTime));
+        Timestamp timestamp = Timestamp.valueOf(localDateTime);
+        return timestamp;
     }
 
     public Long ConvertStringToSecond(String time) {

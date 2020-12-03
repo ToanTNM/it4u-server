@@ -22,12 +22,14 @@ import vn.tpsc.it4u.model.ChannelDetail;
 import vn.tpsc.it4u.model.ChannelName;
 import vn.tpsc.it4u.model.ChannelValue;
 import vn.tpsc.it4u.model.Contract;
+import vn.tpsc.it4u.model.HistoryChannel;
 import vn.tpsc.it4u.payload.ChannelAttributeRequest;
 import vn.tpsc.it4u.repository.ChannelAttributeRepository;
 import vn.tpsc.it4u.repository.ChannelDetailRepository;
 import vn.tpsc.it4u.repository.ChannelNameRepository;
 import vn.tpsc.it4u.repository.ChannelValueRepository;
 import vn.tpsc.it4u.repository.ContractRepository;
+import vn.tpsc.it4u.repository.HistoryChannelRepository;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.Calculator;
 import vn.tpsc.it4u.service.ChannelInfoService;
@@ -36,18 +38,10 @@ import vn.tpsc.it4u.service.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import com.google.gson.JsonObject;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -81,6 +75,9 @@ public class ChannelInfoController {
 
     @Autowired
     private ChannelAttributeRepository channelAttributeRepository;
+
+    @Autowired
+    private HistoryChannelRepository historyChannelRepository;
 
     @Autowired
     private ChannelValueRepository channelValueRepository;
@@ -302,6 +299,29 @@ public class ChannelInfoController {
         }
         return result.toString();
     }
+    @ApiOperation(value = "Search channel Attribute by date")
+    @PostMapping("/it4u/channel/attribute.date")
+    public String getChannelAttributeByDate(@RequestBody String data) {
+        JSONObject convertDate = new JSONObject(data);
+        List<String> result = new ArrayList<>();
+        Calculator getCalculator = new Calculator();
+        String fromDate = convertDate.getString("fromDate");
+        String toDate = convertDate.getString("toDate");
+        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        List<ChannelAttribute> listChannelAttribute = channelInfoService.findChannelAttributeByDate(convertFromDate, convertToDate);
+        for(int i=0; i < listChannelAttribute.size(); i++) {
+            ChannelAttribute channelAttribute = listChannelAttribute.get(i);
+            ChannelDetail channelDetail = channelDetailRepository.findByChannelAttribute(channelAttribute);
+            try {
+                 JSONObject channelDetailJson = new JSONObject(channelDetail);
+                result.add(channelDetailJson.toString());
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+        }
+        return result.toString();
+    }
 
     @ApiOperation(value = "Get channel attribute by id")
     @GetMapping("/it4u/channel/attribute.{id}")
@@ -351,7 +371,8 @@ public class ChannelInfoController {
             try {
                 JSONObject getChannelValue = getItem.getJSONObject("channelValue");
                 JSONObject getChannelName = getChannelValue.getJSONObject("channelName");
-                if (getChannelName.getString("name").equals(name) && !getItem.getString("status").equals("Online")) {
+                if (getChannelName.getString("name").equals(name) && 
+                    ( !getItem.getString("status").equals("online") || (!getItem.getString("status").equals("paused")))) {
                     data.put("name", getChannelName.getString("name"));
                     data.put("servicePack", getChannelValue.getString("servicePack"));
                     data.put("value", getChannelValue.getString("value"));
@@ -394,6 +415,7 @@ public class ChannelInfoController {
         } catch (Exception e) {
         
         }
+        HistoryChannel historyChannel = new HistoryChannel();
         ChannelDetail createChannelDetail = new ChannelDetail(
             getData.getString("routerType"),
             getData.getString("customerMove"),
@@ -419,6 +441,7 @@ public class ChannelInfoController {
                 ChannelAttribute channelAttribute = channelAttributeRepository.findById(getItem.getLong("id"));
                 channelAttribute.setStatus("Online");
                 channelAttributeRepository.save(channelAttribute);
+                historyChannel.setChannelAttribute(channelAttribute);
                 createChannelDetail.setChannelAttribute(channelAttribute);
                 break;
             }
@@ -427,6 +450,7 @@ public class ChannelInfoController {
             Contract getContract = contractRepository.findByCustomId(getData.getString("customId"));
             createChannelDetail.setContract(getContract);
             channelDetailRepository.save(createChannelDetail);
+            historyChannel.setContract(getContract);
             return ResponseEntity.ok(channelInfoService.findAllChannelDetail());
         } else {
             Contract createContract = new Contract(
@@ -438,6 +462,8 @@ public class ChannelInfoController {
             );
             contractRepository.save(createContract);
             createChannelDetail.setContract(createContract);
+            historyChannel.setContract(createContract);
+            historyChannelRepository.save(historyChannel);
             channelDetailRepository.save(createChannelDetail);
             return ResponseEntity.ok(channelInfoService.findAllChannelDetail());
         }
@@ -458,6 +484,7 @@ public class ChannelInfoController {
         for (int i=0; i < convertData.length(); i++) {
             JSONObject getData = (JSONObject) convertData.get(i);
             Calculator getCalculator = new Calculator();
+            HistoryChannel historyChannel = new HistoryChannel();
             ChannelDetail createChannelDetail = new ChannelDetail(
                 getData.getString("routerType"),
                 getData.getString("customerMove"),
@@ -497,11 +524,13 @@ public class ChannelInfoController {
                     getChannelValue
                 );
                 channelAttributeRepository.save(channelAttribute);
+                historyChannel.setChannelAttribute(channelAttribute);
                 createChannelDetail.setChannelAttribute(channelAttribute);
 
                 if (contractRepository.existsByCustomId(getData.getString("customId"))) {
                     Contract getContract = contractRepository.findByCustomId(getData.getString("customId"));
                     createChannelDetail.setContract(getContract);
+                    historyChannel.setContract(getContract);
                     channelDetailRepository.save(createChannelDetail);
                 } else {
                     Contract createContract = new Contract(
@@ -512,14 +541,32 @@ public class ChannelInfoController {
                         getData.getString("street")
                     );
                     contractRepository.save(createContract);
+                    historyChannel.setContract(createContract);
                     createChannelDetail.setContract(createContract);
                     channelDetailRepository.save(createChannelDetail);
                 }
+                historyChannelRepository.save(historyChannel);
             } catch (Exception e) {
             }
         }
         JSONArray getAllChannelDetail = new JSONArray(channelInfoService.findAllChannelDetail());
         return getAllChannelDetail.toString();
+    }
+
+    @ApiOperation(value = "Find history channel by virtualNum")
+    @GetMapping("/it4u/history/channel/{id}")
+    public String getHistoryChannel(@PathVariable(value = "id") long id) {
+        ChannelAttribute channelAttribute = channelAttributeRepository.findById(id);
+        List<HistoryChannel> historyChannel = historyChannelRepository.findByChannelAttribute(channelAttribute);
+        JSONArray channelDetailToJson = new JSONArray(historyChannel);
+        return channelDetailToJson.toString();
+    }
+
+    @ApiOperation(value = "Delete channel detail by id") 
+    @DeleteMapping("/it4u/channel/detail.{id}")
+    public boolean deleteChannelDetailById(@PathVariable(value="id") long id) {
+        channelInfoService.deleteChannelDetail(id);
+        return true;
     }
 
     @ApiOperation(value = "Get contract by customId")

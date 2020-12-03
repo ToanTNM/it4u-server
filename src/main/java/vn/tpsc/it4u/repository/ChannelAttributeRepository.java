@@ -1,8 +1,12 @@
 package vn.tpsc.it4u.repository;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vn.tpsc.it4u.model.ChannelAttribute;
 import vn.tpsc.it4u.model.ChannelValue;
@@ -20,5 +24,12 @@ public interface ChannelAttributeRepository extends JpaRepository <ChannelAttrib
     List<ChannelAttribute> findByStatus(String status);
 
     List<ChannelAttribute> findByChannelValue(ChannelValue channelValue);
+
+    @Query(value = "SELECT"
+    + " *"
+    + " FROM channel_attribute c"
+    + " WHERE"
+    + " c.created_at >= :fromDate AND c.created_at <= :toDate", nativeQuery = true)
+    List<ChannelAttribute> findChannelAttributes(@Param("fromDate") Timestamp fromDate, @Param("toDate") Timestamp toDate);
 
 }

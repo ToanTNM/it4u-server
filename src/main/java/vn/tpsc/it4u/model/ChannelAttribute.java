@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.HashSet;
 import lombok.Getter;
 import lombok.Setter;
+import vn.tpsc.it4u.model.audit.UserDateAudit;
 import lombok.NoArgsConstructor;
 
 /**
@@ -16,7 +17,12 @@ import lombok.NoArgsConstructor;
 @Setter
 @NoArgsConstructor
 @Entity
-public class ChannelAttribute{
+public class ChannelAttribute extends UserDateAudit{
+    /**
+    *
+    */
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -10,6 +10,7 @@ import vn.tpsc.it4u.model.ChannelValue;
 
 @Repository
 public interface ChannelValueRepository extends JpaRepository<ChannelValue, Long>{
+    ChannelValue findById(long id);
 
     Boolean existsByServicePack(String servicePack);
 

@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,9 +20,11 @@ import vn.tpsc.it4u.payload.ChannelAttributeSummary;
 import vn.tpsc.it4u.payload.ChannelDetailSummary;
 import vn.tpsc.it4u.util.StringUtils;
 import vn.tpsc.it4u.repository.ChannelValueRepository;
+import vn.tpsc.it4u.repository.HistoryChannelRepository;
 import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.model.ChannelValue;
 import vn.tpsc.it4u.model.Contract;
+import vn.tpsc.it4u.model.HistoryChannel;
 /**
  * ChannelAttribute
  */
@@ -40,6 +43,9 @@ public class ChannelInfoService {
 
     @Autowired
     private ContractRepository contractRepository;
+
+    @Autowired
+    private HistoryChannelRepository historyChannelRepository;
 
     @Autowired
     private ModelMapper mapper;
@@ -117,13 +123,24 @@ public class ChannelInfoService {
         return listChannelDetails;
     }
 
+    public List<ChannelAttribute> findChannelAttributeByDate(Timestamp fromDate, Timestamp toDate) {
+        List<ChannelAttribute> listChannelAttribute = channelAttributeRepository.findChannelAttributes(fromDate, toDate);
+        return listChannelAttribute;
+    }
+
     public Contract findContractByCustomId(String customId) {
         Contract getContract = contractRepository.findByCustomId(customId);
         return getContract;
     }
 
+    public boolean deleteChannelDetail(long id) {
+        channelDetailRepository.deleteById(id);
+        return true;
+    }
+
     public boolean updateInfoChannelDetail(long channelDetailId, JSONObject updatingChannelDetail) {
         ChannelDetail channelDetail = channelDetailRepository.findById(channelDetailId);
+        HistoryChannel historyChannel = new HistoryChannel();
         channelDetail.setRouterType(updatingChannelDetail.getString("routerType").isNullorEmpty() ? channelDetail.getRouterType() : updatingChannelDetail.getString("routerType"));
         channelDetail.setCustomerMove(updatingChannelDetail.getString("customerMove").isNullorEmpty() ? channelDetail.getCustomerMove() : updatingChannelDetail.getString("customerMove"));
         channelDetail.setDeviceStatus(updatingChannelDetail.getString("deviceStatus").isNullorEmpty() ? channelDetail.getDeviceStatus() : updatingChannelDetail.getString("deviceStatus"));
@@ -146,10 +163,13 @@ public class ChannelInfoService {
         channelAttribute.setUsernamePPPoE(updatingChannelDetail.getString("usernamePPPoE"));
         ChannelValue channelValue = channelValueRepository.findByServicePack(updatingChannelDetail.getString("servicePack"));
         channelAttribute.setChannelValue(channelValue);
+        historyChannel.setChannelAttribute(channelAttribute);
         channelAttributeRepository.save(channelAttribute);
         if (contractRepository.existsByCustomId(updatingChannelDetail.getString("customId"))) {
             Contract getContract = contractRepository.findByCustomId(updatingChannelDetail.getString("customId"));
             channelDetail.setContract(getContract);
+            historyChannel.setContract(getContract);
+            historyChannelRepository.save(historyChannel);
             channelDetailRepository.save(channelDetail);
             return true;
         } else {
@@ -162,6 +182,8 @@ public class ChannelInfoService {
             );
             contractRepository.save(createContract);
             channelDetail.setContract(createContract);
+            historyChannel.setContract(createContract);
+            historyChannelRepository.save(historyChannel);
             channelDetailRepository.save(channelDetail);
             return true;
         }

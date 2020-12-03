@@ -17,6 +17,7 @@ import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.ChangePasswordViewModel;
 import vn.tpsc.it4u.payload.UserSummary;
+import vn.tpsc.it4u.payload.UserUpdateSummary;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.util.StringUtils;
@@ -97,6 +98,22 @@ public class UserService {
         }
 
         if(!model.getNewPassword().equals(model.getConfirmPassword())){
+            throw new AppException("Password is not match");
+        }
+
+        user.setPassword(encoder.encode(model.getConfirmPassword()));
+
+        userRepository.save(user);
+
+        return true;
+    }
+
+    public Boolean changePasswordById(long id, ChangePasswordViewModel model) {
+        // User user = new User();
+        // mapper.map(currentUser, user);
+        User user = userRepository.findById(id);
+
+        if (!model.getNewPassword().equals(model.getConfirmPassword())) {
             throw new AppException("Password is not match");
         }
 

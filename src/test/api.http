@@ -58,7 +58,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5MzYxODYwLCJleHAiOjE1ODk5NjY2NjB9.CoUEu5IgPuc3yllh1Hmpv4zSuawUifFLG898XutubIWStOIid6TlN8tyrSQWJKw-Co4e98k90-SBFfkaCe2asQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNjE5OTYxMSwiZXhwIjoxNjA2ODA0NDExfQ.ofbme4cVh-ft6kmOEL2F3ohTKDfhyiz1nJCay0MvSpdsLz7fMW7T_ZzA4ZE2y1_Lc9sZPqIMstiuGstrt2Uewg
 
 ###
 POST http://localhost:5000/api/v1/auth/signin
@@ -75,7 +75,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "lap.dang@tpsc.vn",
-    "password": "123456"
+    "password": "12345678"
 }
 
 ###
@@ -111,13 +111,24 @@ Content-Type: application/json
     "newPassword": "12345678",
     "confirmPassword": "12345678"
 }
+
+###
+PUT http://localhost:5000/api/v1/changePassword/11
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNjcwNDk1NCwiZXhwIjoxNjA3MzA5NzU0fQ.xjzNMHDPwnHFUmtcx4VLnCf2RsUuXLPcOqxzGpmoRr8Hkt8CHQ_T1qMyQ8pIJ4LLK6tiKvmDZc0k33ypVxharQ
+Content-Type: application/json
+
+{
+    "newPassword": "123456",
+    "confirmPassword": "123456"
+}
+
 ###
 DELETE http://localhost:5000/api/v1/users/3
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4LCJleHAiOjE1NzY1NzE4ODh9.hR5gDm_vVyuPyM99WSilHBsipLrid-G9foL-ZvEh784xN-B6KbN51cQWOQ4PBwzO2BSvzdUpFmE-vjSwTgkzmA
 
 ###
-GET http://localhost:5000/api/v1/users/20
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg5NzcxMjgyLCJleHAiOjE1OTAzNzYwODJ9.Hnrst8XZILLIWZvAFh4f8UunFMQwZOFDvRqV1zDpo3vuTQtoJ6gi2Bd96IcEB34odmXe-Kqro71CwbuwA9itLw
+GET http://localhost:5000/api/v1/users/33
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNjE5OTYxMSwiZXhwIjoxNjA2ODA0NDExfQ.ofbme4cVh-ft6kmOEL2F3ohTKDfhyiz1nJCay0MvSpdsLz7fMW7T_ZzA4ZE2y1_Lc9sZPqIMstiuGstrt2Uewg
 
 ###
 PUT http://localhost:5000/api/v1/users/20
@@ -956,8 +967,18 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0N
 Content-Type: application/json
 
 ###
-Get http://localhost:5000/api/v1/it4u/channel/status.online
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNTg0NTE0NCwiZXhwIjoxNjA2NDQ5OTQ0fQ.fy3eQ0TgwqHGGFT1cDUad_mgIrPE3QP0eDjD1d0MSH17FM-tq69dGlguDrjMOembwj5IcsQnkA8sfqq9IZy_JQ
+POST  http://localhost:5000/api/v1/it4u/channel/attribute.date
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNjg3Njg0MiwiZXhwIjoxNjA3NDgxNjQyfQ.NZuVJzyQbuilt4NyYnFC_qnUM1uCt2dkitx6lUv2Zl0Ey-YS_FrJwyJ27KmmxNKYM4dbXo2wE8B3T2kYP9oFHQ
+Content-Type: application/json
+
+{   
+    "fromDate": "2020-12-01 13:02:56.12345678",
+    "toDate": "2020-12-02 13:02:56.12345678"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/history/channel/11
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwNjgwNjI4NCwiZXhwIjoxNjA3NDExMDg0fQ.l8m0xDahL3ZUaF1r_ziSmRU-QM5BgzUMKARfwx5axfgwjoY1___G5k81_S9LvGE4e6BDPLxqnRaJ--4kpYkydg
 Content-Type: application/json
 
 ###

@@ -144,6 +144,14 @@ public class UserController {
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
 
+    @PutMapping("/changePassword/{id}")
+    public ResponseEntity<?> changePasswordById(@PathVariable(value="id") Long id ,
+            @RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
+        userService.changePasswordById(id, updatingPassword);
+
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
     // @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/user")
     public ResponseEntity<?> getAllUser() {
@@ -179,7 +187,7 @@ public class UserController {
                     updatingUser.getName(), 
                     updatingUser.getEmail(), 
                     null, 
-                    updatingUser.getGender(), 
+                    updatingUser.getGender(),
                     updatingUser.getType(), 
                     updatingUser.getStatus(),
                     sitenames,
