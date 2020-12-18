@@ -1487,3 +1487,22 @@ Content-Type: application/json
 }
 
 
+###
+POST http://localhost:5000/api/v1/it4u/importWarehouseByDate
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODExMTU1MywiZXhwIjoxNjA4NzE2MzUzfQ.k-SV9C0wH9t2T68Gla3m4gcCPYIhWz7hFcVrn8HOa2_EYnRvDTLWRjeEJKV6sm0ZNaTLYJgBYT5Ria8kxde-MQ
+Content-Type: application/json
+
+{
+    "fromDate": "2020-12-16 13:02:56.12345678",
+    "toDate": "2020-12-18 13:02:56.12345678"
+}
+
+###
+POST http://localhost:5000/api/v1/it4u/exportWarehouseByDate
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODExMTU1MywiZXhwIjoxNjA4NzE2MzUzfQ.k-SV9C0wH9t2T68Gla3m4gcCPYIhWz7hFcVrn8HOa2_EYnRvDTLWRjeEJKV6sm0ZNaTLYJgBYT5Ria8kxde-MQ
+Content-Type: application/json
+
+{
+    "fromDate": "2020-12-16 13:02:56.12345678",
+    "toDate": "2020-12-18 13:02:56.12345678"
+}

@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import vn.tpsc.it4u.payload.supplies.ExportWarehouseSummary;
+import vn.tpsc.it4u.payload.supplies.ImportWarehouseSummary;
 import vn.tpsc.it4u.service.SuppliesManagementService;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.util.Calculator;
@@ -95,6 +98,21 @@ public class SuppliesManagementController {
         return getData.toString();
     }
 
+    @ApiOperation(value = "Get all export warehouse by date")
+    @PostMapping("/it4u/exportWarehouseByDate")
+    public String getExportWarehouseByDate(@RequestBody String data) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        Calculator getCalculator = new Calculator();
+        String fromDate = convertDataToJson.getString("fromDate");
+        String toDate = convertDataToJson.getString("toDate");
+        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        List<ExportWarehouseSummary> getResult = suppliesManagementService.findExportWarehouseByDate(convertFromDate,
+                convertToDate);
+        JSONArray result = new JSONArray(getResult);
+        return result.toString();
+    }
+
     @ApiOperation(value = "Get all export warehouse")
     @GetMapping("/it4u/exportWarehouse")
     public String getAllExportWarehouse() {
@@ -132,6 +150,20 @@ public class SuppliesManagementController {
     public String getImportWarehouseById(@PathVariable(value = "id") long id) {
         JSONObject getData = new JSONObject(suppliesManagementService.findImportWarehouseById(id));
         return getData.toString();
+    }
+
+    @ApiOperation(value = "Get all import warehouse by date")
+    @PostMapping("/it4u/importWarehouseByDate")
+    public String getImportWarehouseByDate(@RequestBody String data) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        Calculator getCalculator = new Calculator();
+        String fromDate = convertDataToJson.getString("fromDate");
+        String toDate = convertDataToJson.getString("toDate");
+        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        List<ImportWarehouseSummary> getResult = suppliesManagementService.findImportWarehouseByDate(convertFromDate, convertToDate);
+        JSONArray result = new JSONArray(getResult);
+        return result.toString();
     }
 
     @ApiOperation(value = "Get all import warehouse")

@@ -28,4 +28,10 @@ public interface ImportWarehouseRepository extends JpaRepository<ImportWarehouse
     + " i.created_at >= :fromDate AND i.created_at <= :endDate AND i.list_supplies_id = :listSuppliesId", nativeQuery = true)
     List<Long> findNumberByFromToEndDate(@Param("fromDate") Timestamp fromDate, @Param("endDate") Timestamp endDate, @Param("listSuppliesId") Long listSuppliesId);
 
+    @Query(value = " SELECT"
+    + " *"
+    + " FROM import_warehouse i"
+    + " WHERE"
+    + " i.created_at >= :fromDate AND i.created_at <= :endDate", nativeQuery = true)
+    List<ImportWarehouse> findImportWarehouseToDate(@Param("fromDate") Timestamp fromDate, @Param("endDate") Timestamp endDate);
 }

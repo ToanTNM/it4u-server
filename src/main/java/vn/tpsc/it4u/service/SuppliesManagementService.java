@@ -249,4 +249,47 @@ public class SuppliesManagementService {
         }
         return result;
     }
+
+    public List<ExportWarehouseSummary> findExportWarehouseByDate(Timestamp fromDate, Timestamp endDate) {
+        List<ExportWarehouse> exportWarehouses = exportWarehouseRepository.findExportWarehouseToDate(fromDate, endDate);
+        List<ExportWarehouseSummary> listExportWarehouse = exportWarehouses.stream()
+            .map(exportWarehouse -> new ExportWarehouseSummary(
+                exportWarehouse.getId(),
+                exportWarehouse.getLicence(), 
+                exportWarehouse.getListSupplies(), 
+                exportWarehouse.getNumber(),
+                exportWarehouse.getSupplier(),
+                exportWarehouse.getSerialNum(), 
+                exportWarehouse.getMAC(),
+                exportWarehouse.getWarrantyPeriod(), 
+                exportWarehouse.getStorageTerm(),
+                exportWarehouse.getWarrantyLandmark(),
+                exportWarehouse.getContract(), 
+                exportWarehouse.getNote(),
+                exportWarehouse.getCreatedAt()
+        )).collect(Collectors.toList());
+        return listExportWarehouse;
+    }
+
+     public List<ImportWarehouseSummary> findImportWarehouseByDate(Timestamp fromDate, Timestamp endDate) {
+        List<ImportWarehouse> importWarehouses = importWarehouseRepository.findImportWarehouseToDate(fromDate, endDate);
+        List<ImportWarehouseSummary> listExportWarehouse = importWarehouses.stream()
+            .map(importWarehouse -> new ImportWarehouseSummary(
+                 importWarehouse.getId(), 
+                importWarehouse.getLicence(),
+                importWarehouse.getListSupplies(),
+                importWarehouse.getNumber(), 
+                importWarehouse.getValue(),
+                importWarehouse.getTotalAmount(),
+                importWarehouse.getSupplier(),
+                importWarehouse.getSerialNum(),
+                importWarehouse.getMAC(), 
+                importWarehouse.getWarrantyPeriod(),
+                importWarehouse.getStorageTerm(), 
+                importWarehouse.getWarrantyLandmark(),
+                importWarehouse.getNote(),
+                importWarehouse.getCreatedAt()
+        )).collect(Collectors.toList());
+        return listExportWarehouse;
+    }
 }
