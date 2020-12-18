@@ -29,8 +29,6 @@ public class ChannelDetail {
 
     private String routerType;
 
-    private String customerMove;
-
     @Size(max = 40)
     private String votesRequire;
 
@@ -50,24 +48,15 @@ public class ChannelDetail {
 
     private Long dateAcceptance;
 
-    private Long dateRequestStop;
-
-    private Long dateStop;
-
-    private Long dateOnlineRequest;
-
-    private Long dateOnline;
-
     private String fees;
 
     @OneToOne
     @JoinColumn(name = "channel_attribute_id")
     private ChannelAttribute channelAttribute;
 
-    public ChannelDetail(String routerType, String customerMove, String deviceStatus, String votesRequire, String ipType, String regionalEngineer, Long deployRequestDate,
-        Long dateAcceptance, String ipAddress, Long dateRequestStop, Long dateStop, Long dateOnlineRequest, Long dateOnline, String fees) {
+    public ChannelDetail(String routerType, String deviceStatus, String votesRequire, String ipType, String regionalEngineer, Long deployRequestDate,
+        Long dateAcceptance, String ipAddress, String fees) {
         this.routerType = routerType;
-        this.customerMove = customerMove;
         this.votesRequire = votesRequire;
         this.ipType = ipType;
         this.deviceStatus = deviceStatus;
@@ -75,10 +64,6 @@ public class ChannelDetail {
         this.deployRequestDate = deployRequestDate;
         this.dateAcceptance = dateAcceptance;
         this.ipAddress = ipAddress;
-        this.dateRequestStop = dateRequestStop;
-        this.dateStop = dateStop;
-        this.dateOnlineRequest = dateOnlineRequest;
-        this.dateOnline = dateOnline;
         this.fees = fees;
     }
 

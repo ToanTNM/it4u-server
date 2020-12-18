@@ -1,800 +1,183 @@
-2020-12-03 13:52:48.751  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6956 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 13:52:48.890  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 13:52:49.420  INFO 6956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-12-03 13:52:49.487  INFO 6956 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-12-03 13:52:53.916  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 13:52:54.373  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 409ms. Found 21 repository interfaces.
-2020-12-03 13:52:55.847  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.906  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.935  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.939  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1bdca50' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.948  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.967  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.969  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:55.983  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 13:52:57.434  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 13:52:57.461  INFO 6956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 13:52:57.462  INFO 6956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 13:52:57.622  INFO 6956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 13:52:57.625  INFO 6956 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8135 ms
-2020-12-03 13:52:57.817  WARN 6956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 13:52:58.130  INFO 6956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 13:52:58.322  INFO 6956 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2020-12-03 13:52:58.704  INFO 6956 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-03 13:52:58.997  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-12-03 13:52:59.314  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-12-03 13:52:59.363  INFO 6956 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 13:53:05.126  INFO 6956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 13:53:05.147  INFO 6956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 13:53:06.690  INFO 6956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 13:53:08.684  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 13:53:08.697  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 13:53:09.906  INFO 6956 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a0b06a1, org.springframework.security.web.context.SecurityContextPersistenceFilter@5479ecbf, org.springframework.security.web.header.HeaderWriterFilter@7f6d6a05, org.springframework.web.filter.CorsFilter@7f1e63c6, org.springframework.security.web.authentication.logout.LogoutFilter@6765233b, vn.tpsc.it4u.security.JwtAuthenticationFilter@5ee2ba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4cdddb9e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4407f0d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53617e2a, org.springframework.security.web.session.SessionManagementFilter@1925cc80, org.springframework.security.web.access.ExceptionTranslationFilter@61518768, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3fc6e482]
-2020-12-03 13:53:10.037  INFO 6956 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 13:53:10.139  INFO 6956 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 13:53:10.264  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 13:53:10.918  WARN 6956 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 13:53:11.291  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 13:53:11.336  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 13:53:11.487  INFO 6956 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 13:53:13.065  INFO 6956 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 13:53:13.163  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 13:53:13.164  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 13:53:13.166  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 13:53:13.263  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 13:53:13.283  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 25.856 seconds (JVM running for 28.829)
-2020-12-03 13:53:42.221  INFO 6956 --- [http-nio-5000-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 13:53:42.221  INFO 6956 --- [http-nio-5000-exec-7] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 13:53:42.239  INFO 6956 --- [http-nio-5000-exec-7] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
-2020-12-03 13:54:10.263  INFO 6956 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 13:54:40.134  WARN 6956 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2020-12-03 13:56:17.370  INFO 6956 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 13:56:17.370  INFO 6956 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 13:56:17.371  INFO 6956 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 13:56:17.373  INFO 6956 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 13:56:17.379  INFO 6956 --- [Thread-6] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 13:56:17.395  INFO 6956 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 13:56:17.400  INFO 6956 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 13:56:17.413  INFO 6956 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 13:56:17.420  INFO 6956 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-12-03 13:56:17.432  INFO 6956 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-12-03 06:56:25.210  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6956 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 06:56:25.212  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 06:56:26.525  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 06:56:26.831  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 305ms. Found 21 repository interfaces.
-2020-12-03 06:56:27.445  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.484  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.493  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.514  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@e5cbdb5' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.521  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.535  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.536  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.538  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:56:27.719  WARN 6956 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2020-12-03 06:56:27.960  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 06:56:27.964  INFO 6956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 06:56:27.969  INFO 6956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 06:56:27.981  INFO 6956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 06:56:27.995  INFO 6956 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2776 ms
-2020-12-03 06:56:28.116  WARN 6956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 06:56:28.303  INFO 6956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 06:56:28.325  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2020-12-03 06:56:28.452  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2020-12-03 06:56:28.457  INFO 6956 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 06:56:32.144  INFO 6956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 06:56:32.148  INFO 6956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 06:56:32.553  INFO 6956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 06:56:33.848  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 06:56:33.855  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 06:56:34.323  INFO 6956 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5535457c, org.springframework.security.web.context.SecurityContextPersistenceFilter@70fa6df6, org.springframework.security.web.header.HeaderWriterFilter@6a8b0f69, org.springframework.web.filter.CorsFilter@9d533ad, org.springframework.security.web.authentication.logout.LogoutFilter@2f7eeb34, vn.tpsc.it4u.security.JwtAuthenticationFilter@6ce08b43, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15040f81, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2746aa0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fa9f229, org.springframework.security.web.session.SessionManagementFilter@546fe958, org.springframework.security.web.access.ExceptionTranslationFilter@79638f1f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a41d401]
-2020-12-03 06:56:34.345  INFO 6956 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 06:56:34.365  INFO 6956 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 06:56:34.381  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 06:56:34.565  WARN 6956 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 06:56:34.734  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 06:56:34.741  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 06:56:34.808  INFO 6956 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 06:56:35.777  INFO 6956 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 06:56:35.843  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 06:56:35.845  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 06:56:35.846  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 06:56:35.857  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 06:56:35.869  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 10.75 seconds (JVM running for 231.414)
-2020-12-03 06:56:35.873  INFO 6956 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2020-12-03 06:56:53.521  WARN 6956 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Failure in @ExceptionHandler vn.tpsc.it4u.shared.error.ErrorHandlerController#exception(Exception)
-
-org.apache.coyote.CloseNowException: Failed write
-	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:540) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.filters.IdentityOutputFilter.doWrite(IdentityOutputFilter.java:73) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:190) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.Response.doWrite(Response.java:601) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:339) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:776) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:298) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.OutputBuffer.flush(OutputBuffer.java:272) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.CoyoteOutputStream.flush(CoyoteOutputStream.java:118) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.security.web.util.OnCommittedResponseWrapper$SaveContextServletOutputStream.flush(OnCommittedResponseWrapper.java:520) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at sun.nio.cs.StreamEncoder.implFlush(StreamEncoder.java:297) ~[na:1.8.0_211]
-	at sun.nio.cs.StreamEncoder.flush(StreamEncoder.java:141) ~[na:1.8.0_211]
-	at java.io.OutputStreamWriter.flush(OutputStreamWriter.java:229) ~[na:1.8.0_211]
-	at org.springframework.util.StreamUtils.copy(StreamUtils.java:124) ~[spring-core-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.http.converter.StringHttpMessageConverter.writeInternal(StringHttpMessageConverter.java:110) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.http.converter.StringHttpMessageConverter.writeInternal(StringHttpMessageConverter.java:44) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.http.converter.AbstractHttpMessageConverter.write(AbstractHttpMessageConverter.java:227) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:298) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:226) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:82) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:124) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:407) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:61) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1300) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1111) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:113) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at vn.tpsc.it4u.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:48) [classes/:na]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_211]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_211]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_211]
-
-2020-12-03 06:56:53.532 ERROR 6956 --- [http-nio-5000-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
-
-java.lang.NullPointerException: null
-	at vn.tpsc.it4u.controller.ChannelInfoController.getChannelAttributeByDate(ChannelInfoController.java:316) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_211]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_211]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_211]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_211]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:113) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at vn.tpsc.it4u.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:48) ~[classes/:na]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.1.RELEASE.jar:5.2.1.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_211]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_211]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_211]
-
-2020-12-03 06:56:53.538 ERROR 6956 --- [http-nio-5000-exec-6] o.apache.coyote.http11.Http11Processor   : Error processing request
-
-java.lang.NullPointerException: null
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:412) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_211]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_211]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_211]
-
-2020-12-03 06:56:53.540  WARN 6956 --- [http-nio-5000-exec-6] o.a.catalina.connector.CoyoteAdapter     : Exception while attempting to add an entry to the access log
-
-java.lang.NullPointerException: null
-	at org.apache.catalina.connector.CoyoteAdapter.log(CoyoteAdapter.java:490) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:438) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_211]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_211]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.27.jar:9.0.27]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_211]
-
-2020-12-03 06:57:05.745  INFO 6956 --- [http-nio-5000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 06:57:05.747  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 06:57:05.753  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2020-12-03 06:57:34.380  INFO 6956 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 06:59:06.046  INFO 6956 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 06:59:06.047  INFO 6956 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 06:59:06.047  INFO 6956 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 06:59:06.049  INFO 6956 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 06:59:06.049  INFO 6956 --- [Thread-10] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 06:59:06.053  INFO 6956 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 06:59:06.054  INFO 6956 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 06:59:06.063  INFO 6956 --- [Thread-10] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 06:59:06.064  INFO 6956 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2020-12-03 06:59:06.073  INFO 6956 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2020-12-03 06:59:06.656  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6956 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 06:59:06.657  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 06:59:07.440  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 06:59:07.596  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 152ms. Found 21 repository interfaces.
-2020-12-03 06:59:07.982  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.990  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.992  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.993  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@7c86ded7' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.995  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.998  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.998  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:07.998  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 06:59:08.082  WARN 6956 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2020-12-03 06:59:08.291  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 06:59:08.294  INFO 6956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 06:59:08.294  INFO 6956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 06:59:08.306  INFO 6956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 06:59:08.310  INFO 6956 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1645 ms
-2020-12-03 06:59:08.427  WARN 6956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 06:59:08.566  INFO 6956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 06:59:08.591  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2020-12-03 06:59:08.689  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2020-12-03 06:59:08.690  INFO 6956 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 06:59:12.349  INFO 6956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 06:59:12.350  INFO 6956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 06:59:12.622  INFO 6956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 06:59:13.748  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 06:59:13.753  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 06:59:14.874  INFO 6956 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7cf70fd5, org.springframework.security.web.context.SecurityContextPersistenceFilter@515441d8, org.springframework.security.web.header.HeaderWriterFilter@569a9c6c, org.springframework.web.filter.CorsFilter@411561a5, org.springframework.security.web.authentication.logout.LogoutFilter@a0510b8, vn.tpsc.it4u.security.JwtAuthenticationFilter@7cf5026f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c4f8322, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e34113b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@672cfadb, org.springframework.security.web.session.SessionManagementFilter@76b62d24, org.springframework.security.web.access.ExceptionTranslationFilter@67814eee, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4534d88d]
-2020-12-03 06:59:14.946  INFO 6956 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 06:59:14.971  INFO 6956 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 06:59:15.019  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 06:59:15.239  WARN 6956 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 06:59:15.408  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 06:59:15.413  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 06:59:15.472  INFO 6956 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 06:59:16.327  INFO 6956 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 06:59:16.362  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 06:59:16.363  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 06:59:16.363  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 06:59:16.373  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 06:59:16.378  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 9.789 seconds (JVM running for 391.923)
-2020-12-03 06:59:16.394  INFO 6956 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2020-12-03 06:59:56.001  INFO 6956 --- [http-nio-5000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 06:59:56.004  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 06:59:56.017  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
-2020-12-03 07:00:06.238  WARN 6956 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2020-12-03 07:00:15.014  INFO 6956 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 07:01:19.757  INFO 6956 --- [Thread-15] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 07:01:19.790  INFO 6956 --- [Thread-15] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 07:01:19.816  INFO 6956 --- [Thread-15] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 07:01:19.850  INFO 6956 --- [Thread-15] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 07:01:19.853  INFO 6956 --- [Thread-15] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 07:01:19.863  INFO 6956 --- [Thread-15] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 07:01:19.879  INFO 6956 --- [Thread-15] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 07:01:19.886  INFO 6956 --- [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 07:01:19.969  INFO 6956 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
-2020-12-03 07:01:19.984  INFO 6956 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
-2020-12-03 07:01:21.194  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6956 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 07:01:21.195  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 07:01:23.840  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 07:01:24.255  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 353ms. Found 21 repository interfaces.
-2020-12-03 07:01:25.227  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.242  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.245  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.246  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@10c8a23f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.254  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.261  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.262  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.273  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:01:25.530  WARN 6956 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2020-12-03 07:01:25.916  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 07:01:25.942  INFO 6956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 07:01:25.945  INFO 6956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 07:01:25.957  INFO 6956 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 07:01:25.958  INFO 6956 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4755 ms
-2020-12-03 07:01:26.075  WARN 6956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 07:01:26.309  INFO 6956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 07:01:26.323  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
-2020-12-03 07:01:26.438  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
-2020-12-03 07:01:26.459  INFO 6956 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 07:01:30.570  INFO 6956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 07:01:30.570  INFO 6956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 07:01:30.939  INFO 6956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 07:01:32.733  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 07:01:32.739  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 07:01:33.195  INFO 6956 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ab1d9b5, org.springframework.security.web.context.SecurityContextPersistenceFilter@27ac66a, org.springframework.security.web.header.HeaderWriterFilter@14cc0536, org.springframework.web.filter.CorsFilter@1dbdfe61, org.springframework.security.web.authentication.logout.LogoutFilter@7bd2b7b8, vn.tpsc.it4u.security.JwtAuthenticationFilter@2fbe981b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e17365c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a86631d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ef2b5e7, org.springframework.security.web.session.SessionManagementFilter@46367159, org.springframework.security.web.access.ExceptionTranslationFilter@53cff1c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@13b0d990]
-2020-12-03 07:01:33.222  INFO 6956 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 07:01:33.257  INFO 6956 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 07:01:33.273  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 07:01:33.485  WARN 6956 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 07:01:33.646  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 07:01:33.678  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 07:01:33.737  INFO 6956 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 07:01:34.479  INFO 6956 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 07:01:34.531  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 07:01:34.532  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 07:01:34.533  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 07:01:34.545  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 07:01:34.547  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 13.465 seconds (JVM running for 530.093)
-2020-12-03 07:01:34.549  INFO 6956 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2020-12-03 07:01:54.385  INFO 6956 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 07:01:54.386  INFO 6956 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 07:01:54.394  INFO 6956 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-2020-12-03 07:02:33.273  INFO 6956 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 07:07:08.911  INFO 6956 --- [Thread-21] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 07:07:08.913  INFO 6956 --- [Thread-21] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 07:07:08.913  INFO 6956 --- [Thread-21] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 07:07:08.915  INFO 6956 --- [Thread-21] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 07:07:08.917  INFO 6956 --- [Thread-21] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 07:07:08.923  INFO 6956 --- [Thread-21] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 07:07:08.925  INFO 6956 --- [Thread-21] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 07:07:08.931  INFO 6956 --- [Thread-21] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 07:07:08.938  INFO 6956 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
-2020-12-03 07:07:08.965  INFO 6956 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
-2020-12-03 07:07:24.941  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6956 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 07:07:24.969  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 07:07:27.060  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 07:07:27.752  INFO 6956 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 647ms. Found 21 repository interfaces.
-2020-12-03 07:07:28.692  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.211  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.302  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.365  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@748f56ee' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.419  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.458  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.547  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:29.626  INFO 6956 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 07:07:30.007  WARN 6956 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2020-12-03 07:07:30.499  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 07:07:30.538  INFO 6956 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 07:07:30.613  INFO 6956 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 07:07:30.710  INFO 6956 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2020-12-03 07:07:30.734  INFO 6956 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5567 ms
-2020-12-03 07:07:30.911  WARN 6956 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 07:07:31.066  INFO 6956 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 07:07:31.084  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
-2020-12-03 07:07:31.190  INFO 6956 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
-2020-12-03 07:07:31.195  INFO 6956 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 07:07:34.567  INFO 6956 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 07:07:34.572  INFO 6956 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 07:07:34.848  INFO 6956 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 07:07:35.423  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 07:07:35.426  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 07:07:35.642  INFO 6956 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@682c1bd9, org.springframework.security.web.context.SecurityContextPersistenceFilter@741ab327, org.springframework.security.web.header.HeaderWriterFilter@10ce1a32, org.springframework.web.filter.CorsFilter@42b667f0, org.springframework.security.web.authentication.logout.LogoutFilter@659ce573, vn.tpsc.it4u.security.JwtAuthenticationFilter@1251eaed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50c54bd1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@303ad471, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@666ebb6e, org.springframework.security.web.session.SessionManagementFilter@c0f1ff9, org.springframework.security.web.access.ExceptionTranslationFilter@294dde8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@23f99c18]
-2020-12-03 07:07:35.651  INFO 6956 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 07:07:35.663  INFO 6956 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 07:07:35.677  INFO 6956 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 07:07:35.788  WARN 6956 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 07:07:35.901  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 07:07:35.902  INFO 6956 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 07:07:35.933  INFO 6956 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 07:07:36.339  INFO 6956 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 07:07:36.374  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 07:07:36.374  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 07:07:36.375  INFO 6956 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 07:07:36.385  INFO 6956 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 07:07:36.412  INFO 6956 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 13.407 seconds (JVM running for 891.958)
-2020-12-03 07:07:36.414  INFO 6956 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2020-12-03 07:08:35.679  INFO 6956 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 07:09:20.101  INFO 6956 --- [http-nio-5000-exec-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 07:09:20.101  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 07:09:20.109  INFO 6956 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2020-12-03 07:09:21.689  WARN 6956 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:21.698  WARN 6956 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:21.859  WARN 6956 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:22.039  WARN 6956 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:22.039  WARN 6956 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2020-12-03 07:09:22.178  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 07:09:29.756  WARN 6956 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:29.837  WARN 6956 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:29.859  WARN 6956 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:30.003  WARN 6956 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 07:09:30.066  WARN 6956 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2020-12-03 07:09:31.262  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 07:16:32.896  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:16:32.948  INFO 6956 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:16:33.020  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:16:33.944  INFO 6956 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:16:34.579  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:16:39.715  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:16:40.471  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:17:03.250  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:17:03.252  INFO 6956 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:17:03.280  INFO 6956 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:17:10.505  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:17:11.204  INFO 6956 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:17:33.308  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:17:33.321  INFO 6956 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:17:33.324  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:17:40.551  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:17:41.138  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:18:03.282  INFO 6956 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:18:03.285  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:18:03.289  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:18:10.587  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:18:11.100  INFO 6956 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:18:33.242  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:18:33.244  INFO 6956 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:18:33.244  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:18:40.523  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:18:41.105  INFO 6956 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:19:03.197  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:19:03.319  INFO 6956 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:19:03.320  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:19:10.580  INFO 6956 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:19:11.178  INFO 6956 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:19:33.262  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:19:33.262  INFO 6956 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:19:33.270  INFO 6956 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:19:41.878  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:19:42.561  INFO 6956 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:20:03.210  INFO 6956 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:20:03.257  INFO 6956 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:20:03.299  INFO 6956 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:20:10.629  INFO 6956 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:20:11.162  INFO 6956 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 07:20:33.281  INFO 6956 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 07:20:33.281  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 07:20:33.281  INFO 6956 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 07:20:40.668  INFO 6956 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 07:20:41.163  INFO 6956 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:30:44.972  INFO 6944 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 6944 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 14:30:44.981  INFO 6944 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 14:30:45.184  INFO 6944 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-12-03 14:30:45.186  INFO 6944 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-12-03 14:30:48.161  INFO 6944 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 14:30:48.503  INFO 6944 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 315ms. Found 21 repository interfaces.
-2020-12-03 14:30:49.925  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.009  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.064  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.081  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1ac51a0d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.085  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.105  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.109  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:50.121  INFO 6944 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:30:51.761  INFO 6944 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 14:30:51.788  INFO 6944 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 14:30:51.789  INFO 6944 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 14:30:51.938  INFO 6944 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 14:30:51.939  INFO 6944 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6752 ms
-2020-12-03 14:30:52.153  WARN 6944 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 14:30:52.465  INFO 6944 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 14:30:52.610  INFO 6944 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2020-12-03 14:30:53.100  INFO 6944 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-03 14:30:53.325  INFO 6944 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-12-03 14:30:53.568  INFO 6944 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-12-03 14:30:53.602  INFO 6944 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 14:30:59.157  INFO 6944 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 14:30:59.193  INFO 6944 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 14:31:00.859  INFO 6944 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 14:31:02.712  INFO 6944 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 14:31:02.727  INFO 6944 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 14:31:03.835  INFO 6944 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5717c7c0, org.springframework.security.web.context.SecurityContextPersistenceFilter@d35f374, org.springframework.security.web.header.HeaderWriterFilter@5b45dcd6, org.springframework.web.filter.CorsFilter@39d8e80, org.springframework.security.web.authentication.logout.LogoutFilter@61566a9d, vn.tpsc.it4u.security.JwtAuthenticationFilter@7d3ad6e7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@12ee0d44, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@232383ac, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4524703f, org.springframework.security.web.session.SessionManagementFilter@be78763, org.springframework.security.web.access.ExceptionTranslationFilter@70ea5f7e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@51e6a062]
-2020-12-03 14:31:03.906  INFO 6944 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 14:31:03.990  INFO 6944 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 14:31:04.132  INFO 6944 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 14:31:04.671  WARN 6944 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 14:31:04.985  INFO 6944 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 14:31:05.017  INFO 6944 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 14:31:05.140  INFO 6944 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 14:31:06.455  INFO 6944 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 14:31:06.548  INFO 6944 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 14:31:06.548  INFO 6944 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 14:31:06.549  INFO 6944 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 14:31:06.615  INFO 6944 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 14:31:06.652  INFO 6944 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 23.113 seconds (JVM running for 26.645)
-2020-12-03 14:31:38.828  INFO 6944 --- [http-nio-5000-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 14:31:38.829  INFO 6944 --- [http-nio-5000-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 14:31:38.861  INFO 6944 --- [http-nio-5000-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 32 ms
-2020-12-03 14:31:40.301  INFO 6944 --- [http-nio-5000-exec-7] vn.tpsc.it4u.controller.AuthController   : lap.dang@tpsc.vn - Login
-2020-12-03 14:31:42.003  WARN 6944 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:31:42.003  WARN 6944 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:31:42.220  WARN 6944 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:31:42.355  WARN 6944 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2020-12-03 14:31:42.398  WARN 6944 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:31:43.432  INFO 6944 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:32:04.132  INFO 6944 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 14:32:36.541  INFO 6944 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2020-12-03 14:32:36.876  INFO 6944 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2020-12-03 14:32:36.960  INFO 6944 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2020-12-03 14:32:37.557  INFO 6944 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:32:38.115  INFO 6944 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:32:38.677  INFO 6944 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:32:39.794  INFO 6944 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:34:37.475  INFO 6944 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2020-12-03 14:34:37.966  INFO 6944 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2020-12-03 14:34:38.277  INFO 6944 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2020-12-03 14:34:38.676  INFO 6944 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:34:39.256  INFO 6944 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:34:39.464  INFO 6944 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:34:40.580  INFO 6944 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:37:06.576  INFO 6944 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 14:37:06.577  INFO 6944 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 14:37:06.577  INFO 6944 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 14:37:06.580  INFO 6944 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 14:37:06.581  INFO 6944 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 14:37:06.595  INFO 6944 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 14:37:06.596  INFO 6944 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 14:37:06.607  INFO 6944 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 14:37:06.614  INFO 6944 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-12-03 14:37:06.651  INFO 6944 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-12-03 14:39:26.962  INFO 7048 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 7048 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2020-12-03 14:39:26.968  INFO 7048 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2020-12-03 14:39:27.102  INFO 7048 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-12-03 14:39:27.103  INFO 7048 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-12-03 14:39:31.326  INFO 7048 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-03 14:39:31.942  INFO 7048 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 583ms. Found 21 repository interfaces.
-2020-12-03 14:39:33.952  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.261  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.291  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.457  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@e7057d1' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.495  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.567  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.607  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:34.614  INFO 7048 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-03 14:39:37.454  INFO 7048 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2020-12-03 14:39:37.489  INFO 7048 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-03 14:39:37.491  INFO 7048 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-12-03 14:39:37.674  INFO 7048 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-03 14:39:37.691  INFO 7048 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 10587 ms
-2020-12-03 14:39:37.913  WARN 7048 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-03 14:39:38.438  INFO 7048 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-03 14:39:38.739  INFO 7048 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2020-12-03 14:39:39.247  INFO 7048 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-03 14:39:39.632  INFO 7048 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-12-03 14:39:40.373  INFO 7048 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-12-03 14:39:40.456  INFO 7048 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-12-03 14:39:46.632  INFO 7048 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-03 14:39:46.648  INFO 7048 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 14:39:48.890  INFO 7048 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-03 14:39:51.311  INFO 7048 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 14:39:51.328  INFO 7048 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 14:39:53.081  INFO 7048 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@461ba0a9, org.springframework.security.web.context.SecurityContextPersistenceFilter@7655400a, org.springframework.security.web.header.HeaderWriterFilter@4a29520f, org.springframework.web.filter.CorsFilter@3e80fe9d, org.springframework.security.web.authentication.logout.LogoutFilter@1130707d, vn.tpsc.it4u.security.JwtAuthenticationFilter@4e70203f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6ea78198, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b8f8281, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3df9901d, org.springframework.security.web.session.SessionManagementFilter@7838daab, org.springframework.security.web.access.ExceptionTranslationFilter@12cc38df, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@73bba94f]
-2020-12-03 14:39:53.182  INFO 7048 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-12-03 14:39:53.325  INFO 7048 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 14:39:53.503  INFO 7048 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2020-12-03 14:39:54.198  WARN 7048 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-12-03 14:39:54.723  INFO 7048 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-12-03 14:39:54.826  INFO 7048 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-12-03 14:39:55.084  INFO 7048 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-12-03 14:39:57.369  INFO 7048 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2020-12-03 14:39:57.509  INFO 7048 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2020-12-03 14:39:57.512  INFO 7048 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 14:39:57.519  INFO 7048 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2020-12-03 14:39:57.603  INFO 7048 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2020-12-03 14:39:57.613  INFO 7048 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 32.012 seconds (JVM running for 34.453)
-2020-12-03 14:40:07.141  INFO 7048 --- [http-nio-5000-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-03 14:40:07.141  INFO 7048 --- [http-nio-5000-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-03 14:40:07.157  INFO 7048 --- [http-nio-5000-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
-2020-12-03 14:40:09.864  WARN 7048 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:40:09.875  WARN 7048 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:40:09.915  WARN 7048 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:40:10.193  WARN 7048 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2020-12-03 14:40:11.045  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:40:11.386  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:40:12.668  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:40:13.715  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:40:53.503  INFO 7048 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2020-12-03 14:42:06.832  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:42:07.028  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:42:07.121  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:42:08.062  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:42:08.226  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:42:09.485  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:42:10.239  INFO 7048 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:43:45.133  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2020-12-03 14:43:45.208  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2020-12-03 14:43:45.292  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2020-12-03 14:43:45.921  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:43:46.374  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:43:47.033  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 14:43:48.056  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 14:45:45.199  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:45:45.328  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:45:45.395  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:45:46.342  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:45:46.375  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:45:48.142  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:45:48.741  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:47:37.619  INFO 7048 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:47:37.661  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:47:37.942  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:47:38.970  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:47:39.014  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:47:40.615  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:47:41.270  INFO 7048 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:50:38.785  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:50:38.833  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:50:38.834  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:50:39.582  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:50:39.916  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:50:41.906  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:50:42.470  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:51:55.847  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:51:55.950  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:51:56.027  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:51:56.941  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:51:57.084  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:51:58.910  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:51:59.549  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:59:18.582  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:59:18.644  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:59:18.820  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:59:19.789  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:59:19.795  INFO 7048 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:59:21.500  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:59:22.122  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 14:59:48.585  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 14:59:48.668  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 14:59:48.796  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 14:59:51.750  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 14:59:52.341  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:00:19.281  INFO 7048 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 15:00:19.283  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 15:00:19.289  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 15:00:22.552  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 15:00:23.171  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:08:13.652  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 15:08:13.691  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 15:08:13.850  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 15:08:14.863  INFO 7048 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:08:15.085  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 15:08:16.045  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 15:08:16.664  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:09:48.006  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2020-12-03 15:09:48.161  INFO 7048 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2020-12-03 15:09:48.272  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2020-12-03 15:09:49.106  INFO 7048 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:09:49.294  INFO 7048 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 15:09:50.252  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2020-12-03 15:09:50.741  INFO 7048 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2020-12-03 15:10:53.510  INFO 7048 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
-2020-12-03 15:11:10.618  INFO 7048 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2020-12-03 15:11:10.719  INFO 7048 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2020-12-03 15:11:11.026  INFO 7048 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2020-12-03 15:11:11.671  INFO 7048 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 15:11:12.141  INFO 7048 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 15:11:12.591  INFO 7048 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2020-12-03 15:11:13.561  INFO 7048 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2020-12-03 15:13:11.604  INFO 7048 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2020-12-03 15:13:11.605  INFO 7048 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2020-12-03 15:13:11.605  INFO 7048 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2020-12-03 15:13:11.607  INFO 7048 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2020-12-03 15:13:11.609  INFO 7048 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2020-12-03 15:13:11.619  INFO 7048 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2020-12-03 15:13:11.621  INFO 7048 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2020-12-03 15:13:11.632  INFO 7048 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-03 15:13:11.639  INFO 7048 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-12-03 15:13:11.654  INFO 7048 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-12-18 08:25:08.654  INFO 1948 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 1948 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
+2020-12-18 08:25:08.673  INFO 1948 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
+2020-12-18 08:25:08.896  INFO 1948 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-12-18 08:25:08.897  INFO 1948 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-12-18 08:25:11.933  INFO 1948 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-12-18 08:25:12.266  INFO 1948 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 313ms. Found 24 repository interfaces.
+2020-12-18 08:25:13.503  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.568  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.593  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.598  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@31a33378' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.604  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.623  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.637  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:13.640  INFO 1948 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 08:25:14.797  INFO 1948 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
+2020-12-18 08:25:14.817  INFO 1948 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-12-18 08:25:14.818  INFO 1948 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-12-18 08:25:14.934  INFO 1948 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-18 08:25:14.936  INFO 1948 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6037 ms
+2020-12-18 08:25:15.180  WARN 1948 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-18 08:25:15.542  INFO 1948 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-18 08:25:15.722  INFO 1948 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-12-18 08:25:16.118  INFO 1948 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-18 08:25:16.418  INFO 1948 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-12-18 08:25:16.803  INFO 1948 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-12-18 08:25:16.845  INFO 1948 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-12-18 08:25:23.997  INFO 1948 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-18 08:25:24.030  INFO 1948 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-18 08:25:25.471  INFO 1948 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-12-18 08:25:27.402  INFO 1948 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-12-18 08:25:27.421  INFO 1948 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-12-18 08:25:28.979  INFO 1948 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49944d3, org.springframework.security.web.context.SecurityContextPersistenceFilter@cf47e2c, org.springframework.security.web.header.HeaderWriterFilter@ccb562c, org.springframework.web.filter.CorsFilter@5994535c, org.springframework.security.web.authentication.logout.LogoutFilter@6eda0574, vn.tpsc.it4u.security.JwtAuthenticationFilter@2f9d5237, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79590f6f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e8c664f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5393e31c, org.springframework.security.web.session.SessionManagementFilter@4fbbadb, org.springframework.security.web.access.ExceptionTranslationFilter@7ff84b85, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@374bf228]
+2020-12-18 08:25:29.108  INFO 1948 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-12-18 08:25:29.189  INFO 1948 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-12-18 08:25:29.311  INFO 1948 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-12-18 08:25:30.300  WARN 1948 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-12-18 08:25:30.664  INFO 1948 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-12-18 08:25:30.706  INFO 1948 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-12-18 08:25:30.870  INFO 1948 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-12-18 08:25:32.573  INFO 1948 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
+2020-12-18 08:25:32.682  INFO 1948 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-12-18 08:25:32.687  INFO 1948 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-12-18 08:25:32.688  INFO 1948 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-12-18 08:25:32.786  INFO 1948 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
+2020-12-18 08:25:32.792  INFO 1948 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 25.453 seconds (JVM running for 29.305)
+2020-12-18 08:25:59.385  INFO 1948 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-18 08:25:59.386  INFO 1948 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-12-18 08:25:59.405  INFO 1948 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2020-12-18 08:26:01.454  WARN 1948 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:26:01.968  WARN 1948 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2020-12-18 08:26:01.970  WARN 1948 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2020-12-18 08:26:02.166  WARN 1948 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2020-12-18 08:26:02.353  WARN 1948 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
+2020-12-18 08:26:02.365  WARN 1948 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2020-12-18 08:26:03.753  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:26:03.872  WARN 1948 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:26:29.311  INFO 1948 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-12-18 08:33:30.971  WARN 1948 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:33:31.764  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2020-12-18 08:33:31.802  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2020-12-18 08:33:32.295  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2020-12-18 08:33:33.115  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:33:33.484  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:33:34.163  WARN 1948 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:33:35.578  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:33:35.580  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:34:31.970  WARN 1948 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:34:32.556  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2020-12-18 08:34:32.762  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2020-12-18 08:34:33.282  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2020-12-18 08:34:34.183  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:34:34.225  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:34:35.544  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:34:35.563  WARN 1948 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:34:35.587  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:41:59.609  WARN 1948 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:42:00.460  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:42:00.675  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:42:00.787  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:42:01.171  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:42:01.904  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:42:02.319  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:42:02.503  WARN 1948 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:42:03.200  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:42:30.370  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:42:30.653  INFO 1948 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:42:30.860  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:42:32.299  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:42:33.342  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:43:00.543  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:43:00.715  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:43:00.777  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:43:02.284  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:43:03.166  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:43:30.971  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:43:31.027  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:43:31.073  INFO 1948 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:43:33.054  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:43:33.884  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:44:00.949  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:44:01.073  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:44:01.073  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:44:03.082  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:44:03.893  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:44:30.937  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:44:31.026  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:44:31.040  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:44:33.097  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:44:33.901  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:45:00.913  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:45:01.012  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:45:01.021  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:45:02.377  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:45:03.250  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:45:30.639  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:45:30.740  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:45:30.783  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:45:33.047  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:45:33.934  INFO 1948 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:46:00.898  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:46:00.999  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:46:01.000  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:46:03.071  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:46:03.921  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:46:30.302  INFO 1948 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:46:30.680  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:46:30.695  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:46:32.304  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:46:33.255  INFO 1948 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:47:00.978  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:47:01.085  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:47:01.096  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:47:03.087  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:47:03.903  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:47:30.941  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:47:31.042  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:47:31.052  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:47:33.103  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:47:33.906  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:48:00.919  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:48:01.022  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:48:01.032  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:48:03.087  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:48:03.933  INFO 1948 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:48:30.959  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:48:31.034  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:48:31.062  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:48:33.054  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:48:33.933  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:49:00.922  INFO 1948 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2020-12-18 08:49:01.022  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2020-12-18 08:49:01.035  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2020-12-18 08:49:03.083  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2020-12-18 08:49:03.906  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2020-12-18 08:55:15.856  WARN 1948 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:55:16.551  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2020-12-18 08:55:16.559  INFO 1948 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2020-12-18 08:55:16.618  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2020-12-18 08:55:17.352  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:55:17.709  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:55:17.910  WARN 1948 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:55:19.445  INFO 1948 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:55:19.463  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:56:16.336  WARN 1948 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:56:17.129  INFO 1948 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2020-12-18 08:56:17.251  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2020-12-18 08:56:17.385  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2020-12-18 08:56:18.163  INFO 1948 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:56:18.287  INFO 1948 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:56:18.663  WARN 1948 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2020-12-18 08:56:20.365  INFO 1948 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2020-12-18 08:56:20.514  INFO 1948 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2020-12-18 08:56:29.313  INFO 1948 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2020-12-18 08:57:57.980  INFO 1948 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-12-18 08:57:57.981  INFO 1948 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-12-18 08:57:57.983  INFO 1948 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-12-18 08:57:57.989  INFO 1948 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-12-18 08:57:57.990  INFO 1948 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-12-18 08:57:58.031  INFO 1948 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-12-18 08:57:58.044  INFO 1948 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-12-18 08:57:58.057  INFO 1948 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-12-18 08:57:58.063  INFO 1948 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-12-18 08:57:58.069  INFO 1948 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

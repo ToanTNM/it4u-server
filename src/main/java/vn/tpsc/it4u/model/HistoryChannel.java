@@ -33,7 +33,7 @@ public class HistoryChannel extends UserDateAudit {
     private ChannelAttribute channelAttribute;
 
     @OneToOne
-    @JoinColumn(name = "channel_detail_id")
+    @JoinColumn(name = "contract_id")
     private Contract contract;
 
     public HistoryChannel(ChannelAttribute channelAttribute, Contract contract) {

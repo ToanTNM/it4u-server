@@ -1293,4 +1293,197 @@ Get http://localhost:5000/api/v1/it4u/service/status
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNDYyODM0MSwiZXhwIjoxNjA1MjMzMTQxfQ.7UNyxboWkMuDlYWxyUAR2LU0s1D-by3-3MmeylhU2pt_evyuR8m749NqcIY35wKT4KQ7iOXWLHsZ7RqjRb_L-Q
 Content-Type: application/json
 
+################# Vật tư phụ 
+POST http://localhost:5000/api/v1/it4u/suppliesManagement/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "khungTinhDien3Tang": 1,
+    "khungTinhDien2Tang": 1,
+    "tacKeNhua6": 4,
+    "vit6": 4,
+    "tacKe4": 0,
+    "dayRutTrang10": 0,
+    "dayRutTrang20": 20,
+    "dauRJ45": 10,
+    "dayCapMang": 25,
+    "ruotGa20": 0,
+    "ruotGa25": 0,
+    "bangKeoXopDen": 0,
+    "bangKeoGiay": 0,
+    "bangKeoDien":1 ,
+    "oCamLioa6LoNgang": 0,
+    "clientName": "Trần Kim Chi",
+    "servicePlans": "",
+    "street": "23 An Thượng 2, P. Bắc Mỹ Phú, Q. Ngũ Hành Sơn, Đà Nẵng",
+    "content": "",
+    "importWareHouse": "",
+    "note": ""
+}
+
+### 
+GET http://localhost:5000/api/v1/it4u/suppliesManagement
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+### 
+DELETE http://localhost:5000/api/v1/it4u/suppliesManagement/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+### 
+GET http://localhost:5000/api/v1/it4u/contract.Lê Hoàng Gia 64LVHuu
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+### 
+GET http://localhost:5000/api/v1/it4u/clientName
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+################# Vật tư phụ 
+POST http://localhost:5000/api/v1/it4u/listSupplies
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzcwMjI5OCwiZXhwIjoxNjA4MzA3MDk4fQ.geTxmWT3gXWI54wJDXebKI3ptHGuwzptRyx2feGgI5_jtTrH2drNxyOw0VIuyqIOP6Pnwiv21yGvhCjq_1ViOA
+Content-Type: application/json
+
+{
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "name": "Camera IP HD hồng ngoại 2MP chuẩn nén H.264+DS-2CD1121-I",
+    "unit": "cái",
+    "number": 0,
+    "value": 0,
+    "note": "Kèm theo dây nguồn"
+}
+
+###
+Put http://localhost:5000/api/v1/it4u/listSupplies/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "name": "Camera IP HD hồng ngoại 2MP chuẩn nén H.264+DS-2CD1121-I",
+    "unit": "cái",
+    "number": 1,
+    "value": 1,
+    "note": "Kèm theo dây nguồn"
+}
+
+###
+GET http://localhost:5000/api/v1/it4u/listSupplies
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+DELETE  http://localhost:5000/api/v1/it4u/listSupplies/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/importWarehouse
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "licence": "",
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "number": 1,
+    "value": 0,
+    "totalAmount": 0,
+    "supplier": " Bảo Ngọc Long ",
+    "serialNum": "21887520001279",
+    "MAC": "21-88-75-20-00-12",
+    "warrantyPeriod": 0,
+    "storageTerm": 0,
+    "warrantyLandmark": 99999090,
+    "note": ""
+}
+
+###
+Put http://localhost:5000/api/v1/it4u/importWarehouse/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "licence": "",
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "number": 1,
+    "value": 0,
+    "totalAmount": 0,
+    "supplier": " Bảo Ngọc Long 1",
+    "serialNum": "21887520001279",
+    "MAC": "21-88-75-20-00-12",
+    "warrantyPeriod": 0,
+    "storageTerm": 0,
+    "warrantyLandmark": 99999090,
+    "note": ""
+}
+###
+GET http://localhost:5000/api/v1/it4u/importWarehouse
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+DELETE http://localhost:5000/api/v1/it4u/importWarehouse/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/exportWarehouse
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "licence": " 159/2019/CNTT- TPCOMS/DNG ",
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "number": 1,
+    "supplier": " Bảo Ngọc Long ",
+    "serialNum": "21887520001279",
+    "MAC": "21-88-75-20-00-12",
+    "warrantyPeriod": 0,
+    "storageTerm": 0,
+    "warrantyLandmark": 99999090,
+    "clientName": "Trần Xuân Hậu",
+    "note": ""
+}
+
+###
+Put http://localhost:5000/api/v1/it4u/exportWarehouse/3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+{
+    "licence": " 159/2019/CNTT- TPCOMS/DNG ",
+    "itemCode": "CAM.HIK.2CD1121-I",
+    "number": 1,
+    "supplier": " Bảo Ngọc Long Update",
+    "serialNum": "21887520001279",
+    "MAC": "21-88-75-20-00-12",
+    "warrantyPeriod": 0,
+    "storageTerm": 0,
+    "warrantyLandmark": 99999090,
+    "clientName": "Trần Xuân Hậu",
+    "note": ""
+}
+###
+GET http://localhost:5000/api/v1/it4u/exportWarehouse
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+DELETE http://localhost:5000/api/v1/it4u/exportWarehouse/3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwNzM1ODAxNCwiZXhwIjoxNjA3OTYyODE0fQ.lFuXkZneTZZndiYHtuIQ3S37IKSjv5Lj8Yz7mfZrbHBvCyiPuALQrOsteXhMGgmxy4n06tFHIuOrnRoDLu2-5A
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/reportSupplies
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODExMTU1MywiZXhwIjoxNjA4NzE2MzUzfQ.k-SV9C0wH9t2T68Gla3m4gcCPYIhWz7hFcVrn8HOa2_EYnRvDTLWRjeEJKV6sm0ZNaTLYJgBYT5Ria8kxde-MQ
+Content-Type: application/json
+
+{
+    "fromDate": "2020-12-16 13:02:56.12345678",
+    "toDate": "2020-12-18 13:02:56.12345678"
+}
+
 

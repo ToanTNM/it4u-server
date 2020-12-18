@@ -33,17 +33,13 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     @Size(max = 40)
     private String customId;
     
-    @NotEmpty
     private String numContract;
 
-    @NotEmpty
     private String clientName;
 
-    @NotEmpty
     private String servicePlans;
 
     private String street;

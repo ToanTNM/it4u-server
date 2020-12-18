@@ -1,19 +1,19 @@
 ## Server Properties
 server:
-  # port: 5000
-  port: ${SERVER_PORT}
+  port: 5000
+  # port: ${SERVER_PORT}
 
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
     # initialization-mode: always
     driver-class-name: org.postgresql.Driver
-    url: ${DATABASE_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-    # url: jdbc:postgresql://192.168.99.105:5432/it4udb
-    # username: it4u
-    # password: Tps@#it4u
+    # url: ${DATABASE_URL}
+    # username: ${POSTGRES_USER}
+    # password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://192.168.99.105:5432/it4udb
+    username: it4u
+    password: Tps@#it4u
     # url: jdbc:postgresql://192.168.136.129:5433/it4uDb
     # username: postgres
     # password: tpsc.vn@49lqd

@@ -18,8 +18,6 @@ public class ChannelDetailSummary {
 
     private String routerType;
 
-    private String customerMove;
-
     private String votesRequire;
 
     private String ipType;
@@ -33,14 +31,6 @@ public class ChannelDetailSummary {
     private Long deployRequestDate;
 
     private Long dateAcceptance;
-
-    private Long dateRequestStop;
-
-    private Long dateStop;
-
-    private Long dateOnlineRequest;
-
-    private Long dateOnline;
 
     private String fees;
 }

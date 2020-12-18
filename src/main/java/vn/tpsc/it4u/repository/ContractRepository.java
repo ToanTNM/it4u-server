@@ -1,6 +1,8 @@
 package vn.tpsc.it4u.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,4 +13,20 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     Contract findByCustomId(String customId);
 
     Boolean existsByCustomId(String customId);
+
+    @Query(value = "SELECT"
+    + " count(*)>0"
+    + " FROM contract c"
+    + " WHERE"
+    + " c.client_name"
+    + " LIKE :clientName%", nativeQuery = true)
+    Boolean existsByClientName(@Param("clientName") String clientName);
+
+    @Query(value = "SELECT"
+    + " *"
+    + " FROM contract c"
+    + " WHERE"
+    + " c.client_name"
+    + " LIKE :clientName%", nativeQuery = true)
+    Contract findByClientName(@Param("clientName") String clientName);
 }

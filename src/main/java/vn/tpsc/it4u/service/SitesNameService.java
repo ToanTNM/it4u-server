@@ -28,7 +28,7 @@ public class SitesNameService {
         List<SitesNameSummary> listSitesName = sitesNames.stream()
                 .map(user -> new SitesNameSummary(user.getId(), user.getSitename(), user.getIdname()))
                 .collect(Collectors.toList());
-
+        
         return listSitesName;
     }
 

@@ -106,7 +106,6 @@ public class ChannelInfoService {
                channelDetail.getContract(),
                channelDetail.getChannelAttribute(),
                channelDetail.getRouterType(),
-               channelDetail.getCustomerMove(),
                channelDetail.getVotesRequire(),
                channelDetail.getIpType(),
                channelDetail.getDeviceStatus(),
@@ -114,10 +113,6 @@ public class ChannelInfoService {
                channelDetail.getRegionalEngineer(),
                channelDetail.getDeployRequestDate(),
                channelDetail.getDateAcceptance(),
-               channelDetail.getDateRequestStop(),
-               channelDetail.getDateStop(),
-               channelDetail.getDateOnlineRequest(),
-               channelDetail.getDateOnline(),
                channelDetail.getFees()
             )).collect(Collectors.toList());
         return listChannelDetails;
@@ -133,6 +128,11 @@ public class ChannelInfoService {
         return getContract;
     }
 
+    public Contract findContractByClientName(String clientName) {
+        Contract getContract = contractRepository.findByClientName(clientName);
+        return getContract;
+    }
+
     public boolean deleteChannelDetail(long id) {
         channelDetailRepository.deleteById(id);
         return true;
@@ -140,9 +140,7 @@ public class ChannelInfoService {
 
     public boolean updateInfoChannelDetail(long channelDetailId, JSONObject updatingChannelDetail) {
         ChannelDetail channelDetail = channelDetailRepository.findById(channelDetailId);
-        HistoryChannel historyChannel = new HistoryChannel();
         channelDetail.setRouterType(updatingChannelDetail.getString("routerType").isNullorEmpty() ? channelDetail.getRouterType() : updatingChannelDetail.getString("routerType"));
-        channelDetail.setCustomerMove(updatingChannelDetail.getString("customerMove").isNullorEmpty() ? channelDetail.getCustomerMove() : updatingChannelDetail.getString("customerMove"));
         channelDetail.setDeviceStatus(updatingChannelDetail.getString("deviceStatus").isNullorEmpty() ? channelDetail.getDeviceStatus() : updatingChannelDetail.getString("deviceStatus"));
         channelDetail.setVotesRequire(updatingChannelDetail.getString("votesRequire"));
         channelDetail.setIpType(updatingChannelDetail.getString("ipType"));
@@ -151,10 +149,6 @@ public class ChannelInfoService {
         channelDetail.setFees(updatingChannelDetail.getString("fees"));
         channelDetail.setDeployRequestDate(updatingChannelDetail.getLong("deployRequestDate"));
         channelDetail.setDateAcceptance(updatingChannelDetail.getLong("dateAcceptance"));
-        channelDetail.setDateRequestStop(updatingChannelDetail.getLong("dateRequestStop"));
-        channelDetail.setDateStop(updatingChannelDetail.getLong("dateStop"));
-        channelDetail.setDateOnline(updatingChannelDetail.getLong("dateOnlineRequest"));
-        channelDetail.setDateOnlineRequest(updatingChannelDetail.getLong("dateOnline"));
         JSONObject getChannelAttribute = new JSONObject(channelDetail.getChannelAttribute());
         ChannelAttribute channelAttribute = channelAttributeRepository.findById(getChannelAttribute.getLong("id"));
         channelAttribute.setCustomer(updatingChannelDetail.getString("customer"));
@@ -163,13 +157,10 @@ public class ChannelInfoService {
         channelAttribute.setUsernamePPPoE(updatingChannelDetail.getString("usernamePPPoE"));
         ChannelValue channelValue = channelValueRepository.findByServicePack(updatingChannelDetail.getString("servicePack"));
         channelAttribute.setChannelValue(channelValue);
-        historyChannel.setChannelAttribute(channelAttribute);
         channelAttributeRepository.save(channelAttribute);
         if (contractRepository.existsByCustomId(updatingChannelDetail.getString("customId"))) {
             Contract getContract = contractRepository.findByCustomId(updatingChannelDetail.getString("customId"));
             channelDetail.setContract(getContract);
-            historyChannel.setContract(getContract);
-            historyChannelRepository.save(historyChannel);
             channelDetailRepository.save(channelDetail);
             return true;
         } else {
@@ -182,8 +173,6 @@ public class ChannelInfoService {
             );
             contractRepository.save(createContract);
             channelDetail.setContract(createContract);
-            historyChannel.setContract(createContract);
-            historyChannelRepository.save(historyChannel);
             channelDetailRepository.save(channelDetail);
             return true;
         }

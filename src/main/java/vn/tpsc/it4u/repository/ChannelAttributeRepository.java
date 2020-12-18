@@ -25,6 +25,20 @@ public interface ChannelAttributeRepository extends JpaRepository <ChannelAttrib
 
     List<ChannelAttribute> findByChannelValue(ChannelValue channelValue);
 
+    @Query(value = " SELECT"
+    + " id"
+    + " FROM channel_attribute c"
+    + " WHERE"
+    + " virtual_num=:virtualNum AND usernamepppoe=:usernamePPPoE", nativeQuery = true)
+    Long getIdByCondition(@Param("virtualNum") String virtualNum, @Param("usernamePPPoE") String usernamePPPoE);
+
+    @Query(value = " SELECT"
+    + " COUNT(*) > 0"
+    + " FROM channel_attribute c"
+    + " WHERE"
+    + " virtual_num=:virtualNum AND usernamepppoe=:usernamePPPoE", nativeQuery = true)
+    Boolean existsIdByCondition(@Param("virtualNum") String virtualNum, @Param("usernamePPPoE") String usernamePPPoE);
+
     @Query(value = "SELECT"
     + " *"
     + " FROM channel_attribute c"

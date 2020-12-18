@@ -175,6 +175,29 @@ public class ChannelInfoController {
         return result.toString();
     }
 
+    @ApiOperation(value = "Get all client name")
+    @GetMapping("/it4u/clientName")
+    public String getAllClientName() {
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject itemData = new JSONObject();
+        List<String> result = new ArrayList<>();
+        String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
+        JSONArray convertInfoClient = new JSONArray(getInfoClient);
+        for (int i = 0; i < convertInfoClient.length(); i++) {
+            JSONObject getItem = (JSONObject) convertInfoClient.get(i);
+            try {
+                itemData.put("name", getItem.getString("companyName"));
+            } catch (Exception e) {
+                itemData.put("name",
+                        getItem.getString("firstName") + " " + getItem.getString("lastName"));
+            }
+            if (!result.contains(itemData.toString())) {
+                result.add(itemData.toString());
+            }
+        }
+        return result.toString();
+    }
+
     @ApiOperation(value = "Get clients")
     @GetMapping("/it4u/customer/{id}")
     public String getInfoCustomer(@PathVariable(value = "id") String userId) {
@@ -371,16 +394,21 @@ public class ChannelInfoController {
             try {
                 JSONObject getChannelValue = getItem.getJSONObject("channelValue");
                 JSONObject getChannelName = getChannelValue.getJSONObject("channelName");
-                if (getChannelName.getString("name").equals(name) && 
-                    ( !getItem.getString("status").equals("online") || (!getItem.getString("status").equals("paused")))) {
-                    data.put("name", getChannelName.getString("name"));
-                    data.put("servicePack", getChannelValue.getString("servicePack"));
-                    data.put("value", getChannelValue.getString("value"));
-                    data.put("status", getItem.getString("status"));
-                    data.put("customer", getItem.getString("customer"));
-                    data.put("virtualNum", getItem.getString("virtualNum"));
-                    data.put("usernamePPPoE", getItem.getString("usernamePPPoE"));
-                    result.add(data.toString());
+                String getStatus = getItem.getString("status");
+                if (getChannelName.getString("name").equals(name) &&
+                    (!getStatus.equals("online"))) {
+                        if (!getStatus.equals("paused")) {
+                            data.put("name", getChannelName.getString("name"));
+                            data.put("servicePack", getChannelValue.getString("servicePack"));
+                            data.put("value", getChannelValue.getString("value"));
+                            data.put("status", getItem.getString("status"));
+                            data.put("customer", getItem.getString("customer"));
+                            data.put("virtualNum", getItem.getString("virtualNum"));
+                            data.put("usernamePPPoE", getItem.getString("usernamePPPoE"));
+                            if (!result.contains(data.toString())) {
+                                result.add(data.toString());
+                            }
+                        }
                 }
             } catch (Exception e) {
             }
@@ -416,9 +444,20 @@ public class ChannelInfoController {
         
         }
         HistoryChannel historyChannel = new HistoryChannel();
+        if(channelAttributeRepository.existsIdByCondition(getData.getString("virtualNum"), getData.getString("usernamePPPoE"))) {
+            if (!getData.getString("status").equals("offline")) {
+                long idChannelAttribtue = channelAttributeRepository.getIdByCondition(getData.getString("virtualNum"),
+                        getData.getString("usernamePPPoE"));
+                ChannelAttribute channelAttribute = channelAttributeRepository.findById(idChannelAttribtue);
+                ChannelDetail channeDetail = channelDetailRepository.findByChannelAttribute(channelAttribute);
+                Contract contract = channeDetail.getContract();
+                historyChannel.setChannelAttribute(channelAttribute);
+                historyChannel.setContract(contract);
+                historyChannelRepository.save(historyChannel);
+            }
+        }
         ChannelDetail createChannelDetail = new ChannelDetail(
             getData.getString("routerType"),
-            getData.getString("customerMove"),
             getData.getString("deviceStatus"),
             getData.getString("votesRequire"),
             getData.getString("ipType"),
@@ -426,10 +465,6 @@ public class ChannelInfoController {
             getData.getLong("deployRequestDate"),
             getData.getLong("dateAcceptance"),
             getData.getString("ipAddress"),
-            getData.getLong("dateRequestStop"),
-            getData.getLong("dateStop"),
-            getData.getLong("dateOnlineRequest"),
-            getData.getLong("dateOnline"),
             getData.getString("fees") 
         );
         ChannelValue getChannelValue = channelValueRepository.findByServicePack(getData.getString("servicePack"));
@@ -437,11 +472,10 @@ public class ChannelInfoController {
         JSONArray channelAttributeArr = new JSONArray(getChannelAttribute);
         for (int i=0; i< channelAttributeArr.length(); i++) {
             JSONObject getItem = (JSONObject) channelAttributeArr.get(i);
-            if (!getItem.getString("status").equals("Online")) {
+            if (!getItem.getString("status").equals("online")) {
                 ChannelAttribute channelAttribute = channelAttributeRepository.findById(getItem.getLong("id"));
-                channelAttribute.setStatus("Online");
+                channelAttribute.setStatus("online");
                 channelAttributeRepository.save(channelAttribute);
-                historyChannel.setChannelAttribute(channelAttribute);
                 createChannelDetail.setChannelAttribute(channelAttribute);
                 break;
             }
@@ -479,15 +513,15 @@ public class ChannelInfoController {
     @ApiOperation(value = "Import data")
     @PostMapping("/it4u/import/channel")
     public String importChannelDetail(@RequestBody String data) {
-        String result="";
+        String result = "";
         JSONArray convertData = new JSONArray(data);
         for (int i=0; i < convertData.length(); i++) {
             JSONObject getData = (JSONObject) convertData.get(i);
+            String status = getData.getString("status");
             Calculator getCalculator = new Calculator();
             HistoryChannel historyChannel = new HistoryChannel();
             ChannelDetail createChannelDetail = new ChannelDetail(
                 getData.getString("routerType"),
-                getData.getString("customerMove"),
                 getData.getString("deviceStatus"),
                 getData.getString("votesRequire"),
                 getData.getString("ipType"),
@@ -495,10 +529,6 @@ public class ChannelInfoController {
                 getCalculator.ConvertStringToSecond(getData.getString("deployRequestDate")),
                 getCalculator.ConvertStringToSecond(getData.getString("dateAcceptance")),
                 getData.getString("ipAddress"),
-                getCalculator.ConvertStringToSecond(getData.getString("dateRequestStop")),
-                getCalculator.ConvertStringToSecond(getData.getString("dateStop")),
-                getCalculator.ConvertStringToSecond(getData.getString("dateOnlineRequest")),
-                getCalculator.ConvertStringToSecond(getData.getString("dateOnline")),
                 getData.getString("fees") 
             );
             try {
@@ -515,10 +545,13 @@ public class ChannelInfoController {
                     );
                     channelValueRepository.save(channelValue);
                 }
+                if (!getData.getString("customerMove").equals("")) {
+                    status = "online";
+                }
                 ChannelValue getChannelValue = channelValueRepository.findByServicePack(getData.getString("servicePack"));
                 ChannelAttribute channelAttribute = new ChannelAttribute(
                     getData.getString("customer"),
-                    getData.getString("status"),
+                    status,
                     getData.getString("virtualNum"),
                     getData.getString("usernamePPPoE"),
                     getChannelValue
@@ -526,11 +559,9 @@ public class ChannelInfoController {
                 channelAttributeRepository.save(channelAttribute);
                 historyChannel.setChannelAttribute(channelAttribute);
                 createChannelDetail.setChannelAttribute(channelAttribute);
-
                 if (contractRepository.existsByCustomId(getData.getString("customId"))) {
                     Contract getContract = contractRepository.findByCustomId(getData.getString("customId"));
                     createChannelDetail.setContract(getContract);
-                    historyChannel.setContract(getContract);
                     channelDetailRepository.save(createChannelDetail);
                 } else {
                     Contract createContract = new Contract(
@@ -541,11 +572,27 @@ public class ChannelInfoController {
                         getData.getString("street")
                     );
                     contractRepository.save(createContract);
-                    historyChannel.setContract(createContract);
                     createChannelDetail.setContract(createContract);
                     channelDetailRepository.save(createChannelDetail);
                 }
-                historyChannelRepository.save(historyChannel);
+                if (!getData.getString("customerMove").equals("")) {
+                    if (contractRepository.existsByClientName(getData.getString("customerMove"))) {
+                        Contract historyContract = contractRepository.findByClientName(getData.getString("customerMove"));
+                        historyChannel.setContract(historyContract);
+                    }
+                    else {
+                        JSONObject getContractByCustomerMove = new JSONObject(getContractByClientName(getData.getString("customerMove")));
+                        Contract createContractHistory = new Contract(
+                            getContractByCustomerMove.getString("customId"),
+                            getContractByCustomerMove.getString("numContract"),
+                            getData.getString("customerMove"), 
+                            getContractByCustomerMove.getString("servicePlans"),
+                            getContractByCustomerMove.getString("street")
+                        );
+                        historyChannel.setContract(createContractHistory);
+                    }
+                    historyChannelRepository.save(historyChannel);
+                }
             } catch (Exception e) {
             }
         }
@@ -612,6 +659,54 @@ public class ChannelInfoController {
             contractRepository.save(createContract);
         }
         return ResponseEntity.ok(channelInfoService.findContractByCustomId(customId));
+    }
+
+    @ApiOperation(value = "Get contract by customId")
+    @GetMapping("/it4u/contract.{clientName}")
+    public String getContractByClientName(@PathVariable("clientName") String clientName) {
+        ApiRequest apiRequest = new ApiRequest();
+        JSONObject itemData = new JSONObject();
+        String companyName = "";
+        String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
+        JSONArray convertInfoClient = new JSONArray(getInfoClient);
+        if (!contractRepository.existsByClientName(clientName)) {
+            for (int i = 0; i < convertInfoClient.length(); i++) {
+                JSONObject getItem = (JSONObject) convertInfoClient.get(i);
+                try {
+                    companyName = getItem.getString("companyName");
+                } catch (Exception e) {
+                    companyName = getItem.getString("firstName") + " " + getItem.getString("lastName");
+                }
+                if (companyName.equals(clientName)) {
+                    String getServicePlan = apiRequest.getRequestUCRM(urlUCRM + "/clients/" + getItem.getInt("id") + "/services", authAppKey);
+                    JSONArray convertServicePlan = new JSONArray(getServicePlan);
+                    JSONArray getAttributes = getItem.getJSONArray("attributes");
+                    itemData.put("clientName", clientName);
+                    for (int j = 0; j < getAttributes.length(); j++) {
+                        JSONObject getInfoAtt = (JSONObject) getAttributes.get(j);
+                        if (getInfoAtt.getString("key").equals("sHPNg")) {
+                            itemData.put("contracts", getInfoAtt.getString("value"));
+                        }
+                    }
+                    itemData.put("customId", getItem.getString("userIdent"));
+                    JSONObject servicePlan = (JSONObject) convertServicePlan.get(0);
+                    itemData.put("servicePlan", servicePlan.getString("name"));
+                    itemData.put("street", getItem.getString("street1"));
+                }
+
+            }
+            Contract createContract = new Contract(
+                    itemData.getString("customId"), 
+                    itemData.getString("contracts"),
+                    itemData.getString("clientName"), 
+                    itemData.getString("servicePlan"),
+                    itemData.getString("street")
+                );
+            contractRepository.save(createContract);
+        }
+        Contract contract = channelInfoService.findContractByClientName(clientName);
+        JSONObject result = new JSONObject(contract);
+        return result.toString();
     }
 
     @ApiOperation(value = "Monitor daily traffic and client for customers")
