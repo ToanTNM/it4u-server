@@ -27,14 +27,22 @@ public class Calculator {
 
     public Timestamp convertStringToTimestamp(String dateTime) {
         String pattern = "yyyy-MM-dd HH:mm:ss.SSSSSSSS";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        LocalDateTime localDateTime = LocalDateTime.from(formatter.parse(dateTime));
-        Timestamp timestamp = Timestamp.valueOf(localDateTime);
-        return timestamp;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            LocalDateTime localDateTime = LocalDateTime.from(formatter.parse(dateTime));
+            Timestamp timestamp = Timestamp.valueOf(localDateTime);
+            return timestamp;
+        } catch (Exception e) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss.SSSSSSSS");
+            LocalDateTime localDateTime = LocalDateTime.from(formatter.parse(dateTime));
+            Timestamp timestamp = Timestamp.valueOf(localDateTime);
+            return timestamp;
+        }
+       
     }
 
     public Long ConvertStringToSecond(String time) {
-
+        
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
         long getTime = 0;
         if (time.isEmpty()) {

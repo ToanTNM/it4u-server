@@ -41,6 +41,8 @@ public class ImportWarehouseSummary extends UserDateAudit{
 
     private Long warrantyLandmark;
 
+    private Long exportDate;
+
     private String note;
 
     private Instant createdAt;

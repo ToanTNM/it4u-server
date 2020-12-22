@@ -29,4 +29,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     + " c.client_name"
     + " LIKE :clientName%", nativeQuery = true)
     Contract findByClientName(@Param("clientName") String clientName);
+
+    Contract findByNumContract(String numContract);
 }

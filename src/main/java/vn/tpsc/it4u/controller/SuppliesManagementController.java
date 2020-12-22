@@ -42,6 +42,19 @@ public class SuppliesManagementController {
         JSONArray getData = new JSONArray(suppliesManagementService.findAllListSupplies());
         return getData.toString();
     }
+    
+    @ApiOperation(value = "Upload file list supplies")
+    @PostMapping("/it4u/uploadListSupplies")
+    public String uploadListSupplies(@RequestBody String data) {
+        JSONArray convertDataToJson = new JSONArray(data);
+        for (int i=0; i<convertDataToJson.length(); i++) {
+            JSONObject getItem = (JSONObject) convertDataToJson.get(i);
+            suppliesManagementService.uploadListSupplies(getItem);
+            System.out.println(i);
+        }
+        JSONArray getListSupplies = new JSONArray(suppliesManagementService.findAllListSupplies());
+        return getListSupplies.toString();
+    }
 
     @ApiOperation(value = "Updated a list supplies by id")
     @PutMapping("/it4u/listSupplies/{id}")
@@ -73,6 +86,18 @@ public class SuppliesManagementController {
         return true;
     }
 
+    @ApiOperation(value = "Upload file export warehouse")
+    @PostMapping("/it4u/uploadExportWarehouse")
+    public String uploadExportWarehouse(@RequestBody String data) {
+        JSONArray convertDataToJson = new JSONArray(data);
+        for (int i = 0; i < convertDataToJson.length(); i++) {
+            JSONObject getItem = (JSONObject) convertDataToJson.get(i);
+            suppliesManagementService.uploadExportWarehouse(getItem);
+        }
+        JSONArray getExportWarehouse = new JSONArray(suppliesManagementService.findAllExportWarehouse());
+        return getExportWarehouse.toString();
+    }
+
     @ApiOperation(value = "Create an export warehouse")
     @PostMapping("/it4u/exportWarehouse")
     public String createExportWarehouse(@RequestBody String data) {
@@ -102,13 +127,13 @@ public class SuppliesManagementController {
     @PostMapping("/it4u/exportWarehouseByDate")
     public String getExportWarehouseByDate(@RequestBody String data) {
         JSONObject convertDataToJson = new JSONObject(data);
-        Calculator getCalculator = new Calculator();
-        String fromDate = convertDataToJson.getString("fromDate");
-        String toDate = convertDataToJson.getString("toDate");
-        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
-        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
-        List<ExportWarehouseSummary> getResult = suppliesManagementService.findExportWarehouseByDate(convertFromDate,
-                convertToDate);
+        // Calculator getCalculator = new Calculator();
+        Long fromDate = convertDataToJson.getLong("fromDate");
+        Long toDate = convertDataToJson.getLong("toDate");
+        // Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        // Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        List<ExportWarehouseSummary> getResult = suppliesManagementService.findExportWarehouseByDate(fromDate,
+                toDate);
         JSONArray result = new JSONArray(getResult);
         return result.toString();
     }
@@ -125,6 +150,18 @@ public class SuppliesManagementController {
     public Boolean deleteExportWarehouse(@PathVariable(value="id") Long id) {
         suppliesManagementService.deleteExportWarehouseById(id);
         return true;
+    }
+
+    @ApiOperation(value = "Upload file import warehouse")
+    @PostMapping("/it4u/uploadImportWarehouse")
+    public String uploadImportWarehouse(@RequestBody String data) {
+        JSONArray convertDataToJson = new JSONArray(data);
+        for (int i = 0; i < convertDataToJson.length(); i++) {
+            JSONObject getItem = (JSONObject) convertDataToJson.get(i);
+            suppliesManagementService.uploadImportWarehouse(getItem);
+        }
+        JSONArray getImportWarehouse = new JSONArray(suppliesManagementService.findAllImportWarehouse());
+        return getImportWarehouse.toString();
     }
 
     @ApiOperation(value = "Post an import warehouse")
@@ -156,12 +193,12 @@ public class SuppliesManagementController {
     @PostMapping("/it4u/importWarehouseByDate")
     public String getImportWarehouseByDate(@RequestBody String data) {
         JSONObject convertDataToJson = new JSONObject(data);
-        Calculator getCalculator = new Calculator();
-        String fromDate = convertDataToJson.getString("fromDate");
-        String toDate = convertDataToJson.getString("toDate");
-        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
-        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
-        List<ImportWarehouseSummary> getResult = suppliesManagementService.findImportWarehouseByDate(convertFromDate, convertToDate);
+        // Calculator getCalculator = new Calculator();
+        Long fromDate = convertDataToJson.getLong("fromDate");
+        Long toDate = convertDataToJson.getLong("toDate");
+        // Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        // Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        List<ImportWarehouseSummary> getResult = suppliesManagementService.findImportWarehouseByDate(fromDate, toDate);
         JSONArray result = new JSONArray(getResult);
         return result.toString();
     }
@@ -186,20 +223,20 @@ public class SuppliesManagementController {
         List<String> result = new ArrayList<>();
         JSONObject convertDataToJson = new JSONObject(data);
         Calculator getCalculator = new Calculator();
-        String fromDate = convertDataToJson.getString("fromDate");
-        String toDate = convertDataToJson.getString("toDate");
-        Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
-        Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
+        Long fromDate = convertDataToJson.getLong("fromDate");
+        Long toDate = convertDataToJson.getLong("toDate");
+        // Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);
+        // Timestamp convertToDate = getCalculator.convertStringToTimestamp(toDate);
         JSONArray getData = new JSONArray(suppliesManagementService.findAllListSupplies());
         for (int i=0; i< getData.length(); i++) {
             JSONObject createData = new JSONObject();
             JSONObject getItem = (JSONObject) getData.get(i);
             Long id = getItem.getLong("id"); 
-            Long numExportLess = suppliesManagementService.findNumExportByLessDate(convertFromDate, id);
-            Long numImportLess = suppliesManagementService.findNumImportByLessDate(convertFromDate, id);
+            Long numExportLess = suppliesManagementService.findNumExportByLessDate(fromDate, id);
+            Long numImportLess = suppliesManagementService.findNumImportByLessDate(fromDate, id);
             Long inventoryStart = numImportLess - numExportLess;
-            Long numImportFromToDate = suppliesManagementService.findNumImportByFromToDate(convertFromDate, convertToDate, id);
-            Long numExportFromToDate = suppliesManagementService.findNumExportByFromToDate(convertFromDate, convertToDate, id);
+            Long numImportFromToDate = suppliesManagementService.findNumImportByFromToDate(fromDate, toDate, id);
+            Long numExportFromToDate = suppliesManagementService.findNumExportByFromToDate(fromDate, toDate, id);
             // createData.put("numExportLess", numExportLess);
             Long inventoryEnd = numImportFromToDate + inventoryStart - numExportFromToDate;
             createData.put("itemCode", getItem.getString("itemCode"));

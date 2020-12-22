@@ -10,4 +10,6 @@ public interface ListSuppliesRepository extends JpaRepository<ListSupplies, Long
     ListSupplies findById(long id);
 
     ListSupplies findByItemCode(String itemCode);
+
+    Boolean existsByItemCode(String itemCode);
 }

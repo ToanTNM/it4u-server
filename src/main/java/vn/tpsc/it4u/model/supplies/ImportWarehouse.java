@@ -52,10 +52,12 @@ public class ImportWarehouse extends UserDateAudit{
 
     private Long warrantyLandmark;
 
+    private Long importDate;
+
     private String note;
     
     public ImportWarehouse(String licence, Long number, Long value, Long totalAmount, String supplier, String serialNum,
-        String MAC, Long warrantyPeriod, Long storageTerm, Long warrantyLandmark, String note) {
+        String MAC, Long warrantyPeriod, Long storageTerm, Long warrantyLandmark, Long importDate, String note) {
             this.licence = licence;
             this.number = number;
             this.value = value;
@@ -66,6 +68,7 @@ public class ImportWarehouse extends UserDateAudit{
             this.warrantyPeriod = warrantyPeriod;
             this.storageTerm = storageTerm;
             this.warrantyLandmark = warrantyLandmark;
+            this.importDate = importDate;
             this.note = note;
         }
 }

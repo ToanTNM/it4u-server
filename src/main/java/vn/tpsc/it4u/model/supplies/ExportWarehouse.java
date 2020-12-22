@@ -49,6 +49,8 @@ public class ExportWarehouse extends UserDateAudit {
 
     private Long warrantyLandmark;
 
+    private Long exportDate;
+
     @OneToOne
     @JoinColumn(name = "contract_id")
     private Contract contract;
@@ -56,7 +58,7 @@ public class ExportWarehouse extends UserDateAudit {
     private String note;
 
     public ExportWarehouse(String licence, Long number, String supplier, String serialNum,
-        String MAC, Long warrantyPeriod, Long storageTerm, Long warrantyLandmark, String note) {
+        String MAC, Long warrantyPeriod, Long storageTerm, Long warrantyLandmark, Long exportDate, String note) {
             this.licence = licence;
             this.number = number;
             this.supplier = supplier;
@@ -65,6 +67,7 @@ public class ExportWarehouse extends UserDateAudit {
             this.warrantyPeriod = warrantyPeriod;
             this.storageTerm = storageTerm;
             this.warrantyLandmark = warrantyLandmark;
+            this.exportDate = exportDate;
             this.note = note;
         }
 }

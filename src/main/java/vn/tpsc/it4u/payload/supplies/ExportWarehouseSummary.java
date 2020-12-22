@@ -40,6 +40,8 @@ public class ExportWarehouseSummary extends UserDateAudit{
 
     private Contract contract;
 
+    private Long exportDate;
+
     private String note;
 
     private Instant createdAt;

@@ -1,6 +1,7 @@
 package vn.tpsc.it4u.service;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.model.Contract;
 import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.repository.supplies.*;
+import vn.tpsc.it4u.util.Calculator;
 import vn.tpsc.it4u.model.supplies.*;
 import vn.tpsc.it4u.payload.supplies.ExportWarehouseSummary;
 import vn.tpsc.it4u.payload.supplies.ImportWarehouseSummary;
@@ -44,6 +46,36 @@ public class SuppliesManagementService {
             data.getString("note")
         );
         listSuppliesRepository.save(listSupplies);    
+        return true;
+    }
+
+    public Boolean uploadListSupplies(JSONObject data) {
+        if (!listSuppliesRepository.existsByItemCode(data.getString("itemCode"))) {
+            long number = 0;
+            long value = 0;
+            String note ="";
+            try {
+                number = data.getLong("number");
+            } catch (Exception e) {
+            }
+            try {
+                value = data.getLong("value");
+            } catch (Exception e) {
+            }
+            try {
+                note = data.getString("note");
+            } catch (Exception e) {
+            }
+            ListSupplies createListSupplies = new ListSupplies(
+                data.getString("itemCode"),
+                data.getString("name"),
+                data.getString("unit").toLowerCase(),
+                number,
+                value,
+                note
+            );
+            listSuppliesRepository.save(createListSupplies);
+        }
         return true;
     }
 
@@ -87,6 +119,7 @@ public class SuppliesManagementService {
             data.getLong("warrantyPeriod"),
             data.getLong("storageTerm"),
             data.getLong("warrantyLandmark"),
+            data.getLong("importDate"),
             data.getString("note")
         );
         importWarehouse.setListSupplies(listSupplies);
@@ -134,6 +167,7 @@ public class SuppliesManagementService {
                 importWarehouse.getWarrantyPeriod(),
                 importWarehouse.getStorageTerm(), 
                 importWarehouse.getWarrantyLandmark(),
+                importWarehouse.getImportDate(),
                 importWarehouse.getNote(),
                 importWarehouse.getCreatedAt()
             )).collect(Collectors.toList());
@@ -155,6 +189,7 @@ public class SuppliesManagementService {
             data.getLong("warrantyPeriod"),
             data.getLong("storageTerm"),
             data.getLong("warrantyLandmark"),
+            data.getLong("exportDate"),
             data.getString("note")
         );
         ListSupplies listSupplies = listSuppliesRepository.findByItemCode(data.getString("itemCode"));
@@ -162,6 +197,129 @@ public class SuppliesManagementService {
         exportWarehouse.setListSupplies(listSupplies);
         exportWarehouse.setContract(contract);
         exportWarehouseRepository.save(exportWarehouse);
+        return true;
+    }
+
+    public Boolean uploadExportWarehouse(JSONObject data) {
+            Calculator getCalculator = new Calculator();
+            Long convertExportDate = getCalculator.ConvertStringToSecond(data.getString("exportDate"));
+            long convertWarrantyLandmark = 0;
+            long number = 0;
+            try {
+                convertWarrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            try {
+                number = data.getLong("number");
+            } catch (Exception e) {
+                System.out.println(number);
+            }
+            ExportWarehouse exportWarehouse = new ExportWarehouse(
+            data.getString("licence"),
+            data.getLong("number"),
+            data.getString("supplier"),
+            data.getString("serialNum"),
+            data.getString("MAC"),
+            data.getLong("warrantyPeriod"),
+            data.getLong("storageTerm"),
+            convertWarrantyLandmark,
+            convertExportDate,
+            data.getString("note")
+        );
+        if (listSuppliesRepository.existsByItemCode(data.getString("itemCode"))) {
+            ListSupplies listSupplies = listSuppliesRepository.findByItemCode(data.getString("itemCode"));
+            exportWarehouse.setListSupplies(listSupplies);
+        }
+        else {
+            ListSupplies createListSupplies = new ListSupplies(
+                data.getString("itemCode"),
+                data.getString("name"),
+                data.getString("unit"),
+                data.getLong("number"),
+                data.getLong("value"),
+                data.getString("note")
+            );
+            listSuppliesRepository.save(createListSupplies);
+            exportWarehouse.setListSupplies(createListSupplies);
+        }
+        System.out.println(data.getString("clientName"));
+        if (!data.getString("clientName").isEmpty()) {
+            if (contractRepository.existsByClientName(data.getString("clientName"))) {
+                try {
+                    Contract contract = contractRepository.findByClientName(data.getString("clientName"));
+                    exportWarehouse.setContract(contract);
+                } catch (Exception e) {
+                    String[] getNumContract = data.getString("numContract").split("\\s",0);
+                    String numContract = getNumContract[0];
+                    Contract contract = contractRepository.findByNumContract(numContract);
+                    exportWarehouse.setContract(contract);
+                }
+            }
+            else {
+                Contract contract = new Contract(
+                    null, 
+                    data.getString("numContract"),
+                    data.getString("clientName"), 
+                    null,
+                    data.getString("street")
+                );
+                contractRepository.save(contract);
+                exportWarehouse.setContract(contract);
+            }
+        }
+        exportWarehouseRepository.save(exportWarehouse);
+        return true;
+    }
+
+    public Boolean uploadImportWarehouse(JSONObject data) {
+        Calculator getCalculator = new Calculator();
+        long warrantyLandmark = 0;
+        long importDate = 0;
+        warrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
+        try {
+          warrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
+        } catch (Exception e) {
+        }
+        try {
+            
+            importDate = getCalculator.ConvertStringToSecond(data.getString("importDate"));
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        
+        ImportWarehouse importWarehouse = new ImportWarehouse(
+            data.getString("licence"),
+            data.getLong("number"),
+            data.getLong("value"),
+            data.getLong("totalAmount"),
+            data.getString("supplier"),
+            data.getString("serialNum"),
+            data.getString("MAC"),
+            data.getLong("warrantyPeriod"),
+            data.getLong("storageTerm"),
+            warrantyLandmark,
+            importDate,
+            data.getString("note")
+        );
+        
+        if (listSuppliesRepository.existsByItemCode(data.getString("itemCode"))) {
+            ListSupplies listSupplies = listSuppliesRepository.findByItemCode(data.getString("itemCode"));
+            importWarehouse.setListSupplies(listSupplies);
+        }
+        else {
+            ListSupplies createListSupplies = new ListSupplies(
+                data.getString("itemCode"),
+                data.getString("name"),
+                data.getString("unit"),
+                data.getLong("number"),
+                data.getLong("value"),
+                data.getString("note")
+            );
+            listSuppliesRepository.save(createListSupplies);
+            importWarehouse.setListSupplies(createListSupplies);
+        }
+        importWarehouseRepository.save(importWarehouse);
         return true;
     }
 
@@ -202,7 +360,8 @@ public class SuppliesManagementService {
                 exportWarehouse.getWarrantyPeriod(), 
                 exportWarehouse.getStorageTerm(),
                 exportWarehouse.getWarrantyLandmark(),
-                exportWarehouse.getContract(), 
+                exportWarehouse.getContract(),
+                exportWarehouse.getExportDate(),
                 exportWarehouse.getNote(),
                 exportWarehouse.getCreatedAt()
         )).collect(Collectors.toList());
@@ -214,7 +373,7 @@ public class SuppliesManagementService {
         return true;
     }
 
-    public Long findNumExportByLessDate(Timestamp fromDate, Long id) {
+    public Long findNumExportByLessDate(Long fromDate, Long id) {
         long result = 0;
         List<Long> numExportWarehouse = exportWarehouseRepository.findNumberByLessDate(fromDate, id);
         for (int i=0; i<numExportWarehouse.size(); i++) {
@@ -223,7 +382,7 @@ public class SuppliesManagementService {
         return result;
     }
 
-    public Long findNumImportByLessDate(Timestamp fromDate, Long id) {
+    public Long findNumImportByLessDate(Long fromDate, Long id) {
         long result = 0;
         List<Long> numImportWarehouse = importWarehouseRepository.findNumberByLessDate(fromDate, id);
         for (int i = 0; i < numImportWarehouse.size(); i++) {
@@ -232,7 +391,7 @@ public class SuppliesManagementService {
         return result;
     }
 
-    public Long findNumImportByFromToDate(Timestamp fromDate, Timestamp endDate, Long id) {
+    public Long findNumImportByFromToDate(Long fromDate, Long endDate, Long id) {
         long result = 0;
         List<Long> numImportWarehouse = importWarehouseRepository.findNumberByFromToEndDate(fromDate, endDate, id);
         for (int i = 0; i < numImportWarehouse.size(); i++) {
@@ -241,7 +400,7 @@ public class SuppliesManagementService {
         return result;
     }
 
-    public Long findNumExportByFromToDate(Timestamp fromDate, Timestamp endDate, Long id) {
+    public Long findNumExportByFromToDate(Long fromDate, Long endDate, Long id) {
         long result = 0;
         List<Long> numExportWarehouse = exportWarehouseRepository.findNumberByFromToEndDate(fromDate, endDate, id);
         for (int i = 0; i < numExportWarehouse.size(); i++) {
@@ -250,8 +409,8 @@ public class SuppliesManagementService {
         return result;
     }
 
-    public List<ExportWarehouseSummary> findExportWarehouseByDate(Timestamp fromDate, Timestamp endDate) {
-        List<ExportWarehouse> exportWarehouses = exportWarehouseRepository.findExportWarehouseToDate(fromDate, endDate);
+    public List<ExportWarehouseSummary> findExportWarehouseByDate(Long fromDate, Long endDate) {
+        List<ExportWarehouse> exportWarehouses = exportWarehouseRepository.findExportWarehouseToExportDate(fromDate, endDate);
         List<ExportWarehouseSummary> listExportWarehouse = exportWarehouses.stream()
             .map(exportWarehouse -> new ExportWarehouseSummary(
                 exportWarehouse.getId(),
@@ -265,17 +424,18 @@ public class SuppliesManagementService {
                 exportWarehouse.getStorageTerm(),
                 exportWarehouse.getWarrantyLandmark(),
                 exportWarehouse.getContract(), 
+                exportWarehouse.getExportDate(),
                 exportWarehouse.getNote(),
                 exportWarehouse.getCreatedAt()
         )).collect(Collectors.toList());
         return listExportWarehouse;
     }
 
-     public List<ImportWarehouseSummary> findImportWarehouseByDate(Timestamp fromDate, Timestamp endDate) {
-        List<ImportWarehouse> importWarehouses = importWarehouseRepository.findImportWarehouseToDate(fromDate, endDate);
+     public List<ImportWarehouseSummary> findImportWarehouseByDate(Long fromDate, Long endDate) {
+        List<ImportWarehouse> importWarehouses = importWarehouseRepository.findImportWarehouseToImportDate(fromDate, endDate);
         List<ImportWarehouseSummary> listExportWarehouse = importWarehouses.stream()
             .map(importWarehouse -> new ImportWarehouseSummary(
-                 importWarehouse.getId(), 
+                importWarehouse.getId(), 
                 importWarehouse.getLicence(),
                 importWarehouse.getListSupplies(),
                 importWarehouse.getNumber(), 
@@ -287,6 +447,7 @@ public class SuppliesManagementService {
                 importWarehouse.getWarrantyPeriod(),
                 importWarehouse.getStorageTerm(), 
                 importWarehouse.getWarrantyLandmark(),
+                importWarehouse.getImportDate(),
                 importWarehouse.getNote(),
                 importWarehouse.getCreatedAt()
         )).collect(Collectors.toList());

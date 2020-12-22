@@ -18,20 +18,27 @@ public interface ExportWarehouseRepository extends JpaRepository<ExportWarehouse
     + " number"
     + " FROM export_warehouse e"
     + " WHERE"
-    + " e.created_at < :lessDate AND e.list_supplies_id = :listSuppliesId", nativeQuery = true)
-    List<Long> findNumberByLessDate(@Param("lessDate") Timestamp lessDate, @Param("listSuppliesId") Long listSuppliesId);
+    + " e.export_date < :lessDate AND e.list_supplies_id = :listSuppliesId", nativeQuery = true)
+    List<Long> findNumberByLessDate(@Param("lessDate") Long lessDate, @Param("listSuppliesId") Long listSuppliesId);
 
     @Query(value = " SELECT"
     + " number"
     + " FROM export_warehouse e"
     + " WHERE"
-    + " e.created_at >= :fromDate AND e.created_at <= :endDate AND e.list_supplies_id = :listSuppliesId", nativeQuery = true)
-    List<Long> findNumberByFromToEndDate(@Param("fromDate") Timestamp fromDate, @Param("endDate") Timestamp endDate, @Param("listSuppliesId") Long listSuppliesId);
+    + " e.export_date >= :fromDate AND e.export_date <= :endDate AND e.list_supplies_id = :listSuppliesId", nativeQuery = true)
+    List<Long> findNumberByFromToEndDate(@Param("fromDate") Long fromDate, @Param("endDate") Long endDate, @Param("listSuppliesId") Long listSuppliesId);
 
     @Query(value = " SELECT"
     + " *"
     + " FROM export_warehouse i"
     + " WHERE"
-    + " i.created_at >= :fromDate AND i.created_at <= :endDate", nativeQuery = true)
-    List<ExportWarehouse> findExportWarehouseToDate(@Param("fromDate") Timestamp fromDate, @Param("endDate") Timestamp endDate);
+    + " i.export_date >= :fromDate AND i.export_date <= :endDate", nativeQuery = true)
+    List<ExportWarehouse> findExportWarehouseToDate(@Param("fromDate") Long fromDate, @Param("endDate") Long endDate);
+
+    @Query(value = " SELECT"
+    + " *"
+    + " FROM export_warehouse i"
+    + " WHERE"
+    + " i.export_date >= :fromDate AND i.export_date <= :endDate", nativeQuery = true)
+    List<ExportWarehouse> findExportWarehouseToExportDate(@Param("fromDate") Long fromDate, @Param("endDate") Long endDate);
 }
