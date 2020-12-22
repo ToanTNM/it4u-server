@@ -1,9 +1,9 @@
-POST https://it4u.tpsc.vn/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgzMzc4NTA5LCJleHAiOjE1ODM5ODMzMDl9.t0vTx_dFKXDHmgDcITRDtB_tRBdF-Q6zx7SxufoiSWacXgwgh3EuvkCwQXEXUnEJc3QJyeqD5xmX0ypVTJTtWA
+POST http://localhost:5000/api/v1/role
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODYyNDg1OSwiZXhwIjoxNjA5MjI5NjU5fQ.ieRPWEgeVzsxykII6qHqnaNEWagD8LowqlIXSayzLHMtvBdEx-jwrqA1Ct35X4h2udxKGXmxUjouYCMd3yy9kg
 Content-Type: application/json
 
 {
-    "name": "ROLE_KH"
+    "name": "ROLE_LEAD_KD"
 }
 
 ###

@@ -167,10 +167,20 @@ public class AuthController {
                             .orElseThrow(() -> new AppException("User Role not set."));
                     user.setRoles(Collections.singleton(userRoleCSKH));
                     break;
+                case "ROLE_LEAD_KT":
+                    final Role roleLeadKT = roleRepository.findByName(RoleName.ROLE_LEAD_KT)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleLeadKT));
+                    break;
                 case "ROLE_KT":
                     final Role roleKT = roleRepository.findByName(RoleName.ROLE_KT)
                             .orElseThrow(() -> new AppException("User Role not set."));
                     user.setRoles(Collections.singleton(roleKT));
+                    break;
+                case "ROLE_LEAD_KD":
+                    final Role roleLeadKD = roleRepository.findByName(RoleName.ROLE_LEAD_KD)
+                            .orElseThrow(() -> new AppException("User Role not set."));
+                    user.setRoles(Collections.singleton(roleLeadKD));
                     break;
                 case "ROLE_KD":
                     final Role roleKD = roleRepository.findByName(RoleName.ROLE_KD)
