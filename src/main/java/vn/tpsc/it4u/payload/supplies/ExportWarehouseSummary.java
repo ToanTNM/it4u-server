@@ -26,6 +26,8 @@ public class ExportWarehouseSummary extends UserDateAudit{
 
     private Long number;
 
+    private String status;
+
     private String supplier;
 
     private String serialNum;

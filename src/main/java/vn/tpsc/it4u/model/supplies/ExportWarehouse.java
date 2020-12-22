@@ -37,6 +37,8 @@ public class ExportWarehouse extends UserDateAudit {
 
     private Long number;
 
+    private String status;
+
     private String supplier;
 
     private String serialNum;
@@ -57,9 +59,10 @@ public class ExportWarehouse extends UserDateAudit {
 
     private String note;
 
-    public ExportWarehouse(String licence, Long number, String supplier, String serialNum,
+    public ExportWarehouse(String licence, Long number, String status, String supplier, String serialNum,
         String MAC, Long warrantyPeriod, Long storageTerm, Long warrantyLandmark, Long exportDate, String note) {
             this.licence = licence;
+            this.status = status;
             this.number = number;
             this.supplier = supplier;
             this.serialNum = serialNum;

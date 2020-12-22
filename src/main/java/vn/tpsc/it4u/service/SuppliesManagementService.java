@@ -180,9 +180,19 @@ public class SuppliesManagementService {
     }
 
     public Boolean createExportWarehouse(JSONObject data) {
+        String status = "Đang sử dụng";
+        if (exportWarehouseRepository.existsBySerialNum(data.getString("serialNum"))) {
+            List<ExportWarehouse> getListExportWarehouse = exportWarehouseRepository.findBySerialNum(data.getString("serialNum"));
+            for (int i=0; i<getListExportWarehouse.size(); i++) {
+                ExportWarehouse exportWarehouse = getListExportWarehouse.get(i);
+                exportWarehouse.setStatus("Đã dịch chuyển");
+                exportWarehouseRepository.save(exportWarehouse);
+            }
+        }
         ExportWarehouse exportWarehouse = new ExportWarehouse(
             data.getString("licence"),
             data.getLong("number"),
+            status,
             data.getString("supplier"),
             data.getString("serialNum"),
             data.getString("MAC"),
@@ -201,23 +211,25 @@ public class SuppliesManagementService {
     }
 
     public Boolean uploadExportWarehouse(JSONObject data) {
-            Calculator getCalculator = new Calculator();
-            Long convertExportDate = getCalculator.ConvertStringToSecond(data.getString("exportDate"));
-            long convertWarrantyLandmark = 0;
-            long number = 0;
-            try {
-                convertWarrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
-            } catch (Exception e) {
-                //TODO: handle exception
-            }
-            try {
-                number = data.getLong("number");
-            } catch (Exception e) {
-                System.out.println(number);
-            }
-            ExportWarehouse exportWarehouse = new ExportWarehouse(
+        Calculator getCalculator = new Calculator();
+        String status = "Đang sử dụng";
+        Long convertExportDate = getCalculator.ConvertStringToSecond(data.getString("exportDate"));
+        long convertWarrantyLandmark = 0;
+        long number = 0;
+        try {
+            convertWarrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+        try {
+            number = data.getLong("number");
+        } catch (Exception e) {
+            System.out.println(number);
+        }
+        ExportWarehouse exportWarehouse = new ExportWarehouse(
             data.getString("licence"),
             data.getLong("number"),
+            status,
             data.getString("supplier"),
             data.getString("serialNum"),
             data.getString("MAC"),
@@ -329,7 +341,15 @@ public class SuppliesManagementService {
         ExportWarehouse exportWarehouse = exportWarehouseRepository.findById(id);
         exportWarehouse.setLicence(data.getString("licence"));
         exportWarehouse.setListSupplies(listSupplies);
-        exportWarehouse.setNumber(data.getLong("number"));
+        long number = 0;
+        String getStatus = data.getString("status");
+        exportWarehouse.setStatus(getStatus);
+        if (getStatus.equals("Thu hồi")) {
+            exportWarehouse.setNumber(number);
+        }
+        else {
+            exportWarehouse.setNumber(data.getLong("number"));
+        }
         exportWarehouse.setSupplier(data.getString("supplier"));
         exportWarehouse.setMAC(data.getString("MAC"));
         exportWarehouse.setWarrantyPeriod(data.getLong("warrantyPeriod"));
@@ -346,14 +366,20 @@ public class SuppliesManagementService {
         return exportWarehouse;
     }
 
+    public List<ExportWarehouse> findExportWarehouseBySerialNum(String serialNum) {
+        List<ExportWarehouse> exportWarehouse = exportWarehouseRepository.findBySerialNum(serialNum);
+        return exportWarehouse;
+    }
+
     public List<ExportWarehouseSummary> findAllExportWarehouse() {
-        List<ExportWarehouse> exportWarehouses = exportWarehouseRepository.findAll();
+        List<ExportWarehouse> exportWarehouses = exportWarehouseRepository.findAllSortByStatus();
         List<ExportWarehouseSummary> listExportWarehouse = exportWarehouses.stream()
             .map(exportWarehouse -> new ExportWarehouseSummary(
                 exportWarehouse.getId(),
                 exportWarehouse.getLicence(), 
                 exportWarehouse.getListSupplies(), 
                 exportWarehouse.getNumber(),
+                exportWarehouse.getStatus(),
                 exportWarehouse.getSupplier(),
                 exportWarehouse.getSerialNum(), 
                 exportWarehouse.getMAC(),
@@ -417,6 +443,7 @@ public class SuppliesManagementService {
                 exportWarehouse.getLicence(), 
                 exportWarehouse.getListSupplies(), 
                 exportWarehouse.getNumber(),
+                exportWarehouse.getStatus(),
                 exportWarehouse.getSupplier(),
                 exportWarehouse.getSerialNum(), 
                 exportWarehouse.getMAC(),

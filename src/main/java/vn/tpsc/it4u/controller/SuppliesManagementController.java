@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Path;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import vn.tpsc.it4u.model.supplies.ExportWarehouse;
 import vn.tpsc.it4u.payload.supplies.ExportWarehouseSummary;
 import vn.tpsc.it4u.payload.supplies.ImportWarehouseSummary;
 import vn.tpsc.it4u.service.SuppliesManagementService;
@@ -123,9 +126,17 @@ public class SuppliesManagementController {
         return getData.toString();
     }
 
+    @ApiOperation(value = "get an export warehouse by mac")
+    @GetMapping("/it4u/exportWarehouseBySerialNum/{serialNum}")
+    public String getExportWarehouseByMAC(@PathVariable(value="serialNum") String serialNum) {
+        JSONArray getData = new JSONArray(suppliesManagementService.findExportWarehouseBySerialNum(serialNum));
+        return getData.toString();
+    }
+
     @ApiOperation(value = "Get all export warehouse by date")
     @PostMapping("/it4u/exportWarehouseByDate")
     public String getExportWarehouseByDate(@RequestBody String data) {
+        String test = "";
         JSONObject convertDataToJson = new JSONObject(data);
         // Calculator getCalculator = new Calculator();
         Long fromDate = convertDataToJson.getLong("fromDate");

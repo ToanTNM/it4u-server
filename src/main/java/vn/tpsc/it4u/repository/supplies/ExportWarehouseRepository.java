@@ -14,6 +14,10 @@ import vn.tpsc.it4u.model.supplies.ExportWarehouse;
 public interface ExportWarehouseRepository extends JpaRepository<ExportWarehouse, Long>{
     ExportWarehouse findById(long id);
 
+    List<ExportWarehouse> findBySerialNum(String serialNum);
+
+    Boolean existsBySerialNum(String serialNum);
+
     @Query(value = " SELECT"
     + " number"
     + " FROM export_warehouse e"
@@ -41,4 +45,11 @@ public interface ExportWarehouseRepository extends JpaRepository<ExportWarehouse
     + " WHERE"
     + " i.export_date >= :fromDate AND i.export_date <= :endDate", nativeQuery = true)
     List<ExportWarehouse> findExportWarehouseToExportDate(@Param("fromDate") Long fromDate, @Param("endDate") Long endDate);
+
+    @Query(value = " SELECT"
+    + " *"
+    + " FROM export_warehouse"
+    + " ORDER BY status ASC", nativeQuery = true)
+    List<ExportWarehouse> findAllSortByStatus();
+
 }
