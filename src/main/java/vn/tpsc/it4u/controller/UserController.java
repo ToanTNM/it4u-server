@@ -1,9 +1,11 @@
 package vn.tpsc.it4u.controller;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import vn.tpsc.it4u.model.enums.RoleName;
 import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.payload.*;
 import vn.tpsc.it4u.repository.SitesNameRepository;
@@ -12,6 +14,9 @@ import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.UserService;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 import vn.tpsc.it4u.security.CurrentUser;
+import vn.tpsc.it4u.exception.AppException;
+import vn.tpsc.it4u.model.Role;
+import vn.tpsc.it4u.repository.RoleRepository;
 
 import java.util.Locale;
 import java.util.Set;
@@ -21,21 +26,19 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import com.google.api.services.compute.Compute.Autoscalers.Update;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("${app.api.version}")
 public class UserController {
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -197,7 +200,8 @@ public class UserController {
                     null,
                     null
             );
-        userService.updateUser(userId, user);
+        Role role = roleRepository.findRoleByName(updatingUser.getRoles());
+        userService.updateUser(userId, user, role);
 
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }

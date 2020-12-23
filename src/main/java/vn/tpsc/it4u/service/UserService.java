@@ -3,8 +3,10 @@ package vn.tpsc.it4u.service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.exception.AppException;
+import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.ChangePasswordViewModel;
 import vn.tpsc.it4u.payload.UserSummary;
@@ -183,7 +186,7 @@ public class UserService {
         return listUsers;
     }
 
-    public boolean updateUser(List<Long> userId, UserSummary updatingUser) {
+    public boolean updateUser(List<Long> userId, UserSummary updatingUser, Role role) {
         // List<User> users = userRepository.findByIdIn(userId);
         List<User> users = userRepository.findByIdIn(userId);
         User user = mapper.map(users.get(0), User.class);
@@ -202,6 +205,10 @@ public class UserService {
         user.setSitename(updatingUser.getSitename() != null ? updatingUser.getSitename() : user.getSitename());
         
         user.setLanguage(updatingUser.getLanguage() != null ? updatingUser.getLanguage() : user.getLanguage());
+        // Set<Role> roles = updatingUser.getRoles();
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
         
         userRepository.save(user);
 
