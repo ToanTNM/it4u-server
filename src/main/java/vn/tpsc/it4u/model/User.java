@@ -97,7 +97,7 @@ public class User extends UserDateAudit {
     private String resetToken;
 
     //@DBRef(lazy = true)
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

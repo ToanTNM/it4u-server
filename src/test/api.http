@@ -1,9 +1,9 @@
-POST http://localhost:5000/api/v1/role
+POST https://api.tpsc.vn/api/v1/role
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODYyNDg1OSwiZXhwIjoxNjA5MjI5NjU5fQ.ieRPWEgeVzsxykII6qHqnaNEWagD8LowqlIXSayzLHMtvBdEx-jwrqA1Ct35X4h2udxKGXmxUjouYCMd3yy9kg
 Content-Type: application/json
 
 {
-    "name": "ROLE_LEAD_KD"
+    "name": "ROLE_LEAD_KT"
 }
 
 ###
@@ -123,8 +123,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/api/v1/users/3
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1OTY3MDg4LCJleHAiOjE1NzY1NzE4ODh9.hR5gDm_vVyuPyM99WSilHBsipLrid-G9foL-ZvEh784xN-B6KbN51cQWOQ4PBwzO2BSvzdUpFmE-vjSwTgkzmA
+DELETE http://localhost:5000/api/v1/users/116
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODgwMzUzOCwiZXhwIjoxNjA5NDA4MzM4fQ.HWd_sZKf7qa_hZMCUjcj-i52Xgr6PLCCf5JZSsi-uurjen0M0nksjev23tFIoHWgwlIyvScXZGoQM6yUStKSYA
 
 ###
 GET http://localhost:5000/api/v1/users/33
