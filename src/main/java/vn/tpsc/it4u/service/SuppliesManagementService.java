@@ -255,7 +255,6 @@ public class SuppliesManagementService {
             listSuppliesRepository.save(createListSupplies);
             exportWarehouse.setListSupplies(createListSupplies);
         }
-        System.out.println(data.getString("clientName"));
         if (!data.getString("clientName").isEmpty()) {
             if (contractRepository.existsByClientName(data.getString("clientName"))) {
                 try {
@@ -264,9 +263,13 @@ public class SuppliesManagementService {
                 } catch (Exception e) {
                     String[] getNumContract = data.getString("numContract").split("\\s",0);
                     String numContract = getNumContract[0];
-                    Contract contract = contractRepository.findByNumContract(numContract);
+                    Contract contract = contractRepository.findByNumContract(data.getString("numContract"));
                     exportWarehouse.setContract(contract);
                 }
+            }
+            else if (contractRepository.existsByNumContract(data.getString("numContract"))) {
+                Contract contract = contractRepository.findByNumContract(data.getString("numContract"));
+                exportWarehouse.setContract(contract);
             }
             else {
                 Contract contract = new Contract(

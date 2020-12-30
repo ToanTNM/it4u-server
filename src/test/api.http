@@ -1506,3 +1506,56 @@ Content-Type: application/json
     "fromDate": "2020-12-16 13:02:56.12345678",
     "toDate": "2020-12-18 13:02:56.12345678"
 }
+
+###
+POST http://localhost:5000/api/v1/it4u/clientDeviceInf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwOTExOTU3NiwiZXhwIjoxNjA5NzI0Mzc2fQ.t2qCrMqLRS-_EgAhjV9ItgISSVUM_SeDVzP9hnVjXwm46aa6f4ceFj5Ft7v8elh57LdHy7OIBe-udylKrZDKBg
+Content-Type: application/json
+
+{
+    "backup": "",
+    "maintenance": "",
+    "services": "Game PC",
+    "ispWan1": "",
+    "modelWan1": "F670Y",
+    "ipWan1": "172.16.12.1",
+    "ipPublicWan1": "",
+    "passWan1": "Tps@tuyentran19",
+    "ispWan2": "",
+    "modelWan2": "iGateGW040",
+    "ipWan2": "192.168.1.1",
+    "ipPublicWan2": "",
+    "passWan2": "Tps@tuyentran19",
+    "ispWan3": "",
+    "modelWan3": "",
+    "ipWan3": "",
+    "ipPublicWan3": "",
+    "passWan3": "",
+    "ispWan4": "",
+    "modelWan4": "",
+    "ipWan4": "",
+    "ipPublicWan4": "",
+    "passWan4": "",
+    "modelLb": "TL480",
+    "ipLb": "192.168.101.1",
+    "passLb": "Tps@binhle19",
+    "modelOther": "",
+    "ipOther": "",
+    "passOther": "",
+    "reboot": "",
+    "monitor": "",
+    "method": "",
+    "location": "",
+    "openPort": "",
+    "firmware": "",
+    "wanGroup": "",
+    "note": "",
+    "clientName": "",
+    "idName": "mlm3yl8w",
+    "siteName": "192PCT_Binh.LQ"
+}
+
+###
+Get http://localhost:5000/api/v1/it4u/clientDeviceInf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwOTExOTU3NiwiZXhwIjoxNjA5NzI0Mzc2fQ.t2qCrMqLRS-_EgAhjV9ItgISSVUM_SeDVzP9hnVjXwm46aa6f4ceFj5Ft7v8elh57LdHy7OIBe-udylKrZDKBg
+Content-Type: application/json

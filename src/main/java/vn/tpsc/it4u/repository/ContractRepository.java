@@ -14,12 +14,14 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
 
     Boolean existsByCustomId(String customId);
 
+    Boolean existsByNumContract(String numContract);
+
     @Query(value = "SELECT"
     + " count(*)>0"
     + " FROM contract c"
     + " WHERE"
     + " c.client_name"
-    + " LIKE :clientName%", nativeQuery = true)
+    + " LIKE %:clientName%", nativeQuery = true)
     Boolean existsByClientName(@Param("clientName") String clientName);
 
     @Query(value = "SELECT"
@@ -30,5 +32,13 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     + " LIKE :clientName%", nativeQuery = true)
     Contract findByClientName(@Param("clientName") String clientName);
 
+    @Query(value = "SELECT"
+    + " *"
+    + " FROM contract c"
+    + " WHERE"
+    + " c.street"
+    + " LIKE :street%", nativeQuery = true)
+    Contract findByStreet(@Param("street") String street);
+    
     Contract findByNumContract(String numContract);
 }

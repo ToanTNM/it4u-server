@@ -20,4 +20,6 @@ public interface SitesNameRepository extends JpaRepository<SitesName, Long> {
     Boolean existsByIdname(String idname);
 
     SitesName findByIdname(String idname);
+
+    SitesName findBySitename(String sitename);
 }

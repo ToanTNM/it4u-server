@@ -163,17 +163,17 @@ public class UserController {
         // return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
     }
     @DeleteMapping("/users/{id}")
-        public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
+    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
         userService.deleteUser(userId);
         return ResponseEntity.ok(apiResponse.success(200, locale));
     }
 
     @GetMapping("/users/{id}")
-        public String getUser(@PathVariable(value = "id") List<Long> userId) {
-            JSONArray getUser = new JSONArray(userService.findUser(userId));
-            JSONObject result = (JSONObject) getUser.get(0);
-            return getUser.toString();
-        }
+    public String getUser(@PathVariable(value = "id") List<Long> userId) {
+        JSONArray getUser = new JSONArray(userService.findUser(userId));
+        JSONObject result = (JSONObject) getUser.get(0);
+        return getUser.toString();
+    }
 
     @ApiOperation(value = "Update user infomation, except: role, password, avatar")
     @PutMapping("/users/{id}")

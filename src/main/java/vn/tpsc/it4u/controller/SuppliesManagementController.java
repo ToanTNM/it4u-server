@@ -1,10 +1,7 @@
 package vn.tpsc.it4u.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ws.rs.Path;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,12 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import vn.tpsc.it4u.model.supplies.ExportWarehouse;
 import vn.tpsc.it4u.payload.supplies.ExportWarehouseSummary;
 import vn.tpsc.it4u.payload.supplies.ImportWarehouseSummary;
 import vn.tpsc.it4u.service.SuppliesManagementService;
@@ -136,7 +130,6 @@ public class SuppliesManagementController {
     @ApiOperation(value = "Get all export warehouse by date")
     @PostMapping("/it4u/exportWarehouseByDate")
     public String getExportWarehouseByDate(@RequestBody String data) {
-        String test = "";
         JSONObject convertDataToJson = new JSONObject(data);
         // Calculator getCalculator = new Calculator();
         Long fromDate = convertDataToJson.getLong("fromDate");
@@ -233,7 +226,7 @@ public class SuppliesManagementController {
     public String getReportSupplies(@RequestBody String data) {
         List<String> result = new ArrayList<>();
         JSONObject convertDataToJson = new JSONObject(data);
-        Calculator getCalculator = new Calculator();
+        // Calculator getCalculator = new Calculator();
         Long fromDate = convertDataToJson.getLong("fromDate");
         Long toDate = convertDataToJson.getLong("toDate");
         // Timestamp convertFromDate = getCalculator.convertStringToTimestamp(fromDate);

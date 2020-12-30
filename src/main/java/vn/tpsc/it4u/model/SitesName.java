@@ -17,8 +17,7 @@ import vn.tpsc.it4u.model.audit.UserDateAudit;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "sitesname", uniqueConstraints = { @UniqueConstraint(columnNames = { "sitename" }),
-        @UniqueConstraint(columnNames = { "idname" }) })
+@Table(name = "sitesname", uniqueConstraints = { @UniqueConstraint(columnNames = { "sitename" })})
 
 public class SitesName extends UserDateAudit {
 
@@ -35,8 +34,7 @@ public class SitesName extends UserDateAudit {
     @Size(max = 40)
     private String sitename;
 
-    @NotEmpty
-    @Size(max = 15)
+    @Size(max = 40)
     private String idname;
 
     public SitesName(String sitename, String idname) {
