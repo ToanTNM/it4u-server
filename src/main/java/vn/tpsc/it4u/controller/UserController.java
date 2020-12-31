@@ -186,7 +186,7 @@ public class UserController {
         });
         UserSummary user = new UserSummary(
                     null, 
-                    updatingUser.getUsername(), 
+                    updatingUser.getUsername().toLowerCase(), 
                     updatingUser.getName(), 
                     updatingUser.getEmail(), 
                     null, 

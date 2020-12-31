@@ -1,7 +1,7 @@
 ## Server Properties
 server:
   # port: 5000
-  port: ${SERVER_PORT}
+  # port: ${SERVER_PORT}
 
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:

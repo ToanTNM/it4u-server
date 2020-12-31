@@ -91,7 +91,7 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
         final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
+                        loginRequest.getUsernameOrEmail().toLowerCase(),
                         loginRequest.getPassword()
                 );
         final Authentication authentication = authenticationManager.authenticate(token);
