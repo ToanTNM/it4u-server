@@ -42,6 +42,14 @@ public class ChatChannelController implements IChatChannelController {
       return message;
     }
 
+    @MessageMapping("/check.user.{user}")
+    @SendTo("/topic/check.user.{user}")
+    public ChatMessageDTO checkStatusUser(@DestinationVariable String user, ChatMessageDTO message)
+        throws BeansException, UserNotFoundException {
+      
+      return message;
+    }
+
     @RequestMapping(value="/private-chat/channel", method=RequestMethod.PUT, produces="application/json", consumes="application/json")
     public ResponseEntity<String> establishChatChannel(@RequestBody ChatChannelInitializationDTO chatChannelInitialization) 
         throws IsSameUserException, UserNotFoundException { 
