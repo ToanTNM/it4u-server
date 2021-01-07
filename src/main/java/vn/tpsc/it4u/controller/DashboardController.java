@@ -1253,6 +1253,30 @@ public class DashboardController {
     }
 
     //Dashboard 2
+    @ApiOperation(value = "Devices info")
+    @GetMapping("it4u/{id}/devicesInfo")
+    public String getDevicesInfo(@PathVariable(value="id") String siteName) {
+        ApiRequest apiRequest = new ApiRequest();
+        List<String> result = new ArrayList<>();
+        String getData = apiRequest.getRequestDev(urlDev, "/" + siteName + "/15cadd25-ee0c-40b2-bdff-0ce622298336");
+        JSONObject convertDataToJson = new JSONObject(getData);
+        for (int i=1; i<6; i++) {
+            JSONObject itemData = new JSONObject();
+            try {
+                if (convertDataToJson.getString("wan" + i + "_provider").equals("") || convertDataToJson.getString("wan" + i + "_provider").equals("NONE")) {
+                    continue;
+                }
+                else {
+                    itemData.put("name", convertDataToJson.getString("wan" + i + "_provider"));
+                    itemData.put("value", convertDataToJson.getString("wan" + i + "_ip"));
+                    result.add(itemData.toString());
+                }
+            } catch (Exception e) {
+            }
+        }
+        return result.toString();
+    } 
+
     @ApiOperation(value = "Customer info")
     @PostMapping("it4u/{id}/customerInfo")
     public String getCustomerInfo(@PathVariable(value="id") String siteName, @RequestBody String postData,
