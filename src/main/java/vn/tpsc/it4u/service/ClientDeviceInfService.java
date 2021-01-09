@@ -292,6 +292,11 @@ public class ClientDeviceInfService {
         return listClientDeviceInfs;
     }
 
+    public List<ClientDeviceInf> findAllByParam(String param) {
+        List<ClientDeviceInf> clientDeviceInfs = clientDeviceInfRepository.findAllByParam(param);
+        return clientDeviceInfs;
+    }
+
     public Boolean deleteClientDeviceInf(Long id) {
         clientDeviceInfRepository.deleteById(id);
         return true;

@@ -1559,3 +1559,12 @@ Content-Type: application/json
 Get http://localhost:5000/api/v1/it4u/clientDeviceInf
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwOTExOTU3NiwiZXhwIjoxNjA5NzI0Mzc2fQ.t2qCrMqLRS-_EgAhjV9ItgISSVUM_SeDVzP9hnVjXwm46aa6f4ceFj5Ft7v8elh57LdHy7OIBe-udylKrZDKBg
 Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/searchClientDeviceInf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMDE1ODg5NywiZXhwIjoxNjEwNzYzNjk3fQ.ABPtEsGyH-9wrepAo1YClwZCNSoKO5GJnYJTNaKxmvMvSXBPxcZBxYfofRXYTlHSn1Ji8VRuwJLYbGsnUMbjjg
+Content-Type: application/json
+
+{
+    "content": "192PCT_Binh.LQ"
+}

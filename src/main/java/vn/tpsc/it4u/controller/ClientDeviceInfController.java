@@ -79,6 +79,15 @@ public class ClientDeviceInfController {
         }
     }
 
+    @ApiOperation(value = "Search client device info by param")
+    @PostMapping("/it4u/searchClientDeviceInf")
+    public String searchClientDeviceInf(@RequestBody String data) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        String content = convertDataToJson.getString("content");
+        JSONArray getData = new JSONArray(clientDeviceInfService.findAllByParam(content));
+        return getData.toString();
+    }
+
     @ApiOperation(value = "Delete client device information by id")
     @DeleteMapping("/it4u/clientDeviceInf/{id}")
     public ResponseEntity<?> deleteClientDeviceInf(@PathVariable(value = "id") Long id, Locale locale) {
