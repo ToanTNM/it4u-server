@@ -1,22 +1,455 @@
-2021-01-09 09:18:27.158  INFO 14332 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 14332 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 09:18:27.185  INFO 14332 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 09:18:27.389  INFO 14332 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-01-09 09:18:27.395  INFO 14332 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-01-09 09:18:30.779  INFO 14332 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 09:18:31.270  INFO 14332 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 452ms. Found 25 repository interfaces.
-2021-01-09 09:18:32.778  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.873  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.888  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.892  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@252d6b46' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.894  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.922  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.924  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:32.928  INFO 14332 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:18:33.261  WARN 14332 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'servletWebServerFactoryCustomizer' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration.class]: Unsatisfied dependency expressed through method 'servletWebServerFactoryCustomizer' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'server-org.springframework.boot.autoconfigure.web.ServerProperties': Could not bind properties to 'ServerProperties' : prefix=server, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'server.port' to java.lang.Integer
-2021-01-09 09:18:33.298  INFO 14332 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+2021-01-11 09:27:51.459  INFO 10012 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 10012 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
+2021-01-11 09:27:51.479  INFO 10012 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
+2021-01-11 09:27:51.706  INFO 10012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-11 09:27:51.721  INFO 10012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-11 09:27:54.951  INFO 10012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-01-11 09:27:55.356  INFO 10012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 377ms. Found 25 repository interfaces.
+2021-01-11 09:27:56.641  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.720  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.729  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.734  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4cf087bc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.737  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.762  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.764  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:56.767  INFO 10012 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 09:27:58.060  INFO 10012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
+2021-01-11 09:27:58.088  INFO 10012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-11 09:27:58.090  INFO 10012 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-01-11 09:27:58.228  INFO 10012 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-11 09:27:58.237  INFO 10012 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6464 ms
+2021-01-11 09:27:58.486  WARN 10012 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-11 09:27:58.874  INFO 10012 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-01-11 09:27:59.126  INFO 10012 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2021-01-11 09:27:59.623  INFO 10012 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-01-11 09:27:59.929  INFO 10012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-11 09:28:00.196  INFO 10012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-11 09:28:00.234  INFO 10012 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-01-11 09:28:06.271  INFO 10012 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 09:28:06.287  INFO 10012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 09:28:07.939  INFO 10012 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-01-11 09:28:10.129  INFO 10012 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-01-11 09:28:10.143  INFO 10012 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-01-11 09:28:11.635  INFO 10012 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5aa2f719, org.springframework.security.web.context.SecurityContextPersistenceFilter@48add9c5, org.springframework.security.web.header.HeaderWriterFilter@141b3b8e, org.springframework.web.filter.CorsFilter@4634d357, org.springframework.security.web.authentication.logout.LogoutFilter@220a581f, vn.tpsc.it4u.security.JwtAuthenticationFilter@6765e82b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60763c69, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62dd13bf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13d111d1, org.springframework.security.web.session.SessionManagementFilter@4e32ce82, org.springframework.security.web.access.ExceptionTranslationFilter@752a24ea, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c3a8466]
+2021-01-11 09:28:11.749  INFO 10012 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-01-11 09:28:11.889  INFO 10012 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-01-11 09:28:11.966  INFO 10012 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-01-11 09:28:12.652  WARN 10012 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-01-11 09:28:13.063  INFO 10012 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-01-11 09:28:13.113  INFO 10012 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-01-11 09:28:13.302  INFO 10012 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-01-11 09:28:15.500  INFO 10012 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
+2021-01-11 09:28:15.604  INFO 10012 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-01-11 09:28:15.605  INFO 10012 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-01-11 09:28:15.607  INFO 10012 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-01-11 09:28:15.679  INFO 10012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
+2021-01-11 09:28:15.685  INFO 10012 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 25.453 seconds (JVM running for 29.609)
+2021-01-11 09:29:11.966  INFO 10012 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-01-11 09:53:06.196  INFO 10012 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-01-11 09:53:06.378  INFO 10012 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-01-11 09:53:06.538  INFO 10012 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-01-11 09:53:06.689  INFO 10012 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-01-11 09:53:06.753  INFO 10012 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-01-11 09:53:06.814  INFO 10012 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-01-11 09:53:06.869  INFO 10012 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-01-11 09:53:06.937  INFO 10012 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 09:53:07.007  INFO 10012 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-11 09:53:07.137  INFO 10012 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-11 11:28:53.034  INFO 16116 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 16116 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
+2021-01-11 11:28:53.042  INFO 16116 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
+2021-01-11 11:28:53.209  INFO 16116 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-11 11:28:53.222  INFO 16116 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-11 11:28:55.953  INFO 16116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-01-11 11:28:56.388  INFO 16116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 416ms. Found 25 repository interfaces.
+2021-01-11 11:28:57.822  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.888  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.899  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.904  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@29bd189c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.924  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.953  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.974  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:57.989  INFO 16116 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 11:28:59.754  INFO 16116 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
+2021-01-11 11:28:59.799  INFO 16116 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-11 11:28:59.804  INFO 16116 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-01-11 11:28:59.988  INFO 16116 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-11 11:28:59.995  INFO 16116 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6772 ms
+2021-01-11 11:29:00.351  WARN 16116 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-11 11:29:00.890  INFO 16116 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-01-11 11:29:01.123  INFO 16116 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2021-01-11 11:29:01.532  INFO 16116 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-01-11 11:29:01.836  INFO 16116 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-11 11:29:02.174  INFO 16116 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-11 11:29:02.225  INFO 16116 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-01-11 11:29:09.872  INFO 16116 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 11:29:09.898  INFO 16116 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 11:29:12.085  INFO 16116 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-01-11 11:29:16.048  INFO 16116 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-01-11 11:29:16.065  INFO 16116 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-01-11 11:29:18.176  INFO 16116 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@532a6d37, org.springframework.security.web.context.SecurityContextPersistenceFilter@293338a3, org.springframework.security.web.header.HeaderWriterFilter@4ca26213, org.springframework.web.filter.CorsFilter@747c471, org.springframework.security.web.authentication.logout.LogoutFilter@7781a50f, vn.tpsc.it4u.security.JwtAuthenticationFilter@528932f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@9e0bc2d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@eb43139, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@24ee3498, org.springframework.security.web.session.SessionManagementFilter@5f5a205f, org.springframework.security.web.access.ExceptionTranslationFilter@2cb81f70, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5cbf5bfc]
+2021-01-11 11:29:18.394  INFO 16116 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-01-11 11:29:18.679  INFO 16116 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-01-11 11:29:18.853  INFO 16116 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-01-11 11:29:20.025  WARN 16116 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-01-11 11:29:20.520  INFO 16116 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-01-11 11:29:20.565  INFO 16116 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-01-11 11:29:20.724  INFO 16116 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-01-11 11:29:22.849  INFO 16116 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
+2021-01-11 11:29:23.008  INFO 16116 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-01-11 11:29:23.014  INFO 16116 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-01-11 11:29:23.016  INFO 16116 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-01-11 11:29:23.080  INFO 16116 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
+2021-01-11 11:29:23.092  INFO 16116 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 31.485 seconds (JVM running for 35.063)
+2021-01-11 11:30:18.853  INFO 16116 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-01-11 11:30:20.915  INFO 16116 --- [http-nio-5000-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-11 11:30:20.916  INFO 16116 --- [http-nio-5000-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-11 11:30:20.930  INFO 16116 --- [http-nio-5000-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2021-01-11 11:31:47.346  WARN 16116 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:31:48.181  WARN 16116 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 11:31:48.349  WARN 16116 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 11:31:48.441  WARN 16116 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 11:31:48.507  WARN 16116 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
+2021-01-11 11:31:48.511  WARN 16116 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 11:31:49.828  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:31:50.693  WARN 16116 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:33:31.293  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:33:31.316  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:33:31.454  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:33:31.807  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:33:32.126  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:33:32.735  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:33:33.092  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:34:01.382  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:34:01.392  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:34:01.417  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:34:02.481  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:34:03.536  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:34:31.183  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:34:31.262  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:34:31.424  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:34:32.071  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:34:33.208  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:35:01.198  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:35:01.319  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:35:01.397  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:35:02.018  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:35:03.054  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:36:14.992  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:36:15.035  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:36:15.130  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:36:15.352  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:36:15.808  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:36:16.210  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:36:16.873  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:36:44.904  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:36:44.916  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:36:45.004  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:36:45.822  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:36:46.691  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:37:14.886  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:37:14.927  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:37:15.029  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:37:15.850  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:37:17.084  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:37:44.838  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:37:44.898  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:37:45.150  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:37:45.811  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:37:46.769  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:38:15.136  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:38:15.188  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:38:15.406  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:38:15.804  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:38:16.849  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:38:44.912  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:38:44.921  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:38:45.007  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:38:45.823  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:38:46.817  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:39:14.855  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:39:15.168  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:39:15.223  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:39:15.830  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:39:16.938  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:39:44.859  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:39:44.907  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:39:45.056  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:39:45.825  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:39:46.757  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:40:15.391  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:40:15.409  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:40:15.416  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:40:16.352  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:40:17.296  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:40:25.455  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/voucher
+2021-01-11 11:40:26.658  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:40:26.711  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:40:26.716  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:40:26.987  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:40:27.316  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:40:27.984  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:40:28.429  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:40:56.387  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:40:56.395  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:40:57.382  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:40:57.392  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:40:58.351  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:41:02.687  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/voucher
+2021-01-11 11:41:03.829  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:41:03.894  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:41:03.898  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:41:04.161  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:41:04.602  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:41:04.917  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:41:05.628  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:41:07.583  WARN 16116 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:41:07.893  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:41:08.031  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:41:08.239  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:41:08.501  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:41:09.035  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:41:09.956  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:41:10.014  WARN 16116 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:41:10.598  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:41:37.971  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:41:38.029  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:41:38.074  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:41:40.644  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:41:41.257  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:42:08.836  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:42:08.959  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:42:08.964  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:42:10.034  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:42:10.703  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:42:17.699  WARN 16116 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:42:18.268  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:42:18.353  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:42:18.374  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:42:18.722  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:42:19.359  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:42:20.245  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:42:20.722  WARN 16116 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:42:21.301  INFO 16116 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:42:28.249  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/voucher
+2021-01-11 11:42:33.885  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DevicesController    : lap.dang@tpsc.vn - it4u/0eo66uy6/devices
+2021-01-11 11:42:34.351  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DevicesController    : lap.dang@tpsc.vn - it4u/0eo66uy6/block/info
+2021-01-11 11:42:41.757  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/voucher
+2021-01-11 11:43:56.905  WARN 16116 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:43:57.152  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:43:57.246  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:43:57.345  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:43:57.527  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:43:58.130  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:43:58.268  WARN 16116 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:43:58.453  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:43:59.151  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:45:56.021  WARN 16116 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:45:56.255  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 11:45:56.291  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 11:45:56.327  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 11:45:56.576  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:45:57.206  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 11:45:57.354  WARN 16116 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:45:57.493  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:45:58.152  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 11:47:34.424  WARN 16116 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:47:34.978  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:47:35.029  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:47:35.145  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:47:35.707  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:47:36.080  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:47:36.766  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:47:37.086  WARN 16116 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 11:47:37.513  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:48:05.549  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:48:05.624  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:48:05.643  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:48:07.737  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:48:08.335  INFO 16116 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:48:35.386  INFO 16116 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:48:35.431  INFO 16116 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:48:35.443  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:48:37.655  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:48:38.307  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:49:05.404  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:49:05.429  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:49:05.432  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:49:07.612  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:49:08.313  INFO 16116 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 11:49:35.412  INFO 16116 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 11:49:35.454  INFO 16116 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 11:49:35.455  INFO 16116 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 11:49:37.713  INFO 16116 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 11:49:38.348  INFO 16116 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:35:38.717  INFO 15268 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 15268 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
+2021-01-11 13:35:38.724  INFO 15268 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
+2021-01-11 13:35:38.863  INFO 15268 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-11 13:35:38.866  INFO 15268 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-11 13:35:43.462  INFO 15268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-01-11 13:35:44.092  INFO 15268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 610ms. Found 25 repository interfaces.
+2021-01-11 13:35:46.013  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.095  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.118  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.168  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5d075b87' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.181  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.213  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.223  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:46.226  INFO 15268 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 13:35:48.569  INFO 15268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
+2021-01-11 13:35:48.626  INFO 15268 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-01-11 13:35:48.654  INFO 15268 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-01-11 13:35:49.010  INFO 15268 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-01-11 13:35:49.245  INFO 15268 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 10378 ms
+2021-01-11 13:35:49.785  WARN 15268 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-01-11 13:35:50.660  INFO 15268 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-01-11 13:35:51.048  INFO 15268 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2021-01-11 13:35:51.820  INFO 15268 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-01-11 13:35:52.242  INFO 15268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-11 13:35:52.597  INFO 15268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-11 13:35:52.673  INFO 15268 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-01-11 13:35:58.363  INFO 15268 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-01-11 13:35:58.384  INFO 15268 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 13:36:00.275  INFO 15268 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-01-11 13:36:02.061  INFO 15268 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-01-11 13:36:02.075  INFO 15268 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-01-11 13:36:03.767  INFO 15268 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b5b01ed, org.springframework.security.web.context.SecurityContextPersistenceFilter@68f03759, org.springframework.security.web.header.HeaderWriterFilter@4f20016e, org.springframework.web.filter.CorsFilter@34a4cb54, org.springframework.security.web.authentication.logout.LogoutFilter@7babbcbf, vn.tpsc.it4u.security.JwtAuthenticationFilter@4ab79548, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50236945, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@55c05fbf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@76b726eb, org.springframework.security.web.session.SessionManagementFilter@55f4d733, org.springframework.security.web.access.ExceptionTranslationFilter@6b71338b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6db04d77]
+2021-01-11 13:36:03.902  INFO 15268 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-01-11 13:36:04.088  INFO 15268 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-01-11 13:36:04.194  INFO 15268 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-01-11 13:36:04.822  WARN 15268 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-01-11 13:36:05.190  INFO 15268 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-01-11 13:36:05.230  INFO 15268 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-01-11 13:36:05.411  INFO 15268 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-01-11 13:36:07.239  INFO 15268 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
+2021-01-11 13:36:07.344  INFO 15268 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-01-11 13:36:07.349  INFO 15268 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-01-11 13:36:07.355  INFO 15268 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-01-11 13:36:07.436  INFO 15268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
+2021-01-11 13:36:07.449  INFO 15268 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 30.73 seconds (JVM running for 36.479)
+2021-01-11 13:37:04.194  INFO 15268 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-01-11 13:51:41.773  INFO 15268 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-11 13:51:41.774  INFO 15268 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-01-11 13:51:41.788  INFO 15268 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2021-01-11 13:51:43.804  WARN 15268 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:51:44.392  WARN 15268 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 13:51:44.395  WARN 15268 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 13:51:44.505  WARN 15268 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 13:51:44.680  WARN 15268 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
+2021-01-11 13:51:44.719  WARN 15268 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
+2021-01-11 13:51:45.741  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:51:47.155  WARN 15268 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:52:14.923  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:52:15.087  INFO 15268 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:52:15.599  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:52:16.692  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:52:44.687  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:52:44.693  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:52:45.589  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:52:46.474  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:53:14.662  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:53:14.676  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:53:15.545  INFO 15268 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:53:16.663  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:53:35.222  WARN 15268 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:53:35.692  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 13:53:35.763  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 13:53:35.945  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 13:53:36.214  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 13:53:37.002  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 13:53:37.288  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 13:53:37.602  WARN 15268 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:53:38.282  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 13:56:09.299  WARN 15268 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:56:09.722  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:56:09.782  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:56:10.056  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:56:10.338  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:56:10.973  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:56:11.282  WARN 15268 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:56:11.382  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:56:11.937  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:57:38.153  WARN 15268 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:57:38.556  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 13:57:38.732  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 13:57:38.991  INFO 15268 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 13:57:39.130  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 13:57:39.737  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 13:57:40.426  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 13:57:40.663  WARN 15268 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:57:41.400  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 13:58:29.452  WARN 15268 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:58:30.001  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:58:30.067  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:58:30.125  INFO 15268 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:58:30.537  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:58:31.036  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:58:31.427  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:58:31.643  WARN 15268 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:58:31.995  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:59:05.480  WARN 15268 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:59:06.019  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 13:59:06.152  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 13:59:06.405  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 13:59:06.957  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:59:07.322  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 13:59:09.679  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 13:59:10.029  WARN 15268 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 13:59:10.462  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 14:01:39.584  WARN 15268 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:01:40.056  INFO 15268 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
+2021-01-11 14:01:40.139  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
+2021-01-11 14:01:40.243  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
+2021-01-11 14:01:40.673  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 14:01:41.229  INFO 15268 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 14:01:41.724  WARN 15268 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:01:41.940  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
+2021-01-11 14:01:42.562  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
+2021-01-11 14:03:05.841  WARN 15268 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:03:06.321  INFO 15268 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 14:03:06.329  INFO 15268 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 14:03:06.413  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 14:03:06.681  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 14:03:07.377  INFO 15268 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 14:03:07.911  INFO 15268 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 14:03:08.188  WARN 15268 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:03:08.939  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 14:03:41.869  WARN 15268 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:03:42.236  INFO 15268 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
+2021-01-11 14:03:42.471  INFO 15268 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
+2021-01-11 14:03:42.541  INFO 15268 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
+2021-01-11 14:03:42.817  INFO 15268 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 14:03:43.567  INFO 15268 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 14:03:43.987  INFO 15268 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
+2021-01-11 14:03:44.239  WARN 15268 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-01-11 14:03:44.960  INFO 15268 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
+2021-01-11 14:04:23.750  INFO 15268 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-01-11 14:04:23.751  INFO 15268 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-01-11 14:04:23.752  INFO 15268 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-01-11 14:04:23.761  INFO 15268 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-01-11 14:04:23.763  INFO 15268 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-01-11 14:04:23.776  INFO 15268 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-01-11 14:04:23.794  INFO 15268 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-01-11 14:04:23.827  INFO 15268 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-01-11 14:04:23.834  INFO 15268 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-11 14:04:23.839  INFO 15268 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-11 14:05:26.450  INFO 5768 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 5768 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
+2021-01-11 14:05:26.465  INFO 5768 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
+2021-01-11 14:05:26.642  INFO 5768 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-01-11 14:05:26.646  INFO 5768 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-01-11 14:05:29.052  INFO 5768 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-01-11 14:05:29.435  INFO 5768 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 366ms. Found 25 repository interfaces.
+2021-01-11 14:05:30.748  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.811  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.831  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.838  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3b1df811' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.845  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.874  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.879  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:30.885  INFO 5768 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-01-11 14:05:31.224  WARN 5768 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'servletWebServerFactoryCustomizer' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration.class]: Unsatisfied dependency expressed through method 'servletWebServerFactoryCustomizer' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'server-org.springframework.boot.autoconfigure.web.ServerProperties': Could not bind properties to 'ServerProperties' : prefix=server, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'server.port' to java.lang.Integer
+2021-01-11 14:05:31.261  INFO 5768 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-01-09 09:18:33.308 ERROR 14332 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2021-01-11 14:05:31.268 ERROR 5768 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -35,479 +468,3 @@ Action:
 
 Update your application's configuration
 
-2021-01-09 09:20:27.879  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 8712 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 09:20:27.884  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 09:20:28.030  INFO 8712 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-01-09 09:20:28.031  INFO 8712 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-01-09 09:20:30.146  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 09:20:30.512  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 349ms. Found 25 repository interfaces.
-2021-01-09 09:20:31.644  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.715  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.722  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.729  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@209759e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.736  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.756  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.760  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:31.764  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:20:32.903  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2021-01-09 09:20:32.926  INFO 8712 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-01-09 09:20:32.927  INFO 8712 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-01-09 09:20:33.049  INFO 8712 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-01-09 09:20:33.054  INFO 8712 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5022 ms
-2021-01-09 09:20:33.249  WARN 8712 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-01-09 09:20:33.582  INFO 8712 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-01-09 09:20:33.772  INFO 8712 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2021-01-09 09:20:34.141  INFO 8712 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-01-09 09:20:34.379  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-01-09 09:20:34.661  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-01-09 09:20:34.696  INFO 8712 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-01-09 09:20:40.721  INFO 8712 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-01-09 09:20:40.739  INFO 8712 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 09:20:42.163  INFO 8712 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-01-09 09:20:44.017  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 09:20:44.033  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 09:20:45.474  INFO 8712 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@541d830f, org.springframework.security.web.context.SecurityContextPersistenceFilter@5efd3e78, org.springframework.security.web.header.HeaderWriterFilter@270613d4, org.springframework.web.filter.CorsFilter@157710df, org.springframework.security.web.authentication.logout.LogoutFilter@1e21678e, vn.tpsc.it4u.security.JwtAuthenticationFilter@7d21bd13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34fd42c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@12b615a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@271fe5f, org.springframework.security.web.session.SessionManagementFilter@7534f602, org.springframework.security.web.access.ExceptionTranslationFilter@47807d4a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@787e9c67]
-2021-01-09 09:20:45.538  INFO 8712 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-01-09 09:20:45.684  INFO 8712 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 09:20:45.777  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2021-01-09 09:20:46.336  WARN 8712 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-01-09 09:20:46.681  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-01-09 09:20:46.722  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-01-09 09:20:46.881  INFO 8712 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-01-09 09:20:48.357  INFO 8712 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2021-01-09 09:20:48.484  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2021-01-09 09:20:48.485  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 09:20:48.486  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2021-01-09 09:20:48.558  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2021-01-09 09:20:48.575  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 21.806 seconds (JVM running for 24.0)
-2021-01-09 09:21:36.709  INFO 8712 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-01-09 09:21:36.710  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-01-09 09:21:36.732  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 21 ms
-2021-01-09 09:21:37.487  INFO 8712 --- [http-nio-5000-exec-10] vn.tpsc.it4u.controller.AuthController   : lap.dang@tpsc.vn - Login
-2021-01-09 09:21:45.775  INFO 8712 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2021-01-09 09:25:43.581  INFO 8712 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2021-01-09 09:25:43.590  INFO 8712 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 09:25:43.591  INFO 8712 --- [Thread-6] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2021-01-09 09:25:43.627  INFO 8712 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2021-01-09 09:25:43.641  INFO 8712 --- [Thread-6] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 09:25:43.658  INFO 8712 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 09:25:43.659  INFO 8712 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 09:25:43.672  INFO 8712 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 09:25:43.678  INFO 8712 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-01-09 09:25:43.703  INFO 8712 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2021-01-09 02:25:44.763  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 8712 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 02:25:44.763  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 02:25:46.091  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 02:25:46.282  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 191ms. Found 25 repository interfaces.
-2021-01-09 02:25:46.786  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.797  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.801  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.806  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@a8ef169' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.807  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.811  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.813  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.816  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:25:46.959  WARN 8712 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2021-01-09 02:25:47.146  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2021-01-09 02:25:47.147  INFO 8712 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-01-09 02:25:47.148  INFO 8712 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-01-09 02:25:47.157  INFO 8712 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-01-09 02:25:47.158  INFO 8712 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2366 ms
-2021-01-09 02:25:47.243  WARN 8712 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-01-09 02:25:47.382  INFO 8712 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-01-09 02:25:47.393  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2021-01-09 02:25:47.500  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2021-01-09 02:25:47.501  INFO 8712 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-01-09 02:25:51.463  INFO 8712 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-01-09 02:25:51.464  INFO 8712 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:25:51.724  INFO 8712 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-01-09 02:25:52.758  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:25:52.762  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:25:53.565  INFO 8712 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ed21e25, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f83aa79, org.springframework.security.web.header.HeaderWriterFilter@162bc794, org.springframework.web.filter.CorsFilter@47790540, org.springframework.security.web.authentication.logout.LogoutFilter@13f3a8c5, vn.tpsc.it4u.security.JwtAuthenticationFilter@792d3f1b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5fd0b065, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@170fcb6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b4e913a, org.springframework.security.web.session.SessionManagementFilter@5230931e, org.springframework.security.web.access.ExceptionTranslationFilter@25c6b0bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ef0a256]
-2021-01-09 02:25:53.581  INFO 8712 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-01-09 02:25:53.610  INFO 8712 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:25:53.624  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:25:53.857  WARN 8712 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-01-09 02:25:54.015  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-01-09 02:25:54.016  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-01-09 02:25:54.054  INFO 8712 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-01-09 02:25:54.898  INFO 8712 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2021-01-09 02:25:54.947  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2021-01-09 02:25:54.948  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:25:54.949  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2021-01-09 02:25:54.960  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2021-01-09 02:25:54.966  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 10.325 seconds (JVM running for 330.391)
-2021-01-09 02:25:54.975  INFO 8712 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-01-09 02:25:56.873  INFO 8712 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-01-09 02:25:56.874  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-01-09 02:25:56.885  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
-2021-01-09 02:26:04.933  WARN 8712 --- [http-nio-5000-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42601
-2021-01-09 02:26:04.940 ERROR 8712 --- [http-nio-5000-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: syntax error at or near "client_device_inf"
-  Position: 10
-2021-01-09 02:26:07.230  WARN 8712 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet]
-2021-01-09 02:26:53.623  INFO 8712 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2021-01-09 02:26:55.569  WARN 8712 --- [http-nio-5000-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42601
-2021-01-09 02:26:55.585 ERROR 8712 --- [http-nio-5000-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: syntax error at or near "client_device_inf"
-  Position: 10
-2021-01-09 02:26:58.055  WARN 8712 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet]
-2021-01-09 02:27:48.124  INFO 8712 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2021-01-09 02:27:48.126  INFO 8712 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:27:48.127  INFO 8712 --- [Thread-10] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2021-01-09 02:27:48.130  INFO 8712 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:27:48.131  INFO 8712 --- [Thread-10] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:27:48.142  INFO 8712 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:27:48.152  INFO 8712 --- [Thread-10] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:27:48.158  INFO 8712 --- [Thread-10] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:27:48.164  INFO 8712 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2021-01-09 02:27:48.182  INFO 8712 --- [Thread-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2021-01-09 02:27:49.208  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 8712 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 02:27:49.208  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 02:27:49.951  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 02:27:50.126  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 173ms. Found 25 repository interfaces.
-2021-01-09 02:27:50.608  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.617  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.619  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.620  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@391720f1' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.621  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.624  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.624  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.625  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:27:50.727  WARN 8712 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2021-01-09 02:27:50.915  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2021-01-09 02:27:50.918  INFO 8712 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-01-09 02:27:50.920  INFO 8712 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-01-09 02:27:50.930  INFO 8712 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-01-09 02:27:50.931  INFO 8712 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1715 ms
-2021-01-09 02:27:51.007  WARN 8712 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-01-09 02:27:51.119  INFO 8712 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-01-09 02:27:51.139  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2021-01-09 02:27:51.246  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2021-01-09 02:27:51.247  INFO 8712 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-01-09 02:27:55.483  INFO 8712 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-01-09 02:27:55.491  INFO 8712 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:27:55.836  INFO 8712 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-01-09 02:27:56.744  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:27:56.751  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:27:57.372  INFO 8712 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e3c36e7, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e1ad5e, org.springframework.security.web.header.HeaderWriterFilter@2d1d486e, org.springframework.web.filter.CorsFilter@68e7d180, org.springframework.security.web.authentication.logout.LogoutFilter@16a15372, vn.tpsc.it4u.security.JwtAuthenticationFilter@2ce7bd8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1377e503, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@546e913b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8cf343, org.springframework.security.web.session.SessionManagementFilter@a58cbd8, org.springframework.security.web.access.ExceptionTranslationFilter@19b126ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5809b2a9]
-2021-01-09 02:27:57.390  INFO 8712 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-01-09 02:27:57.430  INFO 8712 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:27:57.443  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:27:57.627  WARN 8712 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-01-09 02:27:57.786  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-01-09 02:27:57.788  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-01-09 02:27:57.825  INFO 8712 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-01-09 02:27:58.598  INFO 8712 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2021-01-09 02:27:58.653  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2021-01-09 02:27:58.654  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:27:58.655  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2021-01-09 02:27:58.664  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2021-01-09 02:27:58.679  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 9.592 seconds (JVM running for 454.103)
-2021-01-09 02:27:58.686  INFO 8712 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-01-09 02:28:10.479  INFO 8712 --- [http-nio-5000-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-01-09 02:28:10.481  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-01-09 02:28:10.486  INFO 8712 --- [http-nio-5000-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2021-01-09 02:28:15.278  WARN 8712 --- [http-nio-5000-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42601
-2021-01-09 02:28:15.287 ERROR 8712 --- [http-nio-5000-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: syntax error at or near "client_device_inf"
-  Position: 10
-2021-01-09 02:28:19.841  WARN 8712 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet]
-2021-01-09 02:28:57.444  INFO 8712 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2021-01-09 02:29:15.096  INFO 8712 --- [Thread-16] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2021-01-09 02:29:15.096  INFO 8712 --- [Thread-16] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:29:15.098  INFO 8712 --- [Thread-16] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2021-01-09 02:29:15.100  INFO 8712 --- [Thread-16] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:29:15.101  INFO 8712 --- [Thread-16] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:29:15.112  INFO 8712 --- [Thread-16] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:29:15.115  INFO 8712 --- [Thread-16] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:29:15.120  INFO 8712 --- [Thread-16] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:29:15.122  INFO 8712 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
-2021-01-09 02:29:15.143  INFO 8712 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
-2021-01-09 02:29:15.943  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 8712 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 02:29:15.944  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 02:29:16.638  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 02:29:16.790  INFO 8712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 152ms. Found 25 repository interfaces.
-2021-01-09 02:29:17.296  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.306  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.307  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.307  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@344a0d2b' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.308  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.310  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.310  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.310  INFO 8712 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 02:29:17.380  WARN 8712 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2021-01-09 02:29:17.623  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2021-01-09 02:29:17.644  INFO 8712 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-01-09 02:29:17.651  INFO 8712 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-01-09 02:29:17.675  INFO 8712 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-01-09 02:29:17.680  INFO 8712 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1732 ms
-2021-01-09 02:29:17.856  WARN 8712 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-01-09 02:29:18.063  INFO 8712 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-01-09 02:29:18.104  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
-2021-01-09 02:29:18.215  INFO 8712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
-2021-01-09 02:29:18.217  INFO 8712 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-01-09 02:29:21.984  INFO 8712 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-01-09 02:29:21.986  INFO 8712 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:29:22.223  INFO 8712 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-01-09 02:29:22.938  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:29:22.942  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:29:23.380  INFO 8712 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f503a50, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b202d86, org.springframework.security.web.header.HeaderWriterFilter@81669fb, org.springframework.web.filter.CorsFilter@1768c71d, org.springframework.security.web.authentication.logout.LogoutFilter@1c6631d6, vn.tpsc.it4u.security.JwtAuthenticationFilter@4145efa8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66f2fb3a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d901fae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@41c88ed4, org.springframework.security.web.session.SessionManagementFilter@21635318, org.springframework.security.web.access.ExceptionTranslationFilter@76fd765e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@549d52a3]
-2021-01-09 02:29:23.395  INFO 8712 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-01-09 02:29:23.422  INFO 8712 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:29:23.433  INFO 8712 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:29:23.589  WARN 8712 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-01-09 02:29:23.786  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-01-09 02:29:23.789  INFO 8712 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-01-09 02:29:23.838  INFO 8712 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-01-09 02:29:24.484  INFO 8712 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2021-01-09 02:29:24.535  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2021-01-09 02:29:24.536  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:29:24.537  INFO 8712 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2021-01-09 02:29:24.547  INFO 8712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2021-01-09 02:29:24.549  INFO 8712 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 8.681 seconds (JVM running for 539.973)
-2021-01-09 02:29:24.559  INFO 8712 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-01-09 02:29:34.560  INFO 8712 --- [http-nio-5000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-01-09 02:29:34.564  INFO 8712 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-01-09 02:29:34.578  INFO 8712 --- [http-nio-5000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
-2021-01-09 02:30:23.433  INFO 8712 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2021-01-09 02:33:07.919  INFO 8712 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2021-01-09 02:33:07.920  INFO 8712 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 02:33:07.922  INFO 8712 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2021-01-09 02:33:07.928  INFO 8712 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2021-01-09 02:33:07.930  INFO 8712 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 02:33:07.932  INFO 8712 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 02:33:07.933  INFO 8712 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 02:33:07.936  INFO 8712 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 02:33:07.937  INFO 8712 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
-2021-01-09 02:33:07.945  INFO 8712 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
-2021-01-09 09:35:50.869  INFO 14952 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Starting It4uApplication on XPS with PID 14952 (E:\TPsTech\Dev\IT4U\final-it4u\it4u-server\target\classes started by Admin in E:\TPsTech\Dev\IT4U\final-it4u\it4u-server)
-2021-01-09 09:35:50.875  INFO 14952 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : The following profiles are active: prod
-2021-01-09 09:35:50.999  INFO 14952 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-01-09 09:35:51.001  INFO 14952 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-01-09 09:35:53.267  INFO 14952 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2021-01-09 09:35:53.618  INFO 14952 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 335ms. Found 25 repository interfaces.
-2021-01-09 09:35:57.761  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:57.890  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:57.933  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:57.949  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@62b2551b' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:57.977  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:57.999  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:58.004  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:35:58.011  INFO 14952 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-01-09 09:36:00.802  INFO 14952 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
-2021-01-09 09:36:00.841  INFO 14952 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-01-09 09:36:00.843  INFO 14952 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2021-01-09 09:36:00.988  INFO 14952 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-01-09 09:36:00.990  INFO 14952 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 9985 ms
-2021-01-09 09:36:01.278  WARN 14952 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-01-09 09:36:01.734  INFO 14952 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-01-09 09:36:01.909  INFO 14952 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2021-01-09 09:36:02.344  INFO 14952 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-01-09 09:36:02.634  INFO 14952 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-01-09 09:36:02.900  INFO 14952 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-01-09 09:36:02.931  INFO 14952 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-01-09 09:36:08.713  INFO 14952 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-01-09 09:36:08.731  INFO 14952 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 09:36:10.142  INFO 14952 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-01-09 09:36:11.963  INFO 14952 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 09:36:11.979  INFO 14952 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 09:36:13.834  INFO 14952 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16ee35be, org.springframework.security.web.context.SecurityContextPersistenceFilter@2f92e594, org.springframework.security.web.header.HeaderWriterFilter@781fe5a6, org.springframework.web.filter.CorsFilter@3d47d8b4, org.springframework.security.web.authentication.logout.LogoutFilter@7dbbd67b, vn.tpsc.it4u.security.JwtAuthenticationFilter@4ab40ca5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16d242c2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7634a3bb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75b244c0, org.springframework.security.web.session.SessionManagementFilter@1778bd9d, org.springframework.security.web.access.ExceptionTranslationFilter@259ef05d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6df47ec3]
-2021-01-09 09:36:13.905  INFO 14952 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-01-09 09:36:14.031  INFO 14952 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 09:36:14.146  INFO 14952 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
-2021-01-09 09:36:14.613  WARN 14952 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2021-01-09 09:36:14.924  INFO 14952 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-01-09 09:36:14.957  INFO 14952 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-01-09 09:36:15.104  INFO 14952 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-01-09 09:36:16.397  INFO 14952 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUserUsingGET_1
-2021-01-09 09:36:16.482  INFO 14952 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2021-01-09 09:36:16.484  INFO 14952 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 09:36:16.486  INFO 14952 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2021-01-09 09:36:16.562  INFO 14952 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
-2021-01-09 09:36:16.607  INFO 14952 --- [restartedMain] vn.tpsc.it4u.It4uApplication             : Started It4uApplication in 26.855 seconds (JVM running for 30.47)
-2021-01-09 09:37:14.145  INFO 14952 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2021-01-09 09:52:02.901  INFO 14952 --- [http-nio-5000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-01-09 09:52:02.902  INFO 14952 --- [http-nio-5000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-01-09 09:52:02.954  INFO 14952 --- [http-nio-5000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 51 ms
-2021-01-09 09:52:05.880  WARN 14952 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:52:06.446  WARN 14952 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2021-01-09 09:52:06.446  WARN 14952 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2021-01-09 09:52:06.646  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2021-01-09 09:52:06.855  WARN 14952 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2021-01-09 09:52:07.161  WARN 14952 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2021-01-09 09:52:08.567  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 09:52:08.711  WARN 14952 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:53:19.367  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:53:20.174  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 09:53:20.215  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 09:53:20.412  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 09:53:20.744  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 09:53:21.564  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 09:53:22.763  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 09:53:22.878  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:53:23.776  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 09:53:45.534  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2021-01-09 09:54:13.466  WARN 14952 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]]
-2021-01-09 09:55:01.954  WARN 14952 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:55:02.513  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 09:55:02.762  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 09:55:02.948  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 09:55:03.176  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 09:55:04.006  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 09:55:04.596  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 09:55:05.095  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:55:05.713  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 09:55:13.744  WARN 14952 --- [http-nio-5000-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:55:14.406  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 09:55:14.500  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 09:55:14.568  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 09:55:15.437  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 09:55:15.557  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 09:55:16.813  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:55:17.537  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 09:55:18.061  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 09:57:53.698  WARN 14952 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:57:54.405  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 09:57:54.568  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 09:57:54.870  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 09:57:55.842  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 09:57:55.845  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 09:57:57.054  WARN 14952 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 09:57:57.163  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 09:57:57.659  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:01:08.131  WARN 14952 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:01:08.624  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:01:08.673  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:01:08.705  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:01:09.571  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:01:09.657  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:01:09.714  WARN 14952 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:01:10.456  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:01:11.152  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:01:54.629  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:01:55.019  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:01:55.116  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:01:55.122  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:01:55.416  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:01:55.780  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:01:56.273  WARN 14952 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:01:56.347  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:01:56.864  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:02:25.597  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:02:25.637  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:02:25.643  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:02:25.931  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:02:26.960  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:05:57.050  WARN 14952 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:05:57.621  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:05:57.744  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:05:57.827  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:05:58.170  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:05:58.971  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:05:59.350  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:05:59.790  WARN 14952 --- [http-nio-5000-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:06:08.103  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:06:47.684  WARN 14952 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:06:48.287  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:06:48.354  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:06:48.395  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:06:48.700  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:06:49.476  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:06:50.442  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:06:50.808  WARN 14952 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:06:51.453  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:07:14.147  INFO 14952 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
-2021-01-09 10:07:18.948  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:07:18.960  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:07:18.981  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:07:20.901  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:07:22.010  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:07:48.328  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:07:48.426  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:07:48.480  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:07:56.350  WARN 14952 --- [http-nio-5000-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:07:56.823  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:07:56.989  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:07:57.034  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:07:57.991  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:07:58.068  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:07:58.581  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:07:59.638  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:08:00.261  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:10:24.531  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:10:25.208  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:10:25.271  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:10:25.383  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:10:25.661  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:10:26.431  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:10:27.057  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:10:27.521  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:10:28.077  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:11:05.799  WARN 14952 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:11:06.417  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:11:06.423  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:11:06.621  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:11:07.374  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:11:07.619  INFO 14952 --- [http-nio-5000-exec-10] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:11:08.272  WARN 14952 --- [http-nio-5000-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:11:08.972  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:11:09.522  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:17:26.466  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:17:26.992  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:17:27.018  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:17:27.146  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:17:27.322  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:17:28.111  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:17:28.182  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:17:28.363  WARN 14952 --- [http-nio-5000-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:17:29.267  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:17:45.267  WARN 14952 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:17:45.704  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:17:45.773  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:17:45.864  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:17:46.654  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:17:46.781  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:17:46.819  WARN 14952 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:17:47.508  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:17:48.180  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:17:58.422  WARN 14952 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.json.JSONException: A JSONObject text must begin with '{' at 0 [character 1 line 1]]
-2021-01-09 10:18:48.023  WARN 14952 --- [http-nio-5000-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:18:48.523  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:18:48.608  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:18:48.705  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:18:49.474  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:18:49.690  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:18:49.693  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:18:50.671  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:18:51.285  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:20:08.773  WARN 14952 --- [http-nio-5000-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:20:09.353  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/hourlyClient
-2021-01-09 10:20:09.442  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getNetworkRates
-2021-01-09 10:20:09.484  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/getTrafficHistory
-2021-01-09 10:20:10.506  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:20:10.558  INFO 14952 --- [http-nio-5000-exec-7] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:20:11.435  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/detail/hotspot/
-2021-01-09 10:20:11.710  WARN 14952 --- [http-nio-5000-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:20:12.080  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/rhnl7chn/stat/device/
-2021-01-09 10:21:43.671  WARN 14952 --- [http-nio-5000-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:21:44.078  INFO 14952 --- [http-nio-5000-exec-2] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:21:44.222  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:21:44.222  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:21:44.629  INFO 14952 --- [http-nio-5000-exec-9] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:21:44.915  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:21:45.416  WARN 14952 --- [http-nio-5000-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
-2021-01-09 10:21:45.430  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:21:46.128  INFO 14952 --- [http-nio-5000-exec-4] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:22:14.873  INFO 14952 --- [http-nio-5000-exec-8] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getTrafficHistory
-2021-01-09 10:22:14.921  INFO 14952 --- [http-nio-5000-exec-5] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/hourlyClient
-2021-01-09 10:22:14.955  INFO 14952 --- [http-nio-5000-exec-6] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/getNetworkRates
-2021-01-09 10:22:15.876  INFO 14952 --- [http-nio-5000-exec-1] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/detail/hotspot/
-2021-01-09 10:22:17.021  INFO 14952 --- [http-nio-5000-exec-3] v.t.it4u.controller.DashboardController  : lap.dang@tpsc.vn - it4u/0eo66uy6/stat/device/
-2021-01-09 10:22:33.536  INFO 14952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2021-01-09 10:22:33.537  INFO 14952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
-2021-01-09 10:22:33.537  INFO 14952 --- [SpringContextShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2021-01-09 10:22:33.540  INFO 14952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
-2021-01-09 10:22:33.541  INFO 14952 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
-2021-01-09 10:22:33.557  INFO 14952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
-2021-01-09 10:22:33.561  INFO 14952 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
-2021-01-09 10:22:33.582  INFO 14952 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-01-09 10:22:33.609  INFO 14952 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-01-09 10:22:33.614  INFO 14952 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

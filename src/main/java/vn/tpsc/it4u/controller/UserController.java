@@ -158,10 +158,16 @@ public class UserController {
     // @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/user")
     public ResponseEntity<?> getAllUser() {
-        // return ResponseEntity.ok(apiResponse.success(userRepository.findAll(), locale));
         return ResponseEntity.ok(userService.findAll());
-        // return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
     }
+
+    @PostMapping("/searchUser")
+    public ResponseEntity<?> searchAllUser(@RequestBody String data) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        String param = convertDataToJson.getString("content");
+        return ResponseEntity.ok(userService.findAllByParam(param));
+    } 
+
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
         userService.deleteUser(userId);

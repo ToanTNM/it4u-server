@@ -1568,3 +1568,12 @@ Content-Type: application/json
 {
     "content": "192PCT_Binh.LQ"
 }
+
+###
+POST http://localhost:5000/api/v1/searchUser
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMDE1ODg5NywiZXhwIjoxNjEwNzYzNjk3fQ.ABPtEsGyH-9wrepAo1YClwZCNSoKO5GJnYJTNaKxmvMvSXBPxcZBxYfofRXYTlHSn1Ji8VRuwJLYbGsnUMbjjg
+Content-Type: application/json
+
+{
+    "content": "23"
+}

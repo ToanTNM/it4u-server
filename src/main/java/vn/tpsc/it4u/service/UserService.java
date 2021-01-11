@@ -153,6 +153,31 @@ public class UserService {
         return listUsers;
     }
 
+    public List<UserSummary> findAllByParam(String param) {
+        List<User> users = userRepository.findAllUserByParam(param);
+        List<UserSummary> listUsers = users.stream()
+            .map(user -> 
+                new UserSummary(
+                    user.getId(), 
+                    user.getUsername(), 
+                    user.getName(), 
+                    user.getEmail(), 
+                    user.getAvatar(), 
+                    user.getGender(), 
+                    user.getType(), 
+                    user.getStatus(),
+                    user.getSitename(),
+                    user.getLastTimeLogin(),
+                    user.getNumLogin(),
+                    user.getLanguage(),
+                    user.getRoles(),
+                    user.getRegistrationId()
+                ))
+            .collect(Collectors.toList());
+
+        return listUsers;
+    }
+
     public Boolean deleteUser(Long userId) {
         userRepository.deleteById(userId);
         return true;
