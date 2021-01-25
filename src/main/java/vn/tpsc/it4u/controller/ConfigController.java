@@ -68,7 +68,15 @@ public class ConfigController {
             String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken,
                     unifises, postData);
             JSONObject getData = new JSONObject(createVlanGroup);
-            JSONArray result = getData.getJSONArray("data");
+            JSONArray convertDataToJson = getData.getJSONArray("data");
+            JSONArray result = new JSONArray();
+            for (int i=0; i<convertDataToJson.length(); i++) {
+                JSONObject getItemData = (JSONObject) convertDataToJson.get(i);
+                String wlanGroupName = getItemData.getString("name");
+                if (!wlanGroupName.toLowerCase().equals("off")) {
+                    result.put(getItemData);
+                }
+            }
             log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlangroup");
             return result.toString();
         } catch (Exception e) {
@@ -76,7 +84,15 @@ public class ConfigController {
             String createVlanGroup = apiRequest.postRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken,
                     unifises, postData);
             JSONObject getData = new JSONObject(createVlanGroup);
-            JSONArray result = getData.getJSONArray("data");
+            JSONArray convertDataToJson = getData.getJSONArray("data");
+            JSONArray result = new JSONArray();
+            for (int i = 0; i < convertDataToJson.length(); i++) {
+                JSONObject getItemData = (JSONObject) convertDataToJson.get(i);
+                String wlanGroupName = getItemData.getString("name");
+                if (!wlanGroupName.toLowerCase().equals("off")) {
+                    result.put(getItemData);
+                }
+            }
             log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/wlangroup");
             return result.toString();
         }
@@ -94,16 +110,32 @@ public class ConfigController {
         try {
             String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
             JSONObject convertData = new JSONObject(getData);
-            JSONArray data = convertData.getJSONArray("data");
+            JSONArray convertDataToJson = convertData.getJSONArray("data");
+            JSONArray result = new JSONArray();
+            for (int i = 0; i < convertDataToJson.length(); i++) {
+                JSONObject getItemData = (JSONObject) convertDataToJson.get(i);
+                String wlanGroupName = getItemData.getString("name");
+                if (!wlanGroupName.toLowerCase().equals("off")) {
+                    result.put(getItemData);
+                }
+            }
             log.info(currentUser.getUsername() + " - Get: it4u/" + id + "/wlangroup");
-            return data.toString();
+            return result.toString();
         } catch (Exception e) {
             getCookies();
             String getData = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/rest/wlangroup", csrfToken, unifises);
             JSONObject convertData = new JSONObject(getData);
-            JSONArray data = convertData.getJSONArray("data");
+            JSONArray convertDataToJson = convertData.getJSONArray("data");
+            JSONArray result = new JSONArray();
+            for (int i = 0; i < convertDataToJson.length(); i++) {
+                JSONObject getItemData = (JSONObject) convertDataToJson.get(i);
+                String wlanGroupName = getItemData.getString("name");
+                if (!wlanGroupName.toLowerCase().equals("off")) {
+                    result.put(getItemData);
+                }
+            }
             log.info(currentUser.getUsername() + " - Get: it4u/" + id + "/wlangroup");
-            return data.toString();
+            return result.toString();
         }
         
     }
@@ -164,7 +196,8 @@ public class ConfigController {
         }
         for (int i=0; i < data.length(); i++) {
             JSONObject getItem = (JSONObject) data.get(i);
-            if (wlan.equals(getItem.getString("wlangroup_id"))) {
+            String ssidName = getItem.getString("name").toLowerCase();
+            if (wlan.equals(getItem.getString("wlangroup_id")) && !ssidName.equals("tps tpcoms")) {
                 result.add(getItem.toString());
             }
         }

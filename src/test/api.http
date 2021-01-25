@@ -662,25 +662,25 @@ Content-Type: application/json
 }
 
 ### get vlangroup
-Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlangroup
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Get http://localhost:5000/api/v1/it4u/1px5g676/wlangroup
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMTU2NDk4MSwiZXhwIjoxNjEyMTY5NzgxfQ.2s0Y1OvX2-AtYHFBW2LWlYOSItE16EjpZGpjej9SycZFKo1hRyA-hKZgwOTAp126P6xhJPCqzOCHScNmN6SFsA
 Content-Type: application/json
 
 ### get thông tin ssid của vlan group
-Get http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5e566a29e4b083762e0377ef
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTkyNDUyMjQ5LCJleHAiOjE1OTMwNTcwNDl9.RSChbTtN5lf5iWl5ywWK6uLRVACPG3mXaCbLtfsW8jenIurRE3Y3w16EdZTRsdzzN8KmTW6IJ-boDrgw28I2AA
+Get http://localhost:5000/api/v1/it4u/1px5g676/wlanconf/5def3af1e4b0f1a86c1ef4df
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMTM3NDI0OSwiZXhwIjoxNjExOTc5MDQ5fQ.MMSAAMqn0rvXM32euEnr8utXiCnoo18Hx-hijpYgnyfxA3xpzYoHnwXjWr4n1DhuYa_h5jj4_yoVBK-qnfAvwg
 Content-Type: application/json
 
 
 ### get info ssid
-Get http://localhost:5000/api/v1/it4u/bkhsurc7/essid/5ef0eea8be0777000d090b1d
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTU5MzQyMzg4NywiZXhwIjoxNTk0MDI4Njg3fQ.J_GiQQPTCM6veG6HZrzlUeBsJckEs4LMYivIOcbpNAg6NDej7pbnKeMJR2ZdD94TqE-x-11d6hAennglh1yhAA
+Get http://localhost:5000/api/v1/it4u/rhnl7chn/essid/5ef0eea8be0777000d090b1d
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMTM3NDI0OSwiZXhwIjoxNjExOTc5MDQ5fQ.MMSAAMqn0rvXM32euEnr8utXiCnoo18Hx-hijpYgnyfxA3xpzYoHnwXjWr4n1DhuYa_h5jj4_yoVBK-qnfAvwg
 Content-Type: application/json
 
 ###Update thông tin SSID
 //open, wpapsk 
 Put http://localhost:5000/api/v1/it4u/bkhsurc7/wlanconf/5f714d49c9e77c000d72f6fc
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMTI2MjQ4MiwiZXhwIjoxNjAxODY3MjgyfQ.B2QpfZDcTUqcX2cDHuRKpAwqxTAH1c8B8xu7vJSrGxeW2_yKTuFMLNROoYOi1gSo7Q18xR_V_awv_1Yz8IAQiQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMTM3NDI0OSwiZXhwIjoxNjExOTc5MDQ5fQ.MMSAAMqn0rvXM32euEnr8utXiCnoo18Hx-hijpYgnyfxA3xpzYoHnwXjWr4n1DhuYa_h5jj4_yoVBK-qnfAvwg
 Content-Type: application/json
 
 {
