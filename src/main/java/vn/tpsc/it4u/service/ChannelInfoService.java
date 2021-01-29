@@ -65,7 +65,7 @@ public class ChannelInfoService {
         return listChannelAttributes;
     }
 
-     public List<ChannelAttributeSummary> findChannelAttributeByStatus(String status) {
+    public List<ChannelAttributeSummary> findChannelAttributeByStatus(String status) {
         List<ChannelAttribute> channelAttributes = channelAttributeRepository.findByStatus(status);
         List<ChannelAttributeSummary> listChannelAttributes = channelAttributes.stream()
             .map(channel -> new ChannelAttributeSummary(
@@ -169,7 +169,8 @@ public class ChannelInfoService {
                 updatingChannelDetail.getString("numContract"),
                 updatingChannelDetail.getString("clientName"), 
                 updatingChannelDetail.getString("servicePlans"),
-                updatingChannelDetail.getString("street")
+                updatingChannelDetail.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             channelDetail.setContract(createContract);

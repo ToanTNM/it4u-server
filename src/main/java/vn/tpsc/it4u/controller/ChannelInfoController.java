@@ -492,7 +492,8 @@ public class ChannelInfoController {
                 getData.getString("numContract"),
                 getData.getString("clientName"), 
                 getData.getString("servicePlans"),
-                getData.getString("street")
+                getData.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             createChannelDetail.setContract(createContract);
@@ -569,7 +570,8 @@ public class ChannelInfoController {
                         getData.getString("numContract"),
                         getData.getString("clientName"), 
                         getData.getString("servicePlans"),
-                        getData.getString("street")
+                        getData.getString("street"),
+                        null
                     );
                     contractRepository.save(createContract);
                     createChannelDetail.setContract(createContract);
@@ -587,7 +589,8 @@ public class ChannelInfoController {
                             getContractByCustomerMove.getString("numContract"),
                             getData.getString("customerMove"), 
                             getContractByCustomerMove.getString("servicePlans"),
-                            getContractByCustomerMove.getString("street")
+                            getContractByCustomerMove.getString("street"),
+                            null
                         );
                         historyChannel.setContract(createContractHistory);
                     }
@@ -636,6 +639,9 @@ public class ChannelInfoController {
                         if (getInfoAtt.getString("key").equals("sHPNg")) {
                             itemData.put("contracts", getInfoAtt.getString("value"));
                         }
+                        if (getInfoAtt.getString("key").equals("iNThoINgILiNHLPT")) {
+                            itemData.put("phone", getInfoAtt.getString("value"));
+                        }
                     }
                     JSONObject servicePlan = (JSONObject) convertServicePlan.get(0);
                     itemData.put("servicePlan", servicePlan.getString("name"));
@@ -654,7 +660,8 @@ public class ChannelInfoController {
                     itemData.getString("contracts"),
                     itemData.getString("companyName"), 
                     itemData.getString("servicePlan"),
-                    itemData.getString("street")
+                    itemData.getString("street"),
+                    itemData.getString("phone")
                 );
             contractRepository.save(createContract);
         }
@@ -667,9 +674,9 @@ public class ChannelInfoController {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject itemData = new JSONObject();
         String companyName = "";
-        String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
-        JSONArray convertInfoClient = new JSONArray(getInfoClient);
         if (!contractRepository.existsByClientName(clientName)) {
+            String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
+            JSONArray convertInfoClient = new JSONArray(getInfoClient);
             for (int i = 0; i < convertInfoClient.length(); i++) {
                 JSONObject getItem = (JSONObject) convertInfoClient.get(i);
                 try {
@@ -687,6 +694,9 @@ public class ChannelInfoController {
                         if (getInfoAtt.getString("key").equals("sHPNg")) {
                             itemData.put("contracts", getInfoAtt.getString("value"));
                         }
+                        if (getInfoAtt.getString("key").equals("iNThoINgILiNHLPT")) {
+                            itemData.put("phone", getInfoAtt.getString("value"));
+                        }
                     }
                     itemData.put("customId", getItem.getString("userIdent"));
                     JSONObject servicePlan = (JSONObject) convertServicePlan.get(0);
@@ -700,7 +710,8 @@ public class ChannelInfoController {
                     itemData.getString("contracts"),
                     itemData.getString("clientName"), 
                     itemData.getString("servicePlan"),
-                    itemData.getString("street")
+                    itemData.getString("street"),
+                    itemData.getString("phone")
                 );
             contractRepository.save(createContract);
         }

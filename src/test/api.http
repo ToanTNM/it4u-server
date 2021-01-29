@@ -1170,7 +1170,7 @@ Content-Type: application/json
 
 ###
 Get http://localhost:5000/api/v1/it4u/info/mac
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTYwMzk0MzY2NywiZXhwIjoxNjA0NTQ4NDY3fQ.dZ4fB5MuYkMJ55Zy_aa3V7WNTpfw2hqV8VYDO5wTucOy8P31CcgG6b7kx97WAdNs_VC3b3K6JkVZFL_q1IhX6w
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMTcxNzIxOSwiZXhwIjoxNjEyMzIyMDE5fQ.0xw-zigMpP51PSNo4Y5GxJy2URDtFl0DwRqrbg8SiYsEA6eZCXyrfAqX1CAWpBCJ361-D8yLbHd0rQnrbiTDiA
 Content-Type: application/json
 
 ###

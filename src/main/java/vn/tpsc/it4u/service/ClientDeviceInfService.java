@@ -90,7 +90,7 @@ public class ClientDeviceInfService {
         return true;
     }
 
-    public Boolean uploadClientDeviceInf(JSONObject data) {
+    public Boolean uploadClientDeviceInf(JSONObject data, JSONObject infoContract) {
         ClientDeviceInf clientDeviceInf = new ClientDeviceInf(
             data.getString("backup"),
             data.getString("maintenance"),
@@ -126,16 +126,26 @@ public class ClientDeviceInfService {
             data.getString("note")
         );
         try {
-            String street = "";
-            String siteName = data.getString("siteName");
-            String[] arrClientName = siteName.split("_");
-            String getClientName = arrClientName[0];
-            for (int i = 0; i < getClientName.length(); i++) {
-                char kyTu = getClientName.charAt(i);
-                street = street + "%" + kyTu;
+            if (contractRepository.existsByParamContract(infoContract.getString("customId"), infoContract.getString("companyName"), 
+                infoContract.getString("street"), infoContract.getString("contracts"))) {
+                Contract contract = contractRepository.findByParamContract(infoContract.getString("customId"), infoContract.getString("companyName"), 
+                infoContract.getString("street"), infoContract.getString("contracts"));
+                contract.setPhone(infoContract.getString("phone"));
+                contractRepository.save(contract);
+                clientDeviceInf.setContract(contract);
             }
-            Contract contract = contractRepository.findByStreet(street);
-            clientDeviceInf.setContract(contract);
+            else {
+                Contract contract = new Contract(
+                    infoContract.getString("customId"), 
+                    infoContract.getString("contracts"),
+                    infoContract.getString("companyName"), 
+                    infoContract.getString("servicePlan"),
+                    infoContract.getString("street"),
+                    infoContract.getString("phone")
+                );
+                contractRepository.save(contract);
+                clientDeviceInf.setContract(contract);
+            }
         } catch (Exception e) {
         }
         try {

@@ -93,7 +93,8 @@ public class CustomerServiceController {
                 getData.getString("numContract"), 
                 getData.getString("clientName"),
                 getData.getString("servicePlans"),
-                getData.getString("street")
+                getData.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             createBreakdowns.setContract(createContract);
@@ -147,7 +148,8 @@ public class CustomerServiceController {
                 getData.getString("numContract"),
                 getData.getString("clientName"), 
                 getData.getString("servicePlans"),
-                getData.getString("street")
+                getData.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             createServiceDeployment.setContract(createContract);
@@ -201,7 +203,8 @@ public class CustomerServiceController {
                 getData.getString("numContract"),
                 getData.getString("clientName"), 
                 getData.getString("servicePlans"),
-                getData.getString("street")
+                getData.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             createCustomerSupport.setContract(createContract);
@@ -256,7 +259,8 @@ public class CustomerServiceController {
                 getData.getString("numContract"),
                 getData.getString("clientName"), 
                 getData.getString("servicePlans"),
-                getData.getString("street")
+                getData.getString("street"),
+                null
             );
             contractRepository.save(createContract);
             createHandleService.setContract(createContract);

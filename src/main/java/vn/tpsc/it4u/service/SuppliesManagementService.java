@@ -277,7 +277,8 @@ public class SuppliesManagementService {
                     data.getString("numContract"),
                     data.getString("clientName"), 
                     null,
-                    data.getString("street")
+                    data.getString("street"),
+                    null
                 );
                 contractRepository.save(contract);
                 exportWarehouse.setContract(contract);
