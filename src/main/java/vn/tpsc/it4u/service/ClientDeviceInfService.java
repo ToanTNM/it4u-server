@@ -61,7 +61,7 @@ public class ClientDeviceInfService {
             data.getString("method"),
             data.getString("location"),
             data.getString("openPort"),
-            data.getString("firewall"),
+            data.getString("firmware"),
             data.getString("wanGroup"),
             data.getString("note")
         );
