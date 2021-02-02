@@ -156,7 +156,10 @@ public class ClientDeviceInfService {
             else {
                 String idName = data.getString("siteName");
                 try {
-                    idName = data.getString("idName");
+                    if (data.getString("idName").equals(""))
+                        idName = data.getString("siteName");
+                    else 
+                        idName = data.getString("idName");
                 } catch (Exception e) {
                 }
                 SitesName sitesName = new SitesName(
