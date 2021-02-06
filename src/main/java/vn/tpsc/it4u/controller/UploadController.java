@@ -114,7 +114,7 @@ public class UploadController {
             throw new RuntimeException("You must select the a file for uploading");
         }
         InputStream inputStream = file.getInputStream();
-        Files.delete(Paths.get(path + id + "/" + mobileName));
+        Files.delete(Paths.get(path + id + "/" + imagePath + mobileName));
         System.out.println("Product Image Deleted !!!");
         Files.copy(inputStream, Paths.get(path + id + "/" + imagePath + mobileName), StandardCopyOption.REPLACE_EXISTING);
         return ResponseEntity.ok(apiResponse.success(1001, locale));
@@ -128,6 +128,8 @@ public class UploadController {
             throw new RuntimeException("You must select the a file for uploading");
         }
         InputStream inputStream = file.getInputStream();
+        Files.delete(Paths.get(path + id + "/" + imagePath + desktopName));
+        System.out.println("Product Image Deleted !!!");
         Files.copy(inputStream, Paths.get(path + id + "/"+ imagePath + desktopName), StandardCopyOption.REPLACE_EXISTING);
         return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
