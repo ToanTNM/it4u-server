@@ -23,6 +23,7 @@ import vn.tpsc.it4u.model.ChannelName;
 import vn.tpsc.it4u.model.ChannelValue;
 import vn.tpsc.it4u.model.Contract;
 import vn.tpsc.it4u.model.HistoryChannel;
+import vn.tpsc.it4u.model.SystemConfig;
 import vn.tpsc.it4u.payload.ChannelAttributeRequest;
 import vn.tpsc.it4u.repository.ChannelAttributeRepository;
 import vn.tpsc.it4u.repository.ChannelDetailRepository;
@@ -34,6 +35,7 @@ import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.Calculator;
 import vn.tpsc.it4u.service.ChannelInfoService;
 import vn.tpsc.it4u.service.ConfigTokenService;
+import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.service.UserService;
 
 import java.io.IOException;
@@ -99,6 +101,9 @@ public class ChannelInfoController {
     @Autowired
     ConfigTokenService configTokenService;
 
+    @Autowired
+    SystemConfigService systemConfigService;
+
     @ApiOperation(value = "Get clients")
     @GetMapping("/it4u/clients")
     public String getAllClient() {
@@ -106,6 +111,8 @@ public class ChannelInfoController {
         /// clients/180/services
         JSONObject itemData = new JSONObject();
         List<String> result = new ArrayList<>();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         for (int i = 0; i < convertInfoClient.length(); i++) {
@@ -128,6 +135,8 @@ public class ChannelInfoController {
     public String getInfoMAC() {
         List<String> result = new ArrayList<>();
         ApiRequest apiRequest = new ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         for (int i=0; i<convertInfoClient.length(); i++) {
@@ -164,6 +173,8 @@ public class ChannelInfoController {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject itemData = new JSONObject();
         List<String> result = new ArrayList<>();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         for (int i = 0; i < convertInfoClient.length(); i++) {
@@ -181,6 +192,8 @@ public class ChannelInfoController {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject itemData = new JSONObject();
         List<String> result = new ArrayList<>();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         for (int i = 0; i < convertInfoClient.length(); i++) {
@@ -204,6 +217,8 @@ public class ChannelInfoController {
         ApiRequest apiRequest = new ApiRequest();
         /// clients/180/services
         JSONObject itemData = new JSONObject();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients/" + userId, authAppKey);
         String getServicePlan = apiRequest.getRequestUCRM(urlUCRM + "/clients/" + userId + "/services", authAppKey);
         JSONObject convertInfoClient = new JSONObject(getInfoClient);
@@ -624,6 +639,8 @@ public class ChannelInfoController {
     public ResponseEntity<?> getContractByCustomId(@PathVariable("customId") String customId) {
         ApiRequest apiRequest = new ApiRequest();
         JSONObject itemData = new JSONObject();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         if (!contractRepository.existsByCustomId(customId)) {
@@ -675,6 +692,8 @@ public class ChannelInfoController {
         JSONObject itemData = new JSONObject();
         String companyName = "";
         if (!contractRepository.existsByClientName(clientName)) {
+            SystemConfig systemConfig = systemConfigService.findSystemConfig();
+            authAppKey = systemConfig.getTokenUcrm();
             String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
             JSONArray convertInfoClient = new JSONArray(getInfoClient);
             for (int i = 0; i < convertInfoClient.length(); i++) {

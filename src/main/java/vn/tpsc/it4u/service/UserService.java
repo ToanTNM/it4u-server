@@ -16,11 +16,13 @@ import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.exception.AppException;
+import vn.tpsc.it4u.model.ChatChannel;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.ChangePasswordViewModel;
 import vn.tpsc.it4u.payload.UserSummary;
 import vn.tpsc.it4u.payload.UserUpdateSummary;
+import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.util.StringUtils;
@@ -34,6 +36,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ChatChannelRepository chatChannelRepository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -179,6 +184,9 @@ public class UserService {
     }
 
     public Boolean deleteUser(Long userId) {
+        if (chatChannelRepository.existsByUserIdOne(userId)) {
+            chatChannelRepository.deleteByUserIdOne(userId);
+        }
         userRepository.deleteById(userId);
         return true;
     }
@@ -226,6 +234,8 @@ public class UserService {
         user.setGender(updatingUser.getGender() != null ? updatingUser.getGender() : user.getGender());
         //UserType type
         user.setType(updatingUser.getType() != null ? updatingUser.getType() : user.getType());
+
+        user.setStatus(updatingUser.getStatus());
 
         user.setSitename(updatingUser.getSitename() != null ? updatingUser.getSitename() : user.getSitename());
         

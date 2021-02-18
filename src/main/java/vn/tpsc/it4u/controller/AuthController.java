@@ -109,7 +109,7 @@ public class AuthController {
 
     @PostMapping("/refresh")
     @ApiOperation(value = "Refesh the expired jwt authentication")
-    public ResponseEntity refeshJwtToken(@ApiParam(value = "The TokenRefreshRequest payload") @Valid @RequestBody TokenRefreshRequest tokenRefreshRequest, Locale locale) {
+    public ResponseEntity<?> refeshJwtToken(@ApiParam(value = "The TokenRefreshRequest payload") @Valid @RequestBody TokenRefreshRequest tokenRefreshRequest, Locale locale) {
         Optional<User> user = userService.getRefreshToken(tokenRefreshRequest.getRefreshToken());
         Long userId = user.get().getId();
         final String updatedToken = tokenProvider.generateTokenFromUserId(userId);

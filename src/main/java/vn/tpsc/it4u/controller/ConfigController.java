@@ -1,12 +1,15 @@
 package vn.tpsc.it4u.controller;
 
 import vn.tpsc.it4u.util.ApiRequest;
+import vn.tpsc.it4u.util.ApiResponseUtils;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,10 +21,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.SitesName;
+import vn.tpsc.it4u.model.SystemConfig;
+import vn.tpsc.it4u.payload.SystemConfigSummary;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.security.CurrentUser;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.ConfigTokenService;
+import vn.tpsc.it4u.service.SystemConfigService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -50,10 +56,16 @@ public class ConfigController {
     private String password;
 
     @Autowired
+    private SystemConfigService systemConfigService;
+
+    @Autowired
     private ConfigTokenService configTokenService;
 
     @Autowired
     private SitesNameRepository sitesNameRepository;
+
+    @Autowired
+    ApiResponseUtils apiResponse;
 
     @ApiOperation(value = "Create vlan group")
     @PostMapping("it4u/{id}/wlangroup")
@@ -377,7 +389,7 @@ public class ConfigController {
         for (int i = 0; i< getVlanGroupJson.length(); i++) {
             JSONObject getItem = (JSONObject) getVlanGroupJson.get(i);
             if (ssid.equals(getItem.getString("_id"))) {
-                name = convertDataPost.getString("name");
+                name = getItem.getString("name");
                 break;
             }
         }
@@ -405,9 +417,9 @@ public class ConfigController {
                     getItem.put("security", "open");
                     putData = getItem.toString();
                 }
-                String createVlanGroup = apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssidName,
+                String editEssid= apiRequest.putRequestApi(urlIt4u, "/s/" + id + "/rest/wlanconf/" + ssidName,
                         csrfToken, unifises, putData);
-                JSONObject convertData = new JSONObject(createVlanGroup);
+                JSONObject convertData = new JSONObject(editEssid);
                 data = convertData.getJSONArray("data");
             }
         }
@@ -597,9 +609,34 @@ public class ConfigController {
         log.info(currentUser.getUsername() + " - Post: it4u/" + id + "/hotspot");
         return createHotspot.toString();
     }
+
+    @ApiOperation(value = "Get system config information")
+    @GetMapping("/it4u/systemConfig")
+    public String getSystemConfigInfo() {
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        JSONObject convertSystemConfig = new JSONObject(systemConfig);
+        return convertSystemConfig.toString();
+    }
+
+    @ApiOperation(value = "Update system config information")
+    @PutMapping("/it4u/systemConfig")
+    public ResponseEntity<?> updateSystemConfigInfo(@RequestBody SystemConfigSummary data, Locale locale) {
+        systemConfigService.updateSystemConfig(data);
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
+    @ApiOperation(value = "Add system config information")
+    @PostMapping("/it4u/systemConfig")
+    public ResponseEntity<?> createSystemConfigInfo(@RequestBody SystemConfigSummary data, Locale locale) {
+        systemConfigService.createSystemConfig(data);
+        return ResponseEntity.ok(apiResponse.success(200, locale));
+    }
     
     public String getCookies() {
         ApiRequest apiRequest = new ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        username = systemConfig.getUsernameUbnt();
+        password = systemConfig.getPwUbnt();
         String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"remember\":\"true\",\"strict\":\"true\"}";
         String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
         String[] arr = getCookies.split(";");

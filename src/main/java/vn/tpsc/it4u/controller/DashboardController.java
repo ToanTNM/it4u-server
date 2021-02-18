@@ -24,8 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 // import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.SitesName;
+import vn.tpsc.it4u.model.SystemConfig;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.service.SitesNameService;
+import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.model.ConfigToken;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.service.ConfigTokenService;
@@ -91,10 +93,15 @@ public class DashboardController {
     @Autowired
     ConfigTokenService configTokenService;
 
+    @Autowired
+    SystemConfigService systemConfigService;
     @ApiOperation(value = "Cookies IT4U")
     @GetMapping("/it4u/cookies")
     public String getCookies() {
         ApiRequest apiRequest = new  ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        username = systemConfig.getUsernameUbnt();
+        password = systemConfig.getPwUbnt();
         String dataPost = "{'username':'" + username + "','password':'" + password + "','remember':'true','strict':'true'}";
         String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);
         String [] arr = getCookies.split(";");

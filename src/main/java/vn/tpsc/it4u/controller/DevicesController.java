@@ -14,9 +14,11 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 import vn.tpsc.it4u.util.ApiRequest;
+import vn.tpsc.it4u.model.SystemConfig;
 import vn.tpsc.it4u.security.CurrentUser;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.service.ConfigTokenService;
+import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.util.Calculator;
 
 @RestController
@@ -40,6 +42,9 @@ public class DevicesController {
 
     @Autowired
     private ConfigTokenService configTokenService;
+
+    @Autowired
+    SystemConfigService systemConfigService;
 
     String sitesid = "/self/sites";
 
@@ -237,6 +242,9 @@ public class DevicesController {
 
     public String getCookies() {
         ApiRequest apiRequest = new ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        username = systemConfig.getUsernameUbnt();
+        password = systemConfig.getPwUbnt();
         String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password
                 + "\",\"remember\":\"true\",\"strict\":\"true\"}";
         String getCookies = apiRequest.postRequestIt4u(urlIt4u, "/login", dataPost);

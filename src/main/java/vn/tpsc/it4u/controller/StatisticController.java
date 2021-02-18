@@ -18,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.repository.ClientSegmentRepository;
+import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.model.ClientSegment;
+import vn.tpsc.it4u.model.SystemConfig;
 
 @RestController
 @Slf4j
@@ -42,6 +44,9 @@ public class StatisticController {
     @Autowired
     ClientSegmentRepository clientSegmentRepository;
 
+    @Autowired
+    SystemConfigService systemConfigService;
+
     @ApiOperation(value = "Statistic segments for client")
     @PostMapping("/it4u/segments/client")
     public String getSegmentClient(@RequestBody String postData) {
@@ -53,6 +58,8 @@ public class StatisticController {
         List<String> listSegment = new ArrayList<>();
         JSONObject itemData = new JSONObject();
         JSONObject convertPostData = new JSONObject(postData);
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         JSONArray convertInfoClient = new JSONArray(getInfoClient);
         for (int i = 0; i < convertInfoClient.length(); i++) {
@@ -107,6 +114,8 @@ public class StatisticController {
         List<String> listSPName = new ArrayList<>();
         List<Integer> listData = new ArrayList<>();
         JSONObject itemData = new JSONObject();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getServicePlans = apiRequest.getRequestUCRM(urlUCRM + "/clients/services", authAppKey);
         JSONArray convertSPToJson = new JSONArray(getServicePlans);
         for (int i = 0; i < convertSPToJson.length(); i++) {
@@ -145,6 +154,8 @@ public class StatisticController {
     public String getServiceStatus() {
         String result = "";
         ApiRequest apiRequest = new ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         String getInfoClient = apiRequest.getRequestUCRM(urlUCRM + "/clients", authAppKey);
         return getInfoClient;
     }

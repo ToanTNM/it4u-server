@@ -75,7 +75,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "lap.dang@tpsc.vn",
-    "password": "12345678"
+    "password": "123456"
 }
 
 ###
@@ -89,7 +89,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwOTM4MjI1OSwiZXhwIjoxNjA5OTg3MDU5fQ.si3Xz6Q2y6CYUIZv_7MiERmPVU7j6eIUUGJE5AF81l6XurbJW-jXZvpppjc3DAnaw27OEyeKqiMeS4wO7OU5zQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
 ###
 
 PUT http://localhost:5000/api/v1/user/update
@@ -123,8 +123,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/api/v1/users/116
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYwODgwMzUzOCwiZXhwIjoxNjA5NDA4MzM4fQ.HWd_sZKf7qa_hZMCUjcj-i52Xgr6PLCCf5JZSsi-uurjen0M0nksjev23tFIoHWgwlIyvScXZGoQM6yUStKSYA
+DELETE http://localhost:5000/api/v1/users/149
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzUyOTA1MywiZXhwIjoxNjE0MTMzODUzfQ.mLH9ksVroT2zWfzkC6yZyFfWEOgfGmSonSG0xeJFcmgnPlboWogsgUwftZh3VJKwjIz01Ahwroyo2ymm19lFFA
 
 ###
 GET http://localhost:5000/api/v1/users/33
@@ -1577,3 +1577,32 @@ Content-Type: application/json
 {
     "content": "23"
 }
+
+###
+POST http://localhost:5000/api/v1/it4u/systemConfig
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMjc3MjY2NywiZXhwIjoxNjEzMzc3NDY3fQ.T03FaaIAVXZHE4Bk_6IqOlTQAJM_p7UJhVsOUOKlOonn_YzEB7ZCmAhV70mAu38AqXF1mataZC-jc3XrTJysuw
+Content-Type: application/json
+
+{
+    "usernameUbnt": "tps-admin",
+    "pwUbnt": "PbjAFiwwFTMfkzfsFHgF",
+    "tokenDev": "15cadd25-ee0c-40b2-bdff-0ce622298336",
+    "tokenUcrm": "ljblTtHkHKWbVBnuc8L410Phm2SAJTVOB9pYtyVh5osfiWF1lGsajTOdvgiaxELB"
+}
+
+###
+PUT http://localhost:5000/api/v1/it4u/systemConfig
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMjc3MjY2NywiZXhwIjoxNjEzMzc3NDY3fQ.T03FaaIAVXZHE4Bk_6IqOlTQAJM_p7UJhVsOUOKlOonn_YzEB7ZCmAhV70mAu38AqXF1mataZC-jc3XrTJysuw
+Content-Type: application/json
+
+{
+    "usernameUbnt": "tps-admin1",
+    "pwUbnt": "PbjAFiwwFTMfkzfsFHgF",
+    "tokenDev": "15cadd25-ee0c-40b2-bdff-0ce622298336",
+    "tokenUcrm": "ljblTtHkHKWbVBnuc8L410Phm2SAJTVOB9pYtyVh5osfiWF1lGsajTOdvgiaxELB"
+}
+
+###
+GET http://localhost:5000/api/v1/it4u/systemConfig
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
+Content-Type: application/json

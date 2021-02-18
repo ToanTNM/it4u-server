@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
+import vn.tpsc.it4u.model.SystemConfig;
 import vn.tpsc.it4u.service.ClientDeviceInfService;
+import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.ApiResponseUtils;
 
@@ -37,6 +39,9 @@ public class ClientDeviceInfController {
     ClientDeviceInfService clientDeviceInfService;
 
     @Autowired
+    SystemConfigService systemConfigService;
+
+    @Autowired
     ApiResponseUtils apiResponse;
     
     @ApiOperation(value = "Create client device information")
@@ -52,6 +57,8 @@ public class ClientDeviceInfController {
     public ResponseEntity<?> uploadClientDeviceInf(@RequestBody String data, Locale locale) {
         JSONArray convertDataToJson = new JSONArray(data);
         ApiRequest apiRequest = new ApiRequest();
+        SystemConfig systemConfig = systemConfigService.findSystemConfig();
+        authAppKey = systemConfig.getTokenUcrm();
         for(int i=0; i<convertDataToJson.length(); i++) {
             JSONObject getData = (JSONObject) convertDataToJson.get(i);
             JSONObject infoContract = new JSONObject();

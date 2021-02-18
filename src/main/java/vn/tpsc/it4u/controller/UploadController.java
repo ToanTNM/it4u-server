@@ -44,16 +44,16 @@ public class UploadController {
     @Autowired
     ApiResponseUtils apiResponse;
 
-    @Value("${upload.path}")
+    @Value("${app.ubnt.upload.path}")
     private String path;
 
-    @Value("${upload.image-path}")
+    @Value("${app.ubnt.upload.image-path}")
     private String imagePath;
 
-    @Value("${upload.mobile-name}")
+    @Value("${app.ubnt.upload.mobile-name}")
     private String mobileName;
 
-    @Value("${upload.desktop-name}")
+    @Value("${app.ubnt.upload.desktop-name}")
     private String desktopName;
 
     @ApiOperation(value = "Get images")

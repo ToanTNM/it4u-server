@@ -2,6 +2,8 @@ package vn.tpsc.it4u.repository;
 
 import vn.tpsc.it4u.model.ChatChannel;
 import vn.tpsc.it4u.model.User;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -37,4 +39,18 @@ public interface ChatChannelRepository extends CrudRepository<ChatChannel, Strin
       + "  WHERE"
       + "    c.uuid IS :uuid")
   public ChatChannel getChannelDetails(@Param("uuid") String uuid);
+
+  @Modifying
+  @Query(value = " DELETE"
+      + " FROM chat_channel"
+      + " WHERE"
+      + " user_id_one = :userIdOne", nativeQuery = true)
+  int deleteByUserIdOne(@Param("userIdOne") Long userIdOne);
+
+   @Query(value = " SELECT"
+      + " count(*)>0"
+      + " FROM chat_channel"
+      + " WHERE"
+      + " user_id_one=:userIdOne", nativeQuery = true)
+  Boolean existsByUserIdOne(@Param("userIdOne") Long userIdOne);
 }

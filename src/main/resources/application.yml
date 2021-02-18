@@ -1,50 +1,14 @@
-# app config
-
-app:
-  api:
-    version: /api/v1
-  jwtSecret: JWTSuperSecretKey
-  jwtExpirationInMs: 604800000
-  
-  ubnt:
-    url: https://ubnt.cloud.tpsc.vn/api
-    url_test: https://ubnt49.cloud.tpsc.vn/api
-    hotspot_template: /s/rhnl7chn/get/setting
-    ssid_template: /s/rhnl7chn/rest/wlanconf
-    username: lap.dang@tpsc.vn
-    password: Nccvbcl0167@
-    csrf_token: DSBg0h0XdDa9crwlbXXFtuHiJAbRuShz
-    unifises: 4MGBgBEl3esuGUlZCRQm2fCTlNKEdaAa
-  dev:
-    url: https://dev.tpsc.vn/api/customer_info
-    token: 15cadd25-ee0c-40b2-bdff-0ce622298336
-  zabbix:
-    url: https://monitor.tpsc.vn
-    username: Zabbix
-    password: Tpsc.vn@123
-    token: d756ebaf696799ad90ea118e68301351
-  ucrm:
-    url: https://member.tpsc.vn/api/v1.0
-    x_auth_app_Key: ljblTtHkHKWbVBnuc8L410Phm2SAJTVOB9pYtyVh5osfiWF1lGsajTOdvgiaxELB
-  firebase:
-    url: https://fcm.googleapis.com/fcm/send
-    senderId: 341911171720
-    getAccessToken: AAAAT5t-cog:APA91bHugsOdc3_Q_i1h0TybzILhuHKNgG2fJO_FjQ7t24VhgTdZq9sT22AvjdUtVCJkvbTJnCTKmuTm9Ee2i-7M4GR992tZteawWZjCbzX9bNmNjOANv1GdN72Nvk5SpOUTfbMTXcVT
+#Spring config
 spring:
   profiles:
     active: prod
-
-  # Jackson Properties
   jackson:
     default-property-inclusion: NON_NULL
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: UTC
-  
-  #locale
   messages:
     basename: i18n/errors,i18n/messages
-  
 logging:
   file:
     path: logs
@@ -55,3 +19,45 @@ management:
   endpoint:
     logfile:
       external-file: logs/client.log
+
+#App config
+app:
+  api:
+    version: /api/v1
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 604800000
+  
+  ubnt:
+    url: ${UBNT_API_URL:https://ubnt.cloud.tpsc.vn/api}
+    url_test: https://ubnt49.cloud.tpsc.vn/api
+    hotspot_template: /s/rhnl7chn/get/setting
+    ssid_template: /s/rhnl7chn/rest/wlanconf
+    username: tps-admin
+    password: PbjAFiwwFTMfkzfsFHgF
+    passwordDefault: $2a$10$aFKAasotVlSRQxBnyqgnkO5.usvKG96sk1eH1Gh8UAkzehp/G96nq
+    csrf_token: DSBg0h0XdDa9crwlbXXFtuHiJAbRuShz
+    unifises: 4MGBgBEl3esuGUlZCRQm2fCTlNKEdaAa
+    upload:
+      path: ${UBNT_SITES_PATH:unifi-sites/}
+      image-path: ${UBNT_IMAGE_PATH:app-unifi-hotspot-portal/images/default/}
+      mobile-name: ${UBNT_MOBILE_IMAGE_NAME:bg_phone.png}
+      desktop-name: ${UBNT_DESKTOP_IMAGE_NAME:bg_desktop.png}
+
+  dev:
+    url: ${DEV_API_URL:https://dev.tpsc.vn/api/customer_info}
+    token: 15cadd25-ee0c-40b2-bdff-0ce622298336
+
+  zabbix:
+    url: ${ZABBIX_API_URL:https://monitor.tpsc.vn}
+    username: Zabbix
+    password: Tpsc.vn@123
+    token: d756ebaf696799ad90ea118e68301351
+
+  ucrm:
+    url: ${UCRM_API_URL:https://member.tpsc.vn/api/v1.0}
+    x_auth_app_Key: ljblTtHkHKWbVBnuc8L410Phm2SAJTVOB9pYtyVh5osfiWF1lGsajTOdvgiaxELB
+  
+  firebase:
+    url: ${FIREBASE_URL:https://fcm.googleapis.com/fcm/send}
+    senderId: 341911171720
+    getAccessToken: AAAAT5t-cog:APA91bHugsOdc3_Q_i1h0TybzILhuHKNgG2fJO_FjQ7t24VhgTdZq9sT22AvjdUtVCJkvbTJnCTKmuTm9Ee2i-7M4GR992tZteawWZjCbzX9bNmNjOANv1GdN72Nvk5SpOUTfbMTXcVT

@@ -29,6 +29,7 @@ import com.google.api.services.compute.Compute.Autoscalers.Update;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
@@ -36,6 +37,9 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("${app.api.version}")
 public class UserController {
+
+    @Value("${app.ubnt.passwordDefault}")
+    public String passwordDefault;
 
     @Autowired
     RoleRepository roleRepository;
@@ -57,7 +61,7 @@ public class UserController {
     @ApiOperation(value = "Get current user")
     @GetMapping("/user/me")
     //@PreAuthorize("hasRole('USER')")
-    public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
+    public String getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
         UserSummary userSummary = new UserSummary(
             currentUser.getId(), 
             currentUser.getUsername(), 
@@ -74,7 +78,13 @@ public class UserController {
             currentUser.getRoles(),
             currentUser.getRegistrationId()
             );
-        return userSummary;
+        String password = currentUser.getPassword();    
+        JSONObject convertUserSummary = new JSONObject(userSummary);
+        if (password.equals(passwordDefault))
+            convertUserSummary.put("changePw", true);
+        else 
+            convertUserSummary.put("changePw", false);
+        return convertUserSummary.toString();
     }
 
     @ApiOperation(value = "Check is username available")
