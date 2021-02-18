@@ -7,6 +7,7 @@ import java.util.List;
 
 import vn.tpsc.it4u.model.enums.RoleName;
 import vn.tpsc.it4u.model.SitesName;
+import vn.tpsc.it4u.model.User;
 import vn.tpsc.it4u.payload.*;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
@@ -33,6 +34,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
+import org.modelmapper.ModelMapper;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -52,6 +54,9 @@ public class UserController {
 
     @Autowired 
     UserService userService;
+
+    @Autowired
+    private ModelMapper mapper;
 
     //private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -78,12 +83,21 @@ public class UserController {
             currentUser.getRoles(),
             currentUser.getRegistrationId()
             );
-        String password = currentUser.getPassword();    
+        Long loginNum = currentUser.getNumLogin();    
         JSONObject convertUserSummary = new JSONObject(userSummary);
-        if (password.equals(passwordDefault))
+        try {
+            if (loginNum < 1)
+                convertUserSummary.put("changePw", true);
+            else
+                convertUserSummary.put("changePw", false);
+        } catch (Exception e) {
+            long countLogin = 1;
+            User user = mapper.map(currentUser, User.class);
+            user.setNumLogin(countLogin);
+            userRepository.save(user);
             convertUserSummary.put("changePw", true);
-        else 
-            convertUserSummary.put("changePw", false);
+        }
+        
         return convertUserSummary.toString();
     }
 
