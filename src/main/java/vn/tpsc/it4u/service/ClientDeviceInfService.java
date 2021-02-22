@@ -177,7 +177,6 @@ public class ClientDeviceInfService {
     }
 
     public Boolean updateClientDeviceInf(long id, JSONObject data) {
-        clientDeviceInfRepository.findById(id);
         ClientDeviceInf clientDeviceInf = clientDeviceInfRepository.findById(id);
         clientDeviceInf.setBackup(data.getString("backup"));
         clientDeviceInf.setMaintenance(data.getString("maintenance"));

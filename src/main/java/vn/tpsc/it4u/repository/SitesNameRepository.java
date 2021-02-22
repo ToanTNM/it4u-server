@@ -22,4 +22,6 @@ public interface SitesNameRepository extends JpaRepository<SitesName, Long> {
     SitesName findByIdname(String idname);
 
     SitesName findBySitename(String sitename);
+
+    SitesName findById(long id);
 }

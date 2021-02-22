@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import vn.tpsc.it4u.model.SystemConfig;
 import vn.tpsc.it4u.service.ClientDeviceInfService;
+import vn.tpsc.it4u.service.SitesNameService;
 import vn.tpsc.it4u.service.SystemConfigService;
 import vn.tpsc.it4u.util.ApiRequest;
 import vn.tpsc.it4u.util.ApiResponseUtils;
@@ -40,6 +41,9 @@ public class ClientDeviceInfController {
 
     @Autowired
     SystemConfigService systemConfigService;
+
+    @Autowired
+    SitesNameService sitesNameservice;
 
     @Autowired
     ApiResponseUtils apiResponse;
@@ -150,4 +154,40 @@ public class ClientDeviceInfController {
         return ResponseEntity.ok(apiResponse.success(200, locale));
     }
 
+    @ApiOperation(value = "Get site name by id")
+    @GetMapping("/it4u/sitenames")
+    public String getSitenames() {
+        JSONArray getSitename = new JSONArray(sitesNameservice.findAll());
+        return getSitename.toString();
+    }
+
+    @ApiOperation(value = "Get site name by id")
+    @GetMapping("/it4u/sitename/{id}")
+    public String getSitenameById(@PathVariable(value = "id") Long id) {
+        JSONObject getSitename = new JSONObject(sitesNameservice.findById(id));
+        return getSitename.toString();
+    }
+
+    @ApiOperation(value = "Create site name")
+    @PostMapping("/it4u/sitename")
+    public ResponseEntity<?> postSitename(@RequestBody String data, Locale locale) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        sitesNameservice.createSitename(convertDataToJson);
+        return ResponseEntity.ok(apiResponse.success(200, locale));
+    }
+
+    @ApiOperation(value = "Update site name by id")
+    @PutMapping("/it4u/sitename/{id}")
+    public ResponseEntity<?> putSitenameById(@RequestBody String data, @PathVariable(value = "id") Long id, Locale locale) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        sitesNameservice.updateSitename(id, convertDataToJson);
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
+    @ApiOperation(value = "Delete site name by id")
+    @DeleteMapping("/it4u/sitename/{id}")
+    public ResponseEntity<?> deleteSitenameById(@PathVariable(value = "id") Long id, Locale locale) {
+        sitesNameservice.deleteById(id);
+        return ResponseEntity.ok(apiResponse.success(200, locale));
+    }
 }
