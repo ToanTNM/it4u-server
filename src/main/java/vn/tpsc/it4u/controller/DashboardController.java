@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -134,13 +135,13 @@ public class DashboardController {
 
     @ApiOperation(value = "Check cookies ubnt")
     @GetMapping("/it4u/checkCookiesUbnt")
-    public String checkCookiesUbnt() {
+    public ResponseEntity<?> checkCookiesUbnt(Locale locale) {
         ApiRequest apiRequest = new ApiRequest();
         String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
         try {
             JSONObject jsonResult = new JSONObject(getSites);
             JSONArray data = jsonResult.getJSONArray("data");
-            return "Check ok";
+            return ResponseEntity.ok(apiResponse.success(200, locale));
         } catch (Exception e) {
             String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password
                     + "\",\"remember\":\"true\",\"strict\":\"true\"}";
@@ -151,7 +152,7 @@ public class DashboardController {
             String getUnifise = arr[2];
             String[] arrUnifise = getUnifise.split("=");
             configTokenService.updateCookies(arrToken[1], arrUnifise[1]);
-            return "csrfToken: " + arrToken[1] +";" + "unifises" + arrUnifise[1];
+            return ResponseEntity.ok(apiResponse.success("csrfToken: " + arrToken[1] +";" + "unifises" + arrUnifise[1], locale));
         }
     }
 
