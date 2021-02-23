@@ -1641,3 +1641,12 @@ Content-Type: application/json
 DELETE http://localhost:5000/api/v1/it4u/sitename/73
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
 Content-Type: application/json
+
+###
+POST http://localhost:5000/api/v1/it4u/getContractBySitename
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
+Content-Type: application/json
+
+{
+    "sitename": "123LVL_Danh.DT"
+}

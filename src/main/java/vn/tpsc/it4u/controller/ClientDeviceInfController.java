@@ -56,6 +56,52 @@ public class ClientDeviceInfController {
         return ResponseEntity.ok(apiResponse.success(200, locale));
     }
 
+    @ApiOperation(value = "Get contract ucrm by sitename")
+    @PostMapping("/it4u/getContractBySitename")
+    public String getContractBySitename(@RequestBody String data) {
+        JSONObject convertDataToJson = new JSONObject(data);
+        JSONObject infoContract = new JSONObject();
+        ApiRequest apiRequest = new ApiRequest();
+        String getSiteName = convertDataToJson.getString("sitename");
+        String getInfoClient = apiRequest.getRequestUCRM(
+                urlUCRM + "/clients?customAttributeKey=sitename&customAttributeValue=" + getSiteName, authAppKey);
+        JSONArray convertInfoClient = new JSONArray(getInfoClient);
+        if (convertInfoClient.length() > 0) {
+            JSONObject infoClient = (JSONObject) convertInfoClient.get(0);
+            JSONArray getCustomAttributes = infoClient.getJSONArray("attributes");
+            for (int j = 0; j < getCustomAttributes.length(); j++) {
+                JSONObject getItemAtt = (JSONObject) getCustomAttributes.get(j);
+                if (getItemAtt.getString("key").equals("sHPNg")) {
+                    infoContract.put("contracts", getItemAtt.getString("value"));
+                }
+                if (getItemAtt.getString("key").equals("iNThoINgILiNHLPT")) {
+                    infoContract.put("phone", getItemAtt.getString("value"));
+                }
+                if (getItemAtt.getString("key").equals("sitename")) {
+                    String getServicePlan = apiRequest
+                            .getRequestUCRM(urlUCRM + "/clients/" + infoClient.getInt("id") + "/services", authAppKey);
+                    JSONArray convertServicePlan = new JSONArray(getServicePlan);
+                    if (convertServicePlan.length() > 0) {
+                        JSONObject servicePlan = (JSONObject) convertServicePlan.get(0);
+                        infoContract.put("servicePlan", servicePlan.getString("name"));
+                    } else {
+                        infoContract.put("servicePlan", "");
+                    }
+
+                    try {
+                        infoContract.put("companyName", infoClient.getString("companyName"));
+                    } catch (Exception e) {
+                        infoContract.put("companyName",
+                                infoClient.getString("firstName") + " " + infoClient.getString("lastName"));
+                    }
+                    infoContract.put("street", infoClient.getString("street1"));
+                    infoContract.put("customId", infoClient.getString("userIdent"));
+                }
+            }
+        }
+        return infoContract.toString();
+    }
+
     @ApiOperation(value = "Upload client device infomation")
     @PostMapping("/it4u/upload/ClientDeviceInf")
     public ResponseEntity<?> uploadClientDeviceInf(@RequestBody String data, Locale locale) {
