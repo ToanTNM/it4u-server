@@ -42,6 +42,8 @@ app:
       image-path: ${UBNT_IMAGE_PATH:app-unifi-hotspot-portal/images/default/}
       mobile-name: ${UBNT_MOBILE_IMAGE_NAME:bg_phone.png}
       desktop-name: ${UBNT_DESKTOP_IMAGE_NAME:bg_desktop.png}
+      index-file-path: ${UBNT_INDEX_FILE_PATH:/app-unifi-hotspot-portal/index.html}
+      home-file-path: ${UBNT_HOME_FILE_PATH:/app-unifi-hotspot-portal/views/home.html}
 
   dev:
     url: ${DEV_API_URL:https://dev.tpsc.vn/api/customer_info}

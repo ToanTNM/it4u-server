@@ -56,6 +56,12 @@ public class UploadController {
     @Value("${app.ubnt.upload.desktop-name}")
     private String desktopName;
 
+    @Value("${app.ubnt.upload.index-file-path}")
+    private String indexFilePath;
+
+    @Value("${app.ubnt.upload.home-file-path}")
+    private String homeFilePath;
+
     @ApiOperation(value = "Get images")
     @GetMapping("/images/{id}/{typePreview}/{name}")
     public void hotspotImage(@PathVariable(value = "id") String id, @PathVariable(value = "typePreview") String typePreview, HttpServletResponse response)
@@ -82,6 +88,57 @@ public class UploadController {
         JSONObject result = new JSONObject();
         result.put("data", content);
         return result.toString();
+    }
+
+    @ApiOperation(value = "Get index.html file")
+    @GetMapping("/hotspot/index/{id}")
+    public String getHotspotIndexFile(@PathVariable(value = "id") String id) throws Exception {
+        File file = new File(path + id + indexFilePath);
+        Path path = Paths.get(file.getAbsolutePath());
+        String content = new String(Files.readAllBytes(path));
+        JSONObject result = new JSONObject();
+        result.put("data", content);
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Upload index.html file")
+    @PostMapping("/uploadHotspot/index/{id}")
+    public ResponseEntity<?> uploadHotspotIndexFile(@PathVariable(value = "id") String id, @RequestParam MultipartFile file,
+            Locale locale) throws Exception {
+        if (file == null) {
+            throw new RuntimeException("You must select the a file for uploading");
+        }
+        InputStream inputStream = file.getInputStream();
+        Files.delete(Paths.get(path + id + indexFilePath));
+        System.out.println("Product Image Deleted !!!");
+        Files.copy(inputStream, Paths.get(path + id + indexFilePath),
+                StandardCopyOption.REPLACE_EXISTING);
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
+    }
+
+    @ApiOperation(value = "Get home.html file")
+    @GetMapping("/hotspot/home/{id}")
+    public String getHotspotHomeFile(@PathVariable(value = "id") String id) throws Exception {
+        File file = new File(path + id + homeFilePath);
+        Path path = Paths.get(file.getAbsolutePath());
+        String content = new String(Files.readAllBytes(path));
+        JSONObject result = new JSONObject();
+        result.put("data", content);
+        return result.toString();
+    }
+
+    @ApiOperation(value = "Upload home.html file")
+    @PostMapping("/uploadHotspot/home/{id}")
+    public ResponseEntity<?> uploadHotspotHomeFile(@PathVariable(value = "id") String id,
+            @RequestParam MultipartFile file, Locale locale) throws Exception {
+        if (file == null) {
+            throw new RuntimeException("You must select the a file for uploading");
+        }
+        InputStream inputStream = file.getInputStream();
+        Files.delete(Paths.get(path + id + homeFilePath));
+        System.out.println("Product Image Deleted !!!");
+        Files.copy(inputStream, Paths.get(path + id + homeFilePath), StandardCopyOption.REPLACE_EXISTING);
+        return ResponseEntity.ok(apiResponse.success(1001, locale));
     }
 
     @ApiOperation(value = "Upload file")

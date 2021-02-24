@@ -1650,3 +1650,13 @@ Content-Type: application/json
 {
     "sitename": "123LVL_Danh.DT"
 }
+
+###
+GET http://localhost:5000/api/v1/hotspot/index/rhnl7chn
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/v1/hotspot/home/rhnl7chn
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxMzYxMDU3MywiZXhwIjoxNjE0MjE1MzczfQ.PuvGiwi7HWIrRvsipyvHL85PSzFopMuCrYvtyLtl0Z3QHxIUQSAZItL04DTRuRvqGx5JNerVdj7KxNZ1Ykzfyg
+Content-Type: application/json
