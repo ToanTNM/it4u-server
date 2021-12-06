@@ -33,3 +33,4 @@ build/
 log.txt
 src/test/api.http
 log.*
+*.log*
