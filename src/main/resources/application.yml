@@ -5,7 +5,7 @@ app:
     version: /api/v1
   jwtSecret: JWTSuperSecretKey
   jwtExpirationInMs: 604800000
-  
+
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
     csrf_token: dOF18vvMYAVy7Ck7zFqC3ZRQ22x1V5YM
@@ -15,7 +15,7 @@ app:
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
 spring:
   profiles:
-    active: prod
+    active: dev
 
   # Jackson Properties
   jackson:
@@ -23,7 +23,7 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: UTC
-  
+
   #locale
   messages:
     basename: i18n/errors,i18n/messages

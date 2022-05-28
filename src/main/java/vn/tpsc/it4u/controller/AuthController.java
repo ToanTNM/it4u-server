@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.enums.RoleName;
@@ -58,20 +58,19 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-    @Autowired 
+    @Autowired
     ApiResponseUtils apiResponse;
 
     @PostMapping("/signin")
-    @ApiOperation(value = "Sign In App")
+    @Operation(description = "Sign In App")
     @ApiResponses(value = {
-        @ApiResponse(code = 1000, message = "Successfully retrieved list")
+            @ApiResponse(responseCode = "1000", description = "Successfully retrieved list")
     })
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
         final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
-                        loginRequest.getPassword()
-                );
+                loginRequest.getUsernameOrEmail(),
+                loginRequest.getPassword());
         final Authentication authentication = authenticationManager.authenticate(token);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -83,26 +82,25 @@ public class AuthController {
     @PostMapping("/signup")
     // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(apiResponse.error(1021, locale),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity<>(apiResponse.error(1002, locale), HttpStatus.BAD_REQUEST);
         }
 
         // Creating user's account
         final User user = new User(
-            signUpRequest.getName(), 
-            signUpRequest.getUsername(),
-            signUpRequest.getEmail(), 
-            signUpRequest.getPassword(), 
-            signUpRequest.getGender(), 
-            signUpRequest.getType(), 
-            UserStatus.Active,
-            signUpRequest.getSitename()
-            );
+                signUpRequest.getName(),
+                signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                signUpRequest.getPassword(),
+                signUpRequest.getGender(),
+                signUpRequest.getType(),
+                UserStatus.Active,
+                signUpRequest.getSitename());
 
         final String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -119,5 +117,5 @@ public class AuthController {
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
-    }    
+    }
 }

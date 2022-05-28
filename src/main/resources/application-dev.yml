@@ -16,9 +16,9 @@ server:
 #         SQL: debug
 #         type.descriptor.sql: trace
 
-    # org.hibernate: DEBUG
+# org.hibernate: DEBUG
 
-spring:  
+spring:
   h2:
     console:
       enabled: true
@@ -29,7 +29,7 @@ spring:
     # url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
     url: jdbc:h2:mem:it4uDb
     username: sa
-    password:    
+    password:
   jpa:
     show-sql: true
     properties:
@@ -38,4 +38,6 @@ spring:
         # show-sql: true
         use_sql_comments: true
         format_sql: true
-
+springdoc:
+  api-docs:
+    path: /api-docs

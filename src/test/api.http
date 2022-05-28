@@ -8,7 +8,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc1NjQyNDA5LCJleHAiOjE1NzYyNDcyMDl9.mlmDFJ_OJNeJcDmHeRJGtpF6qjrqezP6sYF9juaN9agCS-DZc1LBm7YHNLtIDvCXrTtbjvJcNJHkM-EqrhXuPA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjUzNzA2NjUzLCJleHAiOjE2NTQzMTE0NTN9.DqIE7747sugEwMdVb2WzQbOqwmjCpQ2ZWQo0YCLawrwoPxK1g0TnP8MAni7mn1PxBZAncxJE1FJTIaViQo7osg
 
 ###
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/v1/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTY1NDUwLCJleHAiOjE1Nzk3NzAyNTB9.rD24vdZI7fT6jQbsW6tXCkXo1Okn2WFj_yxKzXmlmE0Sn_2tSIwRKb-5JPsFecqrzyzlitCAJ5d1uzlHNav7SA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjUzNzA2NjUzLCJleHAiOjE2NTQzMTE0NTN9.DqIE7747sugEwMdVb2WzQbOqwmjCpQ2ZWQo0YCLawrwoPxK1g0TnP8MAni7mn1PxBZAncxJE1FJTIaViQo7osg
 
 ###
 
