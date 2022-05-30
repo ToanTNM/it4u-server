@@ -7,12 +7,12 @@ logging:
     name: log.txt
     path: ./
   level:
-  #   root: WARN
-  #   org.springframework.web: DEBUG
+    #   root: WARN
+    #   org.springframework.web: DEBUG
     org:
       hibernate:
         SQL: debug
-        type.descriptor.sql: trace
+        '[type.descriptor.sql]': trace
 
     # org.hibernate: DEBUG
 
@@ -25,11 +25,11 @@ spring:
     username: it4u
     password: 123456
 
-# The SQL dialect makes Hibernate generate better SQL for the chosen database
+  # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:
     generate-ddl: true
-    hibernate:  
-      ddl-auto: update  
+    hibernate:
+      ddl-auto: update
     # database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     properties:
