@@ -14,5 +14,5 @@ import vn.tpsc.it4u.model.enums.RoleName;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Optional<Role> findByName(RoleName roleName);
+	Optional<Role> findByName(RoleName roleName);
 }

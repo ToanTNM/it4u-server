@@ -23,96 +23,96 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("${app.api.version}")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    // private static final Logger logger =
-    // LoggerFactory.getLogger(UserController.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    ApiResponseUtils apiResponse;
+	@Autowired
+	ApiResponseUtils apiResponse;
 
-    @Operation(description = "Get current user")
-    @GetMapping("/user/me")
-    // @PreAuthorize("hasRole('USER')")
-    public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
-        UserSummary userSummary = new UserSummary(
-                currentUser.getId(),
-                currentUser.getUsername(),
-                currentUser.getName(),
-                currentUser.getEmail(),
-                currentUser.getAvatar(),
-                currentUser.getGender(),
-                currentUser.getType(),
-                currentUser.getStatus(),
-                currentUser.getSitename(),
-                currentUser.getRoles());
+	@Operation(description = "Get current user")
+	@GetMapping("/user/me")
+	// @PreAuthorize("hasRole('USER')")
+	public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
+		UserSummary userSummary = new UserSummary(
+				currentUser.getId(),
+				currentUser.getUsername(),
+				currentUser.getName(),
+				currentUser.getEmail(),
+				currentUser.getAvatar(),
+				currentUser.getGender(),
+				currentUser.getType(),
+				currentUser.getStatus(),
+				currentUser.getSitename(),
+				currentUser.getRoles());
 
-        return userSummary;
-    }
+		return userSummary;
+	}
 
-    @Operation(description = "Check is username available")
-    @GetMapping("/user/checkUsernameAvailability")
-    public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
-        Boolean isAvailable = !userRepository.existsByUsername(username);
-        return new UserIdentityAvailability(isAvailable);
-    }
+	@Operation(description = "Check is username available")
+	@GetMapping("/user/checkUsernameAvailability")
+	public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
+		Boolean isAvailable = !userRepository.existsByUsername(username);
+		return new UserIdentityAvailability(isAvailable);
+	}
 
-    @Operation(description = "Check is email available")
-    @GetMapping("/user/checkEmailAvailability")
-    public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
-        Boolean isAvailable = !userRepository.existsByEmail(email);
-        return new UserIdentityAvailability(isAvailable);
-    }
+	@Operation(description = "Check is email available")
+	@GetMapping("/user/checkEmailAvailability")
+	public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
+		Boolean isAvailable = !userRepository.existsByEmail(email);
+		return new UserIdentityAvailability(isAvailable);
+	}
 
-    @Operation(description = "Update user infomation, except: role, password, avatar")
-    @PutMapping("/user/update")
-    public ResponseEntity<?> updateInfo(@CurrentUser CustomUserDetails currentUser,
-            @RequestBody UserSummary updatingUser, Locale locale) {
-        userService.updateInfo(currentUser, updatingUser);
+	@Operation(description = "Update user infomation, except: role, password, avatar")
+	@PutMapping("/user/update")
+	public ResponseEntity<?> updateInfo(@CurrentUser CustomUserDetails currentUser,
+			@RequestBody UserSummary updatingUser, Locale locale) {
+		userService.updateInfo(currentUser, updatingUser);
 
-        return ResponseEntity.ok(apiResponse.success(1001, locale));
-    }
+		return ResponseEntity.ok(apiResponse.success(1001, locale));
+	}
 
-    @PutMapping("/user/changePassword")
-    public ResponseEntity<?> changePassword(@CurrentUser CustomUserDetails currentUser,
-            @RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
+	@PutMapping("/user/changePassword")
+	public ResponseEntity<?> changePassword(@CurrentUser CustomUserDetails currentUser,
+			@RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
 
-        userService.changePassword(currentUser, updatingPassword);
+		userService.changePassword(currentUser, updatingPassword);
 
-        return ResponseEntity.ok(apiResponse.success(1001, locale));
-    }
+		return ResponseEntity.ok(apiResponse.success(1001, locale));
+	}
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/user")
-    public ResponseEntity<?> getAllUser() {
-        // return ResponseEntity.ok(apiResponse.success(userRepository.findAll(),
-        // locale));
-        return ResponseEntity.ok(userService.findAll());
-        // return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
-    }
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/user")
+	public ResponseEntity<?> getAllUser() {
+		// return ResponseEntity.ok(apiResponse.success(userRepository.findAll(),
+		// locale));
+		return ResponseEntity.ok(userService.findAll());
+		// return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
+	}
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
-        userService.deleteUser(userId);
-        return ResponseEntity.ok(apiResponse.success(200, locale));
-    }
+	@DeleteMapping("/users/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
+		userService.deleteUser(userId);
+		return ResponseEntity.ok(apiResponse.success(200, locale));
+	}
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<?> getUser(@PathVariable(value = "id") List<Long> userId, Locale locale) {
-        return ResponseEntity.ok(apiResponse.success(userService.findUser(userId), locale));
-    }
+	@GetMapping("/users/{id}")
+	public ResponseEntity<?> getUser(@PathVariable(value = "id") List<Long> userId, Locale locale) {
+		return ResponseEntity.ok(apiResponse.success(userService.findUser(userId), locale));
+	}
 
-    @Operation(description = "Update user infomation, except: role, password, avatar")
-    @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId,
-            @RequestBody UserSummary updatingUser, Locale locale) {
-        userService.updateUser(userId, updatingUser);
+	@Operation(description = "Update user infomation, except: role, password, avatar")
+	@PutMapping("/users/{id}")
+	public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId,
+			@RequestBody UserSummary updatingUser, Locale locale) {
+		userService.updateUser(userId, updatingUser);
 
-        return ResponseEntity.ok(apiResponse.success(1001, locale));
-    }
+		return ResponseEntity.ok(apiResponse.success(1001, locale));
+	}
 
 }

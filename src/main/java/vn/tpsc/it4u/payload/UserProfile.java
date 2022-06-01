@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserProfile {
-    private Long id;
-    private String username;
-    private String name;
-    private Instant joinedAt;
-    private Long pollCount;
-    private Long voteCount;
+	private Long id;
+	private String username;
+	private String name;
+	private Instant joinedAt;
+	private Long pollCount;
+	private Long voteCount;
 }
