@@ -1,4 +1,6 @@
-POST http://localhost:5000/api/v1/role
+@domain=https://api-it4u.herokuapp.com/api/v1
+
+POST {{domain}}/role
 Content-Type: application/json
 
 {
@@ -31,7 +33,7 @@ GET http://localhost:5000/api/v1/user
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc4MTU1MzE3LCJleHAiOjE1Nzg3NjAxMTd9.HRxHyO3-Lxz3DXytedGkTi86p0Q93F9w_W4SALNbWX1mALE6Ka9X48u-EFYSUJJ3qZ8Y_gvK272G7zM_e9aPQA
 
 ###
-POST http://localhost:5000/api/v1/auth/signin
+POST {{domain}}/auth/signin
 Content-Type: application/json
 
 {
