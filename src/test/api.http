@@ -1,5 +1,5 @@
-# @domain=https://api-it4u.herokuapp.com/api/v1
-@domain=http://localhost:5000/api/v1
+@domain=https://api-it4u.herokuapp.com/api/v1
+# @domain=http://localhost:5000/api/v1
 
 POST {{domain}}/role
 Content-Type: application/json
@@ -55,7 +55,7 @@ Content-Type: application/json
 ###
 
 GET {{domain}}/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjU0MTM3NjkwLCJleHAiOjE2NTQ3NDI0OTB9.Av0JBbbd3QgWy-F0ctFwtAEPgmyfAfijxlEotWpUifkvuqhPvSagsZ1hmoiikgPqehap5Q5vvbpHGOuvb1e9bA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM5MzAxLCJleHAiOjE2NTQ3NDQxMDF9.HcPLxrhTpF2JM1s7f7A8N64HC3XeCOzQV6-1Oy_dIoLLn29Gvv7BYMJRaYxoArp-e8O2sjtpSc0iGujj-uuUCg
 
 ###
 
@@ -75,13 +75,13 @@ Content-Type: application/json
 ###
 
 PUT {{domain}}/user/changePassword
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc3ODkwNDMyLCJleHAiOjE1Nzg0OTUyMzJ9._yWsah1VNEO1QL6vto7q1cv7x98cial-g4RQdV-4cgQyY2N5oCkKvXPjo966di8I1l5u4OzoHl94NgraZ1moAQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM5MzAxLCJleHAiOjE2NTQ3NDQxMDF9.HcPLxrhTpF2JM1s7f7A8N64HC3XeCOzQV6-1Oy_dIoLLn29Gvv7BYMJRaYxoArp-e8O2sjtpSc0iGujj-uuUCg
 Content-Type: application/json
 
 {
     "currentPassword": "123456",
-    "newPassword": "12345678",
-    "confirmPassword": "12345678"
+    "newPassword": "Tpsc.vn@123",
+    "confirmPassword": "Tpsc.vn@123"
 }
 ###
 DELETE {{domain}}/users/3
