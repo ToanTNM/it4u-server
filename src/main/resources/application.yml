@@ -3,7 +3,7 @@
 app:
   api:
     version: /api/v1
-  jwtSecret: JWTSuperSecretKey
+  jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
   jwtExpirationInMs: 604800000
 
   ubnt:
