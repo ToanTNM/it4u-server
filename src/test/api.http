@@ -21,9 +21,9 @@ Content-Type: application/json
 
 {
     "name": "Lap Dang",
-    "username": "lapdang",
-    "email": "lap.dang@tpsc.vn",
-    "password": "123456",
+    "username": "toantran",
+    "email": "toan.tran@tpsc.vn",
+    "password": "Tpsc.vn@123",
     "gender": "Male",
     "type": "User",
     "sitename": "rhnl7chn"
@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 GET {{domain}}/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM3NTg1LCJleHAiOjE2NTQ3NDIzODV9.7aUfRUzendQr3s5lJxIAY8jEyYaBYLVYi5TEruvpnkclF1eSqhGve-eF-Y5QkMTQpXpuazmwenvP64W4NNxHCQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM4NjYwLCJleHAiOjE2NTQ3NDM0NjB9.j2wqgMFZp1c-hUUWKoFG4mW0A0nSpsHzNgI9dH7s0sGgaIfNmQAi-nPTCuuFDPGjh1vJpouzfRsQCygyjhOnpQ
 
 ###
 POST {{domain}}/auth/signin
@@ -39,7 +39,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "admin",
-    "password": "123456"
+    "password": "Tpsc.vn@123"
 }
 
 ###
