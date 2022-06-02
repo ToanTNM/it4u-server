@@ -3,9 +3,9 @@
 app:
   api:
     version: /api/v1
-  jwtSecret: JWTSuperSecretKey
+  jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
   jwtExpirationInMs: 604800000
-  
+
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
     csrf_token: dOF18vvMYAVy7Ck7zFqC3ZRQ22x1V5YM
@@ -23,7 +23,7 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
     time-zone: UTC
-  
+
   #locale
   messages:
     basename: i18n/errors,i18n/messages

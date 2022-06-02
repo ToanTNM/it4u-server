@@ -1,7 +1,6 @@
 ## Server Properties
 server:
-  port: 5000
-
+  port: ${SERVER_PORT:5000}
 # debug: true
 
 logging:
@@ -9,34 +8,67 @@ logging:
     name: log.txt
     path: ./
   level:
-  #   root: WARN
-  #   org.springframework.web: DEBUG
+    #   root: WARN
+    #   org.springframework.web: DEBUG
     org:
       hibernate:
         SQL: debug
-        type.descriptor.sql: trace
+        '[type.descriptor.sql]': trace
 
-    # org.hibernate: DEBUG
+# org.hibernate: DEBUG
 
-spring:  
+spring:
   h2:
     console:
       enabled: true
       settings:
         web-allow-others: true
   datasource:
-    driverClassName: org.h2.Driver
+    driverClassName: ${DATABASE_DRIVER:}
     # url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
-    url: jdbc:h2:mem:it4uDb
-    username: sa
-    password:    
+    url: ${DATABASE_URL:}
+    username: ${POSTGRES_USER:}
+    password: ${POSTGRES_PASSWORD:}
+    #     driver-class-name: org.postgresql.Driver
+    #     url: ${DATABASE_URL:}
+    #     username: ${POSTGRES_USER:}
+    #     password: ${POSTGRES_PASSWORD:}
   jpa:
+    # Disable Hibernate automatic schema creation:
+    # hibernate.ddl-auto: none
+    generate-ddl: true
+    defer-datasource-initialization: true
     show-sql: true
     properties:
       hibernate:
         dll-auto: update
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: ${HIBERNATE_DIALECT:}
         # show-sql: true
-        use_sql_comments: true
-        format_sql: true
+        '[use_sql_comments]': true
+        '[format_sql]': true
 
+  # script-based initialization is performed by default only for embedded databases, to always initialize a database using scripts
+  sql.init.mode: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+# spring:
+#   datasource:
+#     # initialization-mode: always
+#     driver-class-name: org.postgresql.Driver
+#     url: ${DATABASE_URL:}
+#     username: ${POSTGRES_USER:}
+#     password: ${POSTGRES_PASSWORD:}
+
+#   # The SQL dialect makes Hibernate generate better SQL for the chosen database
+#   jpa:
+#     generate-ddl: true
+#     hibernate:
+#       ddl-auto: update
+#     show-sql: true
+#     properties:
+#       hibernate:
+#         dialect: ${HIBERNATE_DIALECT}
+#         '[use_sql_comments]': true
+#         '[format_sql]': true

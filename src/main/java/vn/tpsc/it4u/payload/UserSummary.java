@@ -14,14 +14,14 @@ import vn.tpsc.it4u.model.enums.UserType;
 @Getter
 @Setter
 public class UserSummary {
-    private Long id;
-    private String username;
-    private String name;
-    private String email;
-    private String avatar;
-    private Gender gender;
-    private UserType type;
-    private UserStatus status;
-    private String sitename;
-    private Set<Role> roles;
+	private Long id;
+	private String username;
+	private String name;
+	private String email;
+	private String avatar;
+	private Gender gender;
+	private UserType type;
+	private UserStatus status;
+	private String sitename;
+	private Set<Role> roles;
 }

@@ -8,5 +8,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserIdentityAvailability {
-    private Boolean available;
+	private Boolean available;
 }

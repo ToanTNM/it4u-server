@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import vn.tpsc.it4u.exception.AppException;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.enums.RoleName;
@@ -43,81 +43,79 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
 @RequestMapping("${app.api.version}/auth")
 public class AuthController {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+	@Autowired
+	AuthenticationManager authenticationManager;
 
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    @Autowired
-    RoleRepository roleRepository;
+	@Autowired
+	RoleRepository roleRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
-    @Autowired
-    JwtTokenProvider tokenProvider;
+	@Autowired
+	JwtTokenProvider tokenProvider;
 
-    @Autowired 
-    ApiResponseUtils apiResponse;
+	@Autowired
+	ApiResponseUtils apiResponse;
 
-    @PostMapping("/signin")
-    @ApiOperation(value = "Sign In App")
-    @ApiResponses(value = {
-        @ApiResponse(code = 1000, message = "Successfully retrieved list")
-    })
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
+	@PostMapping("/signin")
+	@Operation(description = "Sign In App")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "1000", description = "Successfully retrieved list")
+	})
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
-        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
-                        loginRequest.getPassword()
-                );
-        final Authentication authentication = authenticationManager.authenticate(token);
+		final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+				loginRequest.getUsernameOrEmail(),
+				loginRequest.getPassword());
+		final Authentication authentication = authenticationManager.authenticate(token);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        final String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt), locale));
-    }
+		final String jwt = tokenProvider.generateToken(authentication);
+		return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt), locale));
+	}
 
-    @PostMapping("/signup")
-    // @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<>(apiResponse.error(1021, locale),
-                    HttpStatus.BAD_REQUEST);
-        }
+	@PostMapping("/signup")
+	// @PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {
+		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+			return new ResponseEntity<>(apiResponse.error(1021, locale),
+					HttpStatus.BAD_REQUEST);
+		}
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<>(apiResponse.error(1002, locale), HttpStatus.BAD_REQUEST);
-        }
+		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+			return new ResponseEntity<>(apiResponse.error(1002, locale), HttpStatus.BAD_REQUEST);
+		}
 
-        // Creating user's account
-        final User user = new User(
-            signUpRequest.getName(), 
-            signUpRequest.getUsername(),
-            signUpRequest.getEmail(), 
-            signUpRequest.getPassword(), 
-            signUpRequest.getGender(), 
-            signUpRequest.getType(), 
-            UserStatus.Active,
-            signUpRequest.getSitename()
-            );
+		// Creating user's account
+		final User user = new User(
+				signUpRequest.getName(),
+				signUpRequest.getUsername(),
+				signUpRequest.getEmail(),
+				signUpRequest.getPassword(),
+				signUpRequest.getGender(),
+				signUpRequest.getType(),
+				UserStatus.Active,
+				signUpRequest.getSitename());
 
-        final String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+		final String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 
-        final Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+		final Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+				.orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+		user.setRoles(Collections.singleton(userRole));
 
-        final User result = userRepository.save(user);
+		final User result = userRepository.save(user);
 
-        final URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+		final URI location = ServletUriComponentsBuilder
+				.fromCurrentContextPath().path("/api/users/{username}")
+				.buildAndExpand(result.getUsername()).toUri();
 
-        return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
-    }    
+		return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
+	}
 }

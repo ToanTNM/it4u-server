@@ -24,23 +24,23 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
 @RequestMapping("${app.api.version}/role")
 public class RoleController {
 
-    @Autowired
-    private RoleRepository repository;
+	@Autowired
+	private RoleRepository repository;
 
-    @Autowired
-    private ApiResponseUtils apiResponse;
+	@Autowired
+	private ApiResponseUtils apiResponse;
 
-    @GetMapping()
-    public ResponseEntity<?> get(Locale locale) {
-        List<Role> roles = repository.findAll();
+	@GetMapping()
+	public ResponseEntity<?> get(Locale locale) {
+		List<Role> roles = repository.findAll();
 
-        return ResponseEntity.ok(apiResponse.success(roles, locale));
-    }
+		return ResponseEntity.ok(apiResponse.success(roles, locale));
+	}
 
-    @PostMapping
-    public ResponseEntity<?> add(@Valid @RequestBody Role role, Locale locale) {
-        repository.save(role);
+	@PostMapping
+	public ResponseEntity<?> add(@Valid @RequestBody Role role, Locale locale) {
+		repository.save(role);
 
-        return ResponseEntity.ok(apiResponse.success("Role inserted"));
-    }
+		return ResponseEntity.ok(apiResponse.success("Role inserted"));
+	}
 }

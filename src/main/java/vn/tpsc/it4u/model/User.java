@@ -23,14 +23,14 @@ import vn.tpsc.it4u.model.enums.UserType;
 @Getter
 @Setter
 @NoArgsConstructor
-//@Document("user")
+// @Document("user")
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-            "username"
+                "username"
         }),
         @UniqueConstraint(columnNames = {
-            "email"
+                "email"
         })
 })
 public class User extends UserDateAudit {
@@ -64,30 +64,28 @@ public class User extends UserDateAudit {
     @Size(max = 500)
     private String avatar;
 
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = true)
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    //@ColumnDefault("Client")
+    // @ColumnDefault("Client")
     private UserType type;
 
     @Enumerated(EnumType.STRING)
-    //@ColumnDefault("Active")
+    // @ColumnDefault("Active")
     private UserStatus status;
 
     @Size(max = 100)
     private String sitename;
 
-    //@DBRef(lazy = true)
+    // @DBRef(lazy = true)
     @ManyToMany
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String username, String email, String password, Gender gender, UserType type, UserStatus status, String sitename) {
+    public User(String name, String username, String email, String password, Gender gender, UserType type,
+            UserStatus status, String sitename) {
         this.name = name;
         this.username = username;
         this.email = email;
