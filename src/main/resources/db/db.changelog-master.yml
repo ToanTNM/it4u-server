@@ -1,7 +1,0 @@
-databaseChangeLog:
-  # - includeAll:
-    # - path: db/changelog
-  - include:
-    - file: db/changelog/db.changelog-1.0.yml
-  - include:
-    - file: db/changelog/db.initilize-data.yml

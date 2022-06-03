@@ -5,6 +5,7 @@ app:
     version: /api/v1
   jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
   jwtExpirationInMs: 604800000
+  cors.allowedOrigins: '*'
 
   ubnt:
     url: https://ubnt.cloud.tpsc.vn/api
@@ -15,8 +16,38 @@ app:
     token: 15cadd25-ee0c-40b2-bdff-0ce622298336
 spring:
   profiles:
-    active: prod
+    active: dev
 
+  datasource:
+    driverClassName: ${DATABASE_DRIVER:}
+    # url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
+    url: ${DATABASE_URL:}
+    username: ${DATABASE_USER:}
+    password: ${DATABASE_PASSWORD:}
+
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    # Disable Hibernate automatic schema creation:
+    # hibernate.ddl-auto: none
+    defer-datasource-initialization: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT:}
+        '[use_sql_comments]': true
+        '[format_sql]': true
+        jdbc:
+          lob:
+            '[non_contextual_creation]': true
+
+  sql:
+    init:
+      data-locations:
+        - classpath:db\changelog\data.sql
+      mode: never
+      continue-on-error: true
   # Jackson Properties
   jackson:
     default-property-inclusion: NON_NULL
@@ -27,19 +58,10 @@ spring:
   #locale
   messages:
     basename: i18n/errors,i18n/messages
-  
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate: 
-        jdbc: 
-          lob: 
-            non_contextual_creation: true
 
   liquibase:
-    change-log: classpath:db/db.changelog-master.yml
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
   # flyway:
   #   enabled: false
   #   locations:
@@ -47,7 +69,7 @@ spring:
 # ---
 # spring:
 #   profiles: generatesql
-#   flyway:    
+#   flyway:
 #     enabled: false
 #   jpa:
 #     properties:

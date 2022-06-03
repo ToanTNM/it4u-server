@@ -16,26 +16,16 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>3.8.5</version>
-		</dependency> -->
-
-
-		<!-- <dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>6.1.4</version>
-		</dependency> -->
-
+			<version>4.11.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
-			<version>3.8.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -63,6 +53,17 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.9</version>
@@ -86,13 +87,8 @@
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -115,29 +111,28 @@
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>3.8.5</version>
-				<configuration>                  
+				<configuration>
 					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
-				</configuration>   
+				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>org.liquibase.ext</groupId>
 						<artifactId>liquibase-hibernate5</artifactId>
-						<version>3.8</version>
+						<version>4.11.0</version>
 					</dependency>
 					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>spring-beans</artifactId>
-						<version>5.2.3.RELEASE</version>
+						<version>5.3.20</version>
 					</dependency>
 					<dependency>
 						<groupId>org.springframework.data</groupId>
 						<artifactId>spring-data-jpa</artifactId>
-						<version>2.2.4.RELEASE</version>
+						<version>2.7.0</version>
 					</dependency>
-				</dependencies>                     
-			</plugin> 
-		</plugins>		
+				</dependencies>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>

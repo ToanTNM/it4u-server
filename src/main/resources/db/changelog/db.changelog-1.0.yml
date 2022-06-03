@@ -1,149 +1,136 @@
 databaseChangeLog:
-- changeSet:
-    id: 1579406414508-1
-    author: MT (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: users_pkey
-            name: id
-            type: BIGINT
-        - column:
-            name: created_at
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            name: updated_at
-            type: TIMESTAMP WITHOUT TIME ZONE
-        - column:
-            name: created_by
-            type: BIGINT
-        - column:
-            name: updated_by
-            type: BIGINT
-        - column:
-            name: avatar
-            type: VARCHAR(500)
-        - column:
-            name: email
-            type: VARCHAR(40)
-        - column:
-            name: gender
-            type: VARCHAR(255)
-        - column:
-            name: name
-            type: VARCHAR(40)
-        - column:
-            name: password
-            type: VARCHAR(100)
-        - column:
-            name: sitename
-            type: VARCHAR(100)
-        - column:
-            name: status
-            type: VARCHAR(255)
-        - column:
-            name: type
-            type: VARCHAR(255)
-        - column:
-            name: username
-            type: VARCHAR(15)
-        tableName: users
-- changeSet:
-    id: 1579406414508-2
-    author: MT (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: roles_pkey
-            name: id
-            type: BIGINT
-        - column:
-            name: name
-            type: VARCHAR(60)
-        tableName: roles
-- changeSet:
-    id: 1579406414508-3
-    author: MT (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: user_roles_pkey
-            name: user_id
-            type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: user_roles_pkey
-            name: role_id
-            type: BIGINT
-        tableName: user_roles
-- changeSet:
-    id: 1579406414508-4
-    author: MT (generated)
-    changes:
-    - addUniqueConstraint:
-        columnNames: email
-        constraintName: uk6dotkott2kjsp8vw4d0m25fb7
-        tableName: users
-- changeSet:
-    id: 1579406414508-5
-    author: MT (generated)
-    changes:
-    - addUniqueConstraint:
-        columnNames: username
-        constraintName: ukr43af9ap4edm43mmtq01oddj6
-        tableName: users
-- changeSet:
-    id: 1579406414508-6
-    author: MT (generated)
-    changes:
-    - addUniqueConstraint:
-        columnNames: name
-        constraintName: uk_nb4h0p6txrmfc0xbrd1kglp9t
-        tableName: roles
-- changeSet:
-    id: 1579406414508-7
-    author: MT (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: role_id
-        baseTableName: user_roles
-        constraintName: fkh8ciramu9cc9q3qcqiv4ue8a6
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: roles
-        validate: true
-- changeSet:
-    id: 1579406414508-8
-    author: MT (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: user_id
-        baseTableName: user_roles
-        constraintName: fkhfh9dx7w3ubf1co1vdev94g3f
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: users
-        validate: true
-
+  - changeSet:
+      id: 1654245900501-1
+      author: MT (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    unique: true
+                  name: name
+                  type: VARCHAR(60)
+            tableName: roles
+  - changeSet:
+      id: 1654245900501-2
+      author: MT (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: role_id
+                  type: BIGINT
+            tableName: user_roles
+  - changeSet:
+      id: 1654245900501-3
+      author: MT (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: created_at
+                  type: datetime
+              - column:
+                  name: updated_at
+                  type: datetime
+              - column:
+                  name: created_by
+                  type: BIGINT
+              - column:
+                  name: updated_by
+                  type: BIGINT
+              - column:
+                  name: avatar
+                  type: VARCHAR(500)
+              - column:
+                  constraints:
+                    unique: true
+                  name: email
+                  type: VARCHAR(40)
+              - column:
+                  name: gender
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(40)
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+              - column:
+                  name: sitename
+                  type: VARCHAR(100)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    unique: true
+                  name: username
+                  type: VARCHAR(15)
+            tableName: users
+  - changeSet:
+      id: 1654245900501-4
+      author: MT (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: role_id
+            indexName: FKh8ciramu9cc9q3qcqiv4ue8a6
+            tableName: user_roles
+  - changeSet:
+      id: 1654245900501-5
+      author: MT (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: user_roles
+            constraintName: FKh8ciramu9cc9q3qcqiv4ue8a6
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: roles
+            validate: true
+  - changeSet:
+      id: 1654245900501-6
+      author: MT (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_roles
+            constraintName: FKhfh9dx7w3ubf1co1vdev94g3f
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true

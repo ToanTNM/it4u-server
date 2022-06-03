@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -32,6 +31,9 @@ public class SecurityConfig {
 
 	@Value("${app.api.version}")
 	String apiVersion;
+
+	@Value("${app.cors.allowedOrigins}")
+	private String allowedOrigin;
 
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
@@ -70,7 +72,7 @@ public class SecurityConfig {
 				.and()
 				.authorizeRequests()
 				.antMatchers("/",
-						// h2 db
+						// H2 DB
 						"/h2-console/**",
 						// swagger
 						"/swagger-ui/**",
@@ -108,7 +110,7 @@ public class SecurityConfig {
 	protected CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowCredentials(true);
-		configuration.addAllowedOrigin("*");
+		configuration.addAllowedOrigin(allowedOrigin);
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
 		// configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));

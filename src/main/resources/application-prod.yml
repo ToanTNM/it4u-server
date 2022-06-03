@@ -24,11 +24,14 @@ spring:
     url: jdbc:postgresql://localhost:5433/it4uPG
     username: it4u
     password: 123456
-    platform: postgresql
-    data: data.sql
-    initialization-mode: always
-    continue-on-error: true
 
+  # sql:
+  #   init:
+  #     platform: postgresql
+  #     data-locations:
+  #       - data.sql
+  #     mode: always
+  #     continue-on-error: true
   # The SQL dialect makes Hibernate generate better SQL for the chosen database
   jpa:
     generate-ddl: true

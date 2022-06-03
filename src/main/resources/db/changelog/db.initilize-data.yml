@@ -1,15 +1,63 @@
 databaseChangeLog:
-    - changeSet:
-        id: initialize-data
-        author: it4u-admin
-        changes:
-        - sqlFile:
-            encoding: UTF-8
-            endDelimiter: \nGO
-            path: data.sql
-            relativeToChangelogFile: true
-            splitStatements: true
-            stripComments: true
+  - changeSet:
+      id: initialize-data
+      author: it4u-admin
+      changes:
+        # - sqlFile:
+        #     encoding: UTF-8
+        #     endDelimiter: \nGO
+        #     path: data.sql
+        #     relativeToChangelogFile: true
+        #     splitStatements: true
+        #     stripComments: true
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_USER
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: app@tpsc.vn
+              - column:
+                  name: gender
+                  value: Male
+              - column:
+                  name: name
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$10$kTFo5FPqHgBv7DmWJ6BnPuhZE6wL1WKcFw/2wyAQajy08QeaVPOE.
+              - column:
+                  name: status
+                  value: Active
+              - column:
+                  name: type
+                  value: User
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: sitename
+                  value: rhnl7chn
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
 # - changeSet:
 #   id: initialize-data
 #   author: it4u-admin
@@ -25,14 +73,4 @@ databaseChangeLog:
 #       splitStatements: true
 #       sql: INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 #       stripComments: true
-# - changeSet:
-#     id: initialize-data
-#     author: it4u-admin
-#     changes:
-#     - sql:
-#         comment: initialize admin role
-#         endDelimiter: \nGO
-#         splitStatements: true
-#         sql: INSERT INTO roles(name) VALUES('ROLE_ADMIN')
-#         stripComments: true
-    
+
