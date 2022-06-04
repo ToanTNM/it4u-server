@@ -4,7 +4,7 @@ app:
   api:
     version: /api/v1
   jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
-  jwtExpirationInMs: 604800000
+  jwtExpirationInMs: ${JWT_EXPIRATION:604800000}
   cors.allowedOrigins: '*'
 
   ubnt:

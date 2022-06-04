@@ -2,19 +2,23 @@ package vn.tpsc.it4u.security;
 
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.crypto.SecretKey;
+
+// import org.slf4j.log;
+// import org.slf4j.logFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.InvalidClaimException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * JwtTokenProvider
@@ -22,15 +26,16 @@ import io.jsonwebtoken.UnsupportedJwtException;
  * sent in the Authorization header of the requests
  */
 @Component
+@Slf4j
 public class JwtTokenProvider {
-
-	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
-
 	@Value("${app.jwtSecret}")
 	private String jwtSecret;
 
 	@Value("${app.jwtExpirationInMs}")
 	private int jwtExpirationInMs;
+
+	// SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
+	SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
 	public String generateToken(Authentication authentication) {
 
@@ -40,38 +45,43 @@ public class JwtTokenProvider {
 		Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
 		return Jwts.builder()
-				// .setSubject(customUserDetails.getId())
 				.setSubject(Long.toString(customUserDetails.getId()))
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.signWith(secretKey, SignatureAlgorithm.HS512)
 				.compact();
 	}
 
 	public Long getUserIdFromJWT(String token) {
-		Claims claims = Jwts.parser()
-				.setSigningKey(jwtSecret)
+		// Claims claims = Jwts.parse(token)
+		// .setSigningKey(secretKey)
+		// .parseClaimsJws(token)
+		// .getBody();
+		Claims claims = Jwts.parserBuilder()
+				.setSigningKey(secretKey)
+				.build()
 				.parseClaimsJws(token)
 				.getBody();
 
-		// return claims.getSubject();
 		return Long.parseLong(claims.getSubject());
 	}
 
 	public boolean validateToken(String authToken) {
 		try {
-			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+			// Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+			Jwts.parserBuilder().setSigningKey(secretKey).build()
+					.parseClaimsJws(authToken);
 			return true;
-		} catch (SignatureException ex) {
-			logger.error("Invalid JWT signature");
+		} catch (InvalidClaimException ex) {
+			log.error("Invalid JWT signature");
 		} catch (MalformedJwtException ex) {
-			logger.error("Invalid JWT token");
+			log.error("Invalid JWT token");
 		} catch (ExpiredJwtException ex) {
-			logger.error("Expired JWT token");
+			log.error("Expired JWT token");
 		} catch (UnsupportedJwtException ex) {
-			logger.error("Unsupported JWT token");
+			log.error("Unsupported JWT token");
 		} catch (IllegalArgumentException ex) {
-			logger.error("JWT claims string is empty.");
+			log.error("JWT claims string is empty.");
 		}
 		return false;
 	}

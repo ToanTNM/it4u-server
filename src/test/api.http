@@ -1,5 +1,5 @@
-@domain=https://api-it4u.herokuapp.com/api/v1
-# @domain=http://localhost:5000/api/v1
+# @domain=https://api-it4u.herokuapp.com/api/v1
+@domain=http://localhost:5000/api/v1
 
 POST {{domain}}/role
 Content-Type: application/json
