@@ -1,12 +1,12 @@
 package vn.tpsc.it4u.security;
 
+import java.security.Key;
 import java.util.Date;
-
-import javax.crypto.SecretKey;
 
 // import org.slf4j.log;
 // import org.slf4j.logFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -34,11 +34,13 @@ public class JwtTokenProvider {
 	@Value("${app.jwtExpirationInMs}")
 	private int jwtExpirationInMs;
 
-	// SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
-	SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+	@Bean
+	public Key key() {
+		Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+		return key;
+	}
 
 	public String generateToken(Authentication authentication) {
-
 		CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 
 		Date now = new Date();
@@ -48,7 +50,8 @@ public class JwtTokenProvider {
 				.setSubject(Long.toString(customUserDetails.getId()))
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
-				.signWith(secretKey, SignatureAlgorithm.HS512)
+				// .signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.signWith(key(), SignatureAlgorithm.HS512)
 				.compact();
 	}
 
@@ -58,7 +61,7 @@ public class JwtTokenProvider {
 		// .parseClaimsJws(token)
 		// .getBody();
 		Claims claims = Jwts.parserBuilder()
-				.setSigningKey(secretKey)
+				.setSigningKey(key())
 				.build()
 				.parseClaimsJws(token)
 				.getBody();
@@ -69,7 +72,7 @@ public class JwtTokenProvider {
 	public boolean validateToken(String authToken) {
 		try {
 			// Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
-			Jwts.parserBuilder().setSigningKey(secretKey).build()
+			Jwts.parserBuilder().setSigningKey(key()).build()
 					.parseClaimsJws(authToken);
 			return true;
 		} catch (InvalidClaimException ex) {

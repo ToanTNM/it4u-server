@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 GET {{domain}}/user
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM4NjYwLCJleHAiOjE2NTQ3NDM0NjB9.j2wqgMFZp1c-hUUWKoFG4mW0A0nSpsHzNgI9dH7s0sGgaIfNmQAi-nPTCuuFDPGjh1vJpouzfRsQCygyjhOnpQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MzQ5Nzc2LCJleHAiOjE2NTQ5NTQ1NzZ9._hvvW6cpjUs_vEdtChr1R-bG2igVxZ1rJtdAa7fTKo98Qg7HtyvXY4zJtHPzcWqcMP-jUtW9vVvpVp8FUu8Emg
 
 ###
 POST {{domain}}/auth/signin
