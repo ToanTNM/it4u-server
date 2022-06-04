@@ -3,8 +3,6 @@ package vn.tpsc.it4u.security;
 import java.security.Key;
 import java.util.Date;
 
-// import org.slf4j.log;
-// import org.slf4j.logFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
@@ -50,16 +48,11 @@ public class JwtTokenProvider {
 				.setSubject(Long.toString(customUserDetails.getId()))
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
-				// .signWith(SignatureAlgorithm.HS512, jwtSecret)
 				.signWith(key(), SignatureAlgorithm.HS512)
 				.compact();
 	}
 
 	public Long getUserIdFromJWT(String token) {
-		// Claims claims = Jwts.parse(token)
-		// .setSigningKey(secretKey)
-		// .parseClaimsJws(token)
-		// .getBody();
 		Claims claims = Jwts.parserBuilder()
 				.setSigningKey(key())
 				.build()
@@ -71,7 +64,6 @@ public class JwtTokenProvider {
 
 	public boolean validateToken(String authToken) {
 		try {
-			// Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
 			Jwts.parserBuilder().setSigningKey(key()).build()
 					.parseClaimsJws(authToken);
 			return true;
