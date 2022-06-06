@@ -35,6 +35,7 @@ import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.JwtTokenProvider;
 import vn.tpsc.it4u.util.ApiResponseUtils;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 /**
  * AuthController
@@ -79,6 +80,7 @@ public class AuthController {
 		return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(jwt), locale));
 	}
 
+	@Operation(security = { @SecurityRequirement(name = "bearerAuth") })
 	@PostMapping("/signup")
 	// @PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody final SignUpRequest signUpRequest, Locale locale) {

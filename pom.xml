@@ -14,6 +14,7 @@
 	<description>An application of TPs</description>
 	<properties>
 		<java.version>11</java.version>
+		<springdoc.version>1.6.9</springdoc.version>
 		<jjwt.version>0.11.2</jjwt.version>
 	</properties>
 	<dependencies>
@@ -68,8 +69,19 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.9</version>
+			<version>${springdoc.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-security</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>

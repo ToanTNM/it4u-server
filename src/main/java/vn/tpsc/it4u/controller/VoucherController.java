@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("${app.api.version}")
+@SecurityRequirement(name = "bearerAuth")
 public class VoucherController {
 	@Value("${app.ubnt.url}")
 	private String urlIt4u;

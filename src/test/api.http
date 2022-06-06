@@ -11,7 +11,7 @@ Content-Type: application/json
 ###
 
 GET {{domain}}/role
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjUzNzA2NjUzLCJleHAiOjE2NTQzMTE0NTN9.DqIE7747sugEwMdVb2WzQbOqwmjCpQ2ZWQo0YCLawrwoPxK1g0TnP8MAni7mn1PxBZAncxJE1FJTIaViQo7osg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0NTA2NDcxLCJleHAiOjE2NTUxMTEyNzF9.3T-IH7NHaUarPRjcbQfskheEkBxHfOIJgpxBD5HhhL9FuakDcWRt6gYCODPRpjD0eB9XoXiZ_FnlqLkiKt22ww
 
 ###
 
@@ -55,7 +55,7 @@ Content-Type: application/json
 ###
 
 GET {{domain}}/user/me
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0MTM5MzAxLCJleHAiOjE2NTQ3NDQxMDF9.HcPLxrhTpF2JM1s7f7A8N64HC3XeCOzQV6-1Oy_dIoLLn29Gvv7BYMJRaYxoArp-e8O2sjtpSc0iGujj-uuUCg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU0NTA2NDcxLCJleHAiOjE2NTUxMTEyNzF9.3T-IH7NHaUarPRjcbQfskheEkBxHfOIJgpxBD5HhhL9FuakDcWRt6gYCODPRpjD0eB9XoXiZ_FnlqLkiKt22ww
 
 ###
 

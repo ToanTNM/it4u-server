@@ -16,10 +16,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import vn.tpsc.it4u.util.Calculator;
 
 @RestController
 @RequestMapping("${app.api.version}")
+@SecurityRequirement(name = "bearerAuth")
 public class DashboardController {
 	@Value("${app.ubnt.url}")
 	private String urlIt4u;
@@ -40,7 +42,7 @@ public class DashboardController {
 	@Autowired
 	ApiResponseUtils apiResponse;
 
-	@Operation(description = "Sites id")
+	@Operation(description = "Sites id", security = { @SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/it4u/sites")
 	public String getSitesId() {
 		ApiRequest apiRequest = new ApiRequest();

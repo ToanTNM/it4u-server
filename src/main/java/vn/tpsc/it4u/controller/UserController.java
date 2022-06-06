@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -35,7 +36,7 @@ public class UserController {
 	@Autowired
 	ApiResponseUtils apiResponse;
 
-	@Operation(description = "Get current user")
+	@Operation(description = "Get current user", security = { @SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/user/me")
 	// @PreAuthorize("hasRole('USER')")
 	public UserSummary getCurrentUser(@CurrentUser CustomUserDetails currentUser) {
@@ -54,21 +55,24 @@ public class UserController {
 		return userSummary;
 	}
 
-	@Operation(description = "Check is username available")
+	@Operation(description = "Check is username available", security = {
+			@SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/user/checkUsernameAvailability")
 	public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
 		Boolean isAvailable = !userRepository.existsByUsername(username);
 		return new UserIdentityAvailability(isAvailable);
 	}
 
-	@Operation(description = "Check is email available")
+	@Operation(description = "Check is email available", security = {
+			@SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/user/checkEmailAvailability")
 	public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
 		Boolean isAvailable = !userRepository.existsByEmail(email);
 		return new UserIdentityAvailability(isAvailable);
 	}
 
-	@Operation(description = "Update user infomation, except: role, password, avatar")
+	@Operation(description = "Update user infomation, except: role, password, avatar", security = {
+			@SecurityRequirement(name = "bearerAuth") })
 	@PutMapping("/user/update")
 	public ResponseEntity<?> updateInfo(@CurrentUser CustomUserDetails currentUser,
 			@RequestBody UserSummary updatingUser, Locale locale) {
@@ -77,6 +81,7 @@ public class UserController {
 		return ResponseEntity.ok(apiResponse.success(1001, locale));
 	}
 
+	@Operation(security = { @SecurityRequirement(name = "bearerAuth") })
 	@PutMapping("/user/changePassword")
 	public ResponseEntity<?> changePassword(@CurrentUser CustomUserDetails currentUser,
 			@RequestBody ChangePasswordViewModel updatingPassword, Locale locale) {
@@ -87,6 +92,7 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
+	@Operation(security = { @SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/user")
 	public ResponseEntity<?> getAllUser() {
 		// return ResponseEntity.ok(apiResponse.success(userRepository.findAll(),
@@ -95,18 +101,21 @@ public class UserController {
 		// return ResponseEntity.ok(apiResponse.success(userService.findAll(), locale));
 	}
 
+	@Operation(security = { @SecurityRequirement(name = "bearerAuth") })
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId, Locale locale) {
 		userService.deleteUser(userId);
 		return ResponseEntity.ok(apiResponse.success(200, locale));
 	}
 
+	@Operation(security = { @SecurityRequirement(name = "bearerAuth") })
 	@GetMapping("/users/{id}")
 	public ResponseEntity<?> getUser(@PathVariable(value = "id") List<Long> userId, Locale locale) {
 		return ResponseEntity.ok(apiResponse.success(userService.findUser(userId), locale));
 	}
 
-	@Operation(description = "Update user infomation, except: role, password, avatar")
+	@Operation(description = "Update user infomation, except: role, password, avatar", security = {
+			@SecurityRequirement(name = "bearerAuth") })
 	@PutMapping("/users/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable(value = "id") List<Long> userId,
 			@RequestBody UserSummary updatingUser, Locale locale) {

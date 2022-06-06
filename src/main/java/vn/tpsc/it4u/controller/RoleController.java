@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.util.ApiResponseUtils;
@@ -22,6 +23,7 @@ import vn.tpsc.it4u.util.ApiResponseUtils;
  */
 @RestController
 @RequestMapping("${app.api.version}/role")
+@SecurityRequirement(name = "bearerAuth")
 public class RoleController {
 
 	@Autowired
