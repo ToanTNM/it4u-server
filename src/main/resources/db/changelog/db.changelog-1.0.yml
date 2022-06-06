@@ -3,7 +3,14 @@ databaseChangeLog:
       id: 1654245900501-1
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - tableExists:
+                  tableName: roles
         - createTable:
+            tableName: roles
             columns:
               - column:
                   autoIncrement: true
@@ -17,12 +24,18 @@ databaseChangeLog:
                     unique: true
                   name: name
                   type: VARCHAR(60)
-            tableName: roles
   - changeSet:
       id: 1654245900501-2
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - tableExists:
+                  tableName: user_roles
         - createTable:
+            tableName: user_roles
             columns:
               - column:
                   constraints:
@@ -36,12 +49,18 @@ databaseChangeLog:
                     primaryKey: true
                   name: role_id
                   type: BIGINT
-            tableName: user_roles
   - changeSet:
       id: 1654245900501-3
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - tableExists:
+                  tableName: users
         - createTable:
+            tableName: users
             columns:
               - column:
                   autoIncrement: true
@@ -93,21 +112,34 @@ databaseChangeLog:
                     unique: true
                   name: username
                   type: VARCHAR(15)
-            tableName: users
   - changeSet:
       id: 1654245900501-4
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - indexExists:
+                    - tableName: user_roles
+                    - indexName: FKh8ciramu9cc9q3qcqiv4ue8a6
         - createIndex:
+            tableName: user_roles
             columns:
               - column:
                   name: role_id
             indexName: FKh8ciramu9cc9q3qcqiv4ue8a6
-            tableName: user_roles
   - changeSet:
       id: 1654245900501-5
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - foreignKeyConstraintExists:
+                    - tableName: user_roles
+                    - foreignKeyName: FKh8ciramu9cc9q3qcqiv4ue8a6
         - addForeignKeyConstraint:
             baseColumnNames: role_id
             baseTableName: user_roles
@@ -123,6 +155,13 @@ databaseChangeLog:
       id: 1654245900501-6
       author: MT (generated)
       changes:
+        - preConditions:
+            - onFail: MARK_RAN
+            - onError: MARK_RAN
+            - not:
+                - foreignKeyConstraintExists:
+                    - tableName: user_roles
+                    - foreignKeyName: FKhfh9dx7w3ubf1co1vdev94g3f
         - addForeignKeyConstraint:
             baseColumnNames: user_id
             baseTableName: user_roles
