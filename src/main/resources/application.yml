@@ -46,7 +46,7 @@ spring:
     init:
       data-locations:
         - classpath:db\changelog\data.sql
-      mode: always
+      mode: never
       continue-on-error: true
   # Jackson Properties
   jackson:
