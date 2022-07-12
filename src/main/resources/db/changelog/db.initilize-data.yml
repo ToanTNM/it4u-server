@@ -3,13 +3,13 @@ databaseChangeLog:
       id: initialize-data
       author: it4u-admin
       changes:
-        - sqlFile:
-            encoding: UTF-8
-            endDelimiter: \nGO
-            path: data.sql
-            relativeToChangelogFile: true
-            splitStatements: true
-            stripComments: true
+        # - sqlFile:
+        #     encoding: UTF-8
+        #     endDelimiter: \nGO
+        #     path: data.sql
+        #     relativeToChangelogFile: true
+        #     splitStatements: true
+        #     stripComments: true
         - insert:
             tableName: roles
             columns:
