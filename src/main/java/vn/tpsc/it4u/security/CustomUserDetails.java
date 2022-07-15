@@ -1,6 +1,7 @@
 package vn.tpsc.it4u.security;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import vn.tpsc.it4u.model.Role;
 import vn.tpsc.it4u.model.User;
+import vn.tpsc.it4u.model.SitesName;
 import vn.tpsc.it4u.model.enums.Gender;
 import vn.tpsc.it4u.model.enums.UserStatus;
 import vn.tpsc.it4u.model.enums.UserType;
@@ -57,9 +59,17 @@ public class CustomUserDetails implements UserDetails {
 
 	private UserStatus status;
 
-	private String sitename;
+	private Set<SitesName> sitename;
+
+	private Long lastTimeLogin;
+
+	private Long numLogin;
+
+	private String language;
 
 	private Set<Role> roles;
+
+	private String registrationId;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
@@ -78,7 +88,11 @@ public class CustomUserDetails implements UserDetails {
 				user.getType(),
 				user.getStatus(),
 				user.getSitename(),
+				user.getLastTimeLogin(),
+				user.getNumLogin(),
+				user.getLanguage(),
 				user.getRoles(),
+				user.getRegistrationId(),
 				authorities);
 	}
 

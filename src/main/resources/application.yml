@@ -1,20 +1,4 @@
-# app config
-
-app:
-  api:
-    version: /api/v1
-  jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
-  jwtExpirationInMs: ${JWT_EXPIRATION:604800000}
-  cors.allowedOrigins: '*'
-
-  ubnt:
-    url: https://ubnt.cloud.tpsc.vn/api
-    csrf_token: dOF18vvMYAVy7Ck7zFqC3ZRQ22x1V5YM
-    unifises: q6o8WVSRigOPv9RsLelFxkYzpSa2J2ZS
-  dev:
-    url: https://dev.tpsc.vn/api/customer_info
-    token: 15cadd25-ee0c-40b2-bdff-0ce622298336
-
+#Spring config
 spring:
   profiles:
     active: dev
@@ -48,6 +32,7 @@ spring:
         - classpath:db\changelog\data.sql
       mode: always
       continue-on-error: true
+
   # Jackson Properties
   jackson:
     default-property-inclusion: NON_NULL
@@ -62,3 +47,59 @@ spring:
   liquibase:
     enabled: false
     change-log: classpath:db/changelog/db.changelog-master.yml
+
+logging:
+  file:
+    path: logs
+    name: logs/client.log
+  pattern:
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+management:
+  endpoint:
+    logfile:
+      external-file: logs/client.log
+
+#App config
+app:
+  api:
+    version: /api/v1
+  jwtSecret: ${JWT_SECRET_KEY:JWTSuperSecretKey}
+  jwtExpirationInMs: ${JWT_EXPIRATION:604800000}
+  cors.allowedOrigins: '*'
+
+  ubnt:
+    url: ${UBNT_API_URL:https://ubnt.cloud.tpsc.vn/api}
+    url_test: https://ubnt49.cloud.tpsc.vn/api
+    hotspot_template: /s/rhnl7chn/get/setting
+    ssid_template: /s/rhnl7chn/rest/wlanconf
+    username: tps-admin
+    password: PbjAFiwwFTMfkzfsFHgF
+    passwordDefault: $2a$10$aFKAasotVlSRQxBnyqgnkO5.usvKG96sk1eH1Gh8UAkzehp/G96nq
+    csrf_token: DSBg0h0XdDa9crwlbXXFtuHiJAbRuShz
+    unifises: 4MGBgBEl3esuGUlZCRQm2fCTlNKEdaAa
+    upload:
+      path: ${UBNT_SITES_PATH:unifi-sites/}
+      image-path: ${UBNT_IMAGE_PATH:app-unifi-hotspot-portal/images/default/}
+      mobile-name: ${UBNT_MOBILE_IMAGE_NAME:bg_phone.png}
+      desktop-name: ${UBNT_DESKTOP_IMAGE_NAME:bg_desktop.png}
+      index-file-path: ${UBNT_INDEX_FILE_PATH:/app-unifi-hotspot-portal/index.html}
+      home-file-path: ${UBNT_HOME_FILE_PATH:/app-unifi-hotspot-portal/views/home.html}
+
+  dev:
+    url: ${DEV_API_URL:https://dev.tpsc.vn/api/customer_info}
+    token: 15cadd25-ee0c-40b2-bdff-0ce622298336
+
+  zabbix:
+    url: ${ZABBIX_API_URL:https://monitor.tpsc.vn}
+    username: Zabbix
+    password: Tpsc.vn@123
+    token: d756ebaf696799ad90ea118e68301351
+
+  ucrm:
+    url: ${UCRM_API_URL:https://member.tpsc.vn/api/v1.0}
+    x_auth_app_Key: ljblTtHkHKWbVBnuc8L410Phm2SAJTVOB9pYtyVh5osfiWF1lGsajTOdvgiaxELB
+
+  firebase:
+    url: ${FIREBASE_URL:https://fcm.googleapis.com/fcm/send}
+    senderId: 341911171720
+    getAccessToken: AAAAT5t-cog:APA91bHugsOdc3_Q_i1h0TybzILhuHKNgG2fJO_FjQ7t24VhgTdZq9sT22AvjdUtVCJkvbTJnCTKmuTm9Ee2i-7M4GR992tZteawWZjCbzX9bNmNjOANv1GdN72Nvk5SpOUTfbMTXcVT

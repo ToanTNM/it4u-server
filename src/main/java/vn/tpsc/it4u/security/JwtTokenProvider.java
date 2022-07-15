@@ -52,6 +52,21 @@ public class JwtTokenProvider {
 				.compact();
 	}
 
+	/**
+	 * Generates a token from a principal object. Embed the refresh token in the jwt
+	 * so that a new jwt can be created
+	 */
+	public String generateTokenFromUserId(Long userId) {
+		Date now = new Date();
+		Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+		return Jwts.builder()
+				.setSubject(Long.toString(userId))
+				.setIssuedAt(new Date())
+				.setExpiration(expiryDate)
+				.signWith(key(), SignatureAlgorithm.HS512)
+				.compact();
+	}
+
 	public Long getUserIdFromJWT(String token) {
 		Claims claims = Jwts.parserBuilder()
 				.setSigningKey(key())
@@ -60,12 +75,22 @@ public class JwtTokenProvider {
 				.getBody();
 
 		return Long.parseLong(claims.getSubject());
+
+		// Claims claims = Jwts.parser()
+		// .setSigningKey(jwtSecret)
+		// .parseClaimsJws(token)
+		// .getBody();
+
+		// // return claims.getSubject();
+		// return Long.parseLong(claims.getSubject());
 	}
 
 	public boolean validateToken(String authToken) {
 		try {
 			Jwts.parserBuilder().setSigningKey(key()).build()
 					.parseClaimsJws(authToken);
+			// Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+
 			return true;
 		} catch (InvalidClaimException ex) {
 			log.error("Invalid JWT signature");

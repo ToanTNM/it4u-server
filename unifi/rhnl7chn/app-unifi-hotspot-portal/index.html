@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-controller="MainController as mainCtrl">
+  <head>
+    <meta charset="utf-8">
+    <title unifi-portal-custom-title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon-precomposed" href="images/favicons/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#0193d7">
+    <meta name="msapplication-TileImage" content="images/favicons/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicons/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicons/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="images/favicons/favicon-57.png">
+    <link rel="icon" href="images/favicons/favicon-32.png" sizes="32x32">
+    <link href="fonts/1.3.4/lato/style.css" rel="stylesheet">
+    <link href="fonts/1.3.4/ubnt-icon/style.css" rel="stylesheet">
+    <link href="css/app.css?v=1.3.4" rel="stylesheet">
+    <script src="config/config.js?v=1.3.4"></script>
+    <script src="js/vendor.js?v=1.3.4"></script>
+    <script src="js/components.js?v=1.3.4"></script>
+    <script src="js/main.js?v=1.3.4"></script>
+        <style>
+                @media only screen and (max-width: 400px) {
+                  body {
+                        background-image: url(images/default/bg_phone.png);
+                  }
+                }
+
+                /* Tablet Styles */
+                @media only screen and (min-width: 401px) and (max-width: 960px) {
+                  body {
+                        background-image: url(images/default/bg_desktop.png);
+                  }
+                }
+
+                /* Desktop Styles */
+                @media only screen and (min-width: 961px) {
+                  body {
+                        background-image: url(images/default/bg_desktop.png);
+                  }
+                }
+        </style>
+  </head>
+  <body style="background-repeat: no-repeat;background-size: 100% 100%;height:100%"
+  >
+  <div ng-cloak unifi-portal-custom-body  unifi-portal-custom-body-background-color="mainCtrl.getHotspotConfigModel().bg_color" unifi-portal-custom-body-background-image-tile="mainCtrl.getHotspotConfigModel().bg_image_tile" unifi-portal-rtl-support >
+    <!--[if lte IE 9]><div class="appOutdatedBrowserWarning is-warning-visible unifiPortalToastContainer"><![endif]-->
+    <!--[if gt IE 9]><!-->
+ <!---Add log
+<img src="images/default/tps_white.png" style="height: 130px;width: 150px;display: block;margin-right:10px;margin-top:20px"></img>
+End Add logo-->
+ <div class="unifiPortalOutdatedBrowserWarning unifiPortalToastContainer" style="margin-top:0px">
+      <!--<![endif]-->
+      <div class="unifiPortalToast unifiPortalToast--comfy unifiPortalToast--warning">
+        <div class="unifiPortalToast__icon icon ubnt-icon--alert"></div>
+        <div class="unifiPortalToast__content">
+          <div class="unifiPortalToast__header">Outdated Browser</div>
+          <div class="unifiPortalToast__body">
+            <p class="noMarginBottom">
+              You are using an <strong>outdated</strong> browser. Please
+              <a href='http://browsehappy.com/'>upgrade your browser</a>
+              to improve your experience.
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div hey-toaster class="unifiPortalToastContainer">
+      <div class="unifiPortalToast unifiPortalToast--{{toast.level}}">
+        <div ng-class="{'ubnt-icon--info': toast.level == 'default', 'ubnt-icon--check-circle': toast.level == 'success', 'ubnt-icon--eye2': toast.level == 'warning', 'ubnt-icon--alert': toast.level == 'danger'}" class="unifiPortalToast__icon icon"></div>
+        <div class="unifiPortalToast__content">
+          <div class="unifiPortalToastBody">
+            <p class="noMarginBottom">{{toast.message}}</p>
+          </div>
+        </div>
+        <div class="unifiPortalToast__close"><a ng-click="toast.close()" class="icon ubnt-icon--x"></a></div>
+      </div>
+    </div>
+    <div ui-view style="margin-bottom:300px;margin-left:auto;position: absolute;clear:both;width:100%;bottom: 0">
+    </div>
+    <script src="js/bootstrap.js?v=1.3.4"></script>
+<!-- Additional-->
+</div>
+<!--Add-footer-->
+<div class="row" style="text-align:center;margin-bottom:0px;margin-left:auto;margin-right:auto;position: absolute;clear:both;color: black;width:100%;bottom:0">
+<div class="col--xs12 col--md12 col--lgOffset2 col--lg8 col-xlgOffset2 col--xlg8">
+        <iframe src="https://lapdang1004.github.io/" height="70px" width="100%"  frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+<!--End footer-->
+
+</body>
+</html>

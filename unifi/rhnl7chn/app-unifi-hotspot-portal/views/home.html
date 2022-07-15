@@ -1,0 +1,135 @@
+
+<div class="unifiPortalPage" style="margin-buttom:0px">
+  <div class="unifiPortalPage__centered unifiPortalGrid__container--responsive container--centered container--comfy">
+    <div class="row row--comfy unifiPortalGrid__row--inline">
+      <div ng-if="!!homeCtrl.hotspotConfigModel.getLogoUrl() || homeCtrl.isWelcomeTextEnabledAtPosition('under_logo')" class="col--xs12 col--mdOffset2 col--md8 col--lgOffset2 col--lg8 col--xlgOffset2 col--xlg8 unifiPortalGrid__col--middle">
+        <div ng-if="!!homeCtrl.hotspotConfigModel.getLogoUrl()" class="unifiPortalLogo"><img ng-src="{{homeCtrl.hotspotConfigModel.getLogoUrl()}}" class="unifiPortalLogo__image"></div>
+        <div ng-if="homeCtrl.isWelcomeTextEnabledAtPosition('under_logo')" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.text_color" class="unifiPortalBox unifiPortalBox__transparent unifiPortalBox__text unifiPortalBox__welcomeText unifiPortalBox__center">{{homeCtrl.hotspotConfigModel.welcome_text}}</div>
+      </div>
+      <div class="container col--xs12 col--mdOffset3 col--md6 col--lgOffset3 col--lg6 col-xlgOffset3 col--xlg6 unifiPortalGrid__col--middle" style="text-align:center;padding">
+        <div class="unifiPortalBoxGroup">
+          <div ng-if="homeCtrl.isWelcomeTextEnabledAtPosition('above_boxes')" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.text_color" class="unifiPortalBox unifiPortalBox__transparent unifiPortalBox__text unifiPortalBox__welcomeText">{{homeCtrl.hotspotConfigModel.welcome_text}}</div>
+          <div unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.text_color" class="unifiPortalBox unifiPortalBox__transparent unifiPortalBox__text">
+            <form name="homeCtrl.tosForm" ng-if="homeCtrl.hotspotConfigModel.tos_enabled">
+              <div class="unifiPortalFormGroup">
+                <div class="unifiPortalInputGroup">
+                  <input type="checkbox" id="tos" ng-model="homeCtrl.formModel.tos" ng-change="homeCtrl.onTosChange()">
+                  <label for="tos"><span>{{'TOS_LABEL_I_ACCEPT_THE' | translate}}</span><a href="#" ui-sref="portal.tos" unifi-portal-custom-link unifi-portal-custom-link-text-color="homeCtrl.hotspotConfigModel.link_color">{{'TOS_LINK_TERMS_OF_USE' | translate}}</a></label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.hotspotConfigModel.languages.length &gt; 0" class="unifiPortalBox unifiPortalBox__transparent unifiPortalBox__invisible">
+            <div unifi-portal-change-language class="unifiPortalLanguage"></div>
+          </div>
+          <div ng-if="homeCtrl.isNoAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox" style="margin-top:0px;padding:0px">
+<!--Click connect-->
+<!--            <h4 class="unifiPortalBox__header">{{'NO_AUTH_HEADER' | translate}}</h4>-->
+            <form novalidate name="homeCtrl.noAuthForm">
+              <div class="unifiPortalFormGroup"></div>
+              <div ng-if="homeCtrl.isNoAuthenticationEnabled()" class="unifiPortalFormFooter">
+               <div class="unifiPortalFormFooter__right">
+                  <button  ng-click="homeCtrl.connectNoAuth()" ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="homeCtrl.hotspotConfigModel.button_color" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isNoAuthConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady" style="background: Transparent;font-size:12px;margin-right:auto;margin-left:auto;display:block;border:none">{{'NO_AUTH_BUTTON_CONNECT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isSimplePasswordAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+<!--            <h4 class="unifiPortalBox__header">{{'SIMPLE_PASSWORD_HEADER' | translate}}</h4>-->
+            <form novalidate autocomplete="off" name="homeCtrl.passwordForm" ng-class="{'is-validation-hidden': !homeCtrl.showPasswordValidation}" ng-submit="homeCtrl.passwordForm.$valid &amp;&amp; homeCtrl.connectPassword()">
+              <div class="unifiPortalFormGroup">
+                <input style="border-radius:5px" type="text" name="password" placeholder="{{'SIMPLE_PASSWORD_INPUT_PLACEHOLDER' | translate}}" required ng-model="homeCtrl.formModel.password" unifi-portal-backend-error-message-validator="InvalidPassword" class="input--full">
+                <div ng-show="homeCtrl.passwordForm.password.$error.required" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'SIMPLE_PASSWORD_VALIDATION_REQUIRED_PASSWORD' | translate}}</div>
+                <div ng-show="homeCtrl.passwordForm.password.$error.InvalidPassword" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'SIMPLE_PASSWORD_VALIDATION_INVALID_PASSWORD' | translate}}</div>
+              </div>
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <button ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" ng-click="homeCtrl.showPasswordValidation = true" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isPasswordConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady" style="background:#f39639;font-size:12px;margin-right:auto;margin-left:auto;display:block;border:none">{{'SIMPLE_PASSWORD_BUTTON_CONNECT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isPaymentAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+            <h4 class="unifiPortalBox__header">{{'PAYMENT_HEADER_SELECT_PACKAGE' | translate}}</h4>
+            <form name="homeCtrl.packagesForm">
+              <div class="unifiPortalFormGroup">
+                <div ng-repeat="package in homeCtrl.getPayablePackages()" class="unifiPortalInputGroup">
+                  <input style="border-radius:5px" type="radio" name="packageId" id="package_{{$index}}" value="{{package._id}}" ng-model="homeCtrl.formModel.packageId" ng-checked="{{$index === 0}}">
+                  <label for="package_{{$index}}">{{package.name}} - {{package | amount}}</label>
+                </div>
+              </div>
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <button ui-sref="portal.payment({packageId: homeCtrl.formModel.packageId})" ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="homeCtrl.hotspotConfigModel.button_color" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{'PAYMENT_BUTTON_PAY_BY_CC' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isVoucherAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+            <h4 class="unifiPortalBox__header">{{'VOUCHER_HEADER' | translate}}</h4>
+            <form novalidate autocomplete="off" name="homeCtrl.voucherForm" ng-class="{'is-validation-hidden': !homeCtrl.showVoucherValidation}" ng-submit="homeCtrl.voucherForm.$valid &amp;&amp; homeCtrl.connectVoucher()">
+              <div class="unifiPortalFormGroup">
+                <input type="text" name="voucherCode" placeholder="{{'VOUCHER_INPUT_PLACEHOLDER' | translate}}" required ng-model="homeCtrl.formModel.voucherCode" unifi-portal-backend-error-message-validator="InvalidVoucher;VoucherExpired;VoucherQuotaExceeded" class="input--full">
+                <div ng-show="homeCtrl.voucherForm.voucherCode.$error.required" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'VOUCHER_VALIDATION_REQUIRED_CODE' | translate}}</div>
+                <div ng-show="homeCtrl.voucherForm.voucherCode.$error.InvalidVoucher" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'VOUCHER_VALIDATION_INVALID_CODE' | translate}}</div>
+                <div ng-show="homeCtrl.voucherForm.voucherCode.$error.VoucherQuotaExceeded" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'VOUCHER_VALIDATION_QUOTA_EXCEEDED' | translate}}</div>
+                <div ng-show="homeCtrl.voucherForm.voucherCode.$error.VoucherExpired" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'VOUCHER_VALIDATION_EXPIRED' | translate}}</div>
+              </div>
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <button style="width: 50%;margin-right:auto;margin-left:auto;display:block" type="submit" ng-click="homeCtrl.showVoucherValidation = true" ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="homeCtrl.hotspotConfigModel.button_color" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isVoucherConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{'VOUCHER_BUTTON_CONNECT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isRadiusAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+            <h4 class="unifiPortalBox__header">{{'RADIUS_HEADER' | translate}}</h4>
+            <form novalidate autocomplete="off" name="homeCtrl.radiusForm" ng-class="{'is-validation-hidden': !homeCtrl.showRadiusValidation}" ng-submit="homeCtrl.radiusForm.$valid &amp;&amp; homeCtrl.connectRadius()">
+              <div class="unifiPortalFormGroup--cozy">
+                <input type="text" name="username" placeholder="{{'RADIUS_USERNAME_INPUT_PLACEHOLDER' | translate}}" autocorrect="off" autocapitalize="off" required ng-model="homeCtrl.formModel.username" class="input--full">
+                <div ng-show="homeCtrl.radiusForm.username.$error.required" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'RADIUS_VALIDATION_REQUIRED_USERNAME' | translate}}</div>
+              </div>
+              <div class="unifiPortalFormGroup">
+                <input type="text" name="password" placeholder="{{'RADIUS_PASSWORD_INPUT_PLACEHOLDER' | translate}}" autocorrect="off" autocapitalize="off" required ng-model="homeCtrl.formModel.password" unifi-portal-backend-error-message-validator="InvalidPassword" unifi-portal-backend-error-message-validator-clear-value-on-error="true" class="input--full">
+                <div ng-show="homeCtrl.radiusForm.password.$error.required" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'RADIUS_VALIDATION_REQUIRED_PASSWORD' | translate}}</div>
+                <div ng-show="homeCtrl.radiusForm.password.$error.InvalidPassword" class="unifiPortalInputFeedback unifiPortalInputFeedback--danger">{{'RADIUS_VALIDATION_INVALID_USERNAME_OR_PASSWORD' | translate}}</div>
+              </div>
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <button ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" ng-click="homeCtrl.showRadiusValidation = true" unifi-portal-custom-button unifi-portal-custom-button-background-color="homeCtrl.hotspotConfigModel.button_color" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isRadiusConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{'RADIUS_BUTTON_CONNECT' | translate}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isSocialAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+            <h4 class="unifiPortalBox__header">{{'SOCIAL_HEADER' | translate}}</h4>
+            <form name="homeCtrl.socialForm">
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <div ng-if="homeCtrl.isFacebookAuthenticationEnabled()" class="unifiPortalFormFooter__group">
+                    <button ng-click="homeCtrl.connectFacebook()" ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="'#3b5998'" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isFacebookConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{'SOCIAL_BUTTON_FACEBOOK' | translate}}</button>
+                  </div>
+                  <div ng-if="homeCtrl.isGoogleAuthenticationEnabled()" class="unifiPortalFormFooter__group">
+                    <button ng-click="homeCtrl.connectGoogle()" ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="'#F44336'" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isGoogleConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{'SOCIAL_BUTTON_GOOGLE' | translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div ng-if="homeCtrl.isFreeTrialAuthenticationEnabled()" unifi-portal-custom-box unifi-portal-custom-box-color="homeCtrl.hotspotConfigModel.box_text_color" unifi-portal-custom-box-background-color="homeCtrl.hotspotConfigModel.box_color" unifi-portal-custom-box-background-opacity="homeCtrl.hotspotConfigModel.box_opacity" class="unifiPortalBox">
+            <h4 class="unifiPortalBox__header">{{'FREE_TRIAL_HEADER' | translate}}</h4>
+            <form novalidate autocomplete="off" name="homeCtrl.freeTrialForm" ng-submit="homeCtrl.freeTrialForm.$valid &amp;&amp; homeCtrl.connectFreeTrial()">
+              <div class="unifiPortalFormFooter">
+                <div class="unifiPortalFormFooter__right">
+                  <button ng-disabled="homeCtrl.hotspotConfigModel.tos_enabled &amp;&amp; !homeCtrl.isTosAccepted()" unifi-portal-custom-button unifi-portal-custom-button-background-color="homeCtrl.hotspotConfigModel.button_color" unifi-portal-custom-button-text-color="homeCtrl.hotspotConfigModel.button_text_color" busy-toggle="homeCtrl.isFreeTrialConnecting" busy-toggle-spinner-classes="['unifiPortalSpinner unifiPortalSpinner--light unifiPortalSpinner--centered']" class="unifiPortalMainButton unifiPortalMainButton--primary unifiPortalMainButton--responsive unifiPortalMainButton--steady">{{homeCtrl.getFreePackage().name}}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

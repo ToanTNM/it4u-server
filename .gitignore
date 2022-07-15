@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-/src/test/api.http
+logs/
 
 ### STS ###
 .apt_generated
@@ -30,6 +30,4 @@ build/
 
 ### VS Code ###
 .vscode/
-log.txt
-src/test/api.http
-log.*
+
