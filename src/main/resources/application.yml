@@ -20,7 +20,6 @@ spring:
 
   datasource:
     driverClassName: ${DATABASE_DRIVER:}
-    # url: jdbc:h2:file:F:/Dev/TPs/it4u/it4u-server
     url: ${DATABASE_URL:}
     username: ${DATABASE_USER:}
     password: ${DATABASE_PASSWORD:}
@@ -62,21 +61,3 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yml
-  # flyway:
-  #   enabled: false
-  #   locations:
-  #   - classpath:db/migration/{vendor}
-# ---
-# spring:
-#   profiles: generatesql
-#   flyway:
-#     enabled: false
-#   jpa:
-#     properties:
-#       javax:
-#         persistence:
-#           schema-generation:
-#             create-source: metadata
-#             scripts:
-#               action: create
-#               create-target: src/main/resources/db/ddl_jpa_creation.sql

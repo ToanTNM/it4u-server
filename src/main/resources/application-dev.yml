@@ -27,14 +27,6 @@ logging:
 springdoc:
   api-docs:
     path: /api-docs
-# spring:
-#   datasource:
-#     # initialization-mode: always
-#     driver-class-name: org.postgresql.Driver
-#     url: ${DATABASE_URL:}
-#     username: ${POSTGRES_USER:}
-#     password: ${POSTGRES_PASSWORD:}
-
 #   # The SQL dialect makes Hibernate generate better SQL for the chosen database
 #   jpa:
 #     generate-ddl: true

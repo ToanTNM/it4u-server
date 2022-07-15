@@ -53,7 +53,7 @@ Enable ```liquibase``` in ```application.yml```
 ```yml
 spring:
   liquibase:
-    enabled: true
+    enabled: true #false when use with H2 database
     change-log: classpath:db/changelog/db.changelog-master.yml
 ```
 
@@ -78,7 +78,7 @@ referenceUsername=sa
 referencePassword=
 ```
 
-**Note**: ```liquibase``` not work with in-memory 3.database (such as H2 mem)
+**Note**: ```liquibase``` not work with in-memory database (such as H2 mem)
 
 Disable JPA auto create schema and run sql:
 ```yml
@@ -86,7 +86,15 @@ spring:
   jpa:
     show-sql: true
     generate-ddl: false
-    defer-datasource-initialization: false # nếu true sẽ gây ra lỗi khi dùng chung với liquibase
+    defer-datasource-initialization: false #false when use with liquibase
+    # true when use with H2 database
+
+  sql:
+    init:
+      data-locations:
+        - classpath:db\changelog\data.sql
+      mode: never #always when use H2 database
+      continue-on-error: true
 ```
 
 3. liquibase command

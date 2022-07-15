@@ -115,6 +115,7 @@ databaseChangeLog:
   - changeSet:
       id: 1654245900501-4
       author: MT (generated)
+      failOnError: false
       changes:
         - preConditions:
             - onFail: MARK_RAN
@@ -132,6 +133,7 @@ databaseChangeLog:
   - changeSet:
       id: 1654245900501-5
       author: MT (generated)
+      failOnError: false
       changes:
         - preConditions:
             - onFail: MARK_RAN
@@ -154,6 +156,7 @@ databaseChangeLog:
   - changeSet:
       id: 1654245900501-6
       author: MT (generated)
+      failOnError: false
       changes:
         - preConditions:
             - onFail: MARK_RAN
