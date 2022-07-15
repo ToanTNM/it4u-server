@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "app.api.version",
+    "type": "java.lang.String",
+    "description": "API version"
+  },
+  {
+    "name": "app.cors.allowedOrigins",
+    "type": "java.lang.String",
+    "description": "CORS allowed domain"
+  },
+  {
+    "name": "app.jwtExpirationInMs",
+    "type": "java.lang.String",
+    "description": "JWT expired time in ms"
+  },
+  {
+    "name": "app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "JWT secret key"
+  },
+  {
+    "name": "app.ubnt.url",
+    "type": "java.lang.String",
+    "description": "Unifi Controller url"
+  },
+  {
+    "name": "app.ubnt.csrf_token",
+    "type": "java.lang.String",
+    "description": "A description for 'app.ubnt.csrf_token'"
+  },
+  {
+    "name": "app.ubnt.unifises",
+    "type": "java.lang.String",
+    "description": "A description for 'app.ubnt.unifises'"
+  },
+  {
+    "name": "app.dev.url",
+    "type": "java.lang.String",
+    "description": "A description for 'app.dev.url'"
+  },
+  {
+    "name": "app.dev.token",
+    "type": "java.lang.String",
+    "description": "A description for 'app.dev.token'"
+  }
+]}
