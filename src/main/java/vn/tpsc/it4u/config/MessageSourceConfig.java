@@ -21,7 +21,7 @@ public class MessageSourceConfig {
 	// }
 
 	@Bean
-	public LocalValidatorFactoryBean getValidator(MessageSource messageSource) {
+	LocalValidatorFactoryBean getValidator(MessageSource messageSource) {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 		bean.setValidationMessageSource(messageSource);
 		return bean;

@@ -33,7 +33,7 @@ public class JwtTokenProvider {
 	private int jwtExpirationInMs;
 
 	@Bean
-	public Key key() {
+	Key key() {
 		Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
 		return key;
 	}
