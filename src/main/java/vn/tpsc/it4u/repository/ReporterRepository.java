@@ -6,23 +6,23 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.model.Reporter;;
+import vn.tpsc.it4u.models.Reporter;;
 
 /**
  * ReporterRepository
  */
 @Repository
 public interface ReporterRepository extends JpaRepository<Reporter, Long> {
-    List<Reporter> findAll();
+	List<Reporter> findAll();
 
-    Optional<Reporter> findBySitename(String sitename);
+	Optional<Reporter> findBySitename(String sitename);
 
-    List<Reporter> findByGroupClient(String service);
+	List<Reporter> findByGroupClient(String service);
 
-    List<Reporter> findByIdIn(List<Long> sitenameIds);
+	List<Reporter> findByIdIn(List<Long> sitenameIds);
 
-    // List<Reporter> findByList(String userIds);
-    
-    Boolean existsBySitename(String sitename);
+	// List<Reporter> findByList(String userIds);
+
+	Boolean existsBySitename(String sitename);
 
 }

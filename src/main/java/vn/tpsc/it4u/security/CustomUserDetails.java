@@ -16,12 +16,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import vn.tpsc.it4u.model.Role;
-import vn.tpsc.it4u.model.User;
-import vn.tpsc.it4u.model.SitesName;
-import vn.tpsc.it4u.model.enums.Gender;
-import vn.tpsc.it4u.model.enums.UserStatus;
-import vn.tpsc.it4u.model.enums.UserType;
+import vn.tpsc.it4u.models.Role;
+import vn.tpsc.it4u.models.SitesName;
+import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.enums.Gender;
+import vn.tpsc.it4u.models.enums.UserStatus;
+import vn.tpsc.it4u.models.enums.UserType;
 
 /**
  * CustomUserDetails

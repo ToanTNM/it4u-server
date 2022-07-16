@@ -6,16 +6,16 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.model.GroupClient;
+import vn.tpsc.it4u.models.GroupClient;
 
 /**
  * GroupClientRepository
  */
 @Repository
 public interface GroupClientRepository extends JpaRepository<GroupClient, Long> {
-    
-    List<GroupClient> findAll();
 
-    List<GroupClient> findByIdIn(List<Long> idGroup);
+	List<GroupClient> findAll();
+
+	List<GroupClient> findByIdIn(List<Long> idGroup);
 
 }

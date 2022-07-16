@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.model.User;
+import vn.tpsc.it4u.models.User;
 
 /**
  * UserRepository

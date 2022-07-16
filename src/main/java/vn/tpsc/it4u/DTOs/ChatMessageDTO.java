@@ -5,52 +5,53 @@ import java.util.Date;
 import lombok.Data;
 
 public class ChatMessageDTO {
-  private String contents;
+	private String contents;
 
-  private long fromUserId;
-  
-  private long toUserId;
+	private long fromUserId;
 
-  private Date timeSent;
+	private long toUserId;
 
-  public ChatMessageDTO(){}
-  
-  public ChatMessageDTO(String contents, long fromUserId, long toUserId, Date timeSent) {
-    this.contents = contents;
-    this.fromUserId = fromUserId;
-    this.toUserId = toUserId;
-    this.timeSent = timeSent;
-  }
+	private Date timeSent;
 
-  public String getContents() {
-    return this.contents;
-  }
+	public ChatMessageDTO() {
+	}
 
-  public void setToUserId(long toUserId) {
-    this.toUserId = toUserId;
-  }
-  
-  public long getToUserId() {
-    return this.toUserId;
-  }
-  
-  public void setContents(String contents) {
-    this.contents = contents;
-  }
+	public ChatMessageDTO(String contents, long fromUserId, long toUserId, Date timeSent) {
+		this.contents = contents;
+		this.fromUserId = fromUserId;
+		this.toUserId = toUserId;
+		this.timeSent = timeSent;
+	}
 
-  public void setFromUserId(long userId) {
-    this.fromUserId = userId;
-  }
+	public String getContents() {
+		return this.contents;
+	}
 
-  public long getFromUserId() {
-    return this.fromUserId;
-  }
+	public void setToUserId(long toUserId) {
+		this.toUserId = toUserId;
+	}
 
-  public void setTimeSent(Date timeSent) {
-    this.timeSent = timeSent;
-  }
+	public long getToUserId() {
+		return this.toUserId;
+	}
 
-  public Date getTimeSent() {
-    return this.timeSent;
-  }
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public void setFromUserId(long userId) {
+		this.fromUserId = userId;
+	}
+
+	public long getFromUserId() {
+		return this.fromUserId;
+	}
+
+	public void setTimeSent(Date timeSent) {
+		this.timeSent = timeSent;
+	}
+
+	public Date getTimeSent() {
+		return this.timeSent;
+	}
 }

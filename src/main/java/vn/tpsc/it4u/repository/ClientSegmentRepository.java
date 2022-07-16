@@ -5,7 +5,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.model.ClientSegment;
+import vn.tpsc.it4u.models.ClientSegment;
+
 /**
  * ClientSegmentRepository
  */
@@ -13,7 +14,7 @@ import vn.tpsc.it4u.model.ClientSegment;
 @Repository
 public interface ClientSegmentRepository extends JpaRepository<ClientSegment, Long> {
 
-    Optional<ClientSegment> findByName(String name);
+	Optional<ClientSegment> findByName(String name);
 
-    Boolean existsByName(String name);
+	Boolean existsByName(String name);
 }

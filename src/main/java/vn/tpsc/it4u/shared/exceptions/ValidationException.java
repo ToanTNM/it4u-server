@@ -1,9 +1,21 @@
 package vn.tpsc.it4u.shared.exceptions;
 
 public class ValidationException extends Exception {
-  private static final long serialVersionUID = 1L;
-  public ValidationException() { super(); }
-  public ValidationException(String message) { super(message);  }
-  public ValidationException(String message, Throwable cause) { super(message, cause); }
-  public ValidationException(Throwable cause) { super(cause); }
+	private static final long serialVersionUID = 1L;
+
+	public ValidationException() {
+		super();
+	}
+
+	public ValidationException(String message) {
+		super(message);
+	}
+
+	public ValidationException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public ValidationException(Throwable cause) {
+		super(cause);
+	}
 }

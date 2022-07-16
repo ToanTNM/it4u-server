@@ -1,25 +1,26 @@
 package vn.tpsc.it4u.DTOs;
 
 public class ChatChannelInitializationDTO {
-  private long userIdOne;
+	private long userIdOne;
 
-  private long userIdTwo;
+	private long userIdTwo;
 
-  public ChatChannelInitializationDTO() {}
+	public ChatChannelInitializationDTO() {
+	}
 
-  public void setUserIdOne(long userIdOne) {
-    this.userIdOne = userIdOne;
-  }
+	public void setUserIdOne(long userIdOne) {
+		this.userIdOne = userIdOne;
+	}
 
-  public void setUserIdTwo(long userIdTwo) {
-    this.userIdTwo = userIdTwo;
-  }
+	public void setUserIdTwo(long userIdTwo) {
+		this.userIdTwo = userIdTwo;
+	}
 
-  public long getUserIdOne() {
-    return this.userIdOne;
-  }
+	public long getUserIdOne() {
+		return this.userIdOne;
+	}
 
-  public long getUserIdTwo() {
-    return userIdTwo;
-  }
+	public long getUserIdTwo() {
+		return userIdTwo;
+	}
 }

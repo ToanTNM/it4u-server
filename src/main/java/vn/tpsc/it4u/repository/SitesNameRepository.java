@@ -6,22 +6,22 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.model.SitesName;
+import vn.tpsc.it4u.models.SitesName;
 
 /**
  * SitesNameRepository
  */
 @Repository
 public interface SitesNameRepository extends JpaRepository<SitesName, Long> {
-    List<SitesName> findAll();
-    
-    Boolean existsBySitename(String username);
-    
-    Boolean existsByIdname(String idname);
+	List<SitesName> findAll();
 
-    SitesName findByIdname(String idname);
+	Boolean existsBySitename(String username);
 
-    SitesName findBySitename(String sitename);
+	Boolean existsByIdname(String idname);
 
-    SitesName findById(long id);
+	SitesName findByIdname(String idname);
+
+	SitesName findBySitename(String sitename);
+
+	SitesName findById(long id);
 }

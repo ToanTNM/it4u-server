@@ -9,17 +9,16 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 import vn.tpsc.it4u.interceptor.WebSocketInterceptor;
 import vn.tpsc.it4u.websocket.WebSSHWebSocketHandler;
 
-
 @Configuration
 @EnableWebSocket
 public class WebSSHWebSocketConfig implements WebSocketConfigurer {
-    @Autowired
-    WebSSHWebSocketHandler webSSHWebSocketHandler;
+	@Autowired
+	WebSSHWebSocketHandler webSSHWebSocketHandler;
 
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
+	@Override
+	public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
 
-        webSocketHandlerRegistry.addHandler(webSSHWebSocketHandler, "/webssh")
-                .addInterceptors(new WebSocketInterceptor()).setAllowedOrigins("*");
-    }
+		webSocketHandlerRegistry.addHandler(webSSHWebSocketHandler, "/webssh")
+				.addInterceptors(new WebSocketInterceptor()).setAllowedOrigins("*");
+	}
 }

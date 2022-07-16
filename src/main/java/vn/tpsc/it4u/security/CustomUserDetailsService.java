@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.tpsc.it4u.model.User;
+import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.repository.UserRepository;
 
 /**
