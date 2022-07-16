@@ -18,7 +18,7 @@ import vn.tpsc.it4u.models.Role;
 import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.payloads.ChangePasswordViewModel;
 import vn.tpsc.it4u.payloads.UserSummary;
-import vn.tpsc.it4u.repository.ChatChannelRepository;
+// import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.utils.StringUtils;
@@ -33,8 +33,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private ChatChannelRepository chatChannelRepository;
+	// @Autowired
+	// private ChatChannelRepository chatChannelRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -179,9 +179,9 @@ public class UserService {
 	}
 
 	public Boolean deleteUser(Long userId) {
-		if (chatChannelRepository.existsByUserIdOne(userId)) {
-			chatChannelRepository.deleteByUserIdOne(userId);
-		}
+		// if (chatChannelRepository.existsByUserIdOne(userId)) {
+		// chatChannelRepository.deleteByUserIdOne(userId);
+		// }
 		userRepository.deleteById(userId);
 		return true;
 	}

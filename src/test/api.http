@@ -949,21 +949,6 @@ Content-Type: application/json
     "Returning": "Trở lại",
     "total_connect": "Total connection"
 }
-###
-PUT http://localhost:5000/api/v1/private-chat/channel
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5OTQxMzkyNiwiZXhwIjoxNjAwMDE4NzI2fQ.SkNm5giV8wQJgCGHlEk17vGdlu9ztZEe25OFsH5B0nUx9qVrLTkS_qQOGYxT2SGKDUo2N9VNoQsc3B43bp9-mw
-Content-Type: application/json
-
-{
-    "userIdOne": 33,
-    "userIdTwo": 31
-}
-/api/private-chat/channel/
-
-###
-GET http://localhost:5000/api/v1/private-chat/channel/685ff00a-8de8-4cfd-8149-f31cc7ada04a
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMyIsImlhdCI6MTU5ODkyODQzMCwiZXhwIjoxNTk5NTMzMjMwfQ.i0699oUip537muvhwgxJsaJrS-GK1oxB-F_gpiUsvmG7h-iFicetsWJ7F4IXcda1o812JyzcM5RXpxkiT7RMoQ
-Content-Type: application/json
 
 ########################################### Channel ####################
 ###
