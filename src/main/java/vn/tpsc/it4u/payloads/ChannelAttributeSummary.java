@@ -1,11 +1,8 @@
 package vn.tpsc.it4u.payloads;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import vn.tpsc.it4u.models.ChannelName;
 import vn.tpsc.it4u.models.ChannelValue;
 
 @AllArgsConstructor

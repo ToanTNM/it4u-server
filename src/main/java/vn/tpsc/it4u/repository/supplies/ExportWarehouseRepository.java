@@ -1,6 +1,5 @@
 package vn.tpsc.it4u.repository.supplies;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

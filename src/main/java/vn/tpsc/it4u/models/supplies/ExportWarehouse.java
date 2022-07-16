@@ -1,7 +1,5 @@
 package vn.tpsc.it4u.models.supplies;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

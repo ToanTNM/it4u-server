@@ -3,14 +3,10 @@ package vn.tpsc.it4u.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
-import vn.tpsc.it4u.models.Contract;
 import vn.tpsc.it4u.models.CustomerBreakdowns;
 import vn.tpsc.it4u.models.CustomerSupport;
 import vn.tpsc.it4u.models.HandleService;
@@ -21,17 +17,14 @@ import vn.tpsc.it4u.payloads.HandleServiceSummary;
 import vn.tpsc.it4u.payloads.ServiceDeploymentSummary;
 import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.repository.CustomerBreakdownsRepository;
-import vn.tpsc.it4u.repository.ServiceDeploymentRepository;
-import vn.tpsc.it4u.utils.StringUtils;
 import vn.tpsc.it4u.repository.CustomerSupportRepository;
 import vn.tpsc.it4u.repository.HandleServiceRepository;
+import vn.tpsc.it4u.repository.ServiceDeploymentRepository;
+import vn.tpsc.it4u.utils.StringUtils;
 
 @Service
 @ExtensionMethod({ StringUtils.class })
 public class CustomerService {
-
-	@Autowired
-	private ModelMapper mapper;
 
 	@Autowired
 	CustomerBreakdownsRepository customerBreakdownsRepository;

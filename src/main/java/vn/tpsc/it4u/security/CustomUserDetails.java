@@ -1,17 +1,16 @@
 package vn.tpsc.it4u.security;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

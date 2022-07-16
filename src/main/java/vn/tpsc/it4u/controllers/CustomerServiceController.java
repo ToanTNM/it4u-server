@@ -1,23 +1,11 @@
 package vn.tpsc.it4u.controllers;
 
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
-
-import java.sql.Timestamp;
-
-import javax.naming.spi.DirStateFactory.Result;
-
-import com.google.api.client.util.DateTime;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,14 +19,12 @@ import vn.tpsc.it4u.models.CustomerBreakdowns;
 import vn.tpsc.it4u.models.CustomerSupport;
 import vn.tpsc.it4u.models.HandleService;
 import vn.tpsc.it4u.models.ServiceDeployment;
-import vn.tpsc.it4u.payloads.CustomerBreakdownsSummary;
 import vn.tpsc.it4u.repository.ContractRepository;
 import vn.tpsc.it4u.repository.CustomerBreakdownsRepository;
 import vn.tpsc.it4u.repository.CustomerSupportRepository;
 import vn.tpsc.it4u.repository.HandleServiceRepository;
 import vn.tpsc.it4u.repository.ServiceDeploymentRepository;
 import vn.tpsc.it4u.services.CustomerService;
-import vn.tpsc.it4u.utils.Calculator;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -279,23 +265,25 @@ public class CustomerServiceController {
 		return dataList.toString();
 	}
 
-	@Operation(description = "Service statistics by month")
-	@GetMapping("/it4u/service/sta/month")
-	public String staByMonth() {
-		String result = "";
-		int year = Year.now().getValue();
-		LocalDate now = LocalDate.now();
-		Calculator getCalculator = new Calculator();
-		for (int i = 1; i <= 12; i++) {
-			int dayOfMonth = getCalculator.dayOfMonth(i);
-			YearMonth yearMonth = YearMonth.of(year, i);
-			LocalDate firstOfMonth = yearMonth.atDay(1);
-			Timestamp timestamp = Timestamp.valueOf(firstOfMonth.toString() + " 00:00:00");
-			Long startTime = timestamp.getTime();
-			Long endTime = startTime + dayOfMonth * 24 * 60 * 60 * 1000;
-			JSONArray getAllServiceDeployment = new JSONArray(customerService.findAllServiceDeployment());
-			// System.out.println(timestamp.getTime());
-		}
-		return result;
-	}
+	// @Operation(description = "Service statistics by month")
+	// @GetMapping("/it4u/service/sta/month")
+	// public String staByMonth() {
+	// String result = "";
+	// int year = Year.now().getValue();
+	// // LocalDate now = LocalDate.now();
+	// Calculator getCalculator = new Calculator();
+	// for (int i = 1; i <= 12; i++) {
+	// // int dayOfMonth = getCalculator.dayOfMonth(i);
+	// YearMonth yearMonth = YearMonth.of(year, i);
+	// LocalDate firstOfMonth = yearMonth.atDay(1);
+	// Timestamp timestamp = Timestamp.valueOf(firstOfMonth.toString() + "
+	// 00:00:00");
+	// // Long startTime = timestamp.getTime();
+	// // Long endTime = startTime + dayOfMonth * 24 * 60 * 60 * 1000;
+	// // JSONArray getAllServiceDeployment = new
+	// JSONArray(customerService.findAllServiceDeployment());
+	// // System.out.println(timestamp.getTime());
+	// }
+	// return result;
+	// }
 }

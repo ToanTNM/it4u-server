@@ -1,43 +1,43 @@
 package vn.tpsc.it4u.controllers;
 
-import java.util.Collections;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
-
-import vn.tpsc.it4u.repository.SitesNameRepository;
-import vn.tpsc.it4u.repository.UserRepository;
-import vn.tpsc.it4u.security.CustomUserDetails;
-import vn.tpsc.it4u.services.UserService;
-import vn.tpsc.it4u.utils.ApiResponseUtils;
-import vn.tpsc.it4u.security.CurrentUser;
-import vn.tpsc.it4u.exceptions.AppException;
-import vn.tpsc.it4u.models.Role;
-import vn.tpsc.it4u.models.SitesName;
-import vn.tpsc.it4u.models.User;
-import vn.tpsc.it4u.models.enums.RoleName;
-import vn.tpsc.it4u.payloads.*;
-import vn.tpsc.it4u.repository.RoleRepository;
-
 import java.util.Locale;
 import java.util.Set;
-import java.util.TimeZone;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-import com.google.api.services.compute.Compute.Autoscalers.Update;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import vn.tpsc.it4u.models.Role;
+import vn.tpsc.it4u.models.SitesName;
+import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.payloads.ChangePasswordViewModel;
+import vn.tpsc.it4u.payloads.SignUpRequest;
+import vn.tpsc.it4u.payloads.UserIdentityAvailability;
+import vn.tpsc.it4u.payloads.UserSummary;
+import vn.tpsc.it4u.repository.RoleRepository;
+import vn.tpsc.it4u.repository.SitesNameRepository;
+import vn.tpsc.it4u.repository.UserRepository;
+import vn.tpsc.it4u.security.CurrentUser;
+import vn.tpsc.it4u.security.CustomUserDetails;
+import vn.tpsc.it4u.services.UserService;
+import vn.tpsc.it4u.utils.ApiResponseUtils;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -163,7 +163,7 @@ public class UserController {
 					count = count + 1;
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		result.put("online", count);

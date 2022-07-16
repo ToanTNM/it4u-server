@@ -1,14 +1,18 @@
 package vn.tpsc.it4u.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Set;
-import java.util.HashSet;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.tpsc.it4u.models.audit.UserDateAudit;
-import lombok.NoArgsConstructor;
 
 /**
  * ChannelAttribute

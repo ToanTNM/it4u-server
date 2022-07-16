@@ -136,10 +136,11 @@ public class DashboardController {
 	@GetMapping("/it4u/checkCookiesUbnt")
 	public ResponseEntity<?> checkCookiesUbnt(Locale locale) {
 		ApiRequest apiRequest = new ApiRequest();
-		String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken, unifises);
+		// String getSites = apiRequest.getRequestApi(urlIt4u, sitesid, csrfToken,
+		// unifises);
 		try {
-			JSONObject jsonResult = new JSONObject(getSites);
-			JSONArray data = jsonResult.getJSONArray("data");
+			// JSONObject jsonResult = new JSONObject(getSites);
+			// JSONArray data = jsonResult.getJSONArray("data");
 			return ResponseEntity.ok(apiResponse.success(200, locale));
 		} catch (Exception e) {
 			String dataPost = "{\"username\":\"" + username + "\",\"password\":\"" + password
@@ -295,7 +296,7 @@ public class DashboardController {
 			String devices0 = itemDevice0.getString("essid");
 			listSsid.add(devices0);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		try {
 			for (int i = 0; i < data.length(); i++) {
@@ -311,7 +312,7 @@ public class DashboardController {
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 
 		for (int j = 0; j < listSsid.size(); j++) {
@@ -324,7 +325,7 @@ public class DashboardController {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			getResult.put("name", listSsid.get(j));
 			getResult.put("y", k);
@@ -401,7 +402,7 @@ public class DashboardController {
 				long traffic = getInfo.getLong("bytes");
 				convertTraffic = getCalculator.convertBytesToGb(traffic);
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			getResult.put("name", getInfo.getString("name"));
 			getResult.put("y", convertTraffic);
@@ -470,7 +471,7 @@ public class DashboardController {
 			result.add(mostActiveClient);
 			result.add(mostActiveAp);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		return result.toString();
 	}
@@ -883,8 +884,8 @@ public class DashboardController {
 		List<String> listResult = new ArrayList<>();
 		JSONObject listResultTraffic = new JSONObject();
 		JSONObject listResultClient = new JSONObject();
-		long getTimeMax = 0;
-		long getTimeMin = 0;
+		// long getTimeMax = 0;
+		// long getTimeMin = 0;
 		long sumTraffic = 0;
 		long avgTraffic = 0;
 		int sum = 0;
@@ -921,11 +922,11 @@ public class DashboardController {
 				String uptime = getCalculator.ConvertSecondToDate(time);
 				if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
 					maxClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMax = getPosStart.getLong("time");
+					// getTimeMax = getPosStart.getLong("time");
 				}
 				if (minClient >= getPosStart.getInt("wlan-num_sta")) {
 					minClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMin = getPosStart.getLong("time");
+					// getTimeMin = getPosStart.getLong("time");
 				}
 				if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
 					maxTraffic = getPosStart.getLong("wlan_bytes");
@@ -944,8 +945,8 @@ public class DashboardController {
 		avgTraffic = Math.round(sumTraffic / k);
 		avg = Math.round(sum / k);
 		JSONObject getPostData = new JSONObject(postData);
-		String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
-		String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+		// String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+		// String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
 		// listResult.put("time",listTime);
 		// listResultClient.put("timeMax",timeMax);
 		// listResult.put("timeMin",timeMin);
@@ -977,8 +978,8 @@ public class DashboardController {
 		List<String> listResult = new ArrayList<>();
 		JSONObject listResultTraffic = new JSONObject();
 		JSONObject listResultClient = new JSONObject();
-		long getTimeMax = 0;
-		long getTimeMin = 0;
+		// long getTimeMax = 0;
+		// long getTimeMin = 0;
 		long sumTraffic = 0;
 		long avgTraffic = 0;
 		int sum = 0;
@@ -1008,11 +1009,11 @@ public class DashboardController {
 				String uptime = getCalculator.ConvertSecondToDate(time);
 				if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
 					maxClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMax = getPosStart.getLong("time");
+					// getTimeMax = getPosStart.getLong("time");
 				}
 				if (minClient >= getPosStart.getInt("wlan-num_sta")) {
 					minClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMin = getPosStart.getLong("time");
+					// getTimeMin = getPosStart.getLong("time");
 				}
 				if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
 					maxTraffic = getPosStart.getLong("wlan_bytes");
@@ -1024,15 +1025,14 @@ public class DashboardController {
 				sum = sum + getPosStart.getInt("wlan-num_sta");
 				k = k + 1;
 				listTime.add(uptime.toString());
-
 			}
-
 		}
+
 		avgTraffic = Math.round(sumTraffic / k);
 		avg = Math.round(sum / k);
 		JSONObject getPostData = new JSONObject(postData);
-		String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
-		String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+		// String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+		// String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
 		// listResult.put("time",listTime);
 		// listResultClient.put("timeMax",timeMax);
 		// listResult.put("timeMin",timeMin);
@@ -1064,8 +1064,8 @@ public class DashboardController {
 		List<String> listResult = new ArrayList<>();
 		JSONObject listResultTraffic = new JSONObject();
 		JSONObject listResultClient = new JSONObject();
-		long getTimeMax = 0;
-		long getTimeMin = 0;
+		// long getTimeMax = 0;
+		// long getTimeMin = 0;
 		long sumTraffic = 0;
 		long avgTraffic = 0;
 		int sum = 0;
@@ -1095,11 +1095,11 @@ public class DashboardController {
 				String uptime = getCalculator.ConvertSecondToDate(time);
 				if (maxClient <= getPosStart.getInt("wlan-num_sta")) {
 					maxClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMax = getPosStart.getLong("time");
+					// getTimeMax = getPosStart.getLong("time");
 				}
 				if (minClient >= getPosStart.getInt("wlan-num_sta")) {
 					minClient = getPosStart.getInt("wlan-num_sta");
-					getTimeMin = getPosStart.getLong("time");
+					// getTimeMin = getPosStart.getLong("time");
 				}
 				if (maxTraffic <= getPosStart.getLong("wlan_bytes")) {
 					maxTraffic = getPosStart.getLong("wlan_bytes");
@@ -1118,8 +1118,8 @@ public class DashboardController {
 		avgTraffic = Math.round(sumTraffic / k);
 		avg = Math.round(sum / k);
 		JSONObject getPostData = new JSONObject(postData);
-		String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
-		String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
+		// String timeMax = getCalculator.ConvertSecondToDate(getTimeMax);
+		// String timeMin = getCalculator.ConvertSecondToDate(getTimeMin);
 		// listResult.put("time",listTime);
 		// listResultClient.put("timeMax",timeMax);
 		// listResult.put("timeMin",timeMin);
@@ -1252,7 +1252,7 @@ public class DashboardController {
 		int endTime = Integer.parseInt(timeDateEnd[0]);
 		// end
 		int countClient = 0;
-		int k = 0;
+		// int k = 0;
 		for (int j = startTime; j <= endTime; j++) {
 			for (int i = data.length() - 1; i > 0; i--) {
 				JSONObject getInfo = (JSONObject) data.get(i);
@@ -1444,7 +1444,7 @@ public class DashboardController {
 		if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
 			return "Access denied!";
 		}
-		List<String> result = new ArrayList<>();
+		// List<String> result = new ArrayList<>();
 		List<String> listTime = new ArrayList<>();
 		List<Double> listTraffic = new ArrayList<Double>();
 		JSONObject listTrafficJson = new JSONObject();
@@ -1601,7 +1601,7 @@ public class DashboardController {
 		if (conditionGetData.getInt("dk") == conditionGetData.getInt("length")) {
 			return "Access denied!";
 		}
-		List<String> listTime = new ArrayList<>();
+		// List<String> listTime = new ArrayList<>();
 		List<Float> listStatusWan1 = new ArrayList<>();
 		List<Float> listStatusWan2 = new ArrayList<>();
 		List<Float> listStatusWan3 = new ArrayList<>();
@@ -1611,7 +1611,7 @@ public class DashboardController {
 		JSONObject statusWan2Json = new JSONObject();
 		JSONObject statusWan3Json = new JSONObject();
 		JSONObject statusWan4Json = new JSONObject();
-		JSONObject listResultJson = new JSONObject();
+		// JSONObject listResultJson = new JSONObject();
 		JSONArray getResultStatusWan1 = new JSONArray();
 		JSONArray getResultStatusWan2 = new JSONArray();
 		JSONArray getResultStatusWan3 = new JSONArray();
@@ -1672,7 +1672,7 @@ public class DashboardController {
 					+ "},\"auth\": \"" + tokenZabbix + "\",\"id\": 1}";
 			getResultStatusWan2 = getDashboard.getDataZabbix(urlZabbix, dataPostStatusWan4);
 		}
-		Calculator getCalculator = new Calculator();
+		// Calculator getCalculator = new Calculator();
 		for (int i = 0; i < getResultStatusWan1.length(); i = i + 10) {
 			JSONObject getItemStatusWan1 = (JSONObject) getResultStatusWan1.get(i);
 			Float valueStatusWan1 = getItemStatusWan1.getFloat("value");
@@ -2021,7 +2021,7 @@ public class DashboardController {
 				errorWeekly.put("time", getEndData.getLong("time"));
 				listErrorWeekly.add(errorWeekly.toString());
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		result.put("errorWeekly", listErrorWeekly.toString());
@@ -2139,7 +2139,7 @@ public class DashboardController {
 			return "Access denied!";
 		}
 		ApiRequest apiRequest = new ApiRequest();
-		JSONObject result = new JSONObject();
+		// JSONObject result = new JSONObject();
 		Integer down = 0;
 		Integer up = 0;
 		Integer byteQuota = 0;
@@ -2339,7 +2339,7 @@ public class DashboardController {
 		try {
 			max = getDataMax.getLong("bytes");
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		Integer posMax = 0;
 		for (int i = 0; i < getData.length(); i++) {
@@ -2348,7 +2348,7 @@ public class DashboardController {
 			try {
 				dataCompare = getPosCompare.getLong("bytes");
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			if (max < dataCompare) {
 				max = dataCompare;
@@ -2360,7 +2360,7 @@ public class DashboardController {
 			try {
 				dataCompare = getPosCompare.getLong("bytes");
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			if (max <= dataCompare) {
 				posMax = i;
@@ -2485,7 +2485,7 @@ public class DashboardController {
 			String apConnect = dashboard.apConnect(getDevices, postData);
 			result.put("ap_conn", apConnect);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		log.info(currentUser.getUsername() + " - it4u/" + userId + "/stat/device/");
 		return result.toString();
@@ -2503,7 +2503,7 @@ public class DashboardController {
 			result.add(mostActiveClient);
 			result.add(mostActiveAp);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		return result.toString();
 	}
@@ -2562,7 +2562,7 @@ public class DashboardController {
 				long traffic = getInfo.getLong("bytes");
 				convertTraffic = getCalculator.convertBytesToGb(traffic);
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			getResult.put("name", getInfo.getString("name"));
 			getResult.put("y", convertTraffic);
@@ -2638,7 +2638,7 @@ public class DashboardController {
 			String devices0 = itemDevice0.getString("essid");
 			listSsid.add(devices0);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		try {
 			for (int i = 0; i < data.length(); i++) {
@@ -2654,7 +2654,7 @@ public class DashboardController {
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 
 		for (int j = 0; j < listSsid.size(); j++) {
@@ -2667,7 +2667,7 @@ public class DashboardController {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 			getResult.put("name", listSsid.get(j));
 			getResult.put("y", k);

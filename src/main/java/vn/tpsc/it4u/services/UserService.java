@@ -1,8 +1,6 @@
 package vn.tpsc.it4u.services;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -16,12 +14,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.exceptions.AppException;
-import vn.tpsc.it4u.models.ChatChannel;
 import vn.tpsc.it4u.models.Role;
 import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.payloads.ChangePasswordViewModel;
 import vn.tpsc.it4u.payloads.UserSummary;
-import vn.tpsc.it4u.payloads.UserUpdateSummary;
 import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;

@@ -109,7 +109,7 @@ public class Calculator {
 				i = i + 4;
 			} catch (Exception e) {
 				System.out.print(e);
-				// TODO: handle exception
+				throw e;
 			}
 
 		}

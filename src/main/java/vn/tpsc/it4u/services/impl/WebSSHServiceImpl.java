@@ -1,22 +1,6 @@
 
 package vn.tpsc.it4u.services.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-
-import vn.tpsc.it4u.constants.ConstantPool;
-import vn.tpsc.it4u.models.SSHConnectInfo;
-import vn.tpsc.it4u.models.WebSSHData;
-import vn.tpsc.it4u.services.WebSSHService;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,11 +11,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+import vn.tpsc.it4u.constants.ConstantPool;
+import vn.tpsc.it4u.models.SSHConnectInfo;
+import vn.tpsc.it4u.models.WebSSHData;
+import vn.tpsc.it4u.services.WebSSHService;
+
 @Service
 public class WebSSHServiceImpl implements WebSSHService {
 	private static Map<String, Object> sshMap = new ConcurrentHashMap<>();
 
-	private Logger logger = LoggerFactory.getLogger(WebSSHServiceImpl.class);
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 
 	@Override

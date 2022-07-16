@@ -8,7 +8,7 @@ import vn.tpsc.it4u.interfaces.IChatService;
 import vn.tpsc.it4u.mappers.ChatMessageMapper;
 import vn.tpsc.it4u.models.ChatChannel;
 import vn.tpsc.it4u.models.ChatMessage;
-import vn.tpsc.it4u.models.User;
+// import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.ChatMessageRepository;
 
@@ -74,8 +74,9 @@ public class ChatService implements IChatService {
 
 		chatMessageRepository.save(chatMessage);
 
-		User fromUser = userService.getUser(chatMessage.getAuthorUser().getId());
-		User recipientUser = userService.getUser(chatMessage.getRecipientUser().getId());
+		// User fromUser = userService.getUser(chatMessage.getAuthorUser().getId());
+		// User recipientUser =
+		// userService.getUser(chatMessage.getRecipientUser().getId());
 	}
 
 	public List<ChatMessageDTO> getExistingChatMessages(String channelUuid) {

@@ -1,7 +1,6 @@
 package vn.tpsc.it4u.services;
 
-import java.time.Instant;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +9,6 @@ import vn.tpsc.it4u.models.token.RefreshToken;
 import vn.tpsc.it4u.repository.RefreshTokenRepository;
 import vn.tpsc.it4u.utils.StringUtils;
 import vn.tpsc.it4u.utils.Util;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 @ExtensionMethod({ StringUtils.class })

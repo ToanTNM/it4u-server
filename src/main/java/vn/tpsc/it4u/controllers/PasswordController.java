@@ -44,7 +44,7 @@ public class PasswordController {
 			@RequestBody String postData, HttpServletRequest request) {
 		JSONObject getData = new JSONObject(postData);
 		String userEmail = getData.getString("email");
-		String test = "";
+		// String test = "";
 		Optional<User> optional = forgotUserService.findUserByEmail(userEmail);
 		if (!optional.isPresent()) {
 			modelAndView.addObject("errorMessage", "We didn't find an account for that e-mail address. ");

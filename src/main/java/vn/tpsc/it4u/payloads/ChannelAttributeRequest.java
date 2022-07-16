@@ -1,7 +1,5 @@
 package vn.tpsc.it4u.payloads;
 
-import java.util.Set;
-
 import lombok.Data;
 
 /**

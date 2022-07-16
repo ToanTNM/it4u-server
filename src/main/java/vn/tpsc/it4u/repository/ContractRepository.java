@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import vn.tpsc.it4u.models.Contract;
 
-import java.util.List;
-
 @Repository
 public interface ContractRepository extends JpaRepository<Contract, Long> {
 	Contract findByCustomId(String customId);

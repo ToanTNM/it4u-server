@@ -2,8 +2,6 @@ package vn.tpsc.it4u.controllers;
 
 import java.util.Locale;
 
-import javax.ws.rs.DELETE;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

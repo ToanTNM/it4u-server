@@ -1,30 +1,29 @@
 package vn.tpsc.it4u.services;
 
-import org.json.JSONObject;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.json.JSONObject;
+// import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import lombok.experimental.ExtensionMethod;
-import vn.tpsc.it4u.repository.ChannelAttributeRepository;
-import vn.tpsc.it4u.repository.ChannelDetailRepository;
 import vn.tpsc.it4u.models.ChannelAttribute;
 import vn.tpsc.it4u.models.ChannelDetail;
 import vn.tpsc.it4u.models.ChannelValue;
 import vn.tpsc.it4u.models.Contract;
-import vn.tpsc.it4u.models.HistoryChannel;
 import vn.tpsc.it4u.payloads.ChannelAttributeSummary;
 import vn.tpsc.it4u.payloads.ChannelDetailSummary;
+import vn.tpsc.it4u.repository.ChannelAttributeRepository;
+import vn.tpsc.it4u.repository.ChannelDetailRepository;
 import vn.tpsc.it4u.repository.ChannelValueRepository;
-import vn.tpsc.it4u.repository.HistoryChannelRepository;
-import vn.tpsc.it4u.utils.StringUtils;
 import vn.tpsc.it4u.repository.ContractRepository;
+// import vn.tpsc.it4u.repository.HistoryChannelRepository;
+import vn.tpsc.it4u.utils.StringUtils;
 
 /**
  * ChannelAttribute
@@ -45,11 +44,11 @@ public class ChannelInfoService {
 	@Autowired
 	private ContractRepository contractRepository;
 
-	@Autowired
-	private HistoryChannelRepository historyChannelRepository;
+	// @Autowired
+	// private HistoryChannelRepository historyChannelRepository;
 
-	@Autowired
-	private ModelMapper mapper;
+	// @Autowired
+	// private ModelMapper mapper;
 
 	public List<ChannelAttributeSummary> findAll() {
 		List<ChannelAttribute> channelAttributes = channelAttributeRepository.findAll();

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import vn.tpsc.it4u.exceptions.IsSameUserException;
+import vn.tpsc.it4u.exceptions.UserNotFoundException;
 import vn.tpsc.it4u.shared.exceptions.ValidationException;
 import vn.tpsc.it4u.shared.http.JSONResponseHelper;
 import vn.tpsc.it4u.shared.interfaces.IErrorHandlerController;
@@ -66,7 +67,8 @@ public class ErrorHandlerController implements IErrorHandlerController {
 			return true;
 		if (exception instanceof ValidationException)
 			return true;
-		// TODO: if (exception instanceof UserNotFoundException) return true;
+		if (exception instanceof UserNotFoundException)
+			return true;
 
 		return false;
 	}

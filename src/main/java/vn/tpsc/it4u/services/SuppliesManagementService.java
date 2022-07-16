@@ -1,11 +1,7 @@
 package vn.tpsc.it4u.services;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.google.api.client.json.Json;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +9,17 @@ import org.springframework.stereotype.Service;
 
 import antlr.StringUtils;
 import lombok.experimental.ExtensionMethod;
-import vn.tpsc.it4u.repository.ContractRepository;
-import vn.tpsc.it4u.repository.supplies.*;
-import vn.tpsc.it4u.utils.Calculator;
 import vn.tpsc.it4u.models.Contract;
-import vn.tpsc.it4u.models.supplies.*;
+import vn.tpsc.it4u.models.supplies.ExportWarehouse;
+import vn.tpsc.it4u.models.supplies.ImportWarehouse;
+import vn.tpsc.it4u.models.supplies.ListSupplies;
 import vn.tpsc.it4u.payloads.supplies.ExportWarehouseSummary;
 import vn.tpsc.it4u.payloads.supplies.ImportWarehouseSummary;
+import vn.tpsc.it4u.repository.ContractRepository;
+import vn.tpsc.it4u.repository.supplies.ExportWarehouseRepository;
+import vn.tpsc.it4u.repository.supplies.ImportWarehouseRepository;
+import vn.tpsc.it4u.repository.supplies.ListSuppliesRepository;
+import vn.tpsc.it4u.utils.Calculator;
 
 @Service
 @ExtensionMethod({ StringUtils.class })
@@ -216,7 +216,7 @@ public class SuppliesManagementService {
 		try {
 			convertWarrantyLandmark = getCalculator.ConvertStringToSecond(data.getString("warrantyLandmark"));
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		try {
 			number = data.getLong("number");
@@ -255,8 +255,8 @@ public class SuppliesManagementService {
 					Contract contract = contractRepository.findByClientName(data.getString("clientName"));
 					exportWarehouse.setContract(contract);
 				} catch (Exception e) {
-					String[] getNumContract = data.getString("numContract").split("\\s", 0);
-					String numContract = getNumContract[0];
+					// String[] getNumContract = data.getString("numContract").split("\\s", 0);
+					// String numContract = getNumContract[0];
 					Contract contract = contractRepository.findByNumContract(data.getString("numContract"));
 					exportWarehouse.setContract(contract);
 				}
@@ -292,7 +292,7 @@ public class SuppliesManagementService {
 
 			importDate = getCalculator.ConvertStringToSecond(data.getString("importDate"));
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 
 		ImportWarehouse importWarehouse = new ImportWarehouse(

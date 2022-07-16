@@ -2,8 +2,6 @@ package vn.tpsc.it4u.DTOs;
 
 import java.util.Date;
 
-import lombok.Data;
-
 public class ChatMessageDTO {
 	private String contents;
 

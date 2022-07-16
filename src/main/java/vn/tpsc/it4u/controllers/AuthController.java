@@ -2,11 +2,12 @@ package vn.tpsc.it4u.controllers;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+
 import javax.validation.Valid;
-import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import lombok.extern.slf4j.Slf4j;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import vn.tpsc.it4u.exceptions.AppException;
 import vn.tpsc.it4u.exceptions.UserLoginException;
 import vn.tpsc.it4u.models.Role;
@@ -34,7 +35,6 @@ import vn.tpsc.it4u.models.SitesName;
 import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.models.enums.RoleName;
 import vn.tpsc.it4u.models.enums.UserStatus;
-import vn.tpsc.it4u.models.token.RefreshToken;
 import vn.tpsc.it4u.payloads.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payloads.LoginRequest;
 import vn.tpsc.it4u.payloads.SignUpRequest;
@@ -46,7 +46,6 @@ import vn.tpsc.it4u.security.JwtTokenProvider;
 import vn.tpsc.it4u.services.AuthService;
 import vn.tpsc.it4u.services.UserService;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 /**
  * AuthController

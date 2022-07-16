@@ -1,21 +1,26 @@
 package vn.tpsc.it4u.models;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Proxy;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +29,6 @@ import vn.tpsc.it4u.models.audit.UserDateAudit;
 import vn.tpsc.it4u.models.enums.Gender;
 import vn.tpsc.it4u.models.enums.UserStatus;
 import vn.tpsc.it4u.models.enums.UserType;
-import vn.tpsc.it4u.models.token.RefreshToken;
 
 /**
  * User

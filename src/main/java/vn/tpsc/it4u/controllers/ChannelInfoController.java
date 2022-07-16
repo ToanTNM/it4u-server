@@ -1,5 +1,12 @@
 package vn.tpsc.it4u.controllers;
 
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,18 +14,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.v3.oas.annotations.Operation;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import vn.tpsc.it4u.models.ChannelAttribute;
 import vn.tpsc.it4u.models.ChannelDetail;
 import vn.tpsc.it4u.models.ChannelName;
@@ -39,13 +42,6 @@ import vn.tpsc.it4u.services.SystemConfigService;
 import vn.tpsc.it4u.services.UserService;
 import vn.tpsc.it4u.utils.ApiRequest;
 import vn.tpsc.it4u.utils.Calculator;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("${app.api.version}")
@@ -73,9 +69,6 @@ public class ChannelInfoController {
 
 	@Value("${app.firebase.url}")
 	public String urlFirebase;
-
-	@Autowired
-	private ModelMapper mapper;
 
 	@Autowired
 	private ChannelAttributeRepository channelAttributeRepository;
@@ -357,7 +350,7 @@ public class ChannelInfoController {
 				JSONObject channelDetailJson = new JSONObject(channelDetail);
 				result.add(channelDetailJson.toString());
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		return result.toString();
@@ -530,7 +523,6 @@ public class ChannelInfoController {
 	@Operation(description = "Import data")
 	@PostMapping("/it4u/import/channel")
 	public String importChannelDetail(@RequestBody String data) {
-		String result = "";
 		JSONArray convertData = new JSONArray(data);
 		for (int i = 0; i < convertData.length(); i++) {
 			JSONObject getData = (JSONObject) convertData.get(i);
@@ -778,7 +770,7 @@ public class ChannelInfoController {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		return result;
@@ -845,7 +837,7 @@ public class ChannelInfoController {
 				}
 				result = notification(getRegistrationId, firstNumSta, secondNumSta, title);
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		return result;

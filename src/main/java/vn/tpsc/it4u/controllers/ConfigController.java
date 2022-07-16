@@ -1,8 +1,5 @@
 package vn.tpsc.it4u.controllers;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,13 +7,21 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Splitter;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import vn.tpsc.it4u.models.SitesName;
 import vn.tpsc.it4u.models.SystemConfig;
 import vn.tpsc.it4u.payloads.SystemConfigSummary;
@@ -27,7 +32,6 @@ import vn.tpsc.it4u.services.ConfigTokenService;
 import vn.tpsc.it4u.services.SystemConfigService;
 import vn.tpsc.it4u.utils.ApiRequest;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
@@ -347,7 +351,6 @@ public class ConfigController {
 	public String putSSID(@PathVariable(value = "id") String id,
 			@CurrentUser CustomUserDetails currentUser, @PathVariable(value = "ssid") String ssid,
 			@RequestBody String postData) {
-		List<String> result = new ArrayList<>();
 		String name = "";
 		List<String> schedule = new ArrayList<>();
 		ApiRequest apiRequest = new ApiRequest();
@@ -547,7 +550,6 @@ public class ConfigController {
 	public String createHotspot(@PathVariable(value = "id") String id,
 			@CurrentUser CustomUserDetails currentUser, @RequestBody String data) {
 		JSONObject postData = new JSONObject(data);
-		String result = "";
 		JSONObject getCookies = new JSONObject(ResponseEntity.ok(configTokenService.findAll()));
 		JSONArray getBody = getCookies.getJSONArray("body");
 		JSONObject body = (JSONObject) getBody.get(0);
@@ -565,16 +567,17 @@ public class ConfigController {
 			JSONObject convertPostData = new JSONObject(getPostData);
 			getDataFromPostData = convertPostData.getJSONArray("data");
 		}
-		Boolean portal = true;
+
+		// Boolean portal = true;
 		int positionPortal = 0;
 		int positionPortalSetting = 0;
 		for (int i = 0; i < getDataFromPostData.length(); i++) {
-			JSONObject getItem = (JSONObject) getDataFromPostData.get(i);
+			// JSONObject getItem = (JSONObject) getDataFromPostData.get(i);
 			try {
-				portal = getItem.getBoolean("portal_enabled");
+				// portal = getItem.getBoolean("portal_enabled");
 				positionPortalSetting = i;
 			} catch (Exception e) {
-				// TODO: handle exception
+				throw e;
 			}
 		}
 		String getSetting = apiRequest.getRequestApi(urlIt4u, "/s/" + id + "/get/setting", csrfToken, unifises);

@@ -1,21 +1,18 @@
 package vn.tpsc.it4u.services;
 
-import org.springframework.stereotype.Service;
-import lombok.experimental.ExtensionMethod;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.json.JSONObject;
-import org.modelmapper.ModelMapper;
-import java.util.stream.Collectors;
-
-import com.google.gson.JsonObject;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.json.JSONObject;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.models.Reporter;
 import vn.tpsc.it4u.payloads.ReporterSummary;
 import vn.tpsc.it4u.repository.ReporterRepository;
-import vn.tpsc.it4u.security.CustomReporterDetails;
 import vn.tpsc.it4u.utils.StringUtils;
 
 /**
@@ -88,7 +85,7 @@ public class ReporterService {
 			reporter.setDownload(addData.getString("download").isNullorEmpty() ? reporter.getDownload()
 					: addData.getString("download"));
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		reporterRepository.save(reporter);
 		return true;
