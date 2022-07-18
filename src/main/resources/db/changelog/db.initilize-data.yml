@@ -4,13 +4,6 @@ databaseChangeLog:
       author: it4u-admin
       failOnError: false
       changes:
-        # - sqlFile:
-        #     encoding: UTF-8
-        #     endDelimiter: \nGO
-        #     path: data.sql
-        #     relativeToChangelogFile: true
-        #     splitStatements: true
-        #     stripComments: true
         - insert:
             tableName: roles
             columns:
@@ -59,13 +52,25 @@ databaseChangeLog:
               - column:
                   name: role_id
                   value: 1
+  # - changeSet:
+  #       id: initialize-data-cmd
+  #       author: it4u-admin
+  #       failOnError: false
+  #       changes:
+  # - sqlFile:
+  #     encoding: UTF-8
+  #     endDelimiter: \nGO
+  #     path: resources\db\changelog\data.sql
+  #     relativeToChangelogFile: true
+  #     splitStatements: true
+  #     stripComments: true
 # - changeSet:
 #   id: initialize-data
 #   author: it4u-admin
 #   changes:
 #     # - sqlFile:
 #     #   encoding: UTF-8
-#     #   path: resources/data.sql
+#     #   path: resources\db\changelog\data.sql
 #     #   relativeToChangelogFile: true
 #     #   splitStatements: true
 #     #   stripComments: true

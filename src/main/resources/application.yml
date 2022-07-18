@@ -11,7 +11,7 @@ spring:
 
   jpa:
     show-sql: true
-    generate-ddl: false
+    generate-ddl: true
     # Disable Hibernate automatic schema creation:
     # hibernate.ddl-auto: none
     defer-datasource-initialization: true
@@ -33,6 +33,11 @@ spring:
       mode: always
       continue-on-error: true
 
+  # liquibase config
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
   # Jackson Properties
   jackson:
     default-property-inclusion: NON_NULL
@@ -43,10 +48,6 @@ spring:
   #locale
   messages:
     basename: i18n/errors,i18n/messages
-
-  liquibase:
-    enabled: false
-    change-log: classpath:db/changelog/db.changelog-master.yml
 
 logging:
   file:
