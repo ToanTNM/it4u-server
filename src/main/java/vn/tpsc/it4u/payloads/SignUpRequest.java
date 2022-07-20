@@ -2,7 +2,7 @@ package vn.tpsc.it4u.payloads;
 
 import java.util.Set;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -16,25 +16,26 @@ import vn.tpsc.it4u.models.enums.UserType;
 @Data
 public class SignUpRequest {
 
-	@NotBlank
+	@NotEmpty
 	@Size(min = 4, max = 40)
 	private String name;
 
-	@NotBlank
+	@NotEmpty
 	@Size(min = 3, max = 100)
 	private String username;
 
-	@NotBlank
+	@NotEmpty
 	@Size(max = 40)
 	@Email
 	private String email;
 
-	@NotBlank
+	@NotEmpty
 	@Size(min = 6, max = 20)
 	private String password;
 
 	private Gender gender;
 
+	@NotEmpty
 	private UserType type;
 
 	private UserStatus status;
@@ -43,5 +44,6 @@ public class SignUpRequest {
 
 	private String language;
 
+	@NotEmpty
 	private String roles;
 }

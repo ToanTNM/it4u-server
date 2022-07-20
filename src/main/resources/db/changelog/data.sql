@@ -2,23 +2,21 @@
 INSERT INTO roles
 	(NAME)
 VALUES
-	('ROLE_USER'),
-	('ROLE_ADMIN')
+	('ROLE_ADMIN'),
+	('ROLE_USER')
 ON CONFLICT
 (NAME) DO NOTHING;
 
 INSERT INTO USERS
-	(EMAIL, GENDER, NAME, PASSWORD, STATUS, TYPE, USERNAME, SITENAME)
+	(EMAIL, GENDER, NAME, PASSWORD, STATUS, TYPE, USERNAME)
 VALUES
-	('email@yahoo.com', 'Male', 'admin', '$2a$10$kTFo5FPqHgBv7DmWJ6BnPuhZE6wL1WKcFw/2wyAQajy08QeaVPOE.', 'Active', 'User', 'admin', 'rhnl7chn'),
-	('test@yahoo.com', 'Male', '49lqd', '$2a$10$kTFo5FPqHgBv7DmWJ6BnPuhZE6wL1WKcFw/2wyAQajy08QeaVPOE.', 'Active', 'User', 'test', 'rhnl7chn')
+	('dev@tpsc.vn', 'MALE', 'admin', '$2a$10$kTFo5FPqHgBv7DmWJ6BnPuhZE6wL1WKcFw/2wyAQajy08QeaVPOE.', 'ACTIVE', 'SYSTEM', 'admin')
 ON CONFLICT
 (EMAIL) DO NOTHING;
 
 INSERT INTO USER_ROLES
 VALUES
-	('1', '2'),
-	('2', '1')
+	('1', '1')
 ON CONFLICT
 (USER_ID, ROLE_ID) DO NOTHING;
 

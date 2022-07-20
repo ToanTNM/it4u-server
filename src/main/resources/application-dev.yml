@@ -18,12 +18,12 @@ logging:
 
 # org.hibernate: DEBUG
 
-# spring:
-# h2:
-#   console:
-#     enabled: true
-#     settings:
-#       web-allow-others: true
+spring:
+  h2:
+    console:
+      enabled: false
+      settings:
+        web-allow-others: true
 springdoc:
   api-docs:
     path: /api-docs

@@ -1,0 +1,103 @@
+# @domain=https://api-it4u.herokuapp.com/api/v1
+@domain=http://localhost:5000/api/v1
+@token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU4MjkwMTM5LCJleHAiOjE2NTg4OTQ5Mzl9.ivVqdFAQuukg53RANVG8FYjHUWDwhYGlSwiqyATaeKfFnyRP6CE6VJwgZ1sA_dUpJkUGajfTYsZK3gZzc0VuUA
+
+POST {{domain}}/auth/signin
+Content-Type: application/json
+
+{
+    "usernameOrEmail": "admin",
+    "password": "Tpsc.vn@123",
+    "remember": true
+}
+
+###
+
+GET {{domain}}/user/me
+Authorization: Bearer {{token}}
+
+###
+
+GET {{domain}}/user
+Authorization: Bearer {{token}}
+
+###
+
+POST {{domain}}/auth/signup
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Toan Tran",
+    "username": "toan1",
+    "email": "toan1@tpsc.vn",
+    "password": "123456",
+    "type": "USER",
+    "sitename": ["1px5g676", "rhnl7chn"],
+    "roles": "ROLE_USER"
+}
+
+###
+
+POST http://localhost:5000/api/v1/auth/addSitename
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "KH4322",
+    "username": "KH4232",
+    "email": "lap.dang7@tpsc.vn",
+    "password": "123456",
+    "sitename": "vr5hy29h"
+}
+
+###
+POST http://localhost:5000/api/v1/auth/refresh
+Content-Type: application/json
+
+{
+    "refreshToken":  "8d531d06-1a96-40f2-8b65-9015aa3805c2"
+}
+
+###
+
+PUT {{domain}}/user/update
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "language": "en-US"
+}
+
+###
+
+PUT {{domain}}/user/changePassword
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "currentPassword": "123456",
+    "newPassword": "Tpsc.vn@123",
+    "confirmPassword": "Tpsc.vn@123"
+}
+###
+DELETE {{domain}}/users/3
+Authorization: Bearer {{token}}
+
+###
+GET {{domain}}/users/2
+Authorization: Bearer {{token}}
+
+###
+PUT {{domain}}/users/2
+Authorization: Bearer {{token}}
+
+###
+PUT http://localhost:5000/api/v1/changePassword/11
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "newPassword": "123456",
+    "confirmPassword": "123456"
+}

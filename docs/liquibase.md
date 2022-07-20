@@ -4,7 +4,7 @@
 Created date: 2022/06/03  
 Updated date: 2022/06/03
 
-1. Add to ```pom.xml``` ```dependencies```
+## 1. Add to ```pom.xml``` ```dependencies```
 
 ```xml
 <dependency>
@@ -46,7 +46,7 @@ Add to ```pom.xml``` ```plugins```
     </dependencies>
 ```
 
-2. Config liquibase
+## 2. Config liquibase
 
 Enable ```liquibase``` in ```application.yml```
 
@@ -81,6 +81,7 @@ referencePassword=
 **Note**: ```liquibase``` not work with in-memory database (such as H2 mem)
 
 Disable JPA auto create schema and run sql:
+
 ```yml
 spring:
   jpa:
@@ -97,7 +98,7 @@ spring:
       continue-on-error: true
 ```
 
-3. liquibase command
+## 3. liquibase command
 
 - ```mvn liquibase:update```: update DB theo changelog của liquibase
 

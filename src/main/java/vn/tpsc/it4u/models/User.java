@@ -1,12 +1,13 @@
 package vn.tpsc.it4u.models;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,14 +18,21 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 import vn.tpsc.it4u.models.audit.UserDateAudit;
 import vn.tpsc.it4u.models.enums.Gender;
 import vn.tpsc.it4u.models.enums.UserStatus;
@@ -33,10 +41,11 @@ import vn.tpsc.it4u.models.enums.UserType;
 /**
  * User
  */
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-// @Document("user")
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {
@@ -46,12 +55,8 @@ import vn.tpsc.it4u.models.enums.UserType;
 				"email"
 		})
 })
+@DynamicInsert
 public class User extends UserDateAudit {
-
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,42 +79,41 @@ public class User extends UserDateAudit {
 	@Size(max = 100)
 	private String password;
 
-	@NotEmpty
-	@Size(max = 100)
+	@Column(nullable = false, columnDefinition = "varchar(20) default 'en-US'")
+	// @ColumnDefault("'en-US'")
 	private String language;
 
 	@Size(max = 500)
 	private String avatar;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = true)
+	@Column(nullable = false, columnDefinition = "varchar(10) default 'MALE'")
 	private Gender gender;
 
 	@Enumerated(EnumType.STRING)
-	// @ColumnDefault("Client")
 	private UserType type;
 
 	@Enumerated(EnumType.STRING)
-	// @ColumnDefault("Active")
+	@Column(nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
 	private UserStatus status;
-
-	// @Size(max = 100)
-	// private String sitename;
 
 	@Size(max = 100)
 	private String resetToken;
 
 	// @DBRef(lazy = true)
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
+	private Set<Role> roles;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@Fetch(FetchMode.JOIN)
 	// @JsonIgnore
 	@JoinTable(name = "user_site", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "site_id"))
-
-	private Set<SitesName> sitename = new HashSet<>();
+	private Set<SitesName> sitename;
 
 	private Long lastTimeLogin;
 
@@ -119,24 +123,25 @@ public class User extends UserDateAudit {
 
 	private String registrationId;
 
-	public User(long id) {
-		this.id = id;
-	}
+	// public User(long id) {
+	// this.id = id;
+	// }
 
-	public User(String name, String username, String email, String password, Gender gender, UserType type,
-			UserStatus status, String language, String resetToken,
-			String refreshToken, String registrationId) {
-		this.name = name;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.gender = gender;
-		this.type = type;
-		this.status = status;
-		// this.sitename = sitename;
-		this.language = language;
-		this.resetToken = resetToken;
-		this.refreshToken = refreshToken;
-		this.registrationId = registrationId;
-	}
+	// public User(String name, String username, String email, String password,
+	// Gender gender, UserType type,
+	// UserStatus status, String language, String resetToken,
+	// String refreshToken, String registrationId) {
+	// this.name = name;
+	// this.username = username;
+	// this.email = email;
+	// this.password = password;
+	// this.gender = gender;
+	// this.type = type;
+	// this.status = status;
+	// // this.sitename = sitename;
+	// this.language = language;
+	// this.resetToken = resetToken;
+	// this.refreshToken = refreshToken;
+	// this.registrationId = registrationId;
+	// }
 }

@@ -9,7 +9,9 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +36,6 @@ import vn.tpsc.it4u.models.Role;
 import vn.tpsc.it4u.models.SitesName;
 import vn.tpsc.it4u.models.User;
 import vn.tpsc.it4u.models.enums.RoleName;
-import vn.tpsc.it4u.models.enums.UserStatus;
 import vn.tpsc.it4u.payloads.JwtAuthenticationResponse;
 import vn.tpsc.it4u.payloads.LoginRequest;
 import vn.tpsc.it4u.payloads.SignUpRequest;
@@ -54,6 +55,9 @@ import vn.tpsc.it4u.utils.ApiResponseUtils;
 @Slf4j
 @RequestMapping("${app.api.version}/auth")
 public class AuthController {
+
+	@Autowired
+	ModelMapper mapper;
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -81,6 +85,9 @@ public class AuthController {
 
 	@Autowired
 	UserService userService;
+
+	@Value("${app.api.version}")
+	String apiVersion;
 
 	@PostMapping("/signin")
 	@Operation(description = "Sign In App")
@@ -130,18 +137,30 @@ public class AuthController {
 		}
 
 		// Creating user's account
-		final User user = new User(
-				signUpRequest.getName(),
-				signUpRequest.getUsername(),
-				signUpRequest.getEmail(),
-				signUpRequest.getPassword(),
-				signUpRequest.getGender(),
-				signUpRequest.getType(),
-				UserStatus.Active,
-				signUpRequest.getLanguage(),
-				null,
-				null,
-				null);
+		// final User user = new User(
+		// signUpRequest.getName(),
+		// signUpRequest.getUsername(),
+		// signUpRequest.getEmail(),
+		// signUpRequest.getPassword(),
+		// signUpRequest.getGender(),
+		// signUpRequest.getType(),
+		// UserStatus.Active,
+		// signUpRequest.getLanguage(),
+		// null,
+		// null,
+		// null);
+		// final User user = User.builder()
+		// .name(signUpRequest.getName())
+		// .username(signUpRequest.getUsername())
+		// .email(signUpRequest.getEmail())
+		// .password(signUpRequest.getPassword())
+		// .gender(signUpRequest.getGender())
+		// .type(signUpRequest.getType())
+		// .status(UserStatus.Active)
+		// .language(signUpRequest.getLanguage())
+		// .build();
+
+		User user = mapper.map(signUpRequest, User.class);
 
 		final String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
@@ -208,7 +227,7 @@ public class AuthController {
 		final User result = userRepository.save(user);
 
 		final URI location = ServletUriComponentsBuilder
-				.fromCurrentContextPath().path("/api/users/{username}")
+				.fromCurrentContextPath().path(apiVersion + "/users/{username}")
 				.buildAndExpand(result.getUsername()).toUri();
 
 		return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));

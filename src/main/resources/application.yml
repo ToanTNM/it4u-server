@@ -16,7 +16,7 @@ spring:
     # hibernate.ddl-auto: none
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: ${HIBERNATE_DIALECT:}
@@ -29,9 +29,9 @@ spring:
   sql:
     init:
       data-locations:
-        - classpath:db\changelog\data.sql
+        - classpath:db/changelog/data.sql
       mode: always
-      continue-on-error: true
+      continue-on-error: false
 
   # liquibase config
   liquibase:
