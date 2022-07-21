@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.tpsc.it4u.models.audit.UserDateAudit;
+import vn.tpsc.it4u.models.channel.ChannelAttribute;
 
 @Getter
 @Setter

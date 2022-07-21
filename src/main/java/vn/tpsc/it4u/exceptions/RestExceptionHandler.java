@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.security.authentication.BadCredentialsException;
 
 import vn.tpsc.it4u.payloads.ApiResponse;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
@@ -33,7 +34,7 @@ public class RestExceptionHandler {
 	ApiResponseUtils apiResponse;
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ApiResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
 		Map<String, String> errors = new HashMap<>();
 		ex.getBindingResult().getAllErrors().forEach((error) -> {
@@ -42,7 +43,7 @@ public class RestExceptionHandler {
 			errors.put(fieldName, errorMessage);
 		});
 
-		return apiResponse.error(1500, errors, request.getLocale());
+		return apiResponse.error(400, errors, request.getLocale());
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)
@@ -86,19 +87,19 @@ public class RestExceptionHandler {
 	}
 
 	@ExceptionHandler(MismatchedInputException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public ApiResponse handleMismatchedInputException(MismatchedInputException ex, WebRequest request) {
-		return apiResponse.error(5006, ex.getLocalizedMessage(), request.getLocale());
+		return apiResponse.error(500, ex.getLocalizedMessage(), request.getLocale());
 	}
 
 	/**
 	 * IndexOutOfBoundsException
 	 */
 	@ExceptionHandler(IndexOutOfBoundsException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public ApiResponse indexOutOfBoundsException(Exception ex, WebRequest request) {
-		return apiResponse.error(5007, ex.getLocalizedMessage(), request.getLocale());
+		return apiResponse.error(500, ex.getLocalizedMessage(), request.getLocale());
 	}
 
 	// @ExceptionHandler(Exception.class)
@@ -106,4 +107,13 @@ public class RestExceptionHandler {
 	// public ErrorMessage handleAllException(Exception ex, WebRequest request) {
 	// return new ErrorMessage(10000, ex.getLocalizedMessage(), null);
 	// }
+
+	/**
+	 * throw from AuthController - authenticationManager.authenticate(token);
+	 */
+	@ExceptionHandler(BadCredentialsException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public ApiResponse badCredentialsException(BadCredentialsException ex, WebRequest request) {
+		return apiResponse.error(401, ex.getLocalizedMessage(), request.getLocale());
+	}
 }

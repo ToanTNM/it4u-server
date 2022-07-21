@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
-import vn.tpsc.it4u.models.ChannelAttribute;
-import vn.tpsc.it4u.models.ChannelDetail;
-import vn.tpsc.it4u.models.ChannelValue;
 import vn.tpsc.it4u.models.Contract;
+import vn.tpsc.it4u.models.channel.ChannelAttribute;
+import vn.tpsc.it4u.models.channel.ChannelDetail;
+import vn.tpsc.it4u.models.channel.ChannelValue;
 import vn.tpsc.it4u.payloads.ChannelAttributeSummary;
 import vn.tpsc.it4u.payloads.ChannelDetailSummary;
 import vn.tpsc.it4u.repository.ChannelAttributeRepository;

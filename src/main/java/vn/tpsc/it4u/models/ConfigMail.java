@@ -16,15 +16,9 @@ import vn.tpsc.it4u.models.audit.UserDateAudit;
 @Getter
 @Setter
 @NoArgsConstructor
-// @Document("configmail")
 @Entity
 @Table(name = "configMail")
 public class ConfigMail extends UserDateAudit {
-
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

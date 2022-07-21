@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models;
+package vn.tpsc.it4u.models.channel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,23 +9,19 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import vn.tpsc.it4u.models.audit.UserDateAudit;
 
 /**
  * ChannelAttribute
  */
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
+@Builder
 public class ChannelAttribute extends UserDateAudit {
-	/**
-	*
-	*/
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,12 +44,13 @@ public class ChannelAttribute extends UserDateAudit {
 	@Size(max = 40)
 	private String usernamePPPoE;
 
-	public ChannelAttribute(String customer, String status, String virtualNum, String usernamePPPoE,
-			ChannelValue channelValue) {
-		this.customer = customer;
-		this.status = status;
-		this.virtualNum = virtualNum;
-		this.usernamePPPoE = usernamePPPoE;
-		this.channelValue = channelValue;
-	}
+	// public ChannelAttribute(String customer, String status, String virtualNum,
+	// String usernamePPPoE,
+	// ChannelValue channelValue) {
+	// this.customer = customer;
+	// this.status = status;
+	// this.virtualNum = virtualNum;
+	// this.usernamePPPoE = usernamePPPoE;
+	// this.channelValue = channelValue;
+	// }
 }

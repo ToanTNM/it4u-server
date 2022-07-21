@@ -3,8 +3,8 @@ package vn.tpsc.it4u.payloads;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import vn.tpsc.it4u.models.ChannelAttribute;
 import vn.tpsc.it4u.models.Contract;
+import vn.tpsc.it4u.models.channel.ChannelAttribute;
 
 @AllArgsConstructor
 @Getter

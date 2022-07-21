@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "admin",
-    "password": "Tpsc.vn@123",
+    "password": "Tpsc.vn@12",
     "remember": true
 }
 

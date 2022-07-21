@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models;
+package vn.tpsc.it4u.models.channel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
-import vn.tpsc.it4u.models.ChannelAttribute;
-import vn.tpsc.it4u.models.ChannelDetail;
-import vn.tpsc.it4u.models.ChannelName;
-import vn.tpsc.it4u.models.ChannelValue;
 import vn.tpsc.it4u.models.Contract;
 import vn.tpsc.it4u.models.HistoryChannel;
 import vn.tpsc.it4u.models.SystemConfig;
+import vn.tpsc.it4u.models.channel.ChannelAttribute;
+import vn.tpsc.it4u.models.channel.ChannelDetail;
+import vn.tpsc.it4u.models.channel.ChannelName;
+import vn.tpsc.it4u.models.channel.ChannelValue;
 import vn.tpsc.it4u.payloads.ChannelAttributeRequest;
 import vn.tpsc.it4u.repository.ChannelAttributeRepository;
 import vn.tpsc.it4u.repository.ChannelDetailRepository;
@@ -99,6 +100,9 @@ public class ChannelInfoController {
 
 	@Autowired
 	SystemConfigService systemConfigService;
+
+	@Autowired
+	ModelMapper mapper;
 
 	@Operation(description = "Get clients")
 	@GetMapping("/it4u/clients")
@@ -240,13 +244,14 @@ public class ChannelInfoController {
 	@Operation(description = "Post channel attribute")
 	@PostMapping("/it4u/channel/attribute")
 	public String PostChannelAttribute(@RequestBody final ChannelAttributeRequest postData) {
-		ChannelValue getChannelValue = channelValueRepository.findByServicePack(postData.getChannelValue());
-		ChannelAttribute getChannelAttribute = new ChannelAttribute(
-				postData.getCustomer(),
-				postData.getStatus(),
-				postData.getVirtualNum(),
-				postData.getUsernamePPPoE(),
-				getChannelValue);
+		ChannelValue channelValue = channelValueRepository.findByServicePack(postData.getChannelValue());
+		ChannelAttribute getChannelAttribute = mapper.map(channelValue, ChannelAttribute.class);
+		// new ChannelAttribute(
+		// postData.getCustomer(),
+		// postData.getStatus(),
+		// postData.getVirtualNum(),
+		// postData.getUsernamePPPoE(),
+		// getChannelValue);
 		channelAttributeRepository.save(getChannelAttribute);
 		String result = getAllChannelAttribute();
 		return result;
@@ -266,10 +271,11 @@ public class ChannelInfoController {
 	public ResponseEntity<?> postChannelValue(@RequestBody final ChannelValue postData) {
 		JSONObject getChannelName = new JSONObject(postData.getChannelName());
 		ChannelName channelName = channelNameRepository.findByName(getChannelName.getString("name"));
-		ChannelValue createChannelValue = new ChannelValue(
-				postData.getServicePack(),
-				postData.getValue(),
-				channelName);
+		ChannelValue createChannelValue = ChannelValue.builder()
+				.servicePack(postData.getServicePack())
+				.channelName(channelName)
+				.value(postData.getValue())
+				.build();
 		channelValueRepository.save(createChannelValue);
 		List<ChannelValue> channelValue = channelValueRepository.findByChannelName(channelName);
 		return ResponseEntity.ok(channelValue);
@@ -467,16 +473,18 @@ public class ChannelInfoController {
 				historyChannelRepository.save(historyChannel);
 			}
 		}
-		ChannelDetail createChannelDetail = new ChannelDetail(
-				getData.getString("routerType"),
-				getData.getString("deviceStatus"),
-				getData.getString("votesRequire"),
-				getData.getString("ipType"),
-				getData.getString("regionalEngineer"),
-				getData.getLong("deployRequestDate"),
-				getData.getLong("dateAcceptance"),
-				getData.getString("ipAddress"),
-				getData.getString("fees"));
+		ChannelDetail createChannelDetail = ChannelDetail.builder()
+				.routerType(getData.getString("routerType"))
+				.deviceStatus(getData.getString("deviceStatus"))
+				.votesRequire(getData.getString("votesRequire"))
+				.ipType(getData.getString("ipType"))
+				.regionalEngineer(getData.getString("regionalEngineer"))
+				.deployRequestDate(getData.getLong("deployRequestDate"))
+				.dateAcceptance(getData.getLong("dateAcceptance"))
+				.ipAddress(getData.getString("ipAddress"))
+				.fees(getData.getString("fees"))
+				.build();
+
 		ChannelValue getChannelValue = channelValueRepository.findByServicePack(getData.getString("servicePack"));
 		List<ChannelAttribute> getChannelAttribute = channelAttributeRepository.findByChannelValue(getChannelValue);
 		JSONArray channelAttributeArr = new JSONArray(getChannelAttribute);
@@ -527,18 +535,20 @@ public class ChannelInfoController {
 		for (int i = 0; i < convertData.length(); i++) {
 			JSONObject getData = (JSONObject) convertData.get(i);
 			String status = getData.getString("status");
-			Calculator getCalculator = new Calculator();
+			// Calculator getCalculator = new Calculator();
 			HistoryChannel historyChannel = new HistoryChannel();
-			ChannelDetail createChannelDetail = new ChannelDetail(
-					getData.getString("routerType"),
-					getData.getString("deviceStatus"),
-					getData.getString("votesRequire"),
-					getData.getString("ipType"),
-					getData.getString("regionalEngineer"),
-					getCalculator.ConvertStringToSecond(getData.getString("deployRequestDate")),
-					getCalculator.ConvertStringToSecond(getData.getString("dateAcceptance")),
-					getData.getString("ipAddress"),
-					getData.getString("fees"));
+			ChannelDetail createChannelDetail = ChannelDetail.builder()
+					.routerType(getData.getString("routerType"))
+					.deviceStatus(getData.getString("deviceStatus"))
+					.votesRequire(getData.getString("votesRequire"))
+					.ipType(getData.getString("ipType"))
+					.regionalEngineer(getData.getString("regionalEngineer"))
+					.deployRequestDate(getData.getLong("deployRequestDate"))
+					.dateAcceptance(getData.getLong("dateAcceptance"))
+					.ipAddress(getData.getString("ipAddress"))
+					.fees(getData.getString("fees"))
+					.build();
+
 			try {
 				if (!channelNameRepository.existsByName(getData.getString("name"))) {
 					ChannelName channelName = new ChannelName(getData.getString("name"));
@@ -546,10 +556,12 @@ public class ChannelInfoController {
 				}
 				if (!channelValueRepository.existsByServicePack(getData.getString("servicePack"))) {
 					ChannelName getChannelName = channelNameRepository.findByName(getData.getString("name"));
-					ChannelValue channelValue = new ChannelValue(
-							getData.getString("servicePack"),
-							getData.getString("value"),
-							getChannelName);
+					ChannelValue channelValue = ChannelValue.builder()
+							.servicePack(getData.getString("servicePack"))
+							.value(getData.getString("value"))
+							.channelName(getChannelName)
+							.build();
+
 					channelValueRepository.save(channelValue);
 				}
 				if (!getData.getString("customerMove").equals("")) {
@@ -557,12 +569,14 @@ public class ChannelInfoController {
 				}
 				ChannelValue getChannelValue = channelValueRepository
 						.findByServicePack(getData.getString("servicePack"));
-				ChannelAttribute channelAttribute = new ChannelAttribute(
-						getData.getString("customer"),
-						status,
-						getData.getString("virtualNum"),
-						getData.getString("usernamePPPoE"),
-						getChannelValue);
+				ChannelAttribute channelAttribute = ChannelAttribute.builder()
+						.customer(getData.getString("customer"))
+						.status(status)
+						.virtualNum(getData.getString("virtualNum"))
+						.usernamePPPoE(getData.getString("usernamePPPoE"))
+						.channelValue(getChannelValue)
+						.build();
+
 				channelAttributeRepository.save(channelAttribute);
 				historyChannel.setChannelAttribute(channelAttribute);
 				createChannelDetail.setChannelAttribute(channelAttribute);

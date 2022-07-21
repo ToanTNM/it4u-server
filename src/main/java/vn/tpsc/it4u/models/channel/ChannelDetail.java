@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models;
+package vn.tpsc.it4u.models.channel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +9,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import vn.tpsc.it4u.models.Contract;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Builder
 @Entity
 @Table(name = "channelDetail")
 public class ChannelDetail {
@@ -55,18 +54,19 @@ public class ChannelDetail {
 	@JoinColumn(name = "channel_attribute_id")
 	private ChannelAttribute channelAttribute;
 
-	public ChannelDetail(String routerType, String deviceStatus, String votesRequire, String ipType,
-			String regionalEngineer, Long deployRequestDate,
-			Long dateAcceptance, String ipAddress, String fees) {
-		this.routerType = routerType;
-		this.votesRequire = votesRequire;
-		this.ipType = ipType;
-		this.deviceStatus = deviceStatus;
-		this.regionalEngineer = regionalEngineer;
-		this.deployRequestDate = deployRequestDate;
-		this.dateAcceptance = dateAcceptance;
-		this.ipAddress = ipAddress;
-		this.fees = fees;
-	}
+	// public ChannelDetail(String routerType, String deviceStatus, String
+	// votesRequire, String ipType,
+	// String regionalEngineer, Long deployRequestDate,
+	// Long dateAcceptance, String ipAddress, String fees) {
+	// this.routerType = routerType;
+	// this.votesRequire = votesRequire;
+	// this.ipType = ipType;
+	// this.deviceStatus = deviceStatus;
+	// this.regionalEngineer = regionalEngineer;
+	// this.deployRequestDate = deployRequestDate;
+	// this.dateAcceptance = dateAcceptance;
+	// this.ipAddress = ipAddress;
+	// this.fees = fees;
+	// }
 
 }

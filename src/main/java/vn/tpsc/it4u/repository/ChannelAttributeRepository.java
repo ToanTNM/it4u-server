@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.models.ChannelAttribute;
-import vn.tpsc.it4u.models.ChannelValue;
+import vn.tpsc.it4u.models.channel.ChannelAttribute;
+import vn.tpsc.it4u.models.channel.ChannelValue;
 
 /**
  * ChannelValueRepository

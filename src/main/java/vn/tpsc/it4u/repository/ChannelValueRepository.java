@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.models.ChannelName;
-import vn.tpsc.it4u.models.ChannelValue;
+import vn.tpsc.it4u.models.channel.ChannelName;
+import vn.tpsc.it4u.models.channel.ChannelValue;
 
 @Repository
 public interface ChannelValueRepository extends JpaRepository<ChannelValue, Long> {

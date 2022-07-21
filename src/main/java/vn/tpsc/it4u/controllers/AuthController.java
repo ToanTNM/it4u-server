@@ -92,7 +92,8 @@ public class AuthController {
 	@PostMapping("/signin")
 	@Operation(description = "Sign In App")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "1000", description = "Successfully retrieved list")
+			@ApiResponse(responseCode = "1000", description = "Successfully retrieved list"),
+			@ApiResponse(responseCode = "401", description = "Bad credentials")
 	})
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
 
@@ -135,30 +136,6 @@ public class AuthController {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<>(apiResponse.error(1002, locale), HttpStatus.BAD_REQUEST);
 		}
-
-		// Creating user's account
-		// final User user = new User(
-		// signUpRequest.getName(),
-		// signUpRequest.getUsername(),
-		// signUpRequest.getEmail(),
-		// signUpRequest.getPassword(),
-		// signUpRequest.getGender(),
-		// signUpRequest.getType(),
-		// UserStatus.Active,
-		// signUpRequest.getLanguage(),
-		// null,
-		// null,
-		// null);
-		// final User user = User.builder()
-		// .name(signUpRequest.getName())
-		// .username(signUpRequest.getUsername())
-		// .email(signUpRequest.getEmail())
-		// .password(signUpRequest.getPassword())
-		// .gender(signUpRequest.getGender())
-		// .type(signUpRequest.getType())
-		// .status(UserStatus.Active)
-		// .language(signUpRequest.getLanguage())
-		// .build();
 
 		User user = mapper.map(signUpRequest, User.class);
 

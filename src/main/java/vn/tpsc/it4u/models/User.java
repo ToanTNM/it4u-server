@@ -18,14 +18,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,9 +39,9 @@ import vn.tpsc.it4u.models.enums.UserType;
  * User
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Builder
 @Entity
 @Table(name = "users", uniqueConstraints = {
