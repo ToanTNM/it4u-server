@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models.enums;
+package vn.tpsc.it4u.enums;
 
 public enum UserType {
 	SYSTEM,

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 
-import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.auth.User;
 import vn.tpsc.it4u.services.EmailService;
 import vn.tpsc.it4u.services.ForgotUserService;
 

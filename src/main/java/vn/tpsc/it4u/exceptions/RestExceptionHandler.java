@@ -116,4 +116,13 @@ public class RestExceptionHandler {
 	public ApiResponse badCredentialsException(BadCredentialsException ex, WebRequest request) {
 		return apiResponse.error(401, ex.getLocalizedMessage(), request.getLocale());
 	}
+
+	@ExceptionHandler(value = TokenRefreshException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public ApiResponse handleTokenRefreshException(TokenRefreshException ex, WebRequest request) {
+		return apiResponse.error(
+				HttpStatus.UNAUTHORIZED.value(),
+				ex.getLocalizedMessage(),
+				request.getLocale());
+	}
 }

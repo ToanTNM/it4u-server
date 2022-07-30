@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.experimental.ExtensionMethod;
 import vn.tpsc.it4u.exceptions.AppException;
-import vn.tpsc.it4u.models.Role;
-import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.auth.Role;
+import vn.tpsc.it4u.models.auth.User;
 import vn.tpsc.it4u.payloads.ChangePasswordViewModel;
-import vn.tpsc.it4u.payloads.UserSummary;
+import vn.tpsc.it4u.payloads.auth.UserSummary;
 // import vn.tpsc.it4u.repository.ChatChannelRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
@@ -184,10 +184,6 @@ public class UserService {
 		// }
 		userRepository.deleteById(userId);
 		return true;
-	}
-
-	public Optional<User> getRefreshToken(String refreshToken) {
-		return userRepository.findByRefreshToken(refreshToken);
 	}
 
 	public List<UserSummary> findUser(List<Long> userId) {

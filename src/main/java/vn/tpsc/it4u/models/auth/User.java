@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models;
+package vn.tpsc.it4u.models.auth;
 
 import java.util.Set;
 
@@ -21,6 +21,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -30,10 +31,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import vn.tpsc.it4u.enums.Gender;
+import vn.tpsc.it4u.enums.UserStatus;
+import vn.tpsc.it4u.enums.UserType;
+import vn.tpsc.it4u.models.SitesName;
 import vn.tpsc.it4u.models.audit.UserDateAudit;
-import vn.tpsc.it4u.models.enums.Gender;
-import vn.tpsc.it4u.models.enums.UserStatus;
-import vn.tpsc.it4u.models.enums.UserType;
 
 /**
  * User
@@ -53,6 +55,7 @@ import vn.tpsc.it4u.models.enums.UserType;
 		})
 })
 @DynamicInsert
+@DynamicUpdate
 public class User extends UserDateAudit {
 
 	@Id
@@ -115,8 +118,6 @@ public class User extends UserDateAudit {
 	private Long lastTimeLogin;
 
 	private Long numLogin;
-
-	private String refreshToken;
 
 	private String registrationId;
 

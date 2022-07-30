@@ -2,7 +2,7 @@ package vn.tpsc.it4u.services;
 
 import java.util.Optional;
 
-import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.auth.User;
 
 public interface ForgotUserService {
 	public Optional<User> findUserByEmail(String email);

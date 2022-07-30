@@ -9,12 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.InvalidClaimException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,7 +42,7 @@ public class JwtTokenProvider {
 		Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
 		return Jwts.builder()
-				.setSubject(Long.toString(customUserDetails.getId()))
+				.setSubject(customUserDetails.getId().toString())
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
 				.signWith(key(), SignatureAlgorithm.HS512)
@@ -60,7 +57,7 @@ public class JwtTokenProvider {
 		Date now = new Date();
 		Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 		return Jwts.builder()
-				.setSubject(Long.toString(userId))
+				.setSubject(userId.toString())
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
 				.signWith(key(), SignatureAlgorithm.HS512)
@@ -92,16 +89,10 @@ public class JwtTokenProvider {
 			// Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
 
 			return true;
-		} catch (InvalidClaimException ex) {
-			log.error("Invalid JWT signature");
-		} catch (MalformedJwtException ex) {
-			log.error("Invalid JWT token");
-		} catch (ExpiredJwtException ex) {
-			log.error("Expired JWT token");
-		} catch (UnsupportedJwtException ex) {
-			log.error("Unsupported JWT token");
-		} catch (IllegalArgumentException ex) {
-			log.error("JWT claims string is empty.");
+		} catch (JwtException ex) {
+			throw ex;
+		} catch (Exception ex) {
+			log.error("Another error ", ex.getMessage());
 		}
 		return false;
 	}

@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.models;
+package vn.tpsc.it4u.models.auth;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
 import lombok.Data;
-import vn.tpsc.it4u.models.enums.RoleName;
+import vn.tpsc.it4u.enums.RoleName;
 
 /**
  * Role

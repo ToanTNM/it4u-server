@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.auth.User;
 import vn.tpsc.it4u.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

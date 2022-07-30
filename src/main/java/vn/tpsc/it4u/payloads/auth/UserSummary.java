@@ -1,15 +1,15 @@
-package vn.tpsc.it4u.payloads;
+package vn.tpsc.it4u.payloads.auth;
 
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import vn.tpsc.it4u.models.Role;
+import vn.tpsc.it4u.enums.Gender;
+import vn.tpsc.it4u.enums.UserStatus;
+import vn.tpsc.it4u.enums.UserType;
 import vn.tpsc.it4u.models.SitesName;
-import vn.tpsc.it4u.models.enums.Gender;
-import vn.tpsc.it4u.models.enums.UserStatus;
-import vn.tpsc.it4u.models.enums.UserType;
+import vn.tpsc.it4u.models.auth.Role;
 
 @AllArgsConstructor
 @Getter

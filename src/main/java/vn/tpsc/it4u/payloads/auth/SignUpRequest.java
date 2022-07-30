@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.payloads;
+package vn.tpsc.it4u.payloads.auth;
 
 import java.util.Set;
 import javax.validation.constraints.Email;
@@ -6,9 +6,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-import vn.tpsc.it4u.models.enums.Gender;
-import vn.tpsc.it4u.models.enums.UserStatus;
-import vn.tpsc.it4u.models.enums.UserType;
+import vn.tpsc.it4u.enums.Gender;
+import vn.tpsc.it4u.enums.UserStatus;
+import vn.tpsc.it4u.enums.UserType;
 
 /**
  * SignUpRequest

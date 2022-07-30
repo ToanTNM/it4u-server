@@ -1,7 +1,5 @@
 package vn.tpsc.it4u.utils;
 
-import java.util.UUID;
-
 public class Util {
 
 	/**
@@ -11,10 +9,4 @@ public class Util {
 		return value;
 	}
 
-	/**
-	 * Generate a random UUID
-	 */
-	public static String generateRandomUuid() {
-		return UUID.randomUUID().toString();
-	}
 }

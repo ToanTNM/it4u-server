@@ -43,5 +43,10 @@
     "name": "app.dev.token",
     "type": "java.lang.String",
     "description": "A description for 'app.dev.token'"
+  },
+  {
+    "name": "app.refreshTokenExpirationInMs",
+    "type": "java.lang.String",
+    "description": "A description for 'app.refreshTokenExpirationInMs'"
   }
 ]}

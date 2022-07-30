@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import vn.tpsc.it4u.models.Role;
+import vn.tpsc.it4u.models.auth.Role;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
 

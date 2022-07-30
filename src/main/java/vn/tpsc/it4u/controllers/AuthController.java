@@ -29,22 +29,26 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import lombok.extern.slf4j.Slf4j;
+import vn.tpsc.it4u.enums.RoleName;
 import vn.tpsc.it4u.exceptions.AppException;
+import vn.tpsc.it4u.exceptions.TokenRefreshException;
 import vn.tpsc.it4u.exceptions.UserLoginException;
-import vn.tpsc.it4u.models.Role;
 import vn.tpsc.it4u.models.SitesName;
-import vn.tpsc.it4u.models.User;
-import vn.tpsc.it4u.models.enums.RoleName;
-import vn.tpsc.it4u.payloads.JwtAuthenticationResponse;
-import vn.tpsc.it4u.payloads.LoginRequest;
-import vn.tpsc.it4u.payloads.SignUpRequest;
-import vn.tpsc.it4u.payloads.TokenRefreshRequest;
+import vn.tpsc.it4u.models.auth.RefreshToken;
+import vn.tpsc.it4u.models.auth.Role;
+import vn.tpsc.it4u.models.auth.User;
+import vn.tpsc.it4u.payloads.auth.JwtAuthenticationResponse;
+import vn.tpsc.it4u.payloads.auth.LogOutRequest;
+import vn.tpsc.it4u.payloads.auth.LoginRequest;
+import vn.tpsc.it4u.payloads.auth.SignUpRequest;
+import vn.tpsc.it4u.payloads.auth.TokenRefreshRequest;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
+import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.security.JwtTokenProvider;
 import vn.tpsc.it4u.services.AuthService;
+import vn.tpsc.it4u.services.RefreshTokenService;
 import vn.tpsc.it4u.services.UserService;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
 
@@ -52,7 +56,6 @@ import vn.tpsc.it4u.utils.ApiResponseUtils;
  * AuthController
  */
 @RestController
-@Slf4j
 @RequestMapping("${app.api.version}/auth")
 public class AuthController {
 
@@ -86,6 +89,9 @@ public class AuthController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	RefreshTokenService refreshTokenService;
+
 	@Value("${app.api.version}")
 	String apiVersion;
 
@@ -96,20 +102,26 @@ public class AuthController {
 			@ApiResponse(responseCode = "401", description = "Bad credentials")
 	})
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody final LoginRequest loginRequest, Locale locale) {
-
-		final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-				loginRequest.getUsernameOrEmail().toLowerCase(),
-				loginRequest.getPassword());
-		final Authentication authentication = authenticationManager.authenticate(token);
+		final Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(
+						loginRequest.getUsernameOrEmail().toLowerCase(),
+						loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		log.info(loginRequest.getUsernameOrEmail() + " - Login");
-		final String jwt = tokenProvider.generateToken(authentication);
-		return authService.createAndPersistRefreshTokenForDevice(authentication)
-				.map(User::getRefreshToken).map(refreshToken -> {
-					return ResponseEntity.ok(
-							new JwtAuthenticationResponse(jwt, refreshToken));
-				}).orElseThrow(() -> new UserLoginException("Couldn't create refresh token for: [" + loginRequest + "]"));
+		CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+
+		final String accessToken = tokenProvider.generateTokenFromUserId(customUserDetails.getId());
+
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(customUserDetails.getId());
+
+		return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(
+				accessToken, refreshToken.getToken()), locale));
+		// return authService.createAndPersistRefreshTokenForDevice(authentication)
+		// .map(User::getRefreshToken).map(refreshToken -> {
+		// return ResponseEntity.ok(
+		// new JwtAuthenticationResponse(jwt, refreshToken));
+		// }).orElseThrow(() -> new UserLoginException("Couldn't create refresh token
+		// for: [" + loginRequest + "]"));
 		// return ResponseEntity.ok(apiResponse.success(new
 		// JwtAuthenticationResponse(jwt, refreshToken), locale));
 	}
@@ -117,12 +129,27 @@ public class AuthController {
 	@PostMapping("/refresh")
 	@Operation(description = "Refesh the expired jwt authentication")
 	public ResponseEntity<?> refeshJwtToken(
-			@Parameter(description = "The TokenRefreshRequest payload") @Valid @RequestBody TokenRefreshRequest tokenRefreshRequest,
+			@Parameter(description = "The TokenRefreshRequest payload") @Valid @RequestBody TokenRefreshRequest request,
 			Locale locale) {
-		Optional<User> user = userService.getRefreshToken(tokenRefreshRequest.getRefreshToken());
-		Long userId = user.get().getId();
-		final String updatedToken = tokenProvider.generateTokenFromUserId(userId);
-		return ResponseEntity.ok(new JwtAuthenticationResponse(updatedToken, tokenRefreshRequest.getRefreshToken()));
+		// Optional<User> user =
+		// userService.getRefreshToken(tokenRefreshRequest.getRefreshToken());
+		// Long userId = user.get().getId();
+		// final String updatedToken = tokenProvider.generateTokenFromUserId(userId);
+		// return ResponseEntity.ok(new JwtAuthenticationResponse(updatedToken,
+		// tokenRefreshRequest.getRefreshToken()));
+
+		String requestRefreshToken = request.getRefreshToken();
+
+		return refreshTokenService.findByToken(requestRefreshToken)
+				.map(refreshTokenService::verifyExpiration)
+				.map(RefreshToken::getUser)
+				.map(user -> {
+					final String accessToken = tokenProvider.generateTokenFromUserId(user.getId());
+					return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(
+							accessToken, requestRefreshToken), locale));
+				})
+				.orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
+						"Refresh token is not exist!"));
 	}
 
 	@PostMapping("/signup")
@@ -208,5 +235,11 @@ public class AuthController {
 				.buildAndExpand(result.getUsername()).toUri();
 
 		return ResponseEntity.created(location).body(apiResponse.success("User registered successfully"));
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest request) {
+		refreshTokenService.deleteByUserId(request.getUserId());
+		return ResponseEntity.ok(apiResponse.success("Log out successfully"));
 	}
 }

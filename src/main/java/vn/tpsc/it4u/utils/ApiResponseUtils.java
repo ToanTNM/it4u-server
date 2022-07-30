@@ -1,10 +1,18 @@
 package vn.tpsc.it4u.utils;
 
+import java.io.IOException;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vn.tpsc.it4u.payloads.ApiResponse;
 
@@ -57,5 +65,28 @@ public class ApiResponseUtils {
 		response.setErrors(errors);
 
 		return response;
+	}
+
+	/**
+	 * 
+	 * @param response       HttpServletResponse
+	 * @param responseStatus response Status
+	 * @param errors         errorObject
+	 * @throws IOException
+	 */
+	public void responseServletError(HttpServletResponse response, HttpStatus responseStatus, Exception e)
+			throws IOException {
+		ApiResponse responseObject = new ApiResponse();
+		responseObject.setCode(responseStatus.value());
+		responseObject.setMessage(messageSource.getMessage(String.valueOf(responseStatus.value()), null, "Error", null));
+		responseObject.setErrors(e.getMessage());
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		String result = mapper.writeValueAsString(responseObject);
+
+		response.setStatus(responseStatus.value());
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		response.getWriter().write(result);
 	}
 }

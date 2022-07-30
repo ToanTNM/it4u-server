@@ -1,4 +1,4 @@
-## REST API Response
+# REST API Response
 
 Informational responses (100–199)\
 Successful responses (200–299)\

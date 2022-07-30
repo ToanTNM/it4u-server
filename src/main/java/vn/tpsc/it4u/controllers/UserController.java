@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import vn.tpsc.it4u.models.Role;
 import vn.tpsc.it4u.models.SitesName;
-import vn.tpsc.it4u.models.User;
+import vn.tpsc.it4u.models.auth.Role;
+import vn.tpsc.it4u.models.auth.User;
 import vn.tpsc.it4u.payloads.ChangePasswordViewModel;
-import vn.tpsc.it4u.payloads.SignUpRequest;
-import vn.tpsc.it4u.payloads.UserIdentityAvailability;
-import vn.tpsc.it4u.payloads.UserSummary;
+import vn.tpsc.it4u.payloads.auth.SignUpRequest;
+import vn.tpsc.it4u.payloads.auth.UserIdentityAvailability;
+import vn.tpsc.it4u.payloads.auth.UserSummary;
 import vn.tpsc.it4u.repository.RoleRepository;
 import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;

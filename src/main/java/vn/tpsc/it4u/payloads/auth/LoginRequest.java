@@ -1,6 +1,6 @@
-package vn.tpsc.it4u.payloads;
+package vn.tpsc.it4u.payloads.auth;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +12,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class LoginRequest {
 
-	@NotBlank
+	@NotEmpty
 	private String usernameOrEmail;
 
-	@NotBlank
+	@NotEmpty
 	private String password;
 }

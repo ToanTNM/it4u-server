@@ -1,4 +1,4 @@
-package vn.tpsc.it4u.payloads;
+package vn.tpsc.it4u.payloads.auth;
 
 import javax.validation.constraints.NotBlank;
 

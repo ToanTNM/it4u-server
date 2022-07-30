@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import vn.tpsc.it4u.models.Role;
-import vn.tpsc.it4u.models.enums.RoleName;
+import vn.tpsc.it4u.enums.RoleName;
+import vn.tpsc.it4u.models.auth.Role;
 
 /**
  * RoleRepository

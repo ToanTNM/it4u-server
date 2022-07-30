@@ -15,12 +15,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import vn.tpsc.it4u.models.Role;
+import vn.tpsc.it4u.enums.Gender;
+import vn.tpsc.it4u.enums.UserStatus;
+import vn.tpsc.it4u.enums.UserType;
 import vn.tpsc.it4u.models.SitesName;
-import vn.tpsc.it4u.models.User;
-import vn.tpsc.it4u.models.enums.Gender;
-import vn.tpsc.it4u.models.enums.UserStatus;
-import vn.tpsc.it4u.models.enums.UserType;
+import vn.tpsc.it4u.models.auth.Role;
+import vn.tpsc.it4u.models.auth.User;
 
 /**
  * CustomUserDetails
@@ -31,11 +31,6 @@ import vn.tpsc.it4u.models.enums.UserType;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class CustomUserDetails implements UserDetails {
-
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Long id;

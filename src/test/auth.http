@@ -1,13 +1,14 @@
 # @domain=https://api-it4u.herokuapp.com/api/v1
 @domain=http://localhost:5000/api/v1
-@token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU4MjkwMTM5LCJleHAiOjE2NTg4OTQ5Mzl9.ivVqdFAQuukg53RANVG8FYjHUWDwhYGlSwiqyATaeKfFnyRP6CE6VJwgZ1sA_dUpJkUGajfTYsZK3gZzc0VuUA
+@token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjU5MTU0MDI0LCJleHAiOjE2NTkxNTQ5MjR9.D0UB3Ly2nmonEbldn1iNu5esesxeGAfsw1tpDSilCkLlqqcjg_v_zzKWdGhuadVFwN9hDAINUyEgNNmz6PdM3Q
+@refreshToken=ad6004a2-f27f-4aed-910a-536b04b87d61
 
 POST {{domain}}/auth/signin
 Content-Type: application/json
 
 {
     "usernameOrEmail": "admin",
-    "password": "Tpsc.vn@12",
+    "password": "Tpsc.vn@123",
     "remember": true
 }
 
@@ -39,7 +40,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:5000/api/v1/auth/addSitename
+POST {{domain}}/auth/addSitename
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -52,11 +53,20 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/api/v1/auth/refresh
+POST {{domain}}/auth/refresh
 Content-Type: application/json
 
 {
-    "refreshToken":  "8d531d06-1a96-40f2-8b65-9015aa3805c2"
+    "refreshToken": "{{refreshToken}}"
+}
+
+###
+POST {{domain}}/auth/logout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId": "1"
 }
 
 ###
@@ -66,7 +76,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "language": "en-US"
+    "name": "admin1"
 }
 
 ###
@@ -93,7 +103,7 @@ PUT {{domain}}/users/2
 Authorization: Bearer {{token}}
 
 ###
-PUT http://localhost:5000/api/v1/changePassword/11
+PUT {/changePassword/11
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
