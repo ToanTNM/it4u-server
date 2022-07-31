@@ -1,19 +1,25 @@
 package vn.tpsc.it4u.models.auth;
 
-import javax.persistence.Entity;
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.NaturalId;
-
 import java.time.Instant;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.tpsc.it4u.models.audit.UserDateAudit;
 
 /**
  * ConfigToken
@@ -24,7 +30,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity(name = "refresh_token")
-public class RefreshToken {
+@DynamicUpdate
+public class RefreshToken extends UserDateAudit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

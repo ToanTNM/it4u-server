@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -32,7 +31,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import vn.tpsc.it4u.enums.RoleName;
 import vn.tpsc.it4u.exceptions.AppException;
 import vn.tpsc.it4u.exceptions.TokenRefreshException;
-import vn.tpsc.it4u.exceptions.UserLoginException;
 import vn.tpsc.it4u.models.SitesName;
 import vn.tpsc.it4u.models.auth.RefreshToken;
 import vn.tpsc.it4u.models.auth.Role;
@@ -116,14 +114,6 @@ public class AuthController {
 
 		return ResponseEntity.ok(apiResponse.success(new JwtAuthenticationResponse(
 				accessToken, refreshToken.getToken()), locale));
-		// return authService.createAndPersistRefreshTokenForDevice(authentication)
-		// .map(User::getRefreshToken).map(refreshToken -> {
-		// return ResponseEntity.ok(
-		// new JwtAuthenticationResponse(jwt, refreshToken));
-		// }).orElseThrow(() -> new UserLoginException("Couldn't create refresh token
-		// for: [" + loginRequest + "]"));
-		// return ResponseEntity.ok(apiResponse.success(new
-		// JwtAuthenticationResponse(jwt, refreshToken), locale));
 	}
 
 	@PostMapping("/refresh")
