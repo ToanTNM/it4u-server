@@ -38,7 +38,7 @@ spring:
     enabled: false
     change-log: classpath:db/changelog/db.changelog-master.yml
 
-  # Jackson Properties
+  # Jackson Properties #output json configuration
   jackson:
     default-property-inclusion: NON_NULL
     serialization:

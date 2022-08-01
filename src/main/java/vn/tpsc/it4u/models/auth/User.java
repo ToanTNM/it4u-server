@@ -100,7 +100,6 @@ public class User extends UserDateAudit {
 	@Size(max = 100)
 	private String resetToken;
 
-	// @DBRef(lazy = true)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -111,7 +110,6 @@ public class User extends UserDateAudit {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@Fetch(FetchMode.JOIN)
-	// @JsonIgnore
 	@JoinTable(name = "user_site", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "site_id"))
 	private Set<SitesName> sitename;
 
@@ -120,26 +118,4 @@ public class User extends UserDateAudit {
 	private Long numLogin;
 
 	private String registrationId;
-
-	// public User(long id) {
-	// this.id = id;
-	// }
-
-	// public User(String name, String username, String email, String password,
-	// Gender gender, UserType type,
-	// UserStatus status, String language, String resetToken,
-	// String refreshToken, String registrationId) {
-	// this.name = name;
-	// this.username = username;
-	// this.email = email;
-	// this.password = password;
-	// this.gender = gender;
-	// this.type = type;
-	// this.status = status;
-	// // this.sitename = sitename;
-	// this.language = language;
-	// this.resetToken = resetToken;
-	// this.refreshToken = refreshToken;
-	// this.registrationId = registrationId;
-	// }
 }

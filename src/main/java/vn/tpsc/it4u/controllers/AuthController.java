@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -36,7 +37,6 @@ import vn.tpsc.it4u.models.auth.RefreshToken;
 import vn.tpsc.it4u.models.auth.Role;
 import vn.tpsc.it4u.models.auth.User;
 import vn.tpsc.it4u.payloads.auth.JwtAuthenticationResponse;
-import vn.tpsc.it4u.payloads.auth.LogOutRequest;
 import vn.tpsc.it4u.payloads.auth.LoginRequest;
 import vn.tpsc.it4u.payloads.auth.SignUpRequest;
 import vn.tpsc.it4u.payloads.auth.TokenRefreshRequest;
@@ -45,7 +45,6 @@ import vn.tpsc.it4u.repository.SitesNameRepository;
 import vn.tpsc.it4u.repository.UserRepository;
 import vn.tpsc.it4u.security.CustomUserDetails;
 import vn.tpsc.it4u.security.JwtTokenProvider;
-import vn.tpsc.it4u.services.AuthService;
 import vn.tpsc.it4u.services.RefreshTokenService;
 import vn.tpsc.it4u.services.UserService;
 import vn.tpsc.it4u.utils.ApiResponseUtils;
@@ -80,9 +79,6 @@ public class AuthController {
 
 	@Autowired
 	ApiResponseUtils apiResponse;
-
-	@Autowired
-	AuthService authService;
 
 	@Autowired
 	UserService userService;
@@ -228,8 +224,10 @@ public class AuthController {
 	}
 
 	@PostMapping("/logout")
-	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest request) {
-		refreshTokenService.deleteByUserId(request.getUserId());
+	public ResponseEntity<?> logoutUser(HttpServletRequest request) {
+		String jwt = tokenProvider.getJwtFromRequest(request);
+		Long userId = tokenProvider.getUserIdFromJWT(jwt);
+		refreshTokenService.deleteByUserId(userId);
 		return ResponseEntity.ok(apiResponse.success("Log out successfully"));
 	}
 }

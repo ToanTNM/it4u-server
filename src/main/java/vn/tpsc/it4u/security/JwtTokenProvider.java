@@ -3,10 +3,13 @@ package vn.tpsc.it4u.security;
 import java.security.Key;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -95,5 +98,21 @@ public class JwtTokenProvider {
 			log.error("Another error ", ex.getMessage());
 		}
 		return false;
+	}
+
+	public String getJwtFromRequest(HttpServletRequest request) {
+		// Cookie[] cookies = request.getCookies();
+		// Cookie token = WebUtils.getCookie(request, "Authorization");
+		// String bearerToken = token == null ? "" : token.getValue();
+		// if (!StringUtils.hasText(bearerToken))
+		// bearerToken = request.getHeader("Authorization");
+		// ;
+
+		String bearerToken = request.getHeader("Authorization");
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+			return bearerToken.substring(7, bearerToken.length());
+		}
+
+		return null;
 	}
 }
